@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">date</string>
+    <string name="fragment_category_nav_title">category</string>
+    <string name="fragment_favorite_nav_title">favorite</string>
+    <string name="fragment_setting_nav_title">setting</string>
+</resources>

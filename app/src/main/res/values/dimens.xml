@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="home_item_decoration_bottom">12dp</dimen>
+</resources>
