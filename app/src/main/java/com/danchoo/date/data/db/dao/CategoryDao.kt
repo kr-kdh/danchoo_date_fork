@@ -1,13 +1,11 @@
 package com.danchoo.date.data.db.dao
 
-import androidx.paging.Pager
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import com.danchoo.date.data.db.entity.Category
-import com.danchoo.date.data.pagingsource.CategoryPagingSource
 
 @Dao
 abstract class CategoryDao {
@@ -25,6 +23,16 @@ abstract class CategoryDao {
         timestamp: Long,
         size: Int
     ): List<Category>
+
+    @Transaction
+    @Query(
+        """ 
+            SELECT * 
+            FROM category 
+            ORDER BY timestamp ASC 
+            """
+    )
+    abstract fun getCategoryList(): PagingSource<Int, Category>
 
     @Transaction
     @Query(

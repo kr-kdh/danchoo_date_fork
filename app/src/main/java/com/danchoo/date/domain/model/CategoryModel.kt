@@ -1,14 +1,18 @@
 package com.danchoo.date.domain.model
 
-data class CategoryModel(
-    val hash: String = "",
+sealed class CategoryModel {
+    data class CategoryData(
+        val hash: String = "",
 
-    val title: String = "",
+        val title: String = "",
 
-    val contents: String = "",
+        val contents: String = "",
 
-    val timestamp: Long = 0L,
+        val timestamp: Long = 0L,
 
-    var revision : Long = 0
-) {
+        var revision: Long = 0
+    ) : CategoryModel()
+
+    data class CategoryHeader(val title: String) : CategoryModel()
 }
+

@@ -1,6 +1,5 @@
 package com.danchoo.date.data.pagingsource
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.danchoo.date.data.datasource.local.CategoryLocalDataSource
@@ -8,17 +7,20 @@ import com.danchoo.date.data.db.entity.extension.toModel
 import com.danchoo.date.domain.model.CategoryModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class CategoryPagingSource constructor(
     private val localDataSource: CategoryLocalDataSource
 ) : PagingSource<Int, CategoryModel>() {
 
-    private val sourceModel = CategoryModel()
+    private val sourceModel = CategoryModel.CategoryData()
+    val dataSource = localDataSource.getCategoryList()
 
     init {
+
+        dataSource.registerInvalidatedCallback(::invalidate)
         registerInvalidatedCallback {
-            Log.d("_SMY", "CategoryPagingSource registerInvalidatedCallback")
+            dataSource.unregisterInvalidatedCallback(::invalidate)
+            dataSource.invalidate()
         }
     }
 

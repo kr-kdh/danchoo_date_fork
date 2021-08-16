@@ -1,28 +1,33 @@
 package com.danchoo.date.domain.inspactor.usecase.main
 
-import androidx.paging.InvalidatingPagingSourceFactory
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import com.danchoo.date.domain.inspactor.usecase.base.UseCase
+import androidx.paging.*
 import com.danchoo.date.domain.model.CategoryModel
 import com.danchoo.date.domain.repository.CategoryRepository
-import kotlinx.coroutines.CoroutineDispatcher
-import java.util.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class CategoryPagingUseCase @Inject constructor(
-    repository: CategoryRepository
+    val repository: CategoryRepository
 ) {
-
-    private val pagingSource = repository.getCategoryPagingSource()
-
-    operator fun invoke() = Pager(
+    operator fun invoke(): Flow<PagingData<CategoryModel>> = Pager(
         config = PagingConfig(
             pageSize = 10,
             prefetchDistance = 10,
             enablePlaceholders = false,
             maxSize = Int.MAX_VALUE
-        ),
-        pagingSourceFactory = {pagingSource}
-    ).flow
+        )
+    ) {
+        repository.getCategoryCustomPagingSource()
+    }.flow
+        .map { pagingData ->
+            pagingData.insertHeaderItem(item = CategoryModel.CategoryHeader("title"))
+                .insertSeparators { categoryModel: CategoryModel?, categoryModel2: CategoryModel? ->
+                    when (categoryModel) {
+                        null -> CategoryModel.CategoryHeader("title")
+                        else -> null
+                    }
+                }
+        }
+
 }

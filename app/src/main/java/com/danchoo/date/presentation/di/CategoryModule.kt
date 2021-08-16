@@ -35,10 +35,9 @@ object CategoryModule {
     @Singleton
     @Provides
     fun provideCategoryRepository(
-        categoryPagingSource: CategoryPagingSource,
         localDatasource: CategoryLocalDataSource
     ): CategoryRepository {
-        return CategoryRepositoryImpl(categoryPagingSource, localDatasource)
+        return CategoryRepositoryImpl(localDatasource)
     }
 
     @Provides

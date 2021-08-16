@@ -1,11 +1,12 @@
 package com.danchoo.date.presentation.ui.components.main.category
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -22,10 +23,11 @@ fun Category(
 ) {
     Scaffold(
         content = {
-            Surface(modifier = modifier.fillMaxSize()) {
+            Surface(modifier = modifier
+                .fillMaxSize()
+                .padding(top = 56.dp)) {
                 // TODO : Test
                 val list = viewModel.categoryList().collectAsLazyPagingItems()
-
                 CategoryList(list)
             }
         },
