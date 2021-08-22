@@ -9,14 +9,14 @@ import com.danchoo.date.domain.model.extension.toEntity
 import com.danchoo.date.domain.repository.CategoryRepository
 
 class CategoryRepositoryImpl constructor(
-    private val localDatasource: CategoryLocalDataSource,
+    private val localDataSource: CategoryLocalDataSource,
 ) : CategoryRepository {
     override fun getCategoryPagingSource(): PagingSource<Int, Category> {
-        return localDatasource.getCategoryList()
+        return localDataSource.getCategoryList()
     }
 
     override fun getCategoryCustomPagingSource(): CategoryPagingSource {
-        return CategoryPagingSource(localDatasource)
+        return CategoryPagingSource(localDataSource)
     }
 
     override fun insertCategory(categoryList: List<CategoryModel>) {
@@ -26,6 +26,6 @@ class CategoryRepositoryImpl constructor(
             .map {
                 (it as CategoryModel.CategoryData).toEntity()
             }.toList()
-        localDatasource.insertCategoryList(list)
+        localDataSource.insertCategoryList(list)
     }
 }

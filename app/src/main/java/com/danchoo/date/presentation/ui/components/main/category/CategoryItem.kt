@@ -1,6 +1,8 @@
 package com.danchoo.date.presentation.ui.components.main.category
 
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,13 +22,23 @@ import com.danchoo.date.presentation.ui.theme.MyApplicationTheme
 @Composable
 fun CategoryItem(
     modifier: Modifier = Modifier,
-    categoryItem: CategoryModel
+    categoryItem: CategoryModel,
+    onSelected: (String) -> Unit
 ) {
     CardView(
         modifier = modifier
             .padding(16.dp, 8.dp, 8.dp, 16.dp)
             .fillMaxWidth()
             .wrapContentHeight()
+            .clickable {
+                when (categoryItem) {
+                    is CategoryModel.CategoryData -> {
+                        Log.d("_SMY", "categoryItem.categoryId = ${categoryItem.categoryId}")
+                        onSelected(categoryItem.categoryId)
+                    }
+                    else -> Unit
+                }
+            }
     ) {
 
         when (categoryItem) {
@@ -97,6 +109,8 @@ private fun CategoryItemPreview() {
         CategoryItem(
             modifier = Modifier,
             categoryItem = CategoryModel.CategoryData()
-        )
+        ) {
+
+        }
     }
 }

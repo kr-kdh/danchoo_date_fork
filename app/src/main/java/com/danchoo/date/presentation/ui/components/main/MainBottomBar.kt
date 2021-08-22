@@ -1,5 +1,7 @@
 package com.danchoo.date.presentation.ui.components.main
 
+import android.app.Activity
+import android.util.Log
 import androidx.annotation.FloatRange
 import androidx.annotation.StringRes
 import androidx.compose.animation.animateColorAsState
@@ -17,10 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.ShoppingCart
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,6 +30,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -103,6 +103,10 @@ fun MainBottomBar(
             }
         }
     }
+
+//    val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+
 }
 
 @Composable
@@ -148,14 +152,14 @@ private fun MainTabItems(
                 if (section.route != currentRoute) {
                     navController.navigate(section.route) {
                         launchSingleTop = true
-                        restoreState = false
+                        restoreState = true
                         /**
                          *  navController.enableOnBackPressed(true) -> 으로 설정 했을 때
                          *  Back Press 를 눌렀을 때 root 로 가기 위해서 아래 주석을 제거
                          */
-//                        popUpTo(findStartDestination(navController.graph).id) {
-//                            saveState = true
-//                        }
+                        popUpTo(findStartDestination(navController.graph).id) {
+                            saveState = true
+                        }
                     }
                 }
             },

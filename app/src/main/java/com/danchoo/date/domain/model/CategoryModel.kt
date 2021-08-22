@@ -2,7 +2,7 @@ package com.danchoo.date.domain.model
 
 sealed class CategoryModel {
     data class CategoryData(
-        val hash: String = "",
+        val categoryId: String = "",
 
         val title: String = "",
 

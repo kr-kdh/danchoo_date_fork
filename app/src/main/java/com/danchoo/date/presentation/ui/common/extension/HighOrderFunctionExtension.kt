@@ -1,6 +1,5 @@
 package com.danchoo.date.presentation.ui.common.extension
 
-import android.util.Log
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -21,7 +20,9 @@ fun (() -> Unit).debounce(delayTime: Long = DEBOUNCE_DELAY_TIME): (() -> Unit) {
     }
 }
 
-fun <T: Any> ((item: T) -> Unit).debounce(delayTime: Long = DEBOUNCE_DELAY_TIME): ((item: T) -> Unit) {
+fun <T : Any> ((arg0: T) -> Unit).debounce(
+    delayTime: Long = DEBOUNCE_DELAY_TIME
+): ((arg0: T) -> Unit) {
     var debounce = false
     return {
         if (!debounce) {
@@ -35,3 +36,22 @@ fun <T: Any> ((item: T) -> Unit).debounce(delayTime: Long = DEBOUNCE_DELAY_TIME)
         }
     }
 }
+
+fun <T : Any, R : Any> ((arg0: T, arg1: R) -> Unit).debounce(
+    delayTime: Long = DEBOUNCE_DELAY_TIME
+): ((arg0: T, arg1: R) -> Unit) {
+    var debounce = false
+    return { arg0, arg1 ->
+        if (!debounce) {
+            debounce = true
+
+            this(arg0, arg1)
+
+            Timer().schedule(delayTime) {
+                debounce = false
+            }
+        }
+    }
+}
+
+

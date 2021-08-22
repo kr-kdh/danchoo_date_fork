@@ -12,6 +12,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.danchoo.date.domain.model.CategoryModel
+import com.danchoo.date.presentation.ui.common.extension.debounce
 import com.danchoo.date.presentation.ui.components.common.AddFloatingActionButton
 import com.danchoo.date.presentation.ui.components.common.Surface
 import com.danchoo.date.presentation.ui.main.category.viewmodel.CategoryViewModel
@@ -19,7 +20,8 @@ import com.danchoo.date.presentation.ui.main.category.viewmodel.CategoryViewMode
 @Composable
 fun Category(
     modifier: Modifier = Modifier,
-    viewModel: CategoryViewModel = hiltViewModel()
+    viewModel: CategoryViewModel = hiltViewModel(),
+    onSelected: (String) -> Unit
 ) {
     Scaffold(
         content = {
@@ -28,7 +30,7 @@ fun Category(
                 .padding(top = 56.dp)) {
                 // TODO : Test
                 val list = viewModel.categoryList().collectAsLazyPagingItems()
-                CategoryList(list)
+                CategoryList(list = list, onSelected = onSelected.debounce())
             }
         },
         floatingActionButton = {
@@ -42,13 +44,14 @@ fun Category(
 
 @Composable
 fun CategoryList(
+    modifier: Modifier = Modifier,
     list: LazyPagingItems<CategoryModel>,
-    modifier: Modifier = Modifier
+    onSelected: (String) -> Unit
 ) {
     LazyColumn(modifier) {
         items(list) { categoryModel ->
             categoryModel?.let {
-                CategoryItem(modifier, categoryModel)
+                CategoryItem(modifier, categoryModel, onSelected)
             }
         }
 //        itemsIndexed(list) { index, categoryModel ->

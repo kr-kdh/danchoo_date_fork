@@ -6,14 +6,14 @@ import com.danchoo.date.domain.model.CategoryModel
 
 fun Category.toModel(source: CategoryModel.CategoryData? = null): CategoryModel {
     return source?.copy(
-        hash = hash,
+        categoryId = hash,
         title = title,
         contents = contents,
         timestamp = timestamp,
         revision = revision
     ) ?: kotlin.run {
         CategoryModel.CategoryData(
-            hash = hash,
+            categoryId = hash,
             title = title,
             contents = contents,
             timestamp = timestamp,

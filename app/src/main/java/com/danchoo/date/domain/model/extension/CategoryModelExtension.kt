@@ -4,5 +4,5 @@ import com.danchoo.date.data.db.entity.Category
 import com.danchoo.date.domain.model.CategoryModel
 
 fun CategoryModel.CategoryData.toEntity(): Category {
-    return Category(hash, title, contents, timestamp, revision)
+    return Category(categoryId, title, contents, timestamp, revision)
 }

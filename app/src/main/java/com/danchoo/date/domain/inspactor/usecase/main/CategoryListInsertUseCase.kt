@@ -18,7 +18,7 @@ class CategoryListInsertUseCase @Inject constructor(
         val uuid = UUID.randomUUID().toString()
         list.add(
             CategoryModel.CategoryData(
-                hash = uuid,
+                categoryId = uuid,
                 title = "$uuid / $index",
                 timestamp = index.toLong()
             )
