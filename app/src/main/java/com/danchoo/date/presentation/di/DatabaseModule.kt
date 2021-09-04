@@ -1,10 +1,10 @@
 package com.danchoo.date.presentation.di
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.danchoo.date.data.db.AppDatabase
 import com.danchoo.date.data.db.dao.CategoryDao
+import com.danchoo.date.data.db.dao.ContentsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,5 +30,11 @@ object DatabaseModule {
     @Singleton
     fun provideCategoryDao(appDatabase: AppDatabase): CategoryDao {
         return appDatabase.categoryDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideContentsDao(appDatabase: AppDatabase): ContentsDao {
+        return appDatabase.contentsDao()
     }
 }

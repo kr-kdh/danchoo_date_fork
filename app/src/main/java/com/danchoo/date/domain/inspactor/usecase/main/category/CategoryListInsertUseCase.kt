@@ -1,4 +1,4 @@
-package com.danchoo.date.domain.inspactor.usecase.main
+package com.danchoo.date.domain.inspactor.usecase.main.category
 
 import com.danchoo.date.domain.inspactor.usecase.base.UseCase
 import com.danchoo.date.domain.model.CategoryModel

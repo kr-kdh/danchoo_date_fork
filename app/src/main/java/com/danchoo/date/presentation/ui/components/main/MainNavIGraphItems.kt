@@ -9,7 +9,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.navArgument
 import com.danchoo.date.presentation.ui.components.main.category.Category
-import com.danchoo.date.presentation.ui.components.main.category.CategoryDetail
 import com.google.accompanist.navigation.animation.composable
 
 
@@ -51,6 +50,6 @@ fun NavGraphBuilder.addCategoryDetail(upPress: () -> Unit) {
         val categoryId = arguments.getString(MainRouteArgsKeys.CATEGORY_DETAIL_ID)
             ?: throw IllegalArgumentException()
 
-        CategoryDetail(categoryId = categoryId, upPress = upPress)
+//        ContentListApp(categoryId = categoryId, upPress = upPress)
     }
 }

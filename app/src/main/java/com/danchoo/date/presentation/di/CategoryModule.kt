@@ -5,8 +5,8 @@ import com.danchoo.date.data.datasource.local.CategoryLocalDataSourceImpl
 import com.danchoo.date.data.db.dao.CategoryDao
 import com.danchoo.date.data.pagingsource.CategoryPagingSource
 import com.danchoo.date.data.repository.CategoryRepositoryImpl
-import com.danchoo.date.domain.inspactor.usecase.main.CategoryListInsertUseCase
-import com.danchoo.date.domain.inspactor.usecase.main.CategoryPagingUseCase
+import com.danchoo.date.domain.inspactor.usecase.main.category.CategoryListInsertUseCase
+import com.danchoo.date.domain.inspactor.usecase.main.category.CategoryPagingUseCase
 import com.danchoo.date.domain.repository.CategoryRepository
 import dagger.Module
 import dagger.Provides

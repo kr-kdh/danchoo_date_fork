@@ -1,33 +1,36 @@
-package com.danchoo.date.presentation.ui.components.main
+package com.danchoo.date.presentation.ui.components.main.contents
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.danchoo.date.presentation.ui.common.extension.lifecycleIsResumed
-import com.danchoo.date.presentation.ui.main.contents.ContentsActivity
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.navigation
 
 /**
- * Destinations used in the ([MainNavGraph]).
+ * Destinations used in the ([ContentsNavGraph]).
  */
-object MainDestinations {
+object ContentsDestinations {
     const val MAIN_ROUTE = "main"
-    const val CATEGORY_DETAIL_ROUTE = "categoryDetail"
 }
 
-object MainRouteArgsKeys {
-    const val CATEGORY_DETAIL_ID = "categoryId"
+enum class ContentsSections(
+    val route: String
+) {
+    LIST("main/list"),
+    DETAIL("main/favorite"),
+    SETTING("main/setting"),
 }
 
 @ExperimentalAnimationApi
 @Composable
-fun MainNavGraph(
+fun ContentsNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    startDestination: String = MainDestinations.MAIN_ROUTE,
+    startDestination: String = ContentsDestinations.MAIN_ROUTE,
 ) {
+
     AnimatedNavHost(
         navController = navController.apply {
             // Backstack 을 저장하지 않기 위함.
@@ -37,22 +40,16 @@ fun MainNavGraph(
         modifier = modifier
     ) {
         navigation(
-            route = MainDestinations.MAIN_ROUTE,
-            startDestination = MainSections.CATEGORY.route
+            route = ContentsDestinations.MAIN_ROUTE,
+            startDestination = ContentsSections.LIST.route
         ) {
 
-            addMainGraph(
+            addContentsNavGraph(
                 modifier = modifier
-            ) { categoryId, navBackStackEntry ->
+            ) { contentId, navBackStackEntry ->
                 navBackStackEntry.lifecycleIsResumed {
-                    ContentsActivity.startContentsActivity(navController.context)
                 }
             }
         }
     }
 }
-
-
-
-
-
