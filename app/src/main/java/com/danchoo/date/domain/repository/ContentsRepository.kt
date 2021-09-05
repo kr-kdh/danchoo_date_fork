@@ -11,6 +11,6 @@ interface ContentsRepository {
 
     fun getContentsCustomPagingSource(): ContentsPagingSource
 
-    fun insertCategory(categoryList: List<ContentsModel>)
+    fun insertContents(categoryList: List<ContentsModel>)
 
 }

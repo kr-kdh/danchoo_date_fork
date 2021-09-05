@@ -7,27 +7,33 @@ import androidx.navigation.NavHostController
 import com.danchoo.date.presentation.ui.common.extension.lifecycleIsResumed
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.navigation
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.accompanist.pager.ExperimentalPagerApi
 
 /**
  * Destinations used in the ([ContentsNavGraph]).
  */
 object ContentsDestinations {
-    const val MAIN_ROUTE = "main"
+    const val MAIN_ROUTE = "contents"
 }
 
-enum class ContentsSections(
-    val route: String
-) {
-    LIST("main/list"),
-    DETAIL("main/favorite"),
-    SETTING("main/setting"),
+object ContentsSections {
+    const val LIST = "contents/list"
+    const val DETAIL = "contents/detail"
+    const val SETTING = "contents/setting"
 }
 
+
+object ContentsArgsKeys {
+    const val CONTENTS_ID_KEY = "contentsId"
+}
+
+@ExperimentalPagerApi
 @ExperimentalAnimationApi
 @Composable
 fun ContentsNavGraph(
     modifier: Modifier = Modifier,
-    navController: NavHostController,
+    navController: NavHostController = rememberAnimatedNavController(),
     startDestination: String = ContentsDestinations.MAIN_ROUTE,
 ) {
 
@@ -41,13 +47,14 @@ fun ContentsNavGraph(
     ) {
         navigation(
             route = ContentsDestinations.MAIN_ROUTE,
-            startDestination = ContentsSections.LIST.route
+            startDestination = ContentsSections.LIST
         ) {
 
             addContentsNavGraph(
                 modifier = modifier
-            ) { contentId, navBackStackEntry ->
+            ) { contentsId, navBackStackEntry ->
                 navBackStackEntry.lifecycleIsResumed {
+                    navController.navigate("${ContentsSections.DETAIL}/$contentsId")
                 }
             }
         }

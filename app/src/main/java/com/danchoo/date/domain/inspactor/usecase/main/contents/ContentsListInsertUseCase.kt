@@ -1,29 +1,29 @@
-package com.danchoo.date.domain.inspactor.usecase.main.category
+package com.danchoo.date.domain.inspactor.usecase.main.contents
 
 import com.danchoo.date.domain.inspactor.usecase.base.UseCase
-import com.danchoo.date.domain.model.CategoryModel
-import com.danchoo.date.domain.repository.CategoryRepository
+import com.danchoo.date.domain.model.ContentsModel
+import com.danchoo.date.domain.repository.ContentsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import java.util.*
 import javax.inject.Inject
 
-class CategoryListInsertUseCase @Inject constructor(
-    private val repository: CategoryRepository,
+class ContentsListInsertUseCase @Inject constructor(
+    private val repository: ContentsRepository,
     dispatcher: CoroutineDispatcher
 ) : UseCase<Unit, Unit>(dispatcher) {
 
     var index = 0
     override suspend fun execute(parameters: Unit) {
-        val list = mutableListOf<CategoryModel.CategoryData>()
+        val list = mutableListOf<ContentsModel.ContentsData>()
         val uuid = UUID.randomUUID().toString()
         list.add(
-            CategoryModel.CategoryData(
-                categoryId = uuid,
+            ContentsModel.ContentsData(
+                contentsId = uuid,
                 title = "$uuid / $index",
                 timestamp = Date().time
             )
         )
         index++
-        repository.insertCategory(list)
+        repository.insertContents(list)
     }
 }

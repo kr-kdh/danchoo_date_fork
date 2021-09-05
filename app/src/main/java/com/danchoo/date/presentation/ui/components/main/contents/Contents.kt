@@ -13,6 +13,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.danchoo.date.domain.model.ContentsModel
 import com.danchoo.date.presentation.ui.common.extension.debounce
+import com.danchoo.date.presentation.ui.components.common.AddFloatingActionButton
 import com.danchoo.date.presentation.ui.components.common.Surface
 import com.danchoo.date.presentation.ui.main.contents.ContentsViewModel
 
@@ -32,6 +33,11 @@ fun Contents(
                 // TODO : Test
                 val list = viewModel.contentsList().collectAsLazyPagingItems()
                 ContentsList(list = list, onSelected = onSelected.debounce())
+            }
+        },
+        floatingActionButton = {
+            AddFloatingActionButton {
+                viewModel.addContents()
             }
         }
     )

@@ -14,7 +14,7 @@ abstract class ContentsDao {
     @Query(
         """ 
             SELECT * 
-            FROM category 
+            FROM contents 
             WHERE timestamp >= :timestamp 
             ORDER BY timestamp ASC 
             LIMIT :size"""

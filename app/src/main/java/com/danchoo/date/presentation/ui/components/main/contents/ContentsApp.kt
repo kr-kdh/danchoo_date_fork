@@ -8,8 +8,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.danchoo.date.presentation.ui.theme.MyApplicationTheme
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalPagerApi
 @ExperimentalAnimationApi
 @Preview
 @Composable
@@ -17,11 +18,8 @@ fun ContentsApp(
 ) {
     ProvideWindowInsets {
         MyApplicationTheme {
-            val navController = rememberAnimatedNavController()
-
             Scaffold { innerPaddingModifier ->
                 ContentsNavGraph(
-                    navController = navController,
                     modifier = Modifier.padding(innerPaddingModifier)
                 )
             }

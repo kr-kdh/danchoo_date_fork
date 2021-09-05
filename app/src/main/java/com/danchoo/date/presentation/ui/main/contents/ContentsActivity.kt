@@ -8,11 +8,13 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.core.view.WindowCompat
 import com.danchoo.date.presentation.base.BaseActivity
 import com.danchoo.date.presentation.ui.components.main.contents.ContentsApp
+import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ContentsActivity : BaseActivity() {
 
+    @ExperimentalPagerApi
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

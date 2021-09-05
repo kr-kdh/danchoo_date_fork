@@ -6,17 +6,20 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.insertHeaderItem
 import androidx.paging.insertSeparators
+import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsListInsertUseCase
 import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsPagingUseCase
 import com.danchoo.date.domain.model.ContentsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ContentsViewModel @Inject constructor(
-    val contentsPagingUseCase: ContentsPagingUseCase
+    private val contentsPagingUseCase: ContentsPagingUseCase,
+    private val contentsListInsertUseCase: ContentsListInsertUseCase
 ) : ViewModel() {
 
     @ExperimentalCoroutinesApi
@@ -30,5 +33,11 @@ class ContentsViewModel @Inject constructor(
                     }
                 }
         }.cachedIn(viewModelScope)
+    }
+
+    fun addContents() {
+        viewModelScope.launch {
+            contentsListInsertUseCase(Unit)
+        }
     }
 }

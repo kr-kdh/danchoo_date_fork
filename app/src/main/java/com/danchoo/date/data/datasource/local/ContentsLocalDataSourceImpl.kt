@@ -19,7 +19,7 @@ class ContentsLocalDataSourceImpl internal constructor(
         return contentsDao.getTimestampByOffset(offset)
     }
 
-    override fun insertContentsList(categoryList: List<Contents>) {
-        return contentsDao.insertAll(categoryList)
+    override fun insertContentsList(contentsList: List<Contents>) {
+        return contentsDao.insertAll(contentsList)
     }
 }

@@ -5,12 +5,14 @@ import com.danchoo.date.data.datasource.local.ContentsLocalDataSourceImpl
 import com.danchoo.date.data.db.dao.ContentsDao
 import com.danchoo.date.data.pagingsource.ContentsPagingSource
 import com.danchoo.date.data.repository.ContentsRepositoryImpl
+import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsListInsertUseCase
 import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsPagingUseCase
 import com.danchoo.date.domain.repository.ContentsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
 
 @Module
@@ -29,6 +31,15 @@ object ContentsModule {
     ): ContentsRepository {
         return ContentsRepositoryImpl(localDatasource)
     }
+
+    @Provides
+    fun provideContentsListInsertUseCase(
+        repository: ContentsRepository,
+        dispatcher: CoroutineDispatcher
+    ): ContentsListInsertUseCase {
+        return ContentsListInsertUseCase(repository, dispatcher)
+    }
+
 
     @Provides
     fun provideContentsPagingSource(localDataSource: ContentsLocalDataSource): ContentsPagingSource {

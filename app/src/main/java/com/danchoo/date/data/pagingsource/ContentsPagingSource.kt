@@ -41,7 +41,7 @@ class ContentsPagingSource constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ContentsModel> {
         return withContext(Dispatchers.IO) {
             val key = params.key ?: 0
-            val categoryList = getCategoryList(key, params.loadSize)
+            val categoryList = getContentsList(key, params.loadSize)
 
             val prevKey = if (key == 0) null else key - 1
             val nextKey = if (categoryList.isNullOrEmpty()) null else key + 1
@@ -62,7 +62,7 @@ class ContentsPagingSource constructor(
         }
     }
 
-    private fun getCategoryList(key: Int, loadSize: Int): List<ContentsModel> {
+    private fun getContentsList(key: Int, loadSize: Int): List<ContentsModel> {
         val offset = key * loadSize
 
         val timestamp = localDataSource.getTimestampByOffset(offset) ?: -1

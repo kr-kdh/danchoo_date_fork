@@ -19,13 +19,15 @@ class ContentsRepositoryImpl constructor(
         return ContentsPagingSource(localDataSource)
     }
 
-    override fun insertCategory(categoryList: List<ContentsModel>) {
+    override fun insertContents(categoryList: List<ContentsModel>) {
         val list = categoryList
             .asSequence()
             .filter { it is ContentsModel.ContentsData }
             .map {
                 (it as ContentsModel.ContentsData).toEntity()
             }.toList()
+
+        localDataSource.insertContentsList(list)
     }
 
 }
