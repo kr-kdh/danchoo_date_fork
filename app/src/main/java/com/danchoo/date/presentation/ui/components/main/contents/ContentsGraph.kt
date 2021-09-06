@@ -38,10 +38,7 @@ fun ContentsNavGraph(
 ) {
 
     AnimatedNavHost(
-        navController = navController.apply {
-            // Backstack 을 저장하지 않기 위함.
-            enableOnBackPressed(false)
-        },
+        navController = navController,
         startDestination = startDestination,
         modifier = modifier
     ) {

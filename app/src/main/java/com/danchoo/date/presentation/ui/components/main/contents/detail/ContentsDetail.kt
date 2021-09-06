@@ -1,25 +1,25 @@
 package com.danchoo.date.presentation.ui.components.main.contents.detail
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
+import com.danchoo.date.R
 import com.danchoo.date.presentation.ui.main.contents.ContentsDetailViewModel
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.calculateCurrentOffsetForPage
-import com.google.accompanist.pager.rememberPagerState
+import com.google.accompanist.pager.*
 import kotlin.math.absoluteValue
 
 @ExperimentalPagerApi
@@ -48,9 +48,34 @@ fun HorizontalPagerWithOffsetTransition() {
         initialOffscreenLimit = 2,
     )
 
+    Column(modifier = Modifier.fillMaxSize()) {
+
+        HorizontalContentsPager(pagerState)
+
+        HorizontalPagerIndicator(
+            pagerState = pagerState,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(16.dp)
+        )
+
+        /**
+         * TODO
+         *  - Contents 관련 텍스트 및 기타 등등
+         *  - 댓글
+         */
+    }
+}
+
+@ExperimentalPagerApi
+@Composable
+fun HorizontalContentsPager(pagerState: PagerState) {
     HorizontalPager(
         state = pagerState,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .wrapContentHeight()
+            .fillMaxWidth()
+            .padding(top = 32.dp)
     ) { page ->
         Card(
             Modifier
@@ -62,7 +87,7 @@ fun HorizontalPagerWithOffsetTransition() {
 
                     // We animate the scaleX + scaleY, between 85% and 100%
                     lerp(
-                        start = 0.85f,
+                        start = 0.90f,
                         stop = 1f,
                         fraction = 1f - pageOffset.coerceIn(0f, 1f)
                     ).also { scale ->
@@ -77,7 +102,7 @@ fun HorizontalPagerWithOffsetTransition() {
                         fraction = 1f - pageOffset.coerceIn(0f, 1f)
                     )
                 }
-                .fillMaxWidth(0.8f)
+                .fillMaxWidth(0.85f)
                 .aspectRatio(1f)
         ) {
             Box(
@@ -85,6 +110,15 @@ fun HorizontalPagerWithOffsetTransition() {
                     .fillMaxSize()
                     .background(Color.Black)
             ) {
+                Image(
+                    painter = rememberImagePainter(
+                        data = R.drawable.the_gleaners
+                    ),
+                    contentDescription = null,
+                    alignment = Alignment.Center,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
             }
         }
     }
