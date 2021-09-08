@@ -11,6 +11,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import androidx.paging.compose.itemsIndexed
 import com.danchoo.date.domain.model.ContentsModel
 import com.danchoo.date.presentation.ui.common.extension.debounce
 import com.danchoo.date.presentation.ui.components.common.AddFloatingActionButton
@@ -51,7 +52,7 @@ fun ContentsList(
     onSelected: (String) -> Unit
 ) {
     LazyColumn(modifier) {
-        items(list) { contentsModel ->
+        itemsIndexed(list) { index, contentsModel ->
             contentsModel?.let {
                 ContentsItem(modifier, contentsModel, onSelected)
             }
