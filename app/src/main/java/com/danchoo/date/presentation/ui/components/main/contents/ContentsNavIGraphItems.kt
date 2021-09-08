@@ -6,11 +6,13 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.navArgument
+import coil.annotation.ExperimentalCoilApi
 import com.danchoo.date.presentation.ui.components.main.contents.detail.ContentsDetail
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 
+@ExperimentalCoilApi
 @ExperimentalPagerApi
 @ExperimentalAnimationApi
 fun NavGraphBuilder.addContentsNavGraph(
@@ -30,7 +32,7 @@ fun NavGraphBuilder.addContentsNavGraph(
     ) { from ->
         val arguments = requireNotNull(from.arguments)
         val contentsId = arguments.getString(ContentsArgsKeys.CONTENTS_ID_KEY)
-        ContentsDetail(modifier = modifier) {
+        ContentsDetail(modifier) {
             onSelected(it, from)
         }
     }

@@ -31,9 +31,9 @@ fun ContentsDetail(
     onSelected: (String) -> Unit
 ) {
     Scaffold(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
-        HorizontalPagerWithOffsetTransition()
+        HorizontalPagerWithOffsetTransition(modifier)
     }
 }
 
@@ -41,20 +41,23 @@ fun ContentsDetail(
 @ExperimentalPagerApi
 @ExperimentalCoilApi
 @Composable
-fun HorizontalPagerWithOffsetTransition() {
+fun HorizontalPagerWithOffsetTransition(modifier: Modifier = Modifier) {
     val pagerState = rememberPagerState(
         pageCount = 10,
         // We increase the offscreen limit, to allow pre-loading of images
         initialOffscreenLimit = 2,
     )
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize()) {
 
-        HorizontalContentsPager(pagerState)
+        HorizontalContentsPager(
+            modifier,
+            pagerState
+        )
 
         HorizontalPagerIndicator(
             pagerState = pagerState,
-            modifier = Modifier
+            modifier = modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(16.dp)
         )
@@ -69,16 +72,19 @@ fun HorizontalPagerWithOffsetTransition() {
 
 @ExperimentalPagerApi
 @Composable
-fun HorizontalContentsPager(pagerState: PagerState) {
+fun HorizontalContentsPager(
+    modifier: Modifier = Modifier,
+    pagerState: PagerState
+) {
     HorizontalPager(
         state = pagerState,
-        modifier = Modifier
+        modifier = modifier
             .wrapContentHeight()
             .fillMaxWidth()
             .padding(top = 32.dp)
     ) { page ->
         Card(
-            Modifier
+            modifier
                 .graphicsLayer {
                     // Calculate the absolute offset for the current page from the
                     // scroll position. We use the absolute value which allows us to mirror
@@ -106,7 +112,7 @@ fun HorizontalContentsPager(pagerState: PagerState) {
                 .aspectRatio(1f)
         ) {
             Box(
-                modifier = Modifier
+                modifier = modifier
                     .fillMaxSize()
                     .background(Color.Black)
             ) {
@@ -117,7 +123,7 @@ fun HorizontalContentsPager(pagerState: PagerState) {
                     contentDescription = null,
                     alignment = Alignment.Center,
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = modifier.fillMaxSize()
                 )
             }
         }

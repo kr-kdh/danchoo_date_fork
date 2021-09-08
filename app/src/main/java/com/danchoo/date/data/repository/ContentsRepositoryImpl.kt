@@ -11,7 +11,7 @@ import com.danchoo.date.domain.repository.ContentsRepository
 class ContentsRepositoryImpl constructor(
     private val localDataSource: ContentsLocalDataSource,
 ) : ContentsRepository {
-    override fun getCategoryPagingSource(): PagingSource<Int, Contents> {
+    override fun getContentsPagingSource(): PagingSource<Int, Contents> {
         return localDataSource.getContentsList()
     }
 

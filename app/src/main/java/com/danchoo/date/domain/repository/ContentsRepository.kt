@@ -7,7 +7,7 @@ import com.danchoo.date.domain.model.ContentsModel
 
 interface ContentsRepository {
 
-    fun getCategoryPagingSource(): PagingSource<Int, Contents>
+    fun getContentsPagingSource(): PagingSource<Int, Contents>
 
     fun getContentsCustomPagingSource(): ContentsPagingSource
 

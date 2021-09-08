@@ -12,7 +12,8 @@ import com.danchoo.date.domain.model.ContentsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,15 +25,18 @@ class ContentsViewModel @Inject constructor(
 
     @ExperimentalCoroutinesApi
     fun contentsList(): Flow<PagingData<ContentsModel>> {
-        return contentsPagingUseCase().map { pagingData ->
-            pagingData.insertHeaderItem(item = ContentsModel.ContentsHeader("title"))
-                .insertSeparators { contentsModel: ContentsModel?, contentsModel2: ContentsModel? ->
-                    when (contentsModel) {
-                        null -> ContentsModel.ContentsHeader("title")
-                        else -> null
+        return contentsPagingUseCase()
+            .mapLatest { pagingData ->
+                pagingData.insertHeaderItem(item = ContentsModel.ContentsHeader("title"))
+                    .insertSeparators { contentsModel: ContentsModel?, contentsModel2: ContentsModel? ->
+                        when (contentsModel) {
+                            null -> ContentsModel.ContentsHeader("title")
+                            else -> null
+                        }
                     }
-                }
-        }.cachedIn(viewModelScope)
+            }
+            .cachedIn(viewModelScope)
+            .distinctUntilChanged()
     }
 
     fun addContents() {
