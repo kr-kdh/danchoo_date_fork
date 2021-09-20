@@ -15,8 +15,8 @@ abstract class ContentsDao {
         """ 
             SELECT * 
             FROM contents 
-            WHERE timestamp >= :timestamp 
-            ORDER BY timestamp ASC 
+            WHERE create_time_stamp >= :timestamp 
+            ORDER BY create_time_stamp ASC 
             LIMIT :size"""
     )
     abstract fun getContentsList(
@@ -29,7 +29,7 @@ abstract class ContentsDao {
         """ 
             SELECT * 
             FROM contents 
-            ORDER BY timestamp ASC 
+            ORDER BY create_time_stamp ASC 
             """
     )
     abstract fun getContentsList(): PagingSource<Int, Contents>
@@ -37,9 +37,9 @@ abstract class ContentsDao {
     @Transaction
     @Query(
         """ 
-            SELECT timestamp 
+            SELECT create_time_stamp 
             FROM contents 
-            ORDER BY timestamp ASC 
+            ORDER BY create_time_stamp ASC 
             LIMIT 1 OFFSET :offset"""
     )
     abstract fun getTimestampByOffset(

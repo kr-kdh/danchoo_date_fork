@@ -15,8 +15,8 @@ abstract class CategoryDao {
         """ 
             SELECT * 
             FROM category 
-            WHERE timestamp >= :timestamp 
-            ORDER BY timestamp ASC 
+            WHERE create_time_stamp >= :timestamp 
+            ORDER BY create_time_stamp ASC 
             LIMIT :size"""
     )
     abstract fun getCategoryList(
@@ -29,7 +29,7 @@ abstract class CategoryDao {
         """ 
             SELECT * 
             FROM category 
-            ORDER BY timestamp ASC 
+            ORDER BY create_time_stamp ASC 
             """
     )
     abstract fun getCategoryList(): PagingSource<Int, Category>
@@ -37,9 +37,9 @@ abstract class CategoryDao {
     @Transaction
     @Query(
         """ 
-            SELECT timestamp 
+            SELECT create_time_stamp 
             FROM category 
-            ORDER BY timestamp ASC 
+            ORDER BY create_time_stamp ASC 
             LIMIT 1 OFFSET :offset"""
     )
     abstract fun getTimestampByOffset(

@@ -10,7 +10,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import androidx.paging.compose.itemsIndexed
 import com.danchoo.date.domain.model.ContentsModel
 import com.danchoo.date.presentation.ui.common.extension.debounce
@@ -22,7 +21,7 @@ import com.danchoo.date.presentation.ui.main.contents.ContentsViewModel
 fun Contents(
     modifier: Modifier = Modifier,
     viewModel: ContentsViewModel = hiltViewModel(),
-    onSelected: (String) -> Unit
+    onSelected: (Long) -> Unit
 ) {
     Scaffold(
         content = {
@@ -49,7 +48,7 @@ fun Contents(
 fun ContentsList(
     modifier: Modifier = Modifier,
     list: LazyPagingItems<ContentsModel>,
-    onSelected: (String) -> Unit
+    onSelected: (Long) -> Unit
 ) {
     LazyColumn(modifier) {
         itemsIndexed(list) { index, contentsModel ->

@@ -6,17 +6,17 @@ import com.danchoo.date.domain.model.ContentsModel
 
 fun Contents.toModel(source: ContentsModel.ContentsData? = null): ContentsModel {
     return source?.copy(
-        contentsId = hash,
+        contentsId = contentsId,
+        hash = hash,
         title = title,
-        contents = contents,
-        timestamp = timestamp,
+        createTimestamp = createTimestamp,
         revision = revision
     ) ?: kotlin.run {
         ContentsModel.ContentsData(
-            contentsId = hash,
+            contentsId = contentsId,
+            hash = hash,
             title = title,
-            contents = contents,
-            timestamp = timestamp,
+            createTimestamp = createTimestamp,
             revision = revision
         )
     }

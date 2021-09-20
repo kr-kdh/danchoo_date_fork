@@ -15,7 +15,7 @@ import com.google.accompanist.navigation.animation.composable
 @ExperimentalAnimationApi
 fun NavGraphBuilder.addMainGraph(
     modifier: Modifier = Modifier,
-    onSelected: (String, NavBackStackEntry) -> Unit
+    onSelected: (Long, NavBackStackEntry) -> Unit
 ) {
     composable(MainSections.CATEGORY.route) { from ->
         Category(modifier = modifier) {

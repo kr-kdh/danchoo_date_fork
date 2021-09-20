@@ -11,8 +11,6 @@ import javax.inject.Inject
 class CategoryPagingUseCase @Inject constructor(
     val repository: CategoryRepository
 ) {
-    private val sourceModel = CategoryModel.CategoryData()
-
     operator fun invoke(): Flow<PagingData<CategoryModel>> = Pager(
         config = PagingConfig(
             pageSize = 10,

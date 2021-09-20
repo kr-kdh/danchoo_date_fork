@@ -28,7 +28,7 @@ import kotlin.math.absoluteValue
 fun ContentsDetail(
     modifier: Modifier = Modifier,
     viewModel: ContentsDetailViewModel = hiltViewModel(),
-    onSelected: (String) -> Unit
+    onSelected: (Long) -> Unit
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize()

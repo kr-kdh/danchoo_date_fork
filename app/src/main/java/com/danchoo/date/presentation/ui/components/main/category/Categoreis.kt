@@ -10,7 +10,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import androidx.paging.compose.itemsIndexed
 import com.danchoo.date.domain.model.CategoryModel
 import com.danchoo.date.presentation.ui.common.extension.debounce
@@ -22,13 +21,15 @@ import com.danchoo.date.presentation.ui.main.category.viewmodel.CategoryViewMode
 fun Category(
     modifier: Modifier = Modifier,
     viewModel: CategoryViewModel = hiltViewModel(),
-    onSelected: (String) -> Unit
+    onSelected: (Long) -> Unit
 ) {
     Scaffold(
         content = {
-            Surface(modifier = modifier
-                .fillMaxSize()
-                .padding(top = 56.dp)) {
+            Surface(
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(top = 56.dp)
+            ) {
                 // TODO : Test
                 val list = viewModel.categoryList().collectAsLazyPagingItems()
                 CategoryList(list = list, onSelected = onSelected.debounce())
@@ -47,7 +48,7 @@ fun Category(
 fun CategoryList(
     modifier: Modifier = Modifier,
     list: LazyPagingItems<CategoryModel>,
-    onSelected: (String) -> Unit
+    onSelected: (Long) -> Unit
 ) {
     LazyColumn(modifier) {
         itemsIndexed(list) { index, categoryModel ->

@@ -18,9 +18,8 @@ class ContentsListInsertUseCase @Inject constructor(
         val uuid = UUID.randomUUID().toString()
         list.add(
             ContentsModel.ContentsData(
-                contentsId = uuid,
                 title = "$uuid / $index",
-                timestamp = Date().time
+                createTimestamp = Date().time
             )
         )
         index++

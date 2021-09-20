@@ -1,8 +1,6 @@
 package com.danchoo.date.data.repository
 
-import androidx.paging.PagingSource
 import com.danchoo.date.data.datasource.local.ContentsLocalDataSource
-import com.danchoo.date.data.db.entity.Contents
 import com.danchoo.date.data.pagingsource.ContentsPagingSource
 import com.danchoo.date.domain.model.ContentsModel
 import com.danchoo.date.domain.model.extension.toEntity
@@ -11,10 +9,6 @@ import com.danchoo.date.domain.repository.ContentsRepository
 class ContentsRepositoryImpl constructor(
     private val localDataSource: ContentsLocalDataSource,
 ) : ContentsRepository {
-    override fun getContentsPagingSource(): PagingSource<Int, Contents> {
-        return localDataSource.getContentsList()
-    }
-
     override fun getContentsCustomPagingSource(): ContentsPagingSource {
         return ContentsPagingSource(localDataSource)
     }
@@ -29,5 +23,4 @@ class ContentsRepositoryImpl constructor(
 
         localDataSource.insertContentsList(list)
     }
-
 }

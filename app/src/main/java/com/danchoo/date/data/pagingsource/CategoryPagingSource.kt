@@ -12,7 +12,6 @@ class CategoryPagingSource constructor(
     private val localDataSource: CategoryLocalDataSource
 ) : PagingSource<Int, CategoryModel>() {
 
-    private val sourceModel = CategoryModel.CategoryData()
     val dataSource = localDataSource.getCategoryList()
 
     init {
@@ -73,6 +72,6 @@ class CategoryPagingSource constructor(
         return localDataSource.getCategoryList(
             timestamp = timestamp,
             size = loadSize
-        ).map { it.toModel(sourceModel) }
+        ).map { it.toModel() }
     }
 }

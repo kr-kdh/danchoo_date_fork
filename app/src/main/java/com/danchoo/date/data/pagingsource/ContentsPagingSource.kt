@@ -12,7 +12,6 @@ class ContentsPagingSource constructor(
     private val localDataSource: ContentsLocalDataSource
 ) : PagingSource<Int, ContentsModel>() {
 
-    private val sourceModel = ContentsModel.ContentsData()
     val dataSource = localDataSource.getContentsList()
 
     init {
@@ -73,6 +72,6 @@ class ContentsPagingSource constructor(
         return localDataSource.getContentsList(
             timestamp = timestamp,
             size = loadSize
-        ).map { it.toModel(sourceModel) }
+        ).map { it.toModel() }
     }
 }

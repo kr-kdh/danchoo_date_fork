@@ -23,7 +23,7 @@ import com.danchoo.date.presentation.ui.theme.MyApplicationTheme
 fun CategoryItem(
     modifier: Modifier = Modifier,
     categoryItem: CategoryModel,
-    onSelected: (String) -> Unit
+    onSelected: (Long) -> Unit
 ) {
     CardView(
         modifier = modifier
