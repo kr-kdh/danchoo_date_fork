@@ -12,7 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
-import com.danchoo.date.domain.model.CategoryModel
+import com.danchoo.date.domain.model.CategoryData
 import com.danchoo.date.presentation.ui.common.extension.debounce
 import com.danchoo.date.presentation.ui.components.common.AddFloatingActionButton
 import com.danchoo.date.presentation.ui.components.common.Surface
@@ -51,7 +51,7 @@ fun Category(
 @Composable
 fun CategoryList(
     modifier: Modifier = Modifier,
-    list: LazyPagingItems<CategoryModel>,
+    list: LazyPagingItems<CategoryData>,
     onSelected: (Long) -> Unit
 ) {
     LazyColumn(modifier) {

@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.danchoo.date.domain.model.CategoryModel
+import com.danchoo.date.domain.model.CategoryData
 import com.danchoo.date.presentation.ui.components.common.CardView
 import com.danchoo.date.presentation.ui.theme.MainTheme
 import com.danchoo.date.presentation.ui.theme.MyApplicationTheme
@@ -22,7 +22,7 @@ import com.danchoo.date.presentation.ui.theme.MyApplicationTheme
 @Composable
 fun CategoryItem(
     modifier: Modifier = Modifier,
-    categoryItem: CategoryModel,
+    categoryItem: CategoryData,
     onSelected: (Long) -> Unit
 ) {
     CardView(
@@ -32,9 +32,12 @@ fun CategoryItem(
             .wrapContentHeight()
             .clickable {
                 when (categoryItem) {
-                    is CategoryModel.CategoryData -> {
-                        Log.d("_SMY", "categoryItem.categoryId = ${categoryItem.categoryId}")
-                        onSelected(categoryItem.categoryId)
+                    is CategoryData.CategoryInfoData -> {
+                        Log.d(
+                            "_SMY",
+                            "categoryItem.categoryId = ${categoryItem.categoryInfoModel.category.categoryId}"
+                        )
+                        onSelected(categoryItem.categoryInfoModel.category.categoryId)
                     }
                     else -> Unit
                 }
@@ -42,8 +45,8 @@ fun CategoryItem(
     ) {
 
         when (categoryItem) {
-            is CategoryModel.CategoryData -> CategoryDataItem(modifier, categoryItem)
-            is CategoryModel.CategoryHeader -> CategoryHeaderItem(modifier, categoryItem)
+            is CategoryData.CategoryInfoData -> CategoryDataItem(modifier, categoryItem)
+            is CategoryData.CategoryHeader -> CategoryHeaderItem(modifier, categoryItem)
         }
     }
 }
@@ -51,7 +54,7 @@ fun CategoryItem(
 @Composable
 private fun CategoryDataItem(
     modifier: Modifier = Modifier,
-    categoryItem: CategoryModel.CategoryData
+    categoryItem: CategoryData.CategoryInfoData
 ) {
     Column(
         modifier = modifier
@@ -60,7 +63,7 @@ private fun CategoryDataItem(
             .background(MainTheme.colors.background)
     ) {
         Text(
-            text = categoryItem.title,
+            text = categoryItem.categoryInfoModel.category.title,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.h6,
@@ -69,7 +72,7 @@ private fun CategoryDataItem(
         )
 
         Text(
-            text = categoryItem.title,
+            text = categoryItem.categoryInfoModel.category.description,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.body1,
@@ -83,7 +86,7 @@ private fun CategoryDataItem(
 @Composable
 private fun CategoryHeaderItem(
     modifier: Modifier = Modifier,
-    categoryItem: CategoryModel.CategoryHeader
+    categoryItem: CategoryData.CategoryHeader
 ) {
     Column(
         modifier = modifier
@@ -108,7 +111,7 @@ private fun CategoryItemPreview() {
     MyApplicationTheme {
         CategoryItem(
             modifier = Modifier,
-            categoryItem = CategoryModel.CategoryData()
+            categoryItem = CategoryData.CategoryInfoData()
         ) {
 
         }

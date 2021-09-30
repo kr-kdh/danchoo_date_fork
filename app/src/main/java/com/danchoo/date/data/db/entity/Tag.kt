@@ -11,8 +11,8 @@ import java.util.*
     indices = [Index(value = ["hash"], unique = true)]
 )
 data class Tag(
-    @PrimaryKey
-    @ColumnInfo(name = "tag_id")
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "tag_id", index = true)
     val tagId: Long = 0L,
 
     val hash: String = UUID.randomUUID().toString(),
@@ -28,12 +28,6 @@ data class Tag(
     val visibility: Int = 0,
 
     @ColumnInfo(name = "select_count")
-    val selectCount: Long = 0,
-
-    @ColumnInfo(name = "relation_group_id_list")
-    val relationGroupIdList: List<Long> = emptyList(),
-
-    @ColumnInfo(name = "relation_tag_id_list")
-    val relationTagIdList: List<Long> = emptyList()
+    val selectCount: Long = 0
 
 )

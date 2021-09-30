@@ -38,12 +38,6 @@ data class Category(
     @ColumnInfo(name = "total_count")
     val totalCount: Long = 0L,
 
-    @ColumnInfo(name = "tag_group_id_list")
-    val tagGroupIdList: List<Long> = emptyList(),
-
-    @ColumnInfo(name = "tag_id_list")
-    val tagIdList: List<Long> = emptyList(),
-
     val visibility: Int = 0,
 
     var revision: Long = 0

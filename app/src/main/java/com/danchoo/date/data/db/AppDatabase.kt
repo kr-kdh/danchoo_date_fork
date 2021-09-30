@@ -13,6 +13,8 @@ import com.danchoo.date.data.db.entity.*
         Contents::class,
         Tag::class,
         TagGroup::class,
+        CategoryTagGroupInfo::class,
+        CategoryTagInfo::class,
         ContentsMedia::class
     ],
     version = DBSettings.VERSION,

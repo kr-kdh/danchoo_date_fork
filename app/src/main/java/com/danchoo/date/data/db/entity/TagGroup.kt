@@ -11,8 +11,8 @@ import java.util.*
     indices = [Index(value = ["hash"], unique = true)]
 )
 data class TagGroup(
-    @PrimaryKey
-    @ColumnInfo(name = "group_id")
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "group_id", index = true)
     val groupId: Long = 0L,
 
     val hash: String = UUID.randomUUID().toString(),

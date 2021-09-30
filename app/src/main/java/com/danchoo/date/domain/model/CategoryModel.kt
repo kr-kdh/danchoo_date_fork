@@ -2,37 +2,33 @@ package com.danchoo.date.domain.model
 
 import java.util.*
 
-sealed class CategoryModel {
-    data class CategoryData(
-        val categoryId: Long = 0L,
 
-        val hash: String = UUID.randomUUID().toString(),
+data class CategoryModel(
+    val categoryId: Long = 0L,
 
-        val title: String = "",
+    val hash: String = UUID.randomUUID().toString(),
 
-        val description: String = "",
+    val title: String = "",
 
-        val selectCount: Long = 0L,
+    val description: String = "",
 
-        val createTimestamp: Long = 0L,
+    val selectCount: Long = 0L,
 
-        val lastModifiedTimestamp: Long = 0L,
+    val createTimestamp: Long = 0L,
 
-        val lastVisitTimestamp: Long = 0L,
+    val lastModifiedTimestamp: Long = 0L,
 
-        val lastContentsModifiedTimestamp: Long = 0L,
+    val lastVisitTimestamp: Long = 0L,
 
-        val tagGroupIdList: List<Long> = emptyList(),
+    val lastContentsModifiedTimestamp: Long = 0L,
 
-        val tagIdList: List<Long> = emptyList(),
+    val tagGroupList: List<TagGroupModel> = emptyList(),
 
-        val visibility: Int = 0,
+    val tagList: List<TagModel> = emptyList(),
 
-        var totalCount: Long = 0L,
+    val visibility: Int = 0,
 
-        val revision: Long = 0
-    ) : CategoryModel()
+    var totalCount: Long = 0L,
 
-    data class CategoryHeader(val title: String) : CategoryModel()
-}
-
+    val revision: Long = 0
+)

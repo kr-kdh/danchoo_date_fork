@@ -1,11 +1,10 @@
 package com.danchoo.date.data.db.dao
 
 import androidx.paging.PagingSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
 import com.danchoo.date.data.db.entity.Category
+import com.danchoo.date.data.db.entity.CategoryInfo
 
 @Dao
 abstract class CategoryDao {
@@ -22,7 +21,7 @@ abstract class CategoryDao {
     abstract fun getCategoryList(
         timestamp: Long,
         size: Int
-    ): List<Category>
+    ): List<CategoryInfo>
 
     @Transaction
     @Query(
@@ -32,7 +31,7 @@ abstract class CategoryDao {
             ORDER BY create_time_stamp ASC 
             """
     )
-    abstract fun getCategoryList(): PagingSource<Int, Category>
+    abstract fun getCategoryList(): PagingSource<Int, CategoryInfo>
 
     @Transaction
     @Query(
@@ -42,10 +41,16 @@ abstract class CategoryDao {
             ORDER BY create_time_stamp ASC 
             LIMIT 1 OFFSET :offset"""
     )
-    abstract fun getTimestampByOffset(
+    abstract fun getCreateTimestampByOffset(
         offset: Int
     ): Long?
 
     @Insert
     abstract fun insertAll(list: List<Category>)
+
+    @Insert(onConflict = REPLACE)
+    abstract fun insert(category: Category)
+
+    @Update
+    abstract fun update(category: Category)
 }

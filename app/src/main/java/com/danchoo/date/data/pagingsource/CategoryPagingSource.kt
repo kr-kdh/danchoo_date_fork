@@ -3,14 +3,14 @@ package com.danchoo.date.data.pagingsource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.danchoo.date.data.datasource.local.CategoryLocalDataSource
-import com.danchoo.date.domain.model.CategoryModel
+import com.danchoo.date.domain.model.CategoryData
 import com.danchoo.date.domain.model.extension.toModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class CategoryPagingSource constructor(
     private val localDataSource: CategoryLocalDataSource
-) : PagingSource<Int, CategoryModel>() {
+) : PagingSource<Int, CategoryData>() {
 
     val dataSource = localDataSource.getCategoryList()
 
@@ -23,7 +23,7 @@ class CategoryPagingSource constructor(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, CategoryModel>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, CategoryData>): Int? {
         // Try to find the page key of the closest page to anchorPosition, from
         // either the prevKey or the nextKey, but you need to handle nullability
         // here:
@@ -37,7 +37,7 @@ class CategoryPagingSource constructor(
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CategoryModel> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CategoryData> {
         return withContext(Dispatchers.IO) {
             val key = params.key ?: 0
             val categoryList = getCategoryList(key, params.loadSize)
@@ -61,10 +61,10 @@ class CategoryPagingSource constructor(
         }
     }
 
-    private fun getCategoryList(key: Int, loadSize: Int): List<CategoryModel> {
+    private fun getCategoryList(key: Int, loadSize: Int): List<CategoryData> {
         val offset = key * loadSize
 
-        val timestamp = localDataSource.getTimestampByOffset(offset) ?: -1
+        val timestamp = localDataSource.getCreateTimestampByOffset(offset) ?: -1
         if (timestamp == -1L) {
             return emptyList()
         }
@@ -72,6 +72,8 @@ class CategoryPagingSource constructor(
         return localDataSource.getCategoryList(
             timestamp = timestamp,
             size = loadSize
-        ).map { it.toModel() }
+        ).map {
+            CategoryData.CategoryInfoData(it.toModel())
+        }
     }
 }

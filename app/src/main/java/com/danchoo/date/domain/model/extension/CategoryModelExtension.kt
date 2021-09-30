@@ -3,8 +3,9 @@ package com.danchoo.date.domain.model.extension
 import com.danchoo.date.data.db.entity.Category
 import com.danchoo.date.domain.model.CategoryModel
 
+
 fun Category.toModel(): CategoryModel {
-    return CategoryModel.CategoryData(
+    return CategoryModel(
         categoryId = categoryId,
         hash = hash,
         title = title,
@@ -15,14 +16,12 @@ fun Category.toModel(): CategoryModel {
         lastVisitTimestamp = lastVisitTimestamp,
         lastContentsModifiedTimestamp = lastContentsModifiedTimestamp,
         totalCount = totalCount,
-        tagGroupIdList = tagGroupIdList,
-        tagIdList = tagIdList,
         visibility = visibility,
         revision = revision
     )
 }
 
-fun CategoryModel.CategoryData.toEntity(): Category {
+fun CategoryModel.toEntity(): Category {
     return Category(
         categoryId = categoryId,
         hash = hash,
@@ -34,8 +33,6 @@ fun CategoryModel.CategoryData.toEntity(): Category {
         lastVisitTimestamp = lastVisitTimestamp,
         lastContentsModifiedTimestamp = lastContentsModifiedTimestamp,
         totalCount = totalCount,
-        tagGroupIdList = tagGroupIdList,
-        tagIdList = tagIdList,
         visibility = visibility,
         revision = revision
     )

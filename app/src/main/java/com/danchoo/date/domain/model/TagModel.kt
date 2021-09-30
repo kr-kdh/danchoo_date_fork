@@ -13,9 +13,5 @@ data class TagModel(
 
     val visibility: Int = 0,
 
-    val selectCount: Long = 0,
-
-    val relationGroupIdList: List<Long> = emptyList(),
-
-    val relationTagIdList: List<Long> = emptyList()
+    val selectCount: Long = 0
 )

@@ -3,25 +3,46 @@ package com.danchoo.date.data.datasource.local
 import androidx.paging.PagingSource
 import com.danchoo.date.data.db.dao.CategoryDao
 import com.danchoo.date.data.db.entity.Category
+import com.danchoo.date.data.db.entity.CategoryInfo
 
 class CategoryLocalDataSourceImpl internal constructor(
     private val categoryDao: CategoryDao
 ) : CategoryLocalDataSource {
 
-    override fun getCategoryList(timestamp: Long, size: Int): List<Category> {
+    override fun getCategoryList(timestamp: Long, size: Int): List<CategoryInfo> {
         return categoryDao.getCategoryList(timestamp, size)
     }
 
-    override fun getCategoryList(): PagingSource<Int, Category> {
+    override fun getCategoryList(): PagingSource<Int, CategoryInfo> {
         return categoryDao.getCategoryList()
     }
 
-
-    override fun getTimestampByOffset(offset: Int): Long? {
-        return categoryDao.getTimestampByOffset(offset)
+    override fun getCreateTimestampByOffset(offset: Int): Long? {
+        return categoryDao.getCreateTimestampByOffset(offset)
     }
 
-    override fun insertCategoryList(categoryList: List<Category>) {
-        categoryDao.insertAll(categoryList)
+    override fun insert(category: Category) {
+        categoryDao.insert(category)
+    }
+
+    override fun update(category: Category) {
+        categoryDao.update(category)
+    }
+
+    override fun update(
+        categoryId: Long,
+        title: String,
+        description: String,
+        lastModifiedTimestamp: Long
+    ) {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateSelectCount(
+        categoryId: Long,
+        selectCount: Long,
+        lastVisitTimestamp: String
+    ) {
+        TODO("Not yet implemented")
     }
 }

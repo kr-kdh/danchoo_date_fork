@@ -14,15 +14,14 @@ class CategoryListInsertUseCase @Inject constructor(
 
     var index = 0
     override suspend fun execute(parameters: Unit) {
-        val list = mutableListOf<CategoryModel.CategoryData>()
+        val list = mutableListOf<CategoryModel>()
         val uuid = UUID.randomUUID().toString()
         list.add(
-            CategoryModel.CategoryData(
+            CategoryModel(
                 title = "$uuid / $index",
                 lastModifiedTimestamp = Date().time
             )
         )
         index++
-        repository.insertCategory(list)
     }
 }

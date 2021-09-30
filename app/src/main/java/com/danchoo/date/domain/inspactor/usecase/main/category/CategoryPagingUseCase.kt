@@ -3,7 +3,7 @@ package com.danchoo.date.domain.inspactor.usecase.main.category
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.danchoo.date.domain.model.CategoryModel
+import com.danchoo.date.domain.model.CategoryData
 import com.danchoo.date.domain.repository.CategoryRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -11,7 +11,7 @@ import javax.inject.Inject
 class CategoryPagingUseCase @Inject constructor(
     val repository: CategoryRepository
 ) {
-    operator fun invoke(): Flow<PagingData<CategoryModel>> = Pager(
+    operator fun invoke(): Flow<PagingData<CategoryData>> = Pager(
         config = PagingConfig(
             pageSize = 10,
             prefetchDistance = 10,
