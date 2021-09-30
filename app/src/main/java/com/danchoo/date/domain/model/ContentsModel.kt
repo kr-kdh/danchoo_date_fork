@@ -10,6 +10,8 @@ sealed class ContentsModel {
 
         val hash: String = UUID.randomUUID().toString(),
 
+        val creator: Long = 0L,
+
         val title: String = "",
 
         val contentsIdList: List<Long> = emptyList(),

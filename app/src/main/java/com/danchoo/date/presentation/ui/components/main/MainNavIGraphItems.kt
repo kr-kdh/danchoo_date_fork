@@ -40,15 +40,14 @@ fun NavGraphBuilder.addCategoryDetail(upPress: () -> Unit) {
     composable(
         "${MainDestinations.CATEGORY_DETAIL_ROUTE}/{${MainRouteArgsKeys.CATEGORY_DETAIL_ID}}",
         arguments = listOf(navArgument(MainRouteArgsKeys.CATEGORY_DETAIL_ID) {
-            type = NavType.StringType
+            type = NavType.LongType
         }),
         enterTransition = { _, _ ->
             slideInHorizontally(initialOffsetX = { 1000 }, animationSpec = tween(700))
         }
     ) { backStackEntry ->
         val arguments = requireNotNull(backStackEntry.arguments)
-        val categoryId = arguments.getString(MainRouteArgsKeys.CATEGORY_DETAIL_ID)
-            ?: throw IllegalArgumentException()
+        val categoryId = arguments.getLong(MainRouteArgsKeys.CATEGORY_DETAIL_ID)
 
 //        ContentListApp(categoryId = categoryId, upPress = upPress)
     }

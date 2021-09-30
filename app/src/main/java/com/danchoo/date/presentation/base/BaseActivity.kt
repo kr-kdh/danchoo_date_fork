@@ -1,13 +1,6 @@
 package com.danchoo.date.presentation.base
 
-import android.app.Dialog
-import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 
 abstract class BaseActivity : ComponentActivity() {
 

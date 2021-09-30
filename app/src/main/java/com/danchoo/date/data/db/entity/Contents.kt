@@ -22,6 +22,8 @@ data class Contents(
 
     val title: String = "",
 
+    val creator: Long = 0L,
+
     @ColumnInfo(name = "contents_id_list")
     val contentsIdList: List<Long> = emptyList(),
 

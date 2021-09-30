@@ -3,8 +3,8 @@ package com.danchoo.date.data.pagingsource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.danchoo.date.data.datasource.local.CategoryLocalDataSource
-import com.danchoo.date.data.db.entity.extension.toModel
 import com.danchoo.date.domain.model.CategoryModel
+import com.danchoo.date.domain.model.extension.toModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

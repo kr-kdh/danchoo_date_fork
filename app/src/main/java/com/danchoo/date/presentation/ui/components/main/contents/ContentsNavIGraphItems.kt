@@ -27,11 +27,11 @@ fun NavGraphBuilder.addContentsNavGraph(
     composable(
         "${ContentsSections.DETAIL}/{${ContentsArgsKeys.CONTENTS_ID_KEY}}",
         arguments = listOf(navArgument(ContentsArgsKeys.CONTENTS_ID_KEY) {
-            type = NavType.StringType
+            type = NavType.LongType
         })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
-        val contentsId = arguments.getString(ContentsArgsKeys.CONTENTS_ID_KEY)
+        val contentsId = arguments.getLong(ContentsArgsKeys.CONTENTS_ID_KEY)
         ContentsDetail(modifier) {
             onSelected(it, from)
         }

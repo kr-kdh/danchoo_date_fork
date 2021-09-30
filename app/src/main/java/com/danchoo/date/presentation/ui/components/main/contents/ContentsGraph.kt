@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.danchoo.date.presentation.ui.common.extension.lifecycleIsResumed
+import com.danchoo.date.presentation.ui.components.main.contents.ContentsDestinations.MAIN_ROUTE
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.navigation
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -18,9 +19,9 @@ object ContentsDestinations {
 }
 
 object ContentsSections {
-    const val LIST = "contents/list"
-    const val DETAIL = "contents/detail"
-    const val SETTING = "contents/setting"
+    const val LIST = "$MAIN_ROUTE/list"
+    const val DETAIL = "$MAIN_ROUTE/detail"
+    const val SETTING = "$MAIN_ROUTE/setting"
 }
 
 

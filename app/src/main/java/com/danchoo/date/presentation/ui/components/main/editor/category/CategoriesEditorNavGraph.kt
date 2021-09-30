@@ -8,7 +8,6 @@ import com.danchoo.date.presentation.ui.components.main.editor.category.Categori
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.navigation
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.google.accompanist.pager.ExperimentalPagerApi
 
 /**
  * Destinations used in the ([ContentsNavGraph]).
@@ -23,12 +22,7 @@ object CategoriesEditorSections {
 }
 
 
-object CategoriesArgsKeys {
-    const val CATEGORY_ID_KEY = "categoryId"
-}
-
-@ExperimentalPagerApi
-@ExperimentalAnimationApi
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun CategoriesEditorNavGraph(
     modifier: Modifier = Modifier,
@@ -36,6 +30,7 @@ fun CategoriesEditorNavGraph(
     startDestination: String = MAIN_ROUTE,
     mode: String = CategoriesEditorSections.CREATE
 ) {
+
 
     AnimatedNavHost(
         navController = navController,

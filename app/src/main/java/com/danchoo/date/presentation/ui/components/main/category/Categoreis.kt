@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
@@ -15,8 +16,11 @@ import com.danchoo.date.domain.model.CategoryModel
 import com.danchoo.date.presentation.ui.common.extension.debounce
 import com.danchoo.date.presentation.ui.components.common.AddFloatingActionButton
 import com.danchoo.date.presentation.ui.components.common.Surface
+import com.danchoo.date.presentation.ui.main.category.CategoriesEditorActivity
 import com.danchoo.date.presentation.ui.main.category.viewmodel.CategoryViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun Category(
     modifier: Modifier = Modifier,
@@ -36,12 +40,12 @@ fun Category(
             }
         },
         floatingActionButton = {
+            val context = LocalContext.current
             AddFloatingActionButton {
-                viewModel.addCategory()
+                CategoriesEditorActivity.startActivity(context)
             }
         }
     )
-
 }
 
 @Composable

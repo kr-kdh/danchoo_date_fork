@@ -64,20 +64,20 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01'
 
-    implementation "androidx.collection:collection-ktx:"
+    implementation "androidx.collection:collection-ktx:1.1.0"
     implementation "androidx.fragment:fragment-ktx:1.3.6"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha03"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha03"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-rc01'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-rc01'
 
     implementation "androidx.compose.runtime:runtime:$compose_version"
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-util:$compose_version"
     implementation "androidx.activity:activity-compose:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.animation:animation:$compose_version"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.ui:ui-util:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
@@ -94,11 +94,12 @@ dependencies {
     implementation "io.coil-kt:coil-compose:1.3.2"
 
     // viewModel
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha03"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-rc01"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-rc01"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1'
 
     // navigation
-    implementation "androidx.navigation:navigation-compose:2.4.0-alpha06"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-runtime-ktx:$nav_version"
@@ -122,7 +123,6 @@ dependencies {
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
 
@@ -134,9 +134,7 @@ dependencies {
 
     // paging3
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
-    // optional - Guava ListenableFuture support
-    implementation "androidx.paging:paging-guava:$paging_version"
-    implementation "androidx.paging:paging-compose:1.0.0-alpha12"
+    implementation "androidx.paging:paging-compose:1.0.0-alpha13"
 
 
     // hilt
