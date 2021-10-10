@@ -5,7 +5,7 @@ import com.danchoo.date.data.db.entity.Category
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -44,6 +44,9 @@ internal class CategoryLocalDataSourceImplTest {
 
     @Test
     fun getCreateTimestampByOffset() {
+        /**
+         * DB Index 는 1 부터 시작한다.
+         */
         val category = datasource.getCategory(1)
         val createTime = datasource.getCreateTimestampByOffset(0)
 
@@ -52,17 +55,77 @@ internal class CategoryLocalDataSourceImplTest {
 
     @Test
     fun update() {
+        val category = datasource.getCategory(1)
+        assertNotNull(category!!)
+
+        val updateData = category.copy(title = "updated")
+
+        assertNotNull(updateData)
+
+        assertEquals(category.categoryId, updateData.categoryId)
+
+        datasource.update(updateData)
+
+        val updatedData = datasource.getCategory(1)
+        assertNotNull(updatedData!!)
+
+        assertEquals(updatedData.categoryId, updateData.categoryId)
+        assertEquals(updatedData.title, "updated")
     }
 
+
     @Test
-    fun testUpdate() {
+    fun updateDefaultData() {
+        val category = datasource.getCategory(1)
+        assertNotNull(category!!)
+
+        val currentTime = Date().time
+        datasource.update(
+            categoryId = 1,
+            title = "updated",
+            description = "description",
+            visibility = 1,
+            lastModifiedTimestamp = currentTime
+        )
+
+        val updatedData = datasource.getCategory(1)
+        assertNotNull(updatedData!!)
+
+        assertEquals(updatedData.categoryId, 1L)
+        assertEquals(updatedData.title, "updated")
+        assertEquals(updatedData.description, "description")
+        assertEquals(updatedData.visibility, 1)
+        assertEquals(updatedData.lastModifiedTimestamp, currentTime)
     }
 
     @Test
     fun updateSelectCount() {
+        val category = datasource.getCategory(1)
+        assertNotNull(category!!)
+
+        val currentTime = Date().time
+        datasource.updateSelectCount(
+            categoryId = 1,
+            selectCount = 1,
+            lastVisitTimestamp = currentTime
+        )
+
+        val updatedData = datasource.getCategory(1)
+        assertNotNull(updatedData!!)
+
+        assertEquals(updatedData.categoryId, 1L)
+        assertEquals(updatedData.selectCount, 1)
+        assertEquals(updatedData.lastVisitTimestamp, currentTime)
     }
 
     @Test
     fun delete() {
+        val category = datasource.getCategory(1)
+        assertNotNull(category)
+
+        datasource.delete(1)
+
+        val deleted = datasource.getCategory(1)
+        assertNull(deleted)
     }
 }

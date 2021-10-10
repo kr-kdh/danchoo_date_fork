@@ -57,6 +57,38 @@ abstract class CategoryDao {
     @Update
     abstract fun update(category: Category)
 
+    @Query(
+        """
+        UPDATE category
+        SET title = :title,
+            description = :description,
+            visibility = :visibility,
+            last_modified_timestamp = :lastModifiedTimestamp
+        WHERE category_id == :categoryId
+    """
+    )
+    abstract fun update(
+        categoryId: Long,
+        title: String,
+        description: String,
+        visibility: Int,
+        lastModifiedTimestamp: Long
+    )
+
+    @Query(
+        """
+        UPDATE category
+        SET select_count = :selectCount,
+            last_visit_timestamp = :lastVisitTimestamp
+        WHERE category_id == :categoryId
+    """
+    )
+    abstract fun updateSelectCount(
+        categoryId: Long,
+        selectCount: Long,
+        lastVisitTimestamp: Long
+    )
+
     @Query("delete from category where category_id = :categoryId")
     abstract fun delete(categoryId: Long)
 

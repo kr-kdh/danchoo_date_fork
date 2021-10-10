@@ -32,7 +32,7 @@ interface CategoryLocalDataSource {
     fun updateSelectCount(
         categoryId: Long,
         selectCount: Long,
-        lastVisitTimestamp: String
+        lastVisitTimestamp: Long
     )
 
     fun delete(categoryId: Long)

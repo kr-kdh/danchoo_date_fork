@@ -40,15 +40,25 @@ class CategoryLocalDataSourceImpl internal constructor(
         visibility: Int,
         lastModifiedTimestamp: Long
     ) {
-        TODO("Not yet implemented")
+        categoryDao.update(
+            categoryId = categoryId,
+            title = title,
+            description = description,
+            visibility = visibility,
+            lastModifiedTimestamp = lastModifiedTimestamp
+        )
     }
 
     override fun updateSelectCount(
         categoryId: Long,
         selectCount: Long,
-        lastVisitTimestamp: String
+        lastVisitTimestamp: Long
     ) {
-        TODO("Not yet implemented")
+        categoryDao.updateSelectCount(
+            categoryId = categoryId,
+            selectCount = selectCount,
+            lastVisitTimestamp = lastVisitTimestamp
+        )
     }
 
     override fun delete(categoryId: Long) {

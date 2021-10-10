@@ -41,5 +41,4 @@ data class Category(
     val visibility: Int = 0,
 
     var revision: Long = 0
-) {
-}
+)
