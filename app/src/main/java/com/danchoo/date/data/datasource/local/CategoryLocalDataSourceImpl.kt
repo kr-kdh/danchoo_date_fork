@@ -17,6 +17,10 @@ class CategoryLocalDataSourceImpl internal constructor(
         return categoryDao.getCategoryList()
     }
 
+    override fun getCategory(categoryId: Long): Category? {
+        return categoryDao.getCategory(categoryId)
+    }
+
     override fun getCreateTimestampByOffset(offset: Int): Long? {
         return categoryDao.getCreateTimestampByOffset(offset)
     }
@@ -33,6 +37,7 @@ class CategoryLocalDataSourceImpl internal constructor(
         categoryId: Long,
         title: String,
         description: String,
+        visibility: Int,
         lastModifiedTimestamp: Long
     ) {
         TODO("Not yet implemented")
@@ -44,5 +49,13 @@ class CategoryLocalDataSourceImpl internal constructor(
         lastVisitTimestamp: String
     ) {
         TODO("Not yet implemented")
+    }
+
+    override fun delete(categoryId: Long) {
+        categoryDao.delete(categoryId)
+    }
+
+    override fun deleteAll() {
+        categoryDao.deleteAll()
     }
 }

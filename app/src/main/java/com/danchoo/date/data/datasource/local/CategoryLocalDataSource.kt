@@ -13,6 +13,8 @@ interface CategoryLocalDataSource {
 
     fun getCategoryList(): PagingSource<Int, CategoryInfo>
 
+    fun getCategory(categoryId: Long): Category?
+
     fun getCreateTimestampByOffset(offset: Int): Long?
 
     fun insert(category: Category)
@@ -23,6 +25,7 @@ interface CategoryLocalDataSource {
         categoryId: Long,
         title: String,
         description: String,
+        visibility: Int,
         lastModifiedTimestamp: Long
     )
 
@@ -31,4 +34,8 @@ interface CategoryLocalDataSource {
         selectCount: Long,
         lastVisitTimestamp: String
     )
+
+    fun delete(categoryId: Long)
+
+    fun deleteAll()
 }

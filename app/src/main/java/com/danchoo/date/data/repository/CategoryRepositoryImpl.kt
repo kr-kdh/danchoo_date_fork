@@ -3,9 +3,9 @@ package com.danchoo.date.data.repository
 import com.danchoo.commonutils.TimeUtils
 import com.danchoo.date.data.datasource.local.CategoryLocalDataSource
 import com.danchoo.date.data.pagingsource.CategoryPagingSource
-import com.danchoo.date.domain.model.CategoryData
 import com.danchoo.date.domain.model.CategoryModel
 import com.danchoo.date.domain.model.constants.Visibility
+import com.danchoo.date.domain.model.extension.toEntity
 import com.danchoo.date.domain.repository.CategoryRepository
 
 class CategoryRepositoryImpl constructor(
@@ -23,10 +23,12 @@ class CategoryRepositoryImpl constructor(
             createTimestamp = TimeUtils.getCurrentRealTimestamp(),
             lastModifiedTimestamp = TimeUtils.getCurrentRealTimestamp()
         )
+
+        localDataSource.insert(categoryModel.toEntity())
     }
 
-    override fun updateCategory(categoryData: CategoryData) {
-        TODO("Not yet implemented")
+    override fun updateCategory(categoryModel: CategoryModel) {
+        localDataSource.update(categoryModel.toEntity())
     }
 
     override fun updateCategory(
@@ -35,10 +37,16 @@ class CategoryRepositoryImpl constructor(
         description: String,
         visibility: Visibility
     ) {
-        TODO("Not yet implemented")
+        localDataSource.update(
+            categoryId = categoryId,
+            title = title,
+            description = description,
+            visibility = visibility.visibility,
+            lastModifiedTimestamp = TimeUtils.getCurrentRealTimestamp()
+        )
     }
 
     override fun deleteCategory(categoryId: Long) {
-        TODO("Not yet implemented")
+        localDataSource.delete(categoryId)
     }
 }

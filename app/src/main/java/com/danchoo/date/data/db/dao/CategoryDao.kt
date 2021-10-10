@@ -33,6 +33,9 @@ abstract class CategoryDao {
     )
     abstract fun getCategoryList(): PagingSource<Int, CategoryInfo>
 
+    @Query("SELECT * FROM category where category_id = :categoryId")
+    abstract fun getCategory(categoryId: Long): Category?
+
     @Transaction
     @Query(
         """ 
@@ -53,4 +56,10 @@ abstract class CategoryDao {
 
     @Update
     abstract fun update(category: Category)
+
+    @Query("delete from category where category_id = :categoryId")
+    abstract fun delete(categoryId: Long)
+
+    @Query("delete from category")
+    abstract fun deleteAll()
 }
