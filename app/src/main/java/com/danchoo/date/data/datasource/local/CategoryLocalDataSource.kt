@@ -17,7 +17,7 @@ interface CategoryLocalDataSource {
 
     fun getCreateTimestampByOffset(offset: Int): Long?
 
-    fun insert(category: Category)
+    fun insert(category: Category): Long
 
     fun update(category: Category)
 

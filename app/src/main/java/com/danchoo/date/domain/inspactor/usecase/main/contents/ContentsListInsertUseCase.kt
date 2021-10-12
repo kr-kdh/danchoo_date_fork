@@ -1,8 +1,8 @@
 package com.danchoo.date.domain.inspactor.usecase.main.contents
 
-import com.danchoo.date.domain.inspactor.usecase.base.UseCase
 import com.danchoo.date.domain.model.ContentsModel
 import com.danchoo.date.domain.repository.ContentsRepository
+import com.danchoo.inspactor.usecase.UseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import java.util.*
 import javax.inject.Inject

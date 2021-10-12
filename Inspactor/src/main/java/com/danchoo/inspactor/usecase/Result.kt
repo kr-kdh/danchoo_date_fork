@@ -1,4 +1,4 @@
-package com.danchoo.date.domain.inspactor.usecase.base
+package com.danchoo.inspactor.usecase
 
 import androidx.lifecycle.MutableLiveData
 

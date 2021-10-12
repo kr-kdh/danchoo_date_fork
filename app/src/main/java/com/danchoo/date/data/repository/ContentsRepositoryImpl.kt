@@ -1,7 +1,7 @@
 package com.danchoo.date.data.repository
 
 import com.danchoo.date.data.datasource.local.ContentsLocalDataSource
-import com.danchoo.date.data.pagingsource.ContentsPagingSource
+import com.danchoo.date.data.datasource.pagingsource.ContentsPagingSource
 import com.danchoo.date.domain.model.ContentsModel
 import com.danchoo.date.domain.model.extension.toEntity
 import com.danchoo.date.domain.repository.ContentsRepository

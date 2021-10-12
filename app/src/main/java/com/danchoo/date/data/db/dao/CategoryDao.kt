@@ -2,7 +2,6 @@ package com.danchoo.date.data.db.dao
 
 import androidx.paging.PagingSource
 import androidx.room.*
-import androidx.room.OnConflictStrategy.REPLACE
 import com.danchoo.date.data.db.entity.Category
 import com.danchoo.date.data.db.entity.CategoryInfo
 
@@ -51,8 +50,8 @@ abstract class CategoryDao {
     @Insert
     abstract fun insertAll(list: List<Category>)
 
-    @Insert(onConflict = REPLACE)
-    abstract fun insert(category: Category)
+    @Insert
+    abstract fun insert(category: Category): Long
 
     @Update
     abstract fun update(category: Category)

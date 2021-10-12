@@ -1,4 +1,4 @@
-package com.danchoo.date.domain.inspactor.usecase.base
+package com.danchoo.inspactor.usecase
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -13,8 +13,15 @@ import kotlinx.coroutines.flow.flowOn
  */
 abstract class FlowUseCase<in P, R>(private val coroutineDispatcher: CoroutineDispatcher) {
     operator fun invoke(parameters: P): Flow<Result<R>> = execute(parameters)
-        .catch { e -> emit(Result.Error(Exception(e))) }
+        .catch { e ->
+            val exception = Exception(e)
+
+            onError(exception)
+            emit(Result.Error(exception))
+        }
         .flowOn(coroutineDispatcher)
 
     protected abstract fun execute(parameters: P): Flow<Result<R>>
+
+    open fun onError(e: Exception) {}
 }

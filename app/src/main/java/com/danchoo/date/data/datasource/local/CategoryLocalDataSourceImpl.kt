@@ -25,8 +25,8 @@ class CategoryLocalDataSourceImpl internal constructor(
         return categoryDao.getCreateTimestampByOffset(offset)
     }
 
-    override fun insert(category: Category) {
-        categoryDao.insert(category)
+    override fun insert(category: Category): Long {
+        return categoryDao.insert(category)
     }
 
     override fun update(category: Category) {

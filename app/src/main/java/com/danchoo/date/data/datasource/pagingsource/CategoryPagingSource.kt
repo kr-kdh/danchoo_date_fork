@@ -1,18 +1,18 @@
-package com.danchoo.date.data.pagingsource
+package com.danchoo.date.data.datasource.pagingsource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.danchoo.date.data.datasource.local.ContentsLocalDataSource
-import com.danchoo.date.domain.model.ContentsModel
+import com.danchoo.date.data.datasource.local.CategoryLocalDataSource
+import com.danchoo.date.domain.model.CategoryData
 import com.danchoo.date.domain.model.extension.toModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ContentsPagingSource constructor(
-    private val localDataSource: ContentsLocalDataSource
-) : PagingSource<Int, ContentsModel>() {
+class CategoryPagingSource constructor(
+    private val localDataSource: CategoryLocalDataSource
+) : PagingSource<Int, CategoryData>() {
 
-    val dataSource = localDataSource.getContentsList()
+    val dataSource = localDataSource.getCategoryList()
 
     init {
 
@@ -23,7 +23,7 @@ class ContentsPagingSource constructor(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ContentsModel>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, CategoryData>): Int? {
         // Try to find the page key of the closest page to anchorPosition, from
         // either the prevKey or the nextKey, but you need to handle nullability
         // here:
@@ -37,10 +37,10 @@ class ContentsPagingSource constructor(
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ContentsModel> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CategoryData> {
         return withContext(Dispatchers.IO) {
             val key = params.key ?: 0
-            val categoryList = getContentsList(key, params.loadSize)
+            val categoryList = getCategoryList(key, params.loadSize)
 
             val prevKey = if (key == 0) null else key - 1
             val nextKey = if (categoryList.isNullOrEmpty()) null else key + 1
@@ -61,17 +61,19 @@ class ContentsPagingSource constructor(
         }
     }
 
-    private fun getContentsList(key: Int, loadSize: Int): List<ContentsModel> {
+    private fun getCategoryList(key: Int, loadSize: Int): List<CategoryData> {
         val offset = key * loadSize
 
-        val timestamp = localDataSource.getTimestampByOffset(offset) ?: -1
+        val timestamp = localDataSource.getCreateTimestampByOffset(offset) ?: -1
         if (timestamp == -1L) {
             return emptyList()
         }
 
-        return localDataSource.getContentsList(
+        return localDataSource.getCategoryList(
             timestamp = timestamp,
             size = loadSize
-        ).map { it.toModel() }
+        ).map {
+            CategoryData.CategoryInfoData(it.toModel())
+        }
     }
 }

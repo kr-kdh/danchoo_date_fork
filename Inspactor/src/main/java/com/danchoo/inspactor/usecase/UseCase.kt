@@ -1,4 +1,4 @@
-package com.danchoo.date.domain.inspactor.usecase.base
+package com.danchoo.inspactor.usecase
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -22,6 +22,7 @@ abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispat
                 }
             }
         } catch (e: Exception) {
+            onError(e)
             Result.Error(e)
         }
     }
@@ -31,4 +32,6 @@ abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispat
      */
     @Throws(RuntimeException::class)
     protected abstract suspend fun execute(parameters: P): R
+
+    open suspend fun onError(e: Exception) {}
 }
