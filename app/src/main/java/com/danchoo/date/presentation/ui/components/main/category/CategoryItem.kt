@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.danchoo.date.domain.model.CategoryData
+import com.danchoo.category.domain.model.CategoryData
 import com.danchoo.date.presentation.ui.components.common.CardView
 import com.danchoo.date.presentation.ui.theme.MainTheme
 import com.danchoo.date.presentation.ui.theme.MyApplicationTheme

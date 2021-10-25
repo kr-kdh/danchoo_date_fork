@@ -1,7 +1,7 @@
 package com.danchoo.date.presentation.di
 
-import com.danchoo.date.data.remote.api.CategoryApiInterface
-import com.danchoo.date.data.remote.api.ContentsApiInterface
+import com.danchoo.category.data.remote.api.CategoryApiInterface
+import com.danchoo.category.data.remote.api.ContentsApiInterface
 import com.danchoo.retrofitutils.RetrofitCreateHelper
 import dagger.Module
 import dagger.Provides
@@ -36,6 +36,7 @@ object NetworkModule {
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiInterface =
         retrofit.create(ApiInterface::class.java)
+
 
     interface ApiInterface : CategoryApiInterface, ContentsApiInterface
 }

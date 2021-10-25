@@ -3,9 +3,14 @@ package com.danchoo.date.data.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.danchoo.date.data.db.dao.CategoryDao
+import com.danchoo.category.data.db.entity.Category
+import com.danchoo.category.data.db.entity.CategoryTagGroupInfo
+import com.danchoo.category.data.db.entity.CategoryTagInfo
 import com.danchoo.date.data.db.dao.ContentsDao
-import com.danchoo.date.data.db.entity.*
+import com.danchoo.date.data.db.entity.Contents
+import com.danchoo.date.data.db.entity.ContentsMedia
+import com.danchoo.tags.data.db.entiry.Tag
+import com.danchoo.tags.data.db.entiry.TagGroup
 
 @Database(
     entities = [
@@ -22,6 +27,6 @@ import com.danchoo.date.data.db.entity.*
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun categoryDao(): CategoryDao
+    abstract fun categoryDao(): com.danchoo.category.data.db.dao.CategoryDao
     abstract fun contentsDao(): ContentsDao
 }

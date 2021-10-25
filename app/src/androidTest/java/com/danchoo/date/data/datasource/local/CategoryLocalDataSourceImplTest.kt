@@ -1,7 +1,8 @@
 package com.danchoo.date.data.datasource.local
 
-import androidx.test.runner.AndroidJUnit4
-import com.danchoo.date.data.db.entity.Category
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.danchoo.category.data.datasource.local.CategoryLocalDataSource
+import com.danchoo.category.data.db.entity.Category
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After
@@ -27,7 +28,7 @@ internal class CategoryLocalDataSourceImplTest {
     fun setUp() {
         hiltRule.inject()
 
-        for (index in 0L..10L) {
+        for (index in 1L..10L) {
             val category = Category(
                 categoryId = index,
                 createTimestamp = Date().time
