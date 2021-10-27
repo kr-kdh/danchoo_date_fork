@@ -1,8 +1,8 @@
 rootProject.name = "date"
 include ':app'
-include ':commonUtils'
-include ':retrofitUtils'
-include ':inspactor'
+include ':common:commonUtils'
+include ':common:retrofitUtils'
+include ':common:inspactor'
 include ':category'
 include ':tags'
-include ':common'
+include ':common:base'

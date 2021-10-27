@@ -2,6 +2,7 @@ package com.danchoo.category.data.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(
@@ -9,6 +10,7 @@ import java.util.*
     indices = [androidx.room.Index(value = ["hash"], unique = true)]
 )
 data class Category(
+    @PrimaryKey
     @ColumnInfo(name = "category_id")
     val categoryId: Long = 0L,
 
