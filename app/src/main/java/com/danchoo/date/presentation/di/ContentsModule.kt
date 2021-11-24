@@ -1,13 +1,13 @@
 package com.danchoo.date.presentation.di
 
-import com.danchoo.date.data.datasource.local.ContentsLocalDataSource
-import com.danchoo.date.data.datasource.local.ContentsLocalDataSourceImpl
-import com.danchoo.date.data.datasource.pagingsource.ContentsPagingSource
-import com.danchoo.date.data.db.dao.ContentsDao
-import com.danchoo.date.data.repository.ContentsRepositoryImpl
-import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsListInsertUseCase
-import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsPagingUseCase
-import com.danchoo.date.domain.repository.ContentsRepository
+import com.danchoo.contents.data.datasource.local.ContentsLocalDataSource
+import com.danchoo.contents.data.datasource.local.ContentsLocalDataSourceImpl
+import com.danchoo.contents.data.datasource.pagingsource.ContentsPagingSource
+import com.danchoo.contents.data.db.dao.ContentsDao
+import com.danchoo.contents.data.repository.ContentsRepositoryImpl
+import com.danchoo.contents.domain.inspector.usecase.ContentsListInsertUseCase
+import com.danchoo.contents.domain.inspector.usecase.ContentsPagingUseCase
+import com.danchoo.contents.domain.repository.ContentsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

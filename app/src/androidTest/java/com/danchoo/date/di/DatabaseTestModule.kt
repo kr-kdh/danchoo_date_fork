@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.danchoo.category.data.db.dao.CategoryDao
 import com.danchoo.date.data.db.AppDatabase
-import com.danchoo.date.data.db.dao.ContentsDao
 import com.danchoo.date.presentation.di.DatabaseModule
 import dagger.Module
 import dagger.Provides

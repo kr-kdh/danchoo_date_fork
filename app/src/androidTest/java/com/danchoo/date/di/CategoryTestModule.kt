@@ -7,7 +7,7 @@ import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSource
 import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSourceImpl
 import com.danchoo.category.data.db.dao.CategoryDao
 import com.danchoo.category.data.repository.CategoryRepositoryImpl
-import com.danchoo.category.domain.inspactor.usecase.CategoryPagingUseCase
+import com.danchoo.category.domain.inspector.usecase.CategoryPagingUseCase
 import com.danchoo.category.domain.repository.CategoryRepository
 import com.danchoo.date.presentation.di.CategoryModule
 import com.danchoo.date.presentation.di.NetworkModule

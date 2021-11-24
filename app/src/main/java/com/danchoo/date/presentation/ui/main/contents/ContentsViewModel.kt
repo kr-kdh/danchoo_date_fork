@@ -6,9 +6,9 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.insertHeaderItem
 import androidx.paging.insertSeparators
-import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsListInsertUseCase
-import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsPagingUseCase
-import com.danchoo.date.domain.model.ContentsModel
+import com.danchoo.contents.domain.inspector.usecase.ContentsListInsertUseCase
+import com.danchoo.contents.domain.inspector.usecase.ContentsPagingUseCase
+import com.danchoo.contents.domain.model.ContentsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

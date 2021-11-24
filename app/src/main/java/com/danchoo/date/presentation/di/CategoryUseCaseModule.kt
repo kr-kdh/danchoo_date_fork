@@ -1,8 +1,8 @@
 package com.danchoo.date.presentation.di
 
-import com.danchoo.category.domain.inspactor.manager.CategoryUseCaseManager
-import com.danchoo.category.domain.inspactor.manager.impl.CategoryUseCaseManagerImpl
-import com.danchoo.category.domain.inspactor.usecase.CategoryCreateUseCase
+import com.danchoo.category.domain.inspector.manager.CategoryUseCaseManager
+import com.danchoo.category.domain.inspector.manager.impl.CategoryUseCaseManagerImpl
+import com.danchoo.category.domain.inspector.usecase.CategoryCreateUseCase
 import com.danchoo.category.domain.repository.CategoryRepository
 import dagger.Module
 import dagger.Provides

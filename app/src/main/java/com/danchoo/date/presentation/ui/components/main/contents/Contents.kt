@@ -11,7 +11,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
-import com.danchoo.date.domain.model.ContentsModel
+import com.danchoo.contents.domain.model.ContentsModel
 import com.danchoo.date.presentation.ui.common.extension.debounce
 import com.danchoo.date.presentation.ui.components.common.AddFloatingActionButton
 import com.danchoo.date.presentation.ui.components.common.Surface
