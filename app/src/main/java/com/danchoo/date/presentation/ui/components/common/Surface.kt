@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.danchoo.date.presentation.ui.theme.MainTheme
+import com.danchoo.components.theme.MainTheme
 import kotlin.math.ln
 
 @Composable
@@ -31,7 +31,8 @@ fun Surface(
     content: @Composable () -> Unit
 ) {
     Box(
-        modifier = modifier.shadow(elevation = elevation, shape = shape, clip = false)
+        modifier = modifier
+            .shadow(elevation = elevation, shape = shape, clip = false)
             .zIndex(elevation.value)
             .then(if (border != null) Modifier.border(border, shape) else Modifier)
             .background(

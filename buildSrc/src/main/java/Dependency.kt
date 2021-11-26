@@ -1,10 +1,11 @@
 object Classpath {
     const val gradle = "com.android.tools.build:gradle:7.0.3"
 
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
 
     const val googleService = "com.google.gms:google-services:4.3.10"
-    const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Hilt.version}"
+    const val hiltAndroidGradlePlugin =
+        "com.google.dagger:hilt-android-gradle-plugin:${Hilt.version}"
 
 //    const val ANDROID_JUNIT5 = "de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0"
 }
@@ -83,7 +84,8 @@ object Accompanist {
     private const val version = "0.18.0"
     const val inserts = "com.google.accompanist:accompanist-insets:$version"
     const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:$version"
-    const val navigationAnimation = "com.google.accompanist:accompanist-navigation-animation:$version"
+    const val navigationAnimation =
+        "com.google.accompanist:accompanist-navigation-animation:$version"
 
     const val pager = "com.google.accompanist:accompanist-pager:$version"
     const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:$version"

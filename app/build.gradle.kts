@@ -26,12 +26,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":contents"))
     implementation(project(":base"))
+    implementation(project(":components"))
     implementation(project(":commonUtils"))
     implementation(project(":retrofitUtils"))
     implementation(project(":inspector"))
     implementation(project(":category"))
-    implementation(project(":contents"))
     implementation(project(":tags"))
 
     AndroidX.run {

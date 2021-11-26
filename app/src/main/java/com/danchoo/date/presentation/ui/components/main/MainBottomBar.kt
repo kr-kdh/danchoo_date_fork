@@ -1,7 +1,5 @@
 package com.danchoo.date.presentation.ui.components.main
 
-import android.app.Activity
-import android.util.Log
 import androidx.annotation.FloatRange
 import androidx.annotation.StringRes
 import androidx.compose.animation.animateColorAsState
@@ -42,9 +40,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.danchoo.date.R
 import com.danchoo.date.presentation.ui.components.common.Surface
-import com.danchoo.date.presentation.ui.theme.BottomNavIndicatorShape
-import com.danchoo.date.presentation.ui.theme.MainTheme
-import com.danchoo.date.presentation.ui.theme.MyApplicationTheme
+import com.danchoo.components.theme.BottomNavIndicatorShape
+import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.theme.MyApplicationTheme
 import com.google.accompanist.insets.navigationBarsPadding
 import androidx.compose.ui.util.lerp
 

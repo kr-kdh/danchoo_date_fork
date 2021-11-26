@@ -3,6 +3,11 @@ package com.danchoo.date.presentation.ui.main
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import com.danchoo.components.theme.CustomTheme
+import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.date.presentation.base.BaseActivity
 import com.danchoo.date.presentation.ui.components.MainApp
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,12 +28,14 @@ class MainActivity : BaseActivity() {
 //            }
 //
 //        })
+        var isDarkMode by mutableStateOf(false)
         setContent {
-            MainApp()
+            MyApplicationTheme(
+                customTheme = CustomTheme.Indigo
+            ) {
+                MainApp()
+            }
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
 }

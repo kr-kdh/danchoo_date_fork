@@ -1,10 +1,11 @@
 rootProject.name = "date"
 
-include (":app")
-include (":base")
-include (":commonUtils")
-include (":retrofitUtils")
-include (":inspector")
-include (":category")
-include (":tags")
-include (":contents")
+include(":app")
+include(":base")
+include(":commonUtils")
+include(":retrofitUtils")
+include(":inspector")
+include(":category")
+include(":tags")
+include(":contents")
+include ':components'

@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.ui.theme
+package com.danchoo.components.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

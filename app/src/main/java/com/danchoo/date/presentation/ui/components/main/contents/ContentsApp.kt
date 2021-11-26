@@ -7,7 +7,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.danchoo.date.presentation.ui.theme.MyApplicationTheme
+import com.danchoo.components.theme.MyApplicationTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalPagerApi

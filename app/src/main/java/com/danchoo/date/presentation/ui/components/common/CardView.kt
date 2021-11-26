@@ -12,8 +12,8 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.danchoo.date.presentation.ui.theme.MainTheme
-import com.danchoo.date.presentation.ui.theme.MyApplicationTheme
+import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.theme.MyApplicationTheme
 
 @Composable
 fun CardView(

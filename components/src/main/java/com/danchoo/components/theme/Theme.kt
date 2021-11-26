@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.ui.theme
+package com.danchoo.components.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
@@ -7,47 +7,78 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.intl.LocaleList.Companion.current
-import java.util.concurrent.ThreadLocalRandom.current
-import androidx.compose.runtime.staticCompositionLocalOf
-private val DarkColorPalette = MainColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200,
-    background = White,
-    textPrimary = darkColors().onPrimary,
-    textSecondary = darkColors().onSecondary,
-    isLight = false
+import com.danchoo.components.theme.color.MaterialColorGrey
+import com.danchoo.components.theme.color.MaterialColorIndigo
+import com.danchoo.components.theme.color.MaterialColorRed
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+
+data class ColorSet(
+    val main: Color, //primary, secondary
+    val light: Color, // background, surface
+    val dark: Color,// primaryVariant, secondaryVariant
+    val text: Color // onPrimary, onSecondary, onBackground, onSurface
 )
 
-private val LightColorPalette = MainColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200,
-    textPrimary = lightColors().onPrimary,
-    textSecondary = lightColors().onSecondary,
-    background = White,
-    isLight = true
+object CustomTheme {
+    val Dark: ColorPalette =
+        createColorPalette(
+            primary = MaterialColorGrey.Tone900.toColorSet(),
+            secondary = MaterialColorGrey.Tone900.toColorSet(),
+            false
+        )
 
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
-)
+
+    val PinkIndigo: ColorPalette =
+        createColorPalette(
+            primary = MaterialColorRed.Tone50.toColorSet(),
+            secondary = MaterialColorIndigo.Tone50.toColorSet(),
+            true
+        )
+
+    val Indigo: ColorPalette =
+        createColorPalette(
+            primary = MaterialColorIndigo.Tone100.toColorSet(),
+            secondary = MaterialColorIndigo.Tone100.toColorSet(),
+            true
+        )
+
+}
+
+private fun createColorPalette(
+    primary: ColorSet,
+    secondary: ColorSet,
+    isLight: Boolean
+): ColorPalette {
+    return ColorPalette(
+        primary = primary.main,
+        primaryVariant = primary.dark,
+        secondary = secondary.main,
+        secondaryVariant = secondary.dark,
+        background = primary.light,
+        textPrimary = primary.text,
+        textSecondary = secondary.text,
+        isLight = isLight
+    )
+}
+
+
+object MainTheme {
+    val colors: ColorPalette
+        @Composable
+        get() = LocalMainColors.current
+}
+
 
 @Composable
 fun MyApplicationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    customTheme: ColorPalette = CustomTheme.PinkIndigo,
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
-        DarkColorPalette
+        CustomTheme.Dark
     } else {
-        LightColorPalette
+        customTheme
     }
 
     ProvideColors(colors) {
@@ -58,14 +89,14 @@ fun MyApplicationTheme(
             content = content
         )
     }
-
 }
 
 @Stable
-class MainColors(
+class ColorPalette(
     primary: Color,
     primaryVariant: Color,
     secondary: Color,
+    secondaryVariant: Color,
     background: Color,
     textPrimary: Color,
     textSecondary: Color,
@@ -73,13 +104,19 @@ class MainColors(
 ) {
     var primary by mutableStateOf(primary)
         private set
+
     var primaryVariant by mutableStateOf(primaryVariant)
         private set
+
     var secondary by mutableStateOf(secondary)
+        private set
+
+    var secondaryVariant by mutableStateOf(secondaryVariant)
         private set
 
     var textPrimary by mutableStateOf(textPrimary)
         private set
+
     var textSecondary by mutableStateOf(textSecondary)
         private set
 
@@ -89,20 +126,22 @@ class MainColors(
     var isLight by mutableStateOf(isLight)
         private set
 
-    fun update(other: MainColors) {
+    fun update(other: ColorPalette) {
         primary = other.primary
         primaryVariant = other.primaryVariant
         secondary = other.secondary
+        secondaryVariant = other.secondaryVariant
         textPrimary = other.textPrimary
         textSecondary = other.textSecondary
         background = other.background
         isLight = other.isLight
     }
 
-    fun copy(): MainColors = MainColors(
+    fun copy(): ColorPalette = ColorPalette(
         primary = primary,
         primaryVariant = primaryVariant,
         secondary = secondary,
+        secondaryVariant = secondaryVariant,
         textPrimary = textPrimary,
         textSecondary = textSecondary,
         background = background,
@@ -120,23 +159,23 @@ class MainColors(
             primary = primary,
             primaryVariant = primaryVariant,
             secondary = secondary,
-            secondaryVariant = defaultColor.secondaryVariant,
+            secondaryVariant = secondaryVariant,
             background = background,
-            surface = defaultColor.surface,
+            surface = background,
             error = defaultColor.error,
             onPrimary = textPrimary,
             onSecondary = textSecondary,
-            onBackground = defaultColor.onBackground,
-            onSurface = defaultColor.onSurface,
+            onBackground = textSecondary,
+            onSurface = textSecondary,
             onError = defaultColor.onError,
-            isLight = defaultColor.isLight,
+            isLight = isLight,
         )
     }
 }
 
 @Composable
 fun ProvideColors(
-    colors: MainColors,
+    colors: ColorPalette,
     content: @Composable () -> Unit
 ) {
     val colorPalette = remember {
@@ -144,17 +183,18 @@ fun ProvideColors(
         // provided, and overwrite the values set in it.
         colors.copy()
     }
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(colors.primary)
+
     colorPalette.update(colors)
+
+
     CompositionLocalProvider(LocalMainColors provides colorPalette, content = content)
 }
 
-private val LocalMainColors = staticCompositionLocalOf<MainColors> {
+private val LocalMainColors = staticCompositionLocalOf<ColorPalette> {
     error("No JetsnackColorPalette provided")
 }
 
-object MainTheme {
-    val colors: MainColors
-        @Composable
-        get() = LocalMainColors.current
-}
 

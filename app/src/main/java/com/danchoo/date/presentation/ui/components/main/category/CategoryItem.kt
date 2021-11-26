@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.danchoo.category.domain.model.CategoryData
 import com.danchoo.date.presentation.ui.components.common.CardView
-import com.danchoo.date.presentation.ui.theme.MainTheme
-import com.danchoo.date.presentation.ui.theme.MyApplicationTheme
+import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.theme.MyApplicationTheme
 
 @Composable
 fun CategoryItem(

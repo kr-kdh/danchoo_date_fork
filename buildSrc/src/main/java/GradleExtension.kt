@@ -25,7 +25,7 @@ fun BaseAppModuleExtension.default() {
     defaultConfig.run {
         applicationId = Config.APPLICATION_ID
         minSdk = Config.MIN_SDK
-        targetSdk  = Config.TARGET_SDK
+        targetSdk = Config.TARGET_SDK
         versionCode = Config.VERSION_CODE
         versionName = Config.VERSION_NAME
 
@@ -75,7 +75,7 @@ fun LibraryExtension.default() {
 //    buildToolsVersion = AppModule.BUILD_TOOL_VERSION
 
     defaultConfig.run {
-        minSdk =  Config.MIN_SDK
+        minSdk = Config.MIN_SDK
         targetSdk = Config.TARGET_SDK
 
         testInstrumentationRunner = Config.TEST_INSTRUMENTATION_RUNNER
@@ -96,9 +96,8 @@ fun LibraryExtension.default() {
         targetCompatibility = Config.JAVA_VERSION
     }
 
-    composeOptions.run {
-        kotlinCompilerExtensionVersion = Config.COMPOSE_VERSION
-    }
+
+
     packagingOptions.run {
         resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
     }

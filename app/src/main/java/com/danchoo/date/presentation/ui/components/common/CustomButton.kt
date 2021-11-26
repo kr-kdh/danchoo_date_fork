@@ -6,7 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import com.danchoo.date.presentation.ui.common.extension.debounce
-import com.danchoo.date.presentation.ui.theme.MainTheme
+import com.danchoo.components.theme.MainTheme
 import java.util.*
 
 
