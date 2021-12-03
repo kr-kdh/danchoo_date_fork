@@ -49,6 +49,7 @@ dependencies {
         implementation(material)
         implementation(animation)
         implementation(tooling)
+        implementation(iconsExtended)
     }
 
     AndroidX.Activity.run {

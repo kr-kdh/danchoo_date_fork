@@ -1,12 +1,11 @@
 package com.danchoo.components.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.Colors
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.danchoo.components.theme.color.MaterialColorGrey
 import com.danchoo.components.theme.color.MaterialColorIndigo
 import com.danchoo.components.theme.color.MaterialColorRed
@@ -65,7 +64,31 @@ private fun createColorPalette(
 object MainTheme {
     val colors: ColorPalette
         @Composable
+        @ReadOnlyComposable
         get() = LocalMainColors.current
+
+//    val typography: androidx.compose.material.Typography
+//        @Composable
+//        @ReadOnlyComposable
+//        get() = LocalTypography.current
+//
+//    /**
+//     * Retrieves the current [Shapes] at the call site's position in the hierarchy.
+//     */
+//    val shapes: Shapes
+//        @Composable
+//        @ReadOnlyComposable
+//        get() = LocalShapes.current
+
+    val spacing = Spacing()
+
+    val typography = MyTypography
+
+
+    /**
+     * Icon, Item min size
+     */
+    val minSize: Dp = 48.dp
 }
 
 
@@ -84,7 +107,7 @@ fun MyApplicationTheme(
     ProvideColors(colors) {
         MaterialTheme(
             colors = colors.getColors(),
-            typography = Typography,
+            typography = MaterialTheme.typography,
             shapes = Shapes,
             content = content
         )

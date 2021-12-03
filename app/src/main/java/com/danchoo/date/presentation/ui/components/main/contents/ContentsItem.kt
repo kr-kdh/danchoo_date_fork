@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.MyApplicationTheme
+import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.contents.domain.model.ContentsModel
-import com.danchoo.date.presentation.ui.components.common.CardView
 
 @Composable
 fun ContentsItem(

@@ -25,6 +25,7 @@ dependencies {
         implementation(material)
         implementation(animation)
         implementation(tooling)
+        implementation(iconsExtended)
     }
 
     AndroidX.ConstraintLayout.run {
@@ -33,5 +34,9 @@ dependencies {
 
     Accompanist.run {
         implementation(systemUiController)
+    }
+
+    Coil.run {
+        implementation(coil)
     }
 }
