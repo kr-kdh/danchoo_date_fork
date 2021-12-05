@@ -3,6 +3,8 @@ package com.danchoo.components.ui.cardview
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,6 +15,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.danchoo.components.event.ViewEvent
 import com.danchoo.components.event.onViewEvent
+import com.danchoo.components.theme.CardViewShape
 import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.RoundedCornerShape8dp
 import com.danchoo.components.ui.button.ExpandButton
@@ -188,22 +191,47 @@ private fun CardViewSmallImagesContents(
     onViewEvent: onViewEvent
 ) {
     Column(modifier) {
-        Row(modifier) {
-            state.images.forEach {
+        LazyRow(modifier.wrapContentHeight()) {
+            itemsIndexed(state.images) { index, item ->
                 Image(
+                    modifier = modifier
+                        .size(144.dp),
                     painter = rememberImagePainter(
-                        data = it
+                        data = item
                     ),
                     contentDescription = null,
                     alignment = Alignment.Center,
-                    contentScale = ContentScale.Crop,
-                    modifier = modifier.size(96.dp)
+                    contentScale = ContentScale.Crop
+
                 )
             }
         }
 
-        CardViewNormalContents(modifier.weight(1f), state, onViewEvent)
+        CardViewNormalContents(modifier, state, onViewEvent)
     }
+}
+
+@Composable
+private fun Modifier.cardViewSmallImagesBorder(index: Int, totalCount: Int): Modifier {
+    when (index) {
+        0 -> {
+            border(
+                width = MainTheme.borderWidth.borderHarf,
+                color = MainTheme.colors.border,
+                shape = CardViewShape.startImageShape
+            ).clip(RoundedCornerShape8dp)
+        }
+        totalCount -> {
+            border(
+                width = MainTheme.borderWidth.borderHarf,
+                color = MainTheme.colors.border,
+                shape = CardViewShape.endImageShape
+            ).clip(RoundedCornerShape8dp)
+        }
+        else -> Unit
+    }
+
+    return this
 }
 
 enum class CardViewContentsType {

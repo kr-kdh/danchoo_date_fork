@@ -23,6 +23,13 @@ val RoundedCornerShape16dp = RoundedCornerShape(size = 16.dp)
 val RoundedCornerShape32dp = RoundedCornerShape(size = 32.dp)
 
 
+object CardViewShape {
+    val startImageShape = RoundedCornerShape(topStart = 8.dp, bottomStart = 8.dp)
+    val endImageShape = RoundedCornerShape(bottomEnd = 8.dp, bottomStart = 8.dp)
+    val middleImageShape = RoundedCornerShape(0.dp)
+}
+
+
 object BorderWidth {
     val borderHarf = 0.5.dp
     val borderBase = 1.dp

@@ -113,10 +113,19 @@ private fun CategoryHeaderItem(
 ) {
     CardViewContents(
         modifier = modifier,
-        type = CardViewContentsType.SmallImage,
+        type = CardViewContentsType.SmallImages,
         title = categoryItem.title,
-        description = "description",
-        images = listOf(R.drawable.the_gleaners)
+        description = "descriptionaskjd hflkjash dfkljahsdlk jfhasklj hdfkljashd flkjhaskld fjhlkasjhdf klajshdf lkjhaslkdfjh lkasjhd flkjash ldfkj hl",
+        images = listOf(
+            R.drawable.the_gleaners,
+            R.drawable.the_gleaners,
+            R.drawable.the_gleaners,
+            R.drawable.the_gleaners,
+            R.drawable.the_gleaners,
+            R.drawable.the_gleaners,
+            R.drawable.the_gleaners,
+            R.drawable.the_gleaners
+        )
     )
 }
 

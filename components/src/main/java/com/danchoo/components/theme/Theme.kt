@@ -71,24 +71,20 @@ object MainTheme {
         @ReadOnlyComposable
         get() = LocalMainColors.current
 
-//    val typography: androidx.compose.material.Typography
-//        @Composable
-//        @ReadOnlyComposable
-//        get() = LocalTypography.current
-//
-//    /**
-//     * Retrieves the current [Shapes] at the call site's position in the hierarchy.
-//     */
-//    val shapes: Shapes
-//        @Composable
-//        @ReadOnlyComposable
-//        get() = LocalShapes.current
+    val spacing: Spacing
+        @Composable
+        @ReadOnlyComposable
+        get() = Spacing
 
-    val spacing = Spacing
-    val borderWidth = BorderWidth
+    val borderWidth: BorderWidth
+        @Composable
+        @ReadOnlyComposable
+        get() = BorderWidth
 
-    val typography = MyTypography
-
+    val typography: MyTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = MyTypography
 
     /**
      * Icon, Item min size
