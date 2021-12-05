@@ -9,6 +9,7 @@ import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.components.ui.cardview.CardViewContents
 import com.danchoo.components.ui.cardview.CardViewContentsType
+import com.danchoo.date.R
 
 @Preview("light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview("dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -16,14 +17,13 @@ import com.danchoo.components.ui.cardview.CardViewContentsType
 private fun CardPreviewPreview() {
     MyApplicationTheme {
         val modifier = Modifier.fillMaxWidth()
-
         CardView(modifier = modifier) {
             CardViewContents(
                 modifier = modifier,
                 type = CardViewContentsType.SmallImage,
-                title = "title",
+                title = "Title",
                 description = "description",
-                useExpand = true
+                images = listOf(R.drawable.the_gleaners)
             )
         }
     }

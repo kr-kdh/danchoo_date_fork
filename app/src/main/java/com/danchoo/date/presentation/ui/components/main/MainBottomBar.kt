@@ -17,7 +17,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.ShoppingCart
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,19 +35,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.lerp
 import androidx.core.os.ConfigurationCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.danchoo.date.R
-import com.danchoo.date.presentation.ui.components.common.Surface
-import com.danchoo.components.theme.BottomNavIndicatorShape
 import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.MyApplicationTheme
+import com.danchoo.components.theme.RoundedCornerShape50percent
+import com.danchoo.date.R
+import com.danchoo.date.presentation.ui.components.common.Surface
 import com.google.accompanist.insets.navigationBarsPadding
-import androidx.compose.ui.util.lerp
 
 
 enum class MainSections(
@@ -161,7 +164,7 @@ private fun MainTabItems(
                 }
             },
             animSpec = springSpec,
-            modifier = BottomNavigationItemPadding.clip(BottomNavIndicatorShape)
+            modifier = BottomNavigationItemPadding.clip(RoundedCornerShape50percent)
         )
     }
 }
@@ -248,7 +251,7 @@ private fun MainBottomNavLayout(
 private fun MainBottomNavIndicator(
     strokeWidth: Dp = 2.dp,
     color: Color = MainTheme.colors.textPrimary,
-    shape: Shape = BottomNavIndicatorShape
+    shape: Shape = RoundedCornerShape50percent
 ) {
     Spacer(
         modifier = Modifier

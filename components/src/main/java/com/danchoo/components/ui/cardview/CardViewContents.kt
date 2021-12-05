@@ -1,10 +1,12 @@
 package com.danchoo.components.ui.cardview
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
@@ -12,6 +14,7 @@ import coil.compose.rememberImagePainter
 import com.danchoo.components.event.ViewEvent
 import com.danchoo.components.event.onViewEvent
 import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.theme.RoundedCornerShape8dp
 import com.danchoo.components.ui.button.ExpandButton
 import com.danchoo.components.ui.cardview.CardViewConstants.CardViewEvent
 import com.danchoo.components.ui.text.Text
@@ -24,13 +27,12 @@ fun CardViewContents(
     type: CardViewContentsType = CardViewContentsType.Normal,
     title: String,
     description: String = "",
-    useExpand: Boolean = false,
     images: List<Any> = emptyList()
 ) {
     val state = rememberCardViewState(
         title = title,
         description = description,
-        useExpand = useExpand,
+        useExpand = type != CardViewContentsType.SmallImage,
         images = images
     )
 
@@ -73,8 +75,18 @@ private fun CardViewNormalContents(
                 end = MainTheme.spacing.baseLineSpacingMedium
             )
     ) {
+        val maxLine = if (state.useExpand) DESCRIPTION_MIN_LINE else DESCRIPTION_MAX_LINE
 
-        CardViewNormalContentsText(modifier, state, onViewEvent)
+        CardViewNormalContentsText(
+            modifier = modifier.padding(
+                top = MainTheme.spacing.baseLineSpacing,
+                bottom = MainTheme.spacing.baseLineSpacing,
+                end = MainTheme.spacing.baseLineSpacingSmall
+            ),
+            state = state,
+            maxLine = if (state.isExpanded()) DESCRIPTION_MAX_LINE else maxLine,
+            onViewEvent
+        )
 
         if (state.useExpand) {
             ExpandButton(
@@ -94,34 +106,29 @@ private fun CardViewNormalContents(
 private fun RowScope.CardViewNormalContentsText(
     modifier: Modifier = Modifier,
     state: CardViewState,
+    maxLine: Int,
     onViewEvent: onViewEvent
 ) {
     Column(
         modifier = modifier
             .weight(1f)
-            .padding(
-                top = MainTheme.spacing.baseLineSpacingMedium,
-                bottom = MainTheme.spacing.baseLineSpacingMedium
-            )
             .defaultMinSize(minHeight = MainTheme.minSize)
     ) {
 
-        Text(modifier, TextType.Title1, state.title)
+        Text(type = TextType.Title1, text = state.title)
 
         if (state.description.isNotEmpty()) {
-            val defaultMaxLine = if (state.useExpand) {
-                DESCRIPTION_MIN_LINE
-            } else {
-                DESCRIPTION_MAX_LINE
-            }
-
             Text(
-                modifier = modifier.padding(top = MainTheme.spacing.baseLineSpacingSmall),
+                modifier = Modifier.padding(top = MainTheme.spacing.baseLineSpacingSmall),
                 type = TextType.Description,
-                maxLines = if (state.isExpanded()) DESCRIPTION_MAX_LINE else defaultMaxLine,
+                maxLines = maxLine,
                 text = state.description
             ) {
-                onViewEvent(CardViewEvent.ChangeExpandEnableState(it.hasVisualOverflow))
+                if (state.isExpanded()) {
+                    onViewEvent(CardViewEvent.ChangeExpandEnableState(true))
+                } else {
+                    onViewEvent(CardViewEvent.ChangeExpandEnableState(it.hasVisualOverflow))
+                }
             }
         }
     }
@@ -136,16 +143,39 @@ private fun CardViewSmallImageContents(
 ) {
     Row(modifier) {
         Image(
+            modifier = modifier
+                .size(96.dp)
+                .padding(
+                    start = MainTheme.spacing.baseLineSpacing,
+                    top = MainTheme.spacing.baseLineSpacing,
+                    bottom = MainTheme.spacing.baseLineSpacing,
+                )
+                .align(Alignment.CenterVertically)
+                .clip(RoundedCornerShape8dp)
+                .border(
+                    width = MainTheme.borderWidth.borderHarf,
+                    color = MainTheme.colors.border,
+                    shape = RoundedCornerShape8dp
+                ),
             painter = rememberImagePainter(
                 data = state.images.first()
             ),
             contentDescription = null,
             alignment = Alignment.Center,
-            contentScale = ContentScale.Crop,
-            modifier = modifier.size(96.dp)
+            contentScale = ContentScale.Crop
         )
 
-        CardViewNormalContents(modifier.weight(1f), state, onViewEvent)
+        CardViewNormalContentsText(
+            modifier = modifier.padding(
+                start = MainTheme.spacing.baseLineSpacing,
+                top = MainTheme.spacing.baseLineSpacing,
+                bottom = MainTheme.spacing.baseLineSpacing,
+                end = MainTheme.spacing.baseLineSpacing
+            ),
+            state = state,
+            maxLine = 2,
+            onViewEvent
+        )
     }
 }
 

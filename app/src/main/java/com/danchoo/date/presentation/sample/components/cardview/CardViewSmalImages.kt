@@ -22,8 +22,7 @@ private fun CardPreviewPreview() {
                 modifier = modifier,
                 type = CardViewContentsType.SmallImages,
                 title = "title",
-                description = "description",
-                useExpand = true
+                description = "description"
             )
         }
     }

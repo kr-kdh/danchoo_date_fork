@@ -1,7 +1,10 @@
 package com.danchoo.components.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.*
+import androidx.compose.material.Colors
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
@@ -15,7 +18,8 @@ data class ColorSet(
     val main: Color, //primary, secondary
     val light: Color, // background, surface
     val dark: Color,// primaryVariant, secondaryVariant
-    val text: Color // onPrimary, onSecondary, onBackground, onSurface
+    val text: Color, // onPrimary, onSecondary, onBackground, onSurface
+    val border: Color
 )
 
 object CustomTheme {
@@ -56,10 +60,10 @@ private fun createColorPalette(
         background = primary.light,
         textPrimary = primary.text,
         textSecondary = secondary.text,
+        border = primary.border,
         isLight = isLight
     )
 }
-
 
 object MainTheme {
     val colors: ColorPalette
@@ -80,7 +84,8 @@ object MainTheme {
 //        @ReadOnlyComposable
 //        get() = LocalShapes.current
 
-    val spacing = Spacing()
+    val spacing = Spacing
+    val borderWidth = BorderWidth
 
     val typography = MyTypography
 
@@ -123,6 +128,7 @@ class ColorPalette(
     background: Color,
     textPrimary: Color,
     textSecondary: Color,
+    border: Color,
     isLight: Boolean
 ) {
     var primary by mutableStateOf(primary)
@@ -146,8 +152,13 @@ class ColorPalette(
     var background by mutableStateOf(background)
         private set
 
+    var border by mutableStateOf(border)
+
+    var borderVariant by mutableStateOf(primary)
+
     var isLight by mutableStateOf(isLight)
         private set
+
 
     fun update(other: ColorPalette) {
         primary = other.primary
@@ -168,6 +179,7 @@ class ColorPalette(
         textPrimary = textPrimary,
         textSecondary = textSecondary,
         background = background,
+        border = border,
         isLight = isLight
     )
 

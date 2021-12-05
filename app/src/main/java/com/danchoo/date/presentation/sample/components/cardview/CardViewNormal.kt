@@ -19,9 +19,8 @@ private fun CardPreviewPreview() {
         CardView(modifier = Modifier.fillMaxWidth()) {
             CardViewContents(
                 type = CardViewContentsType.Normal,
-                title = "title",
-                description = "description ;lkashjd f;lkhjas ;dlfk j;laskjd f;lkasdf ;haslkjd hf ",
-                useExpand = true
+                title = "Title",
+                description = "description"
             )
         }
     }

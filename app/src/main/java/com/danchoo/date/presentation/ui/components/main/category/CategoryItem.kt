@@ -24,6 +24,7 @@ import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.components.ui.cardview.CardViewContents
 import com.danchoo.components.ui.cardview.CardViewContentsType
+import com.danchoo.date.R
 
 @Composable
 fun CategoryItem(
@@ -112,10 +113,10 @@ private fun CategoryHeaderItem(
 ) {
     CardViewContents(
         modifier = modifier,
-        type = CardViewContentsType.Normal,
+        type = CardViewContentsType.SmallImage,
         title = categoryItem.title,
-        description = "헤헤헷",
-        useExpand = true
+        description = "description",
+        images = listOf(R.drawable.the_gleaners)
     )
 }
 
