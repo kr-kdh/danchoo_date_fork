@@ -21,7 +21,7 @@ private fun CardPreviewPreview() {
                 type = CardViewContentsType.Normal,
                 title = "title",
                 description = "description ;lkashjd f;lkhjas ;dlfk j;laskjd f;lkasdf ;haslkjd hf ",
-                enableExpand = true
+                useExpand = true
             )
         }
     }

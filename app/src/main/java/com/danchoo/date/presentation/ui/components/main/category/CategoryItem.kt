@@ -110,14 +110,12 @@ private fun CategoryHeaderItem(
     modifier: Modifier = Modifier,
     categoryItem: CategoryData.CategoryHeader
 ) {
-    val expanded = remember { mutableStateOf(false) }
-
     CardViewContents(
         modifier = modifier,
         type = CardViewContentsType.Normal,
         title = categoryItem.title,
-        description = "헤헷",
-        enableExpand = true
+        description = "헤헤헷",
+        useExpand = true
     )
 }
 
