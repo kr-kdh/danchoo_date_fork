@@ -8,6 +8,7 @@ import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.components.ui.cardview.CardViewContents
 import com.danchoo.components.ui.cardview.CardViewContentsType
+import com.danchoo.date.R
 
 @Preview("light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview("dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -18,8 +19,9 @@ private fun CardPreviewPreview() {
             CardViewContents(
                 modifier = Modifier,
                 type = CardViewContentsType.BigImage,
-                title = "title",
-                description = "description"
+                title = "Title",
+                description = "description",
+                images = listOf(R.drawable.the_gleaners)
             )
         }
     }

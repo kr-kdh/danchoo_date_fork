@@ -113,7 +113,7 @@ private fun CategoryHeaderItem(
 ) {
     CardViewContents(
         modifier = modifier,
-        type = CardViewContentsType.SmallImages,
+        type = CardViewContentsType.BigImage,
         title = categoryItem.title,
         description = "descriptionaskjd hflkjash dfkljahsdlk jfhasklj hdfkljashd flkjhaskld fjhlkasjhdf klajshdf lkjhaslkdfjh lkasjhd flkjash ldfkj hl",
         images = listOf(

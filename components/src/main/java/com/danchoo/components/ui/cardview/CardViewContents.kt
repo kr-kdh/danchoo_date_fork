@@ -15,7 +15,6 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.danchoo.components.event.ViewEvent
 import com.danchoo.components.event.onViewEvent
-import com.danchoo.components.theme.CardViewShape
 import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.RoundedCornerShape8dp
 import com.danchoo.components.ui.button.ExpandButton
@@ -49,7 +48,9 @@ fun CardViewContents(
         CardViewContentsType.SmallImages -> {
             CardViewSmallImagesContents(modifier, state) { hookViewEvent(state, it) }
         }
-        CardViewContentsType.BigImage -> {}
+        CardViewContentsType.BigImage -> {
+            CardViewBigImageContents(modifier, state) { hookViewEvent(state, it) }
+        }
     }
 }
 
@@ -218,27 +219,29 @@ private fun CardViewSmallImagesContents(
     }
 }
 
-@Composable
-private fun Modifier.cardViewSmallImagesBorder(index: Int, totalCount: Int): Modifier {
-    when (index) {
-        0 -> {
-            border(
-                width = MainTheme.borderWidth.borderHarf,
-                color = MainTheme.colors.border,
-                shape = CardViewShape.startImageShape
-            ).clip(RoundedCornerShape8dp)
-        }
-        totalCount -> {
-            border(
-                width = MainTheme.borderWidth.borderHarf,
-                color = MainTheme.colors.border,
-                shape = CardViewShape.endImageShape
-            ).clip(RoundedCornerShape8dp)
-        }
-        else -> Unit
-    }
 
-    return this
+@OptIn(ExperimentalCoilApi::class)
+@Composable
+private fun CardViewBigImageContents(
+    modifier: Modifier = Modifier,
+    state: CardViewState,
+    onViewEvent: onViewEvent
+) {
+    Column(modifier) {
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(192.dp),
+            painter = rememberImagePainter(
+                data = state.images.first()
+            ),
+            contentDescription = null,
+            alignment = Alignment.Center,
+            contentScale = ContentScale.Crop
+        )
+
+        CardViewNormalContents(modifier, state, onViewEvent)
+    }
 }
 
 enum class CardViewContentsType {
