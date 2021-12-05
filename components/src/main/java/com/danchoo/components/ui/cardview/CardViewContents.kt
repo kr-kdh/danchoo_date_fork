@@ -125,7 +125,7 @@ private fun RowScope.CardViewNormalContentsText(
         if (state.description.isNotEmpty()) {
             Text(
                 modifier = Modifier.padding(top = MainTheme.spacing.baseLineSpacingSmall),
-                type = TextType.Description,
+                type = TextType.Description1,
                 maxLines = maxLine,
                 text = state.description
             ) {
@@ -242,13 +242,3 @@ private fun CardViewBigImageContents(
         CardViewNormalContents(modifier, state, onViewEvent)
     }
 }
-
-enum class CardViewContentsType {
-    Normal,
-    SmallImage,
-    SmallImages,
-    BigImage
-}
-
-private const val DESCRIPTION_MAX_LINE = 4
-private const val DESCRIPTION_MIN_LINE = 2

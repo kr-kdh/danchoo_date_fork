@@ -14,7 +14,6 @@ import com.danchoo.components.ui.cardview.CardViewContentsType
 @Composable
 private fun CardPreviewPreview() {
     MyApplicationTheme {
-
         CardView(modifier = Modifier) {
             CardViewContents(
                 type = CardViewContentsType.Normal,

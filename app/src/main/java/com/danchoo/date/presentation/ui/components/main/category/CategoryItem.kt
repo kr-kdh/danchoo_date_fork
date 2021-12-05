@@ -35,10 +35,10 @@ fun CategoryItem(
     CardView(
         modifier = modifier
             .padding(
-                start = MainTheme.spacing.baseLineSpacingLarge,
+                start = MainTheme.spacing.baseLineSpacingMedium,
                 top = MainTheme.spacing.baseLineSpacing,
                 bottom = MainTheme.spacing.baseLineSpacing,
-                end = MainTheme.spacing.baseLineSpacingLarge,
+                end = MainTheme.spacing.baseLineSpacingMedium,
             )
             .fillMaxWidth()
             .wrapContentHeight()

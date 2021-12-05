@@ -14,6 +14,8 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import com.danchoo.category.domain.model.CategoryData
 import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.ui.appbar.TopAppBar
+import com.danchoo.components.ui.appbar.TopAppbarType
 import com.danchoo.date.presentation.ui.common.extension.debounce
 import com.danchoo.date.presentation.ui.components.common.AddFloatingActionButton
 import com.danchoo.date.presentation.ui.components.common.Surface
@@ -29,6 +31,14 @@ fun Category(
     onSelected: (Long) -> Unit
 ) {
     Scaffold(
+        topBar = {
+            TopAppBar(
+                modifier = modifier,
+                type = TopAppbarType.Back,
+                title = "Category"
+            ) {
+            }
+        },
         content = {
             Surface(
                 modifier = modifier.fillMaxSize()
