@@ -72,18 +72,14 @@ private fun CardViewNormalContents(
     onViewEvent: onViewEvent
 ) {
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(
-                start = MainTheme.spacing.baseLineSpacingMedium,
-                end = MainTheme.spacing.baseLineSpacingMedium
-            )
+        modifier = modifier.fillMaxWidth()
     ) {
         val maxLine = if (state.useExpand) DESCRIPTION_MIN_LINE else DESCRIPTION_MAX_LINE
 
         CardViewNormalContentsText(
             modifier = modifier
                 .padding(
+                    start = MainTheme.spacing.baseLineSpacingMedium,
                     top = MainTheme.spacing.baseLineSpacing,
                     bottom = MainTheme.spacing.baseLineSpacing,
                     end = MainTheme.spacing.baseLineSpacingSmall
@@ -97,7 +93,10 @@ private fun CardViewNormalContents(
         if (state.useExpand) {
             ExpandButton(
                 modifier = Modifier
-                    .padding(top = MainTheme.spacing.baseLineSpacingSmall)
+                    .padding(
+                        top = MainTheme.spacing.baseLineSpacingSmall,
+                        end = MainTheme.spacing.baseLineSpacing
+                    )
                     .defaultMinSize(minHeight = MainTheme.minSize),
                 expanded = state.isExpanded(),
                 enable = state.isEnableExpandButton()
