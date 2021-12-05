@@ -6,13 +6,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import com.danchoo.category.domain.model.CategoryData
+import com.danchoo.components.theme.MainTheme
 import com.danchoo.date.presentation.ui.common.extension.debounce
 import com.danchoo.date.presentation.ui.components.common.AddFloatingActionButton
 import com.danchoo.date.presentation.ui.components.common.Surface
@@ -30,9 +31,7 @@ fun Category(
     Scaffold(
         content = {
             Surface(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(top = 56.dp)
+                modifier = modifier.fillMaxSize()
             ) {
                 // TODO : Test
                 val list = viewModel.categoryList().collectAsLazyPagingItems()
@@ -54,7 +53,11 @@ fun CategoryList(
     list: LazyPagingItems<CategoryData>,
     onSelected: (Long) -> Unit
 ) {
-    LazyColumn(modifier) {
+    LazyColumn(
+        modifier
+            .padding(top = MainTheme.spacing.baseLineSpacingMedium)
+            .clipToBounds()
+    ) {
         itemsIndexed(list) { index, categoryModel ->
             categoryModel?.let {
                 CategoryItem(modifier, categoryModel, onSelected)

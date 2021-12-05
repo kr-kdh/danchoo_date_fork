@@ -1,7 +1,6 @@
 package com.danchoo.date.presentation.ui.components
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -19,10 +18,10 @@ fun MainApp() {
 
     Scaffold(
         bottomBar = { MainBottomBar(navController = navController, tabs = tabs) },
-    ) { innerPaddingModifier ->
+    ) {
         MainNavGraph(
             navController = navController,
-            modifier = Modifier.padding(innerPaddingModifier)
+            modifier = Modifier
         )
     }
 }
