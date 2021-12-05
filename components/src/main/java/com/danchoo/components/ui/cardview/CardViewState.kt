@@ -35,9 +35,9 @@ class CardViewState(
 
 @Composable
 fun rememberCardViewState(
-    title: String,
-    description: String,
-    useExpand: Boolean,
+    title: String = "",
+    description: String = "",
+    useExpand: Boolean = true,
     images: List<Any> = emptyList(),
     expanded: MutableState<Boolean> = remember { mutableStateOf(false) },
     enableExpandButton: MutableState<Boolean> = remember { mutableStateOf(true) }

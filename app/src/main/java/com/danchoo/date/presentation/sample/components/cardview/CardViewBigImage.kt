@@ -1,7 +1,6 @@
 package com.danchoo.date.presentation.sample.components.cardview
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -15,11 +14,9 @@ import com.danchoo.components.ui.cardview.CardViewContentsType
 @Composable
 private fun CardPreviewPreview() {
     MyApplicationTheme {
-        val modifier = Modifier.fillMaxWidth()
-
-        CardView(modifier = modifier) {
+        CardView(modifier = Modifier) {
             CardViewContents(
-                modifier = modifier,
+                modifier = Modifier,
                 type = CardViewContentsType.BigImage,
                 title = "title",
                 description = "description"

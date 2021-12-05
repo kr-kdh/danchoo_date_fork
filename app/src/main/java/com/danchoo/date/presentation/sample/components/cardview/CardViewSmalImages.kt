@@ -16,11 +16,9 @@ import com.danchoo.date.R
 @Composable
 private fun CardPreviewPreview() {
     MyApplicationTheme {
-        val modifier = Modifier.fillMaxWidth()
-
-        CardView(modifier = modifier) {
+        CardView(modifier = Modifier.fillMaxWidth()) {
             CardViewContents(
-                modifier = modifier,
+                modifier = Modifier,
                 type = CardViewContentsType.SmallImages,
                 title = "Title",
                 description = "description",

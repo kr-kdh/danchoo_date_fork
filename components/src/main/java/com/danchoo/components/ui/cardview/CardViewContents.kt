@@ -81,11 +81,13 @@ private fun CardViewNormalContents(
         val maxLine = if (state.useExpand) DESCRIPTION_MIN_LINE else DESCRIPTION_MAX_LINE
 
         CardViewNormalContentsText(
-            modifier = modifier.padding(
-                top = MainTheme.spacing.baseLineSpacing,
-                bottom = MainTheme.spacing.baseLineSpacing,
-                end = MainTheme.spacing.baseLineSpacingSmall
-            ),
+            modifier = modifier
+                .padding(
+                    top = MainTheme.spacing.baseLineSpacing,
+                    bottom = MainTheme.spacing.baseLineSpacing,
+                    end = MainTheme.spacing.baseLineSpacingSmall
+                )
+                .align(Alignment.Top),
             state = state,
             maxLine = if (state.isExpanded()) DESCRIPTION_MAX_LINE else maxLine,
             onViewEvent
@@ -93,7 +95,7 @@ private fun CardViewNormalContents(
 
         if (state.useExpand) {
             ExpandButton(
-                modifier = modifier
+                modifier = Modifier
                     .padding(top = MainTheme.spacing.baseLineSpacingSmall)
                     .defaultMinSize(minHeight = MainTheme.minSize),
                 expanded = state.isExpanded(),
@@ -146,7 +148,7 @@ private fun CardViewSmallImageContents(
 ) {
     Row(modifier) {
         Image(
-            modifier = modifier
+            modifier = Modifier
                 .size(96.dp)
                 .padding(
                     start = MainTheme.spacing.baseLineSpacing,
@@ -169,12 +171,14 @@ private fun CardViewSmallImageContents(
         )
 
         CardViewNormalContentsText(
-            modifier = modifier.padding(
-                start = MainTheme.spacing.baseLineSpacing,
-                top = MainTheme.spacing.baseLineSpacing,
-                bottom = MainTheme.spacing.baseLineSpacing,
-                end = MainTheme.spacing.baseLineSpacing
-            ),
+            modifier = modifier
+                .padding(
+                    start = MainTheme.spacing.baseLineSpacing,
+                    top = MainTheme.spacing.baseLineSpacing,
+                    bottom = MainTheme.spacing.baseLineSpacing,
+                    end = MainTheme.spacing.baseLineSpacing
+                )
+                .align(Alignment.Top),
             state = state,
             maxLine = 2,
             onViewEvent
@@ -191,11 +195,14 @@ private fun CardViewSmallImagesContents(
     onViewEvent: onViewEvent
 ) {
     Column(modifier) {
-        LazyRow(modifier.wrapContentHeight()) {
+        LazyRow(
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+        ) {
             itemsIndexed(state.images) { index, item ->
                 Image(
-                    modifier = modifier
-                        .size(144.dp),
+                    modifier = Modifier.size(144.dp),
                     painter = rememberImagePainter(
                         data = item
                     ),
