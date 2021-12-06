@@ -9,11 +9,34 @@ android {
 }
 
 dependencies {
-//
-//    implementation 'androidx.core:core-ktx:1.6.0'
-//    implementation 'androidx.appcompat:appcompat:1.3.1'
-//    implementation 'com.google.android.material:material:1.4.0'
-//    testImplementation 'junit:junit:4.+'
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    AndroidX.run {
+        implementation(coreKtx)
+        implementation(appcompat)
+        implementation(multidex)
+        implementation(coreTesting)
+    }
+
+    AndroidX.Compose.run {
+        implementation(ui)
+        implementation(uiUtil)
+        implementation(runtime)
+        implementation(material)
+        implementation(animation)
+        implementation(tooling)
+        implementation(iconsExtended)
+    }
+
+    AndroidX.Activity.run {
+        implementation(compose)
+    }
+
+    AndroidX.ConstraintLayout.run {
+        implementation(constraintLayout)
+    }
+
+    AndroidX.Lifecycle.run {
+        implementation(viewModelKtx)
+        implementation(viewModelCompose)
+        implementation(ViewModelSavedSate)
+    }
 }

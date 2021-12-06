@@ -6,9 +6,9 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.danchoo.common.BaseActivity
 import com.danchoo.components.theme.CustomTheme
 import com.danchoo.components.theme.MyApplicationTheme
-import com.danchoo.date.presentation.base.BaseActivity
 import com.danchoo.date.presentation.ui.components.MainApp
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -14,6 +14,8 @@ data class CategoryModel(
 
     val description: String = "",
 
+    val coverImage: String = "",
+
     val selectCount: Long = 0L,
 
     val createTimestamp: Long = 0L,

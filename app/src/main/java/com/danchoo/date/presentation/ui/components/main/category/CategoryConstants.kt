@@ -1,0 +1,28 @@
+package com.danchoo.date.presentation.ui.components.main.category
+
+import com.danchoo.category.domain.model.CategoryModel
+import com.danchoo.common.BaseIntent
+import com.danchoo.common.BaseSideEffect
+import com.danchoo.common.BaseViewState
+import com.danchoo.components.event.ViewEvent
+
+object CategoryConstants {
+
+    sealed class CategoryIntent : BaseIntent {
+        object Idle : CategoryIntent()
+    }
+
+    sealed class CategorySideEffect : BaseSideEffect {
+        object Idle : CategorySideEffect()
+    }
+
+    object CategoryViewState : BaseViewState
+
+    sealed class CategoryViewEvent : ViewEvent {
+        data class ItemClick(
+            val category: CategoryModel
+        ) : CategoryViewEvent()
+
+        object AddCategory : CategoryViewEvent()
+    }
+}

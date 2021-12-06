@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import com.danchoo.date.presentation.base.BaseActivity
+import com.danchoo.common.BaseActivity
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoriesEditorApp
 import com.danchoo.date.presentation.ui.main.category.model.CATEGORY_ID
 import dagger.hilt.android.AndroidEntryPoint

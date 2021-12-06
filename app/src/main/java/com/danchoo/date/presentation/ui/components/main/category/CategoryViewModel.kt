@@ -1,6 +1,5 @@
-package com.danchoo.date.presentation.ui.main.category.viewmodel
+package com.danchoo.date.presentation.ui.components.main.category
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -9,8 +8,11 @@ import androidx.paging.insertSeparators
 import com.danchoo.category.domain.inspector.usecase.CategoryListInsertUseCase
 import com.danchoo.category.domain.inspector.usecase.CategoryPagingUseCase
 import com.danchoo.category.domain.model.CategoryData
+import com.danchoo.common.BaseViewModel
+import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategoryIntent
+import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategorySideEffect
+import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategoryViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -19,7 +21,14 @@ import javax.inject.Inject
 class CategoryViewModel @Inject constructor(
     private val categoryPagingUseCase: CategoryPagingUseCase,
     private val categoryListInsertUseCase: CategoryListInsertUseCase
-) : ViewModel() {
+) : BaseViewModel<CategoryIntent, CategoryViewState, CategorySideEffect>() {
+    override fun setInitialState() = CategoryViewState
+
+    override fun handleEvents(event: CategoryIntent) {
+        when (event) {
+            else -> Unit
+        }
+    }
 
     private val categoryListFlow = categoryPagingUseCase().map { pagingData ->
         pagingData.insertHeaderItem(item = CategoryData.CategoryHeader("title"))
@@ -31,7 +40,6 @@ class CategoryViewModel @Inject constructor(
             }
     }.cachedIn(viewModelScope)
 
-    @ExperimentalCoroutinesApi
     fun categoryList(): Flow<PagingData<CategoryData>> {
         return categoryListFlow
     }

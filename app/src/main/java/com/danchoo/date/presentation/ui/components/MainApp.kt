@@ -21,7 +21,7 @@ fun MainApp() {
         bottomBar = { MainBottomBar(navController = navController, tabs = tabs) },
     ) { innerPaddingModifier ->
         MainNavGraph(
-            navController = navController,
+            navHostController = navController,
             modifier = Modifier.padding(innerPaddingModifier)
         )
     }

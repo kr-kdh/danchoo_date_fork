@@ -3,9 +3,9 @@ package com.danchoo.category.data.repository
 import com.danchoo.category.data.datasource.local.CategoryLocalDataSource
 import com.danchoo.category.data.datasource.pagingsource.CategoryPagingSource
 import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSource
+import com.danchoo.category.data.mapper.toEntity
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.category.domain.repository.CategoryRepository
-import com.danchoo.date.domain.model.extension.toEntity
 
 class CategoryRepositoryImpl constructor(
     private val localDataSource: CategoryLocalDataSource,

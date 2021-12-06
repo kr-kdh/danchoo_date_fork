@@ -34,7 +34,7 @@ fun CardViewContents(
     val state = rememberCardViewState(
         title = title,
         description = description,
-        useExpand = type != CardViewContentsType.SmallImage,
+        useExpand = type != CardViewContentsType.SmallImage && description.isNotEmpty(),
         images = images
     )
 
@@ -82,7 +82,7 @@ private fun CardViewNormalContents(
                     start = MainTheme.spacing.baseLineSpacingMedium,
                     top = MainTheme.spacing.baseLineSpacing,
                     bottom = MainTheme.spacing.baseLineSpacing,
-                    end = MainTheme.spacing.baseLineSpacingSmall
+                    end = if (state.useExpand) MainTheme.spacing.baseLineSpacingSmall else MainTheme.spacing.baseLineSpacingMedium
                 )
                 .align(Alignment.Top),
             state = state,
@@ -117,7 +117,7 @@ private fun RowScope.CardViewNormalContentsText(
     Column(
         modifier = modifier
             .weight(1f)
-            .defaultMinSize(minHeight = MainTheme.minSize)
+            .wrapContentHeight()
     ) {
 
         Text(type = TextType.Title1, text = state.title)
@@ -178,7 +178,7 @@ private fun CardViewSmallImageContents(
                     bottom = MainTheme.spacing.baseLineSpacing,
                     end = MainTheme.spacing.baseLineSpacing
                 )
-                .align(Alignment.Top),
+                .align(Alignment.CenterVertically),
             state = state,
             maxLine = 2,
             onViewEvent

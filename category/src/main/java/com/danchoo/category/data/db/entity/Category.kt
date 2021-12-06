@@ -20,6 +20,8 @@ data class Category(
 
     val description: String = "",
 
+    val coverImage: String = "",
+
     @ColumnInfo(name = "select_count")
     val selectCount: Long = 0L,
 

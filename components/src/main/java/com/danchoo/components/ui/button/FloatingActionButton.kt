@@ -1,18 +1,11 @@
-package com.danchoo.date.presentation.ui.components.common
+package com.danchoo.components.ui.button
 
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
-import com.danchoo.date.presentation.ui.common.extension.debounce
 import com.danchoo.components.theme.MainTheme
-import java.util.*
-
-
-sealed class FloatingButtonActionEvent {
-    object Add : FloatingButtonActionEvent()
-}
 
 @Composable
 fun AddFloatingActionButton(
@@ -21,7 +14,7 @@ fun AddFloatingActionButton(
     FloatingActionButton(
         backgroundColor = MainTheme.colors.primary,
         contentColor = MainTheme.colors.textPrimary,
-        onClick = onClick.debounce()
+        onClick = onClick
     ) {
         Icon(Icons.Filled.Add, "")
     }

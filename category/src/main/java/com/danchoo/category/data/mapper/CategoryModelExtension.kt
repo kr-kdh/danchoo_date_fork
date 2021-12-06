@@ -1,4 +1,4 @@
-package com.danchoo.date.domain.model.extension
+package com.danchoo.category.data.mapper
 
 import com.danchoo.category.domain.model.CategoryModel
 
@@ -9,6 +9,7 @@ fun com.danchoo.category.data.db.entity.Category.toModel(): CategoryModel {
         hash = hash,
         title = title,
         description = description,
+        coverImage = coverImage,
         selectCount = selectCount,
         createTimestamp = createTimestamp,
         lastModifiedTimestamp = lastModifiedTimestamp,
@@ -26,6 +27,7 @@ fun CategoryModel.toEntity(): com.danchoo.category.data.db.entity.Category {
         hash = hash,
         title = title,
         description = description,
+        coverImage = coverImage,
         selectCount = selectCount,
         createTimestamp = createTimestamp,
         lastModifiedTimestamp = lastModifiedTimestamp,

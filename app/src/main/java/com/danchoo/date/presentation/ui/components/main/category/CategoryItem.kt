@@ -1,36 +1,30 @@
 package com.danchoo.date.presentation.ui.components.main.category
 
-import android.util.Log
-import androidx.compose.foundation.background
+import android.content.res.Configuration
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.danchoo.category.domain.model.CategoryData
+import com.danchoo.category.domain.model.CategoryInfoModel
+import com.danchoo.category.domain.model.CategoryModel
+import com.danchoo.components.event.onViewEvent
 import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.components.ui.cardview.CardViewContents
 import com.danchoo.components.ui.cardview.CardViewContentsType
 import com.danchoo.date.R
+import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategoryViewEvent
 
 @Composable
 fun CategoryItem(
     modifier: Modifier = Modifier,
     categoryItem: CategoryData,
-    onSelected: (Long) -> Unit
+    onViewEvent: onViewEvent = {}
 ) {
     CardView(
         modifier = modifier
@@ -45,17 +39,14 @@ fun CategoryItem(
             .clickable {
                 when (categoryItem) {
                     is CategoryData.CategoryInfoData -> {
-                        Log.d(
-                            "_SMY",
-                            "categoryItem.categoryId = ${categoryItem.categoryInfoModel.category.categoryId}"
+                        onViewEvent(
+                            CategoryViewEvent.ItemClick(categoryItem.categoryInfoModel.category)
                         )
-                        onSelected(categoryItem.categoryInfoModel.category.categoryId)
                     }
                     else -> Unit
                 }
             }
     ) {
-
         when (categoryItem) {
             is CategoryData.CategoryInfoData -> CategoryDataItem(modifier, categoryItem)
             is CategoryData.CategoryHeader -> CategoryHeaderItem(modifier, categoryItem)
@@ -68,46 +59,13 @@ private fun CategoryDataItem(
     modifier: Modifier = Modifier,
     categoryItem: CategoryData.CategoryInfoData
 ) {
-
-    val expanded = remember { mutableStateOf(false) }
-    val extraPadding = if (expanded.value) 48.dp else 0.dp
-
-    Row(modifier = modifier.padding(24.dp)) {
-        Column(
-            modifier = modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .padding(bottom = extraPadding)
-                .background(MainTheme.colors.background)
-        ) {
-            Text(
-                text = categoryItem.categoryInfoModel.category.title,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.h6,
-                color = MainTheme.colors.textSecondary,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)
-            )
-
-            Text(
-                text = categoryItem.categoryInfoModel.category.description,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.body1,
-                color = MainTheme.colors.textSecondary,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)
-            )
-        }
-
-        IconButton(onClick = {
-            expanded.value = !expanded.value
-        }) {
-            Icon(
-                imageVector = if (expanded.value) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
-                contentDescription = null
-            )
-        }
-    }
+    CardViewContents(
+        modifier = modifier,
+        type = CardViewContentsType.BigImage,
+        title = categoryItem.categoryInfoModel.category.title,
+        description = categoryItem.categoryInfoModel.category.description,
+        images = listOf(R.drawable.the_gleaners)
+    )
 }
 
 
@@ -118,32 +76,41 @@ private fun CategoryHeaderItem(
 ) {
     CardViewContents(
         modifier = modifier,
-        type = CardViewContentsType.BigImage,
-        title = categoryItem.title,
-        description = "descriptionaskjd hflkjash dfkljahsdlk jfhasklj hdfkljashd flkjhaskld fjhlkasjhdf klajshdf lkjhaslkdfjh lkasjhd flkjash ldfkj hl",
-        images = listOf(
-            R.drawable.the_gleaners,
-            R.drawable.the_gleaners,
-            R.drawable.the_gleaners,
-            R.drawable.the_gleaners,
-            R.drawable.the_gleaners,
-            R.drawable.the_gleaners,
-            R.drawable.the_gleaners,
-            R.drawable.the_gleaners
-        )
+        type = CardViewContentsType.Normal,
+        title = categoryItem.title
     )
 }
 
-@Preview
+@Preview("light", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview("dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun CategoryItemPreview() {
+private fun CategoryDataItemPreview() {
     MyApplicationTheme {
         CategoryItem(
             modifier = Modifier,
-            categoryItem = CategoryData.CategoryInfoData()
-        ) {
+            categoryItem = CategoryData.CategoryInfoData(
+                CategoryInfoModel(
+                    category = CategoryModel(
+                        title = "Category Title",
+                        description = "Category Description",
+                        coverImage = ""
+                    )
+                )
+            )
+        )
+    }
+}
 
-        }
+
+@Preview("light", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview("dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun CategoryHeaderPreview() {
+    MyApplicationTheme {
+        CategoryItem(
+            modifier = Modifier,
+            categoryItem = CategoryData.CategoryHeader("Title")
+        )
     }
 }
 

@@ -34,7 +34,7 @@ fun Surface(
         modifier = modifier
             .shadow(elevation = elevation, shape = shape, clip = false)
             .zIndex(elevation.value)
-            .then(if (border != null) Modifier.border(border, shape) else Modifier)
+            .then(if (border != null) modifier.border(border, shape) else modifier)
             .background(
                 color = getBackgroundColorForElevation(color, elevation),
                 shape = shape
