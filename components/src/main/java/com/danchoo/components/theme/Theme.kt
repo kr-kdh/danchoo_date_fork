@@ -44,7 +44,6 @@ object CustomTheme {
             secondary = MaterialColorIndigo.Tone100.toColorSet(),
             true
         )
-
 }
 
 private fun createColorPalette(

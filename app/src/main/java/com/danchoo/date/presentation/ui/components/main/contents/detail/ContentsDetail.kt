@@ -14,11 +14,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.danchoo.date.R
-import com.danchoo.date.presentation.ui.main.contents.ContentsDetailViewModel
 import com.google.accompanist.pager.*
 import kotlin.math.absoluteValue
 
@@ -27,7 +25,6 @@ import kotlin.math.absoluteValue
 @Composable
 fun ContentsDetail(
     modifier: Modifier = Modifier,
-    viewModel: ContentsDetailViewModel = hiltViewModel(),
     onSelected: (Long) -> Unit
 ) {
     Scaffold(

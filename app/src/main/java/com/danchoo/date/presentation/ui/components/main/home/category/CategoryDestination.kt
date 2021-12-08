@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.ui.components.main.category
+package com.danchoo.date.presentation.ui.components.main.home.category
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategoryViewEvent
+import com.danchoo.date.presentation.ui.components.main.home.category.CategoryContract.CategoryViewEvent
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 
@@ -29,7 +29,7 @@ fun CategoryDestination(
             }.collect()
     }
 
-    Category(
+    CategoryScreen(
         modifier = modifier,
         state = state,
         viewState = viewState,
@@ -38,7 +38,7 @@ fun CategoryDestination(
 
         when (viewEvent) {
             is CategoryViewEvent.ItemClick -> {}
-            is CategoryViewEvent.AddCategory -> {}
+            is CategoryViewEvent.AddCategory -> state.navigation(viewEvent)
             else -> Unit
         }
     }

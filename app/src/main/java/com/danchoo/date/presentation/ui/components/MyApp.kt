@@ -6,19 +6,19 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.danchoo.date.presentation.ui.components.main.MainBottomBar
+import com.danchoo.date.presentation.ui.components.main.HomeScreen
 import com.danchoo.date.presentation.ui.components.main.MainNavGraph
-import com.danchoo.date.presentation.ui.components.main.MainSections
+import com.danchoo.date.presentation.ui.components.main.home.HomeBottomBar
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 @ExperimentalAnimationApi
 @Composable
 fun MainApp() {
     val navController = rememberAnimatedNavController()
-    val tabs = remember { MainSections.values() }
+    val tabs = remember { HomeScreen.values() }
 
     Scaffold(
-        bottomBar = { MainBottomBar(navController = navController, tabs = tabs) },
+        bottomBar = { HomeBottomBar(navController = navController, tabs = tabs) },
     ) { innerPaddingModifier ->
         MainNavGraph(
             navHostController = navController,

@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.ui.components.main.category
+package com.danchoo.date.presentation.ui.components.main.home.category
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,12 +14,12 @@ import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.ui.appbar.TopAppBar
 import com.danchoo.components.ui.appbar.TopAppbarType
 import com.danchoo.components.ui.button.AddFloatingActionButton
-import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategoryViewState
+import com.danchoo.date.presentation.ui.components.main.home.category.CategoryContract.CategoryViewState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
-fun Category(
+fun CategoryScreen(
     modifier: Modifier = Modifier,
     state: CategoryState,
     viewState: CategoryViewState,
@@ -43,7 +43,7 @@ fun Category(
         },
         floatingActionButton = {
             AddFloatingActionButton {
-                onViewEvent(CategoryConstants.CategoryViewEvent.AddCategory)
+                onViewEvent(CategoryContract.CategoryViewEvent.AddCategory)
             }
         }
     )

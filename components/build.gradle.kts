@@ -32,8 +32,16 @@ dependencies {
         implementation(constraintLayout)
     }
 
+    AndroidX.Navigation.run {
+        implementation(compose)
+        implementation(runtimeKtx)
+        implementation(uiKtx)
+        implementation(fragmentKtx)
+    }
+
     Accompanist.run {
         implementation(systemUiController)
+        implementation(navigationAnimation)
     }
 
     Coil.run {

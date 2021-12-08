@@ -1,7 +1,5 @@
 package com.danchoo.components.ui.appbar
 
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -29,19 +27,25 @@ fun TopAppBar(
     title: String,
     onViewEvent: onViewEvent = {}
 ) {
-    TopAppBar(modifier = modifier, contentPadding = PaddingValues()) {
-        when (type) {
-            TopAppbarType.Title -> TopAppBarTitle(title = title)
-            TopAppbarType.Back -> TopAppBarBack(title = title, onViewEvent = onViewEvent)
-            TopAppbarType.Search -> TopAppBarTitle(title = title)
-            TopAppbarType.More -> TopAppBarTitle(title = title)
-            TopAppbarType.Edit -> TopAppBarTitle(title = title)
-        }
-    }
+    TopAppBar(modifier = modifier,
+        navigationIcon = {
+            when (type) {
+                TopAppbarType.Title -> Unit
+                TopAppbarType.Back -> TopAppBarBack(onViewEvent = onViewEvent)
+                TopAppbarType.Search -> TopAppBarBack(onViewEvent = onViewEvent)
+                TopAppbarType.More -> TopAppBarBack(onViewEvent = onViewEvent)
+                TopAppbarType.Edit -> TopAppBarBack(onViewEvent = onViewEvent)
+            }
+        }, actions = {
+
+        },
+        title = {
+            TopAppBarTitle(title = title)
+        })
 }
 
 @Composable
-private fun RowScope.TopAppBarTitle(
+private fun TopAppBarTitle(
     modifier: Modifier = Modifier,
     title: String
 ) {
@@ -56,9 +60,8 @@ private fun RowScope.TopAppBarTitle(
 }
 
 @Composable
-private fun RowScope.TopAppBarBack(
+private fun TopAppBarBack(
     modifier: Modifier = Modifier,
-    title: String,
     onViewEvent: onViewEvent
 ) {
     IconButton(modifier = modifier,
@@ -69,9 +72,4 @@ private fun RowScope.TopAppBarBack(
             contentDescription = null
         )
     }
-
-    Text(
-        modifier = modifier.padding(end = MainTheme.spacing.baseLineSpacing),
-        type = TextType.Title1, text = title
-    )
 }

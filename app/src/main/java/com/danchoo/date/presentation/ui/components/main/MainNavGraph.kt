@@ -5,68 +5,31 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.navArgument
-import com.danchoo.date.presentation.ui.components.main.category.CategoryDestination
+import com.danchoo.date.presentation.ui.components.main.editor.category.addCategoryEditorNavGraph
+import com.danchoo.date.presentation.ui.components.main.home.addHomeNavGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.navigation.animation.navigation
 
-/**
- * Destinations used in the ([MainNavGraph]).
- */
-object MainDestinations {
-    const val MAIN_ROUTE = "main"
-    const val CATEGORY_DETAIL_ROUTE = "categoryDetail"
-}
-
-object MainRouteArgsKeys {
-    const val CATEGORY_DETAIL_ID = "categoryId"
-}
 
 @ExperimentalAnimationApi
 @Composable
 fun MainNavGraph(
     modifier: Modifier = Modifier,
     navHostController: NavHostController,
-    startDestination: String = MainDestinations.MAIN_ROUTE,
+    startDestination: String = MainRoute.HOME_ROUTE,
 ) {
     AnimatedNavHost(
-        navController = navHostController.apply {
-            // Backstack 을 저장하지 않기 위함.
-            enableOnBackPressed(false)
-        },
+        navController = navHostController,
         startDestination = startDestination,
         modifier = modifier
     ) {
-        navigation(
-            route = MainDestinations.MAIN_ROUTE,
-            startDestination = MainSections.CATEGORY.route
-        ) {
+        addHomeNavGraph(modifier, navHostController, this)
 
-            addMainGraph(modifier, navHostController)
-        }
-    }
-}
-
-@ExperimentalAnimationApi
-private fun NavGraphBuilder.addMainGraph(
-    modifier: Modifier = Modifier,
-    navController: NavController
-) {
-    composable(MainSections.CATEGORY.route) {
-        CategoryDestination(modifier, navController)
-    }
-
-    composable(MainSections.FAVORITE.route) {
-        CategoryDestination(modifier, navController)
-    }
-
-    composable(MainSections.SETTING.route) {
-        CategoryDestination(modifier, navController)
+        addCategoryEditorNavGraph(modifier, navHostController, this)
     }
 }
 
@@ -74,7 +37,7 @@ private fun NavGraphBuilder.addMainGraph(
 @ExperimentalAnimationApi
 fun NavGraphBuilder.addCategoryDetail(upPress: () -> Unit) {
     composable(
-        "${MainDestinations.CATEGORY_DETAIL_ROUTE}/{${MainRouteArgsKeys.CATEGORY_DETAIL_ID}}",
+        "${MainRoute.CATEGORY_DETAIL_ROUTE}/{${MainRouteArgsKeys.CATEGORY_DETAIL_ID}}",
         arguments = listOf(navArgument(MainRouteArgsKeys.CATEGORY_DETAIL_ID) {
             type = NavType.LongType
         }),
@@ -88,9 +51,4 @@ fun NavGraphBuilder.addCategoryDetail(upPress: () -> Unit) {
 //        ContentListApp(categoryId = categoryId, upPress = upPress)
     }
 }
-
-
-
-
-
 

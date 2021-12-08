@@ -1,7 +1,6 @@
-package com.danchoo.date.presentation.ui.components.main
+package com.danchoo.date.presentation.ui.components.main.home
 
 import androidx.annotation.FloatRange
-import androidx.annotation.StringRes
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
@@ -13,10 +12,6 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -28,7 +23,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
@@ -45,26 +39,15 @@ import androidx.navigation.compose.rememberNavController
 import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.RoundedCornerShape50percent
-import com.danchoo.date.R
 import com.danchoo.date.presentation.ui.components.common.Surface
+import com.danchoo.date.presentation.ui.components.main.HomeScreen
 import com.google.accompanist.insets.navigationBarsPadding
 
 
-enum class MainSections(
-    @StringRes val title: Int,
-    val icon: ImageVector,
-    val route: String
-) {
-    CATEGORY(R.string.fragment_category_nav_title, Icons.Outlined.Home, "main/category"),
-    FAVORITE(R.string.fragment_favorite_nav_title, Icons.Outlined.Search, "main/favorite"),
-    SETTING(R.string.fragment_setting_nav_title, Icons.Outlined.ShoppingCart, "main/setting"),
-}
-
-
 @Composable
-fun MainBottomBar(
+fun HomeBottomBar(
     navController: NavController,
-    tabs: Array<MainSections>,
+    tabs: Array<HomeScreen>,
     color: Color = MainTheme.colors.primary,
     contentColor: Color = MainTheme.colors.textPrimary
 ) {
@@ -72,7 +55,7 @@ fun MainBottomBar(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val sections = remember { MainSections.values() }
+    val sections = remember { HomeScreen.values() }
     val routes = remember { sections.map { it.route } }
     if (currentRoute in routes) {
         val currentSection = sections.first { it.route == currentRoute }
@@ -86,14 +69,14 @@ fun MainBottomBar(
                 dampingRatio = 0.8f
             )
 
-            MainBottomNavLayout(
+            HomeBottomNavLayout(
                 selectedIndex = currentSection.ordinal,
                 itemCount = routes.size,
                 indicator = { MainBottomNavIndicator() },
                 animSpec = springSpec,
                 modifier = Modifier.navigationBarsPadding(start = false, end = false)
             ) {
-                MainTabItems(
+                HomeTabItems(
                     navController = navController,
                     tabs = tabs,
                     currentSection = currentSection,
@@ -110,10 +93,10 @@ fun MainBottomBar(
 }
 
 @Composable
-private fun MainTabItems(
+private fun HomeTabItems(
     navController: NavController,
-    tabs: Array<MainSections>,
-    currentSection: MainSections,
+    tabs: Array<HomeScreen>,
+    currentSection: HomeScreen,
     springSpec: SpringSpec<Float>,
     currentRoute: String?
 ) {
@@ -171,7 +154,7 @@ private fun MainTabItems(
 
 
 @Composable
-private fun MainBottomNavLayout(
+private fun HomeBottomNavLayout(
     selectedIndex: Int,
     itemCount: Int,
     animSpec: AnimationSpec<Float>,
@@ -367,9 +350,9 @@ private val BottomNavigationItemPadding = Modifier.padding(horizontal = 16.dp, v
 @Composable
 private fun MainBottomNavPreview() {
     MyApplicationTheme {
-        MainBottomBar(
+        HomeBottomBar(
             navController = rememberNavController(),
-            tabs = MainSections.values()
+            tabs = HomeScreen.values()
         )
     }
 }

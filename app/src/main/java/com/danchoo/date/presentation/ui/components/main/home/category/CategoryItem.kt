@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.ui.components.main.category
+package com.danchoo.date.presentation.ui.components.main.home.category
 
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable
@@ -18,7 +18,7 @@ import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.components.ui.cardview.CardViewContents
 import com.danchoo.components.ui.cardview.CardViewContentsType
 import com.danchoo.date.R
-import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategoryViewEvent
+import com.danchoo.date.presentation.ui.components.main.home.category.CategoryContract.CategoryViewEvent
 
 @Composable
 fun CategoryItem(

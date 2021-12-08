@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.ui.components.main.category
+package com.danchoo.date.presentation.ui.components.main.home.category
 
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -9,9 +9,9 @@ import com.danchoo.category.domain.inspector.usecase.CategoryListInsertUseCase
 import com.danchoo.category.domain.inspector.usecase.CategoryPagingUseCase
 import com.danchoo.category.domain.model.CategoryData
 import com.danchoo.common.BaseViewModel
-import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategoryIntent
-import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategorySideEffect
-import com.danchoo.date.presentation.ui.components.main.category.CategoryConstants.CategoryViewState
+import com.danchoo.date.presentation.ui.components.main.home.category.CategoryContract.CategoryIntent
+import com.danchoo.date.presentation.ui.components.main.home.category.CategoryContract.CategorySideEffect
+import com.danchoo.date.presentation.ui.components.main.home.category.CategoryContract.CategoryViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

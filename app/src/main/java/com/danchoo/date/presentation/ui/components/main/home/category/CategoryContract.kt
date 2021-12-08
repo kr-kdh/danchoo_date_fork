@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.ui.components.main.category
+package com.danchoo.date.presentation.ui.components.main.home.category
 
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.common.BaseIntent
@@ -6,7 +6,7 @@ import com.danchoo.common.BaseSideEffect
 import com.danchoo.common.BaseViewState
 import com.danchoo.components.event.ViewEvent
 
-object CategoryConstants {
+object CategoryContract {
 
     sealed class CategoryIntent : BaseIntent {
         object Idle : CategoryIntent()
