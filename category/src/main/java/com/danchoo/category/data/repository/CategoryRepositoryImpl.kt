@@ -73,13 +73,13 @@ class CategoryRepositoryImpl constructor(
 
     override fun updateSelectCount(
         categoryId: Long,
-        selectCount: Long,
-        lastVisitTimestamp: Long
+        readCount: Long,
+        lastReadTimestamp: Long
     ) {
-        localDataSource.updateSelectCount(
+        localDataSource.updateReadCount(
             categoryId = categoryId,
-            selectCount = selectCount,
-            lastVisitTimestamp = lastVisitTimestamp
+            readCount = readCount,
+            lastReadTimestamp = lastReadTimestamp
         )
     }
 

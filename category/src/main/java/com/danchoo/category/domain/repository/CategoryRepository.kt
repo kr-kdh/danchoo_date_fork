@@ -23,8 +23,8 @@ interface CategoryRepository {
 
     fun updateSelectCount(
         categoryId: Long,
-        selectCount: Long,
-        lastVisitTimestamp: Long
+        readCount: Long,
+        lastReadTimestamp: Long
     )
 
     fun deleteCategory(categoryId: Long)

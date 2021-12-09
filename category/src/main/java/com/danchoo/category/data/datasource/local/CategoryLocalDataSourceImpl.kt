@@ -49,15 +49,15 @@ class CategoryLocalDataSourceImpl constructor(
         )
     }
 
-    override fun updateSelectCount(
+    override fun updateReadCount(
         categoryId: Long,
-        selectCount: Long,
-        lastVisitTimestamp: Long
+        readCount: Long,
+        lastReadTimestamp: Long
     ) {
-        categoryDao.updateSelectCount(
+        categoryDao.updateReadCount(
             categoryId = categoryId,
-            selectCount = selectCount,
-            lastVisitTimestamp = lastVisitTimestamp
+            readCount = readCount,
+            lastReadTimestamp = lastReadTimestamp
         )
     }
 

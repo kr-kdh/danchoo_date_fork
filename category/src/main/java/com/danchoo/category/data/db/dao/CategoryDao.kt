@@ -76,15 +76,15 @@ abstract class CategoryDao {
     @Query(
         """
         UPDATE category
-        SET select_count = :selectCount,
-            last_visit_timestamp = :lastVisitTimestamp
+        SET read_count = :readCount,
+            last_read_timestamp = :lastReadTimestamp
         WHERE category_id == :categoryId
     """
     )
-    abstract fun updateSelectCount(
+    abstract fun updateReadCount(
         categoryId: Long,
-        selectCount: Long,
-        lastVisitTimestamp: Long
+        readCount: Long,
+        lastReadTimestamp: Long
     )
 
     @Query("delete from category where category_id = :categoryId")

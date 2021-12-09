@@ -29,10 +29,10 @@ interface CategoryLocalDataSource {
         lastModifiedTimestamp: Long
     )
 
-    fun updateSelectCount(
+    fun updateReadCount(
         categoryId: Long,
-        selectCount: Long,
-        lastVisitTimestamp: Long
+        readCount: Long,
+        lastReadTimestamp: Long
     )
 
     fun delete(categoryId: Long)

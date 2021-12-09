@@ -105,18 +105,18 @@ internal class CategoryLocalDataSourceImplTest {
         assertNotNull(category!!)
 
         val currentTime = Date().time
-        datasource.updateSelectCount(
+        datasource.updateReadCount(
             categoryId = 1,
-            selectCount = 1,
-            lastVisitTimestamp = currentTime
+            readCount = 1,
+            lastReadTimestamp = currentTime
         )
 
         val updatedData = datasource.getCategory(1)
         assertNotNull(updatedData!!)
 
         assertEquals(updatedData.categoryId, 1L)
-        assertEquals(updatedData.selectCount, 1)
-        assertEquals(updatedData.lastVisitTimestamp, currentTime)
+        assertEquals(updatedData.readCount, 1)
+        assertEquals(updatedData.lastReadTimestamp, currentTime)
     }
 
     @Test

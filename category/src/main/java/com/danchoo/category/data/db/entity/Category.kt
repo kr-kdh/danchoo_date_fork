@@ -22,8 +22,8 @@ data class Category(
 
     val coverImage: String = "",
 
-    @ColumnInfo(name = "select_count")
-    val selectCount: Long = 0L,
+    @ColumnInfo(name = "read_count")
+    val readCount: Long = 0L,
 
     @ColumnInfo(name = "create_time_stamp")
     val createTimestamp: Long = 0L,
@@ -31,8 +31,8 @@ data class Category(
     @ColumnInfo(name = "last_modified_timestamp")
     val lastModifiedTimestamp: Long = 0L,
 
-    @ColumnInfo(name = "last_visit_timestamp")
-    val lastVisitTimestamp: Long = 0L,
+    @ColumnInfo(name = "last_read_timestamp")
+    val lastReadTimestamp: Long = 0L,
 
     @ColumnInfo(name = "last_contents_modified_timestamp")
     val lastContentsModifiedTimestamp: Long = 0L,

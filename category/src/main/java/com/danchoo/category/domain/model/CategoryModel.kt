@@ -16,13 +16,13 @@ data class CategoryModel(
 
     val coverImage: String = "",
 
-    val selectCount: Long = 0L,
+    val readCount: Long = 0L,
 
     val createTimestamp: Long = 0L,
 
     val lastModifiedTimestamp: Long = 0L,
 
-    val lastVisitTimestamp: Long = 0L,
+    val lastReadTimestamp: Long = 0L,
 
     val lastContentsModifiedTimestamp: Long = 0L,
 

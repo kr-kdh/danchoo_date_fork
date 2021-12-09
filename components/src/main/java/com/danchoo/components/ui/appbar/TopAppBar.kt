@@ -1,6 +1,5 @@
 package com.danchoo.components.ui.appbar
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.TopAppBar
@@ -9,7 +8,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.danchoo.components.event.onViewEvent
-import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.ui.appbar.AppBarConstants.AppBarEvent
 import com.danchoo.components.ui.text.Text
 import com.danchoo.components.ui.text.TextType
@@ -28,13 +26,19 @@ fun TopAppBar(
     onViewEvent: onViewEvent = {}
 ) {
     TopAppBar(modifier = modifier,
-        navigationIcon = {
-            when (type) {
-                TopAppbarType.Title -> Unit
-                TopAppbarType.Back -> TopAppBarBack(onViewEvent = onViewEvent)
-                TopAppbarType.Search -> TopAppBarBack(onViewEvent = onViewEvent)
-                TopAppbarType.More -> TopAppBarBack(onViewEvent = onViewEvent)
-                TopAppbarType.Edit -> TopAppBarBack(onViewEvent = onViewEvent)
+        navigationIcon = when (type) {
+            TopAppbarType.Title -> null
+            TopAppbarType.Back -> {
+                { TopAppBarBack(onViewEvent = onViewEvent) }
+            }
+            TopAppbarType.Search -> {
+                { TopAppBarBack(onViewEvent = onViewEvent) }
+            }
+            TopAppbarType.More -> {
+                { TopAppBarBack(onViewEvent = onViewEvent) }
+            }
+            TopAppbarType.Edit -> {
+                { TopAppBarBack(onViewEvent = onViewEvent) }
             }
         }, actions = {
 
@@ -50,12 +54,9 @@ private fun TopAppBarTitle(
     title: String
 ) {
     Text(
-        modifier = modifier
-            .padding(
-                start = MainTheme.spacing.baseLineSpacingMedium,
-                end = MainTheme.spacing.baseLineSpacingMedium
-            ),
-        type = TextType.Title1, text = title
+        modifier = modifier,
+        type = TextType.Title1,
+        text = title
     )
 }
 

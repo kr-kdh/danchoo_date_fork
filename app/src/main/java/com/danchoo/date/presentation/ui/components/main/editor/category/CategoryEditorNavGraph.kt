@@ -1,9 +1,7 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.background
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -44,9 +42,13 @@ private fun NavGraphBuilder.addComposable(
         route = CategoryEditorScreen.CREATE,
         enterTransition = EnterTransition.slideInVertical,
         exitTransition = ExitTransition.slideOutVertical
-    ) { from ->
+    ) {
+
         navController.enableOnBackPressed(true)
-        CategoriesCreate(modifier.background(Color.Red))
+        CategoryEditorDestination(
+            modifier = modifier,
+            navController = navController
+        )
     }
 }
 

@@ -6,6 +6,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
+import com.danchoo.components.extension.applyAlpha50
 import com.danchoo.components.extension.applyAlpha80
 import com.danchoo.components.theme.MainTheme
 
@@ -39,6 +40,9 @@ private fun getMaxLine(type: TextType, maxLines: Int): Int {
 
         TextType.Description1,
         TextType.Description2 -> maxLines
+
+        TextType.Label -> 1
+        TextType.PlaceHolder -> maxLines
     }
 }
 
@@ -51,6 +55,8 @@ private fun getTextStyle(type: TextType): TextStyle {
         TextType.Title2Bold -> MainTheme.typography.title2Bold
         TextType.Description1 -> MainTheme.typography.body1
         TextType.Description2 -> MainTheme.typography.body2
+        TextType.Label -> MainTheme.typography.body1
+        TextType.PlaceHolder -> MainTheme.typography.body1
     }
 }
 
@@ -63,6 +69,8 @@ private fun getTextColor(type: TextType): Color {
         TextType.Title2Bold -> MainTheme.colors.textPrimary
         TextType.Description1 -> MainTheme.colors.textPrimary.applyAlpha80()
         TextType.Description2 -> MainTheme.colors.textPrimary.applyAlpha80()
+        TextType.Label -> MainTheme.colors.textPrimary.applyAlpha50()
+        TextType.PlaceHolder -> MainTheme.colors.primary.applyAlpha50()
     }
 }
 
@@ -73,5 +81,8 @@ enum class TextType {
     Title2Bold,
 
     Description1,
-    Description2
+    Description2,
+
+    Label,
+    PlaceHolder
 }
