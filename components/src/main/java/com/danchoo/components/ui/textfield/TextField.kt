@@ -50,7 +50,7 @@ fun OutlinedTextField(
 
 @Composable
 fun TitleTextField(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     textFieldValue: TextFieldValue,
     title: String,
     placeholder: String,
