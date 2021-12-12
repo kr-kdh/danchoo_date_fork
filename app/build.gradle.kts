@@ -11,7 +11,7 @@ android {
     default()
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = Config.JAVA_VERSION.toString()
 
         // Enable experimental coroutines APIs, including Flow
         freeCompilerArgs = freeCompilerArgs.plus(
