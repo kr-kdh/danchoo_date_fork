@@ -1,6 +1,5 @@
 package com.danchoo.date.presentation.ui.components.main.contents
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -9,7 +8,6 @@ import com.danchoo.date.presentation.ui.components.main.contents.ContentsDestina
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.navigation
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.google.accompanist.pager.ExperimentalPagerApi
 
 /**
  * Destinations used in the ([ContentsNavGraph]).
@@ -29,8 +27,6 @@ object ContentsArgsKeys {
     const val CONTENTS_ID_KEY = "contentsId"
 }
 
-@ExperimentalPagerApi
-@ExperimentalAnimationApi
 @Composable
 fun ContentsNavGraph(
     modifier: Modifier = Modifier,

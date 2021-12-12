@@ -1,6 +1,5 @@
 package com.danchoo.date.presentation.ui.components.main
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.runtime.Composable
@@ -15,7 +14,6 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 
 
-@ExperimentalAnimationApi
 @Composable
 fun MainNavGraph(
     modifier: Modifier = Modifier,
@@ -34,7 +32,6 @@ fun MainNavGraph(
 }
 
 
-@ExperimentalAnimationApi
 fun NavGraphBuilder.addCategoryDetail(upPress: () -> Unit) {
     composable(
         "${MainRoute.CATEGORY_DETAIL_ROUTE}/{${MainRouteArgsKeys.CATEGORY_DETAIL_ID}}",

@@ -15,9 +15,7 @@ import com.danchoo.components.ui.appbar.TopAppBar
 import com.danchoo.components.ui.appbar.TopAppbarType
 import com.danchoo.components.ui.button.AddFloatingActionButton
 import com.danchoo.date.presentation.ui.components.main.home.category.CategoryContract.CategoryViewState
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun CategoryScreen(
     modifier: Modifier = Modifier,

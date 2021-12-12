@@ -1,6 +1,5 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -33,7 +32,6 @@ private fun NavGraphBuilder.addGraph(
     }
 }
 
-@ExperimentalAnimationApi
 private fun NavGraphBuilder.addComposable(
     modifier: Modifier = Modifier,
     navController: NavController

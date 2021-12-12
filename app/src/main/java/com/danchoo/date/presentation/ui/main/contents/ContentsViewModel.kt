@@ -10,7 +10,6 @@ import com.danchoo.contents.domain.inspector.usecase.ContentsListInsertUseCase
 import com.danchoo.contents.domain.inspector.usecase.ContentsPagingUseCase
 import com.danchoo.contents.domain.model.ContentsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapLatest
@@ -23,7 +22,6 @@ class ContentsViewModel @Inject constructor(
     private val contentsListInsertUseCase: ContentsListInsertUseCase
 ) : ViewModel() {
 
-    @ExperimentalCoroutinesApi
     fun contentsList(): Flow<PagingData<ContentsModel>> {
         return contentsPagingUseCase()
             .mapLatest { pagingData ->

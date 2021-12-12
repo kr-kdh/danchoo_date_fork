@@ -1,20 +1,14 @@
 package com.danchoo.date.presentation.ui.components.main.contents
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import coil.annotation.ExperimentalCoilApi
 import com.danchoo.date.presentation.ui.components.main.contents.detail.ContentsDetail
 import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.pager.ExperimentalPagerApi
 
 
-@ExperimentalCoilApi
-@ExperimentalPagerApi
-@ExperimentalAnimationApi
 fun NavGraphBuilder.addContentsNavGraph(
     modifier: Modifier = Modifier,
     onSelected: (Long, NavBackStackEntry) -> Unit

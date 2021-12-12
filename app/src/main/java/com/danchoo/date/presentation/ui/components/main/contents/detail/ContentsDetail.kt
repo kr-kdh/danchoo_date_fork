@@ -14,14 +14,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.danchoo.date.R
 import com.google.accompanist.pager.*
 import kotlin.math.absoluteValue
 
-@ExperimentalPagerApi
-@ExperimentalCoilApi
 @Composable
 fun ContentsDetail(
     modifier: Modifier = Modifier,
@@ -35,8 +32,6 @@ fun ContentsDetail(
 }
 
 @Preview
-@ExperimentalPagerApi
-@ExperimentalCoilApi
 @Composable
 fun HorizontalPagerWithOffsetTransition(modifier: Modifier = Modifier) {
     val pagerState = rememberPagerState()
@@ -63,7 +58,6 @@ fun HorizontalPagerWithOffsetTransition(modifier: Modifier = Modifier) {
     }
 }
 
-@ExperimentalPagerApi
 @Composable
 fun HorizontalContentsPager(
     modifier: Modifier = Modifier,

@@ -18,8 +18,10 @@ android {
             listOf(
                 "-Xopt-in=kotlin.RequiresOptIn",
                 "-Xopt-in=kotlin.Experimental",
-                "-Xopt-in=androidx.compose.animation.ExperimentalAnimationApi"
-
+                "-Xopt-in=androidx.compose.animation.ExperimentalAnimationApi",
+                "-Xopt-in=com.google.accompanist.pager.ExperimentalPagerApi",
+                "-Xopt-in=coil.annotation.ExperimentalCoilApi",
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
             )
         )
     }
