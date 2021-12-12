@@ -86,6 +86,7 @@ dependencies {
         implementation(navigationAnimation)
         implementation(pager)
         implementation(pagerIndicators)
+        implementation(permission)
     }
 
     Coil.run {

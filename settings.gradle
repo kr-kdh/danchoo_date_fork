@@ -9,3 +9,4 @@ include(":category")
 include(":tags")
 include(":contents")
 include ':components'
+include ':dependency'

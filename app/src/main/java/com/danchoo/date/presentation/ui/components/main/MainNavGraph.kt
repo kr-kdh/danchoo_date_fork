@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.compose.navArgument
+import androidx.navigation.navArgument
 import com.danchoo.date.presentation.ui.components.main.editor.category.addCategoryEditorNavGraph
 import com.danchoo.date.presentation.ui.components.main.home.addHomeNavGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -41,7 +41,7 @@ fun NavGraphBuilder.addCategoryDetail(upPress: () -> Unit) {
         arguments = listOf(navArgument(MainRouteArgsKeys.CATEGORY_DETAIL_ID) {
             type = NavType.LongType
         }),
-        enterTransition = { _, _ ->
+        enterTransition = {
             slideInHorizontally(initialOffsetX = { 1000 }, animationSpec = tween(700))
         }
     ) { backStackEntry ->

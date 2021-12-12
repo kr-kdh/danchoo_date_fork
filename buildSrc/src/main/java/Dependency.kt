@@ -1,24 +1,14 @@
-object Classpath {
-    const val gradle = "com.android.tools.build:gradle:7.0.3"
-
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
-
-    const val googleService = "com.google.gms:google-services:4.3.10"
-    const val hiltAndroidGradlePlugin =
-        "com.google.dagger:hilt-android-gradle-plugin:${Hilt.version}"
-
-//    const val ANDROID_JUNIT5 = "de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0"
-}
-
-
 object AndroidX {
-    const val coreKtx = "androidx.core:core-ktx:1.6.0"
-    const val appcompat = "androidx.appcompat:appcompat:1.3.1"
+    private const val coreVersion = "1.7.0"
+    private const val appcompatVersion = "1.4.0"
+
+    const val coreKtx = "androidx.core:core-ktx:$coreVersion"
+    const val appcompat = "androidx.appcompat:appcompat:$appcompatVersion"
     const val multidex = "androidx.multidex:multidex:2.0.1"
     const val coreTesting = "androidx.arch.core:core-testing:2.1.0"
 
     object Compose {
-        const val version = "1.0.4"
+        const val version = "1.0.5"
 
         const val layout = "androidx.compose.foundation:foundation-layout:$version"
         const val ui = "androidx.compose.ui:ui:$version"
@@ -33,15 +23,15 @@ object AndroidX {
     }
 
     object Activity {
-        const val compose = "androidx.activity:activity-compose:1.3.1"
+        const val compose = "androidx.activity:activity-compose:1.4.0"
     }
 
     object ConstraintLayout {
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
     }
 
     object Lifecycle {
-        private const val version = "2.4.0-rc01"
+        private const val version = "2.4.0"
         const val core = "androidx.lifecycle:lifecycle-livedata-core-ktx:$version"
         const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
@@ -65,23 +55,23 @@ object AndroidX {
     }
 
     object Paging {
-        private const val version = "3.0.1"
+        private const val version = "3.1.0"
         const val ktx = "androidx.paging:paging-runtime-ktx:$version"
         const val compose = "androidx.paging:paging-compose:1.0.0-alpha14"
     }
 
     object Test {
-        private const val version = "1.3.0"
+        private const val version = "1.4.0"
         const val runner = "androidx.test:runner:$version"
         const val rules = "androidx.test:rules:$version"
-        const val junit = "androidx.test.ext:junit-ktx:1.1.2"
+        const val junit = "androidx.test.ext:junit-ktx:1.1.3"
         const val espressoCore = "androidx.test.espresso:espresso-core:3.4.0"
         const val room = "androidx.room:room-testing:2.3.0"
     }
 }
 
 object Accompanist {
-    private const val version = "0.18.0"
+    private const val version = "0.21.4-beta"
     const val inserts = "com.google.accompanist:accompanist-insets:$version"
     const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:$version"
     const val navigationAnimation =
@@ -89,6 +79,7 @@ object Accompanist {
 
     const val pager = "com.google.accompanist:accompanist-pager:$version"
     const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:$version"
+    const val permission = "com.google.accompanist:accompanist-permissions:$version"
 }
 
 object Coil {
@@ -96,7 +87,7 @@ object Coil {
 }
 
 object Retrofit {
-    const val version = "2.9.0"
+    private const val version = "2.9.0"
     const val retrofit = "com.squareup.retrofit2:retrofit:$version"
     const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
     const val okhttp = "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
@@ -107,15 +98,15 @@ object Moshi {
 }
 
 object Google {
-    const val tasks = "com.google.android.gms:play-services-tasks:17.2.1"
-    const val ads = "com.google.android.gms:play-services-ads:20.4.0"
+    const val tasks = "com.google.android.gms:play-services-tasks:18.0.0"
+    const val ads = "com.google.android.gms:play-services-ads:20.5.0"
 
-    private const val materialVersion = "1.4.0"
+    const val materialVersion = "1.4.0"
     const val material = "com.google.android.material:material:$materialVersion"
 }
 
 object Firebase {
-    const val bom = "com.google.firebase:firebase-bom:28.4.2"
+    const val bom = "com.google.firebase:firebase-bom:29.0.22"
     const val analytics = "com.google.firebase:firebase-analytics-ktx"
     const val fireStore = "com.google.firebase:firebase-firestore-ktx"
 }
@@ -127,11 +118,11 @@ object Hilt {
     const val compiler = "com.google.dagger:hilt-compiler:$version"
     const val testing = "com.google.dagger:hilt-android-testing:$version"
 
-    const val compose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
+    const val compose = "androidx.hilt:hilt-navigation-compose:1.0.0-beta01"
 }
 
 object Coroutines {
-    private const val version = "1.3.9"
+    private const val version = "1.5.2"
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
     const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
     const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -139,10 +130,6 @@ object Coroutines {
 
 object Timber {
     const val timber = "com.jakewharton.timber:timber:5.0.1"
-}
-
-object AssertJ {
-    const val core = "org.assertj:assertj-core:3.18.0"
 }
 
 object JUnit4 {

@@ -12,8 +12,8 @@ import com.danchoo.components.animation.ANIMATION_DURATION
 object ExitTransition {
 
     @OptIn(ExperimentalAnimationApi::class)
-    val slideOutVertical: AnimatedContentScope<String>.(initial: NavBackStackEntry, target: NavBackStackEntry) -> ExitTransition =
-        { _, _ ->
+    val slideOutVertical: AnimatedContentScope<NavBackStackEntry>.() -> ExitTransition =
+        {
             slideOut(
                 targetOffset = { IntOffset(0, it.height / 2) },
                 animationSpec = tween(
@@ -24,8 +24,8 @@ object ExitTransition {
         }
 
     @OptIn(ExperimentalAnimationApi::class)
-    val fadeOut: AnimatedContentScope<String>.(initial: NavBackStackEntry, target: NavBackStackEntry) -> ExitTransition =
-        { _, _ ->
+    val fadeOut: AnimatedContentScope<NavBackStackEntry>.() -> ExitTransition =
+        {
             fadeOut(
                 animationSpec = tween(
                     durationMillis = ANIMATION_DURATION,

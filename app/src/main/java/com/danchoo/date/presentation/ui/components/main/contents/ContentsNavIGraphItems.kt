@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
-import androidx.navigation.compose.navArgument
+import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
 import com.danchoo.date.presentation.ui.components.main.contents.detail.ContentsDetail
 import com.google.accompanist.navigation.animation.composable

@@ -39,11 +39,7 @@ fun ContentsDetail(
 @ExperimentalCoilApi
 @Composable
 fun HorizontalPagerWithOffsetTransition(modifier: Modifier = Modifier) {
-    val pagerState = rememberPagerState(
-        pageCount = 10,
-        // We increase the offscreen limit, to allow pre-loading of images
-        initialOffscreenLimit = 2,
-    )
+    val pagerState = rememberPagerState()
 
     Column(modifier = modifier.fillMaxSize()) {
 
@@ -74,6 +70,7 @@ fun HorizontalContentsPager(
     pagerState: PagerState
 ) {
     HorizontalPager(
+        count = 0,
         state = pagerState,
         modifier = modifier
             .wrapContentHeight()

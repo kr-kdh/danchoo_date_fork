@@ -12,8 +12,8 @@ import com.danchoo.components.animation.ANIMATION_DURATION
 object EnterTransition {
 
     @OptIn(ExperimentalAnimationApi::class)
-    val slideInVertical: AnimatedContentScope<String>.(initial: NavBackStackEntry, target: NavBackStackEntry) -> EnterTransition =
-        { _, _ ->
+    val slideInVertical: AnimatedContentScope<NavBackStackEntry>.() -> EnterTransition =
+        {
             slideIn(
                 initialOffset = { IntOffset(0, it.height / 2) },
                 animationSpec = tween(
@@ -24,6 +24,8 @@ object EnterTransition {
         }
 
     @OptIn(ExperimentalAnimationApi::class)
-    val fadeIn: AnimatedContentScope<String>.(initial: NavBackStackEntry, target: NavBackStackEntry) -> EnterTransition =
-        { _, _ -> fadeIn(animationSpec = tween(ANIMATION_DURATION)) }
+    val fadeIn: AnimatedContentScope<NavBackStackEntry>.() -> EnterTransition =
+        {
+            fadeIn(animationSpec = tween(ANIMATION_DURATION))
+        }
 }
