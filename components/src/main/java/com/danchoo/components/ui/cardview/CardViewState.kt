@@ -4,11 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.text.TextStyle
 
 
 class CardViewState(
     val title: String,
+    val titleTextStyle: TextStyle,
     val description: String,
+    val descriptionTextStyle: TextStyle,
     val useExpand: Boolean,
     val images: List<Any> = emptyList(),
     private val expanded: MutableState<Boolean>,
@@ -37,10 +40,21 @@ class CardViewState(
 fun rememberCardViewState(
     title: String = "",
     description: String = "",
+    titleTextStyle: TextStyle,
+    descriptionTextStyle: TextStyle,
     useExpand: Boolean = true,
     images: List<Any> = emptyList(),
     expanded: MutableState<Boolean> = remember { mutableStateOf(false) },
     enableExpandButton: MutableState<Boolean> = remember { mutableStateOf(true) }
 ) = remember(expanded, enableExpandButton) {
-    CardViewState(title, description, useExpand, images, expanded, enableExpandButton)
+    CardViewState(
+        title,
+        titleTextStyle,
+        description,
+        descriptionTextStyle,
+        useExpand,
+        images,
+        expanded,
+        enableExpandButton
+    )
 }

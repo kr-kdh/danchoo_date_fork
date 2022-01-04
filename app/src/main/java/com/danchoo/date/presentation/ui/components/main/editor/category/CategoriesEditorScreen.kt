@@ -3,10 +3,7 @@ package com.danchoo.date.presentation.ui.components.main.editor.category
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Divider
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Switch
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,10 +14,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.danchoo.components.event.onViewEvent
 import com.danchoo.components.theme.MainTheme
-import com.danchoo.components.ui.appbar.TopAppBar
-import com.danchoo.components.ui.appbar.TopAppbarType
-import com.danchoo.components.ui.text.Text
-import com.danchoo.components.ui.text.TextType
+import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.textfield.TitleTextField
 import com.danchoo.date.R
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewEvent
@@ -37,13 +31,13 @@ fun CategoryEditorScreen(
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
-                type = TopAppbarType.Edit,
-                title = stringResource(id = R.string.category_create)
+            BackTopAppBar(
+                title = {
+                    Text(text = stringResource(id = R.string.category_create))
+                }
             )
         }
     ) {
-
         LazyColumn(
             modifier = modifier
                 .fillMaxSize()
@@ -170,7 +164,6 @@ private fun AddVisibility(
                     top = MainTheme.spacing.baseLineSpacing,
                     bottom = MainTheme.spacing.baseLineSpacing
                 ),
-            type = TextType.Description1,
             text = stringResource(id = R.string.category_create_enable_visible)
         )
 
@@ -211,7 +204,6 @@ private fun AddChangeImage(
                     top = MainTheme.spacing.baseLineSpacing,
                     bottom = MainTheme.spacing.baseLineSpacing
                 ),
-            type = TextType.Description1,
             text = stringResource(id = R.string.category_create_change_cover)
         )
     }

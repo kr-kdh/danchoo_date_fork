@@ -1,7 +1,5 @@
 package com.danchoo.components.ui.button
 
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -17,12 +15,8 @@ fun ExpandButton(
 ) {
     IconButton(
         modifier = modifier,
-        onClick = onClick,
-        enabled = enable
-    ) {
-        Icon(
-            imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
-            contentDescription = null
-        )
-    }
+        imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+        enabled = enable,
+        onClick = onClick
+    )
 }

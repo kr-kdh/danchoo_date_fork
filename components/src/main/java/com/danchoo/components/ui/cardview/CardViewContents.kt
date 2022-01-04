@@ -5,22 +5,20 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.danchoo.components.event.ViewEvent
-import com.danchoo.components.event.onViewEvent
 import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.RoundedCornerShape8dp
 import com.danchoo.components.ui.button.ExpandButton
-import com.danchoo.components.ui.cardview.CardViewConstants.CardViewEvent
-import com.danchoo.components.ui.text.Text
-import com.danchoo.components.ui.text.TextType
 
 
 @Composable
@@ -28,39 +26,52 @@ fun CardViewContents(
     modifier: Modifier = Modifier,
     type: CardViewContentsType = CardViewContentsType.Normal,
     title: String,
+    titleTextStyle: TextStyle = MaterialTheme.typography.h5,
     description: String = "",
+    descriptionTextStyle: TextStyle = MaterialTheme.typography.body1,
     images: List<Any> = emptyList()
 ) {
     val state = rememberCardViewState(
         title = title,
+        titleTextStyle = titleTextStyle,
         description = description,
+        descriptionTextStyle = descriptionTextStyle,
         useExpand = type != CardViewContentsType.SmallImage && description.isNotEmpty(),
         images = images
     )
 
     when (type) {
         CardViewContentsType.Normal -> {
-            CardViewNormalContents(modifier, state) { hookViewEvent(state, it) }
+            CardViewNormalContents(
+                modifier = modifier,
+                state = state,
+                onClickExpand = { state.setExpanded(it) },
+                onChangeExpendState = { state.setEnableExpandButton(it) }
+            )
         }
         CardViewContentsType.SmallImage -> {
-            CardViewSmallImageContents(modifier, state) { hookViewEvent(state, it) }
+            CardViewSmallImageContents(
+                modifier = modifier,
+                state = state,
+                onChangeExpendState = { state.setEnableExpandButton(it) }
+            )
         }
         CardViewContentsType.SmallImages -> {
-            CardViewSmallImagesContents(modifier, state) { hookViewEvent(state, it) }
+            CardViewSmallImagesContents(
+                modifier = modifier,
+                state = state,
+                onClickExpand = { state.setExpanded(it) },
+                onChangeExpendState = { state.setEnableExpandButton(it) }
+            )
         }
         CardViewContentsType.BigImage -> {
-            CardViewBigImageContents(modifier, state) { hookViewEvent(state, it) }
+            CardViewBigImageContents(
+                modifier = modifier,
+                state = state,
+                onClickExpand = { state.setExpanded(it) },
+                onChangeExpendState = { state.setEnableExpandButton(it) }
+            )
         }
-    }
-}
-
-private fun hookViewEvent(
-    state: CardViewState,
-    event: ViewEvent
-) {
-    when (event) {
-        is CardViewEvent.ClickExpand -> state.setExpanded(event.expand)
-        is CardViewEvent.ChangeExpandEnableState -> state.setEnableExpandButton(event.enable)
     }
 }
 
@@ -69,7 +80,8 @@ private fun hookViewEvent(
 private fun CardViewNormalContents(
     modifier: Modifier = Modifier,
     state: CardViewState,
-    onViewEvent: onViewEvent
+    onClickExpand: (expand: Boolean) -> Unit,
+    onChangeExpendState: (enable: Boolean) -> Unit
 ) {
     Row(
         modifier = modifier.fillMaxWidth()
@@ -87,7 +99,7 @@ private fun CardViewNormalContents(
                 .align(Alignment.Top),
             state = state,
             maxLine = if (state.isExpanded()) DESCRIPTION_MAX_LINE else maxLine,
-            onViewEvent
+            onChangeExpendState = onChangeExpendState
         )
 
         if (state.useExpand) {
@@ -101,7 +113,7 @@ private fun CardViewNormalContents(
                 expanded = state.isExpanded(),
                 enable = state.isEnableExpandButton()
             ) {
-                onViewEvent(CardViewEvent.ClickExpand(!state.isExpanded()))
+                onClickExpand(!state.isExpanded())
             }
         }
     }
@@ -112,7 +124,7 @@ private fun RowScope.CardViewNormalContentsText(
     modifier: Modifier = Modifier,
     state: CardViewState,
     maxLine: Int,
-    onViewEvent: onViewEvent
+    onChangeExpendState: (enable: Boolean) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -120,21 +132,25 @@ private fun RowScope.CardViewNormalContentsText(
             .wrapContentHeight()
     ) {
 
-        Text(type = TextType.Title1, text = state.title)
+        Text(
+            text = state.title,
+            style = state.titleTextStyle
+        )
 
         if (state.description.isNotEmpty()) {
             Text(
                 modifier = Modifier.padding(top = MainTheme.spacing.baseLineSpacingSmall),
-                type = TextType.Description1,
                 maxLines = maxLine,
-                text = state.description
-            ) {
-                if (state.isExpanded()) {
-                    onViewEvent(CardViewEvent.ChangeExpandEnableState(true))
-                } else {
-                    onViewEvent(CardViewEvent.ChangeExpandEnableState(it.hasVisualOverflow))
+                text = state.description,
+                style = state.descriptionTextStyle,
+                onTextLayout = {
+                    if (state.isExpanded()) {
+                        onChangeExpendState(true)
+                    } else {
+                        onChangeExpendState(it.hasVisualOverflow)
+                    }
                 }
-            }
+            )
         }
     }
 }
@@ -144,7 +160,7 @@ private fun RowScope.CardViewNormalContentsText(
 private fun CardViewSmallImageContents(
     modifier: Modifier = Modifier,
     state: CardViewState,
-    onViewEvent: onViewEvent
+    onChangeExpendState: (enable: Boolean) -> Unit
 ) {
     Row(modifier) {
         Image(
@@ -181,7 +197,7 @@ private fun CardViewSmallImageContents(
                 .align(Alignment.CenterVertically),
             state = state,
             maxLine = 2,
-            onViewEvent
+            onChangeExpendState = onChangeExpendState
         )
     }
 }
@@ -192,7 +208,8 @@ private fun CardViewSmallImageContents(
 private fun CardViewSmallImagesContents(
     modifier: Modifier = Modifier,
     state: CardViewState,
-    onViewEvent: onViewEvent
+    onClickExpand: (expand: Boolean) -> Unit,
+    onChangeExpendState: (enable: Boolean) -> Unit
 ) {
     Column(modifier) {
         LazyRow(
@@ -214,7 +231,7 @@ private fun CardViewSmallImagesContents(
             }
         }
 
-        CardViewNormalContents(modifier, state, onViewEvent)
+        CardViewNormalContents(modifier, state, onClickExpand, onChangeExpendState)
     }
 }
 
@@ -224,7 +241,8 @@ private fun CardViewSmallImagesContents(
 private fun CardViewBigImageContents(
     modifier: Modifier = Modifier,
     state: CardViewState,
-    onViewEvent: onViewEvent
+    onClickExpand: (expand: Boolean) -> Unit,
+    onChangeExpendState: (enable: Boolean) -> Unit
 ) {
     Column(modifier) {
         Image(
@@ -239,6 +257,6 @@ private fun CardViewBigImageContents(
             contentScale = ContentScale.Crop
         )
 
-        CardViewNormalContents(modifier, state, onViewEvent)
+        CardViewNormalContents(modifier, state, onClickExpand, onChangeExpendState)
     }
 }
