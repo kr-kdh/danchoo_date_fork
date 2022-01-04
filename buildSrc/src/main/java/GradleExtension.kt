@@ -4,10 +4,10 @@ import org.gradle.api.JavaVersion
 
 object Config {
     const val APPLICATION_ID = "com.danchoo.date"
-    const val COMPILE_SDK = 32
-    const val BUILD_TOOL_VERSION = "32.0.0"
+    const val COMPILE_SDK = 31
+    const val BUILD_TOOL_VERSION = "31.0.0"
     const val MIN_SDK = 23
-    const val TARGET_SDK = 32
+    const val TARGET_SDK = 31
     const val VERSION_NAME = "1.0"
     const val VERSION_CODE = 1
 

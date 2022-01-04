@@ -8,5 +8,4 @@ include(":inspector")
 include(":category")
 include(":tags")
 include(":contents")
-include ':components'
-include ':dependency'
+include(":components")

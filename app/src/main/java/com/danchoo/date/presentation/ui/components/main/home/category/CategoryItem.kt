@@ -43,6 +43,11 @@ fun CategoryItem(
                             CategoryViewEvent.ItemClick(categoryItem.categoryInfoModel.category)
                         )
                     }
+                    is CategoryData.CategoryHeader -> {
+                        onViewEvent(
+                            CategoryViewEvent.TitleClick
+                        )
+                    }
                     else -> Unit
                 }
             }

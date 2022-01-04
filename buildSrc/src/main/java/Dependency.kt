@@ -71,7 +71,7 @@ object AndroidX {
 }
 
 object Accompanist {
-    private const val version = "0.21.4-beta"
+    private const val version = "0.22.0-rc"
     const val inserts = "com.google.accompanist:accompanist-insets:$version"
     const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:$version"
     const val navigationAnimation =
@@ -83,7 +83,7 @@ object Accompanist {
 }
 
 object Coil {
-    const val coil = "io.coil-kt:coil-compose:1.3.2"
+    const val coil = "io.coil-kt:coil-compose:2.0.0-alpha05"
 }
 
 object Retrofit {
@@ -94,7 +94,7 @@ object Retrofit {
 }
 
 object Moshi {
-    const val moshi = "com.squareup.moshi:moshi-kotlin:1.12.0"
+    const val moshi = "com.squareup.moshi:moshi-kotlin:1.13.0"
 }
 
 object Google {
@@ -122,7 +122,7 @@ object Hilt {
 }
 
 object Coroutines {
-    private const val version = "1.5.2"
+    private const val version = "1.6.0-native-mt"
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
     const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
     const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"

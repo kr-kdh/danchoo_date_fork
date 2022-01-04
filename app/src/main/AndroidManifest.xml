@@ -3,6 +3,9 @@
     package="com.danchoo.date">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".MyApplication"
@@ -24,15 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".presentation.ui.main.contents.ContentsActivity"
-            android:theme="@style/Theme.Date.NoActionBar" />
-
-        <activity
-            android:name=".presentation.ui.main.category.CategoriesEditorActivity"
-            android:theme="@style/Theme.Date.NoActionBar" />
-
     </application>
 
 </manifest>
