@@ -19,13 +19,13 @@ object CategoryContract {
     object CategoryViewState : BaseViewState
 
     sealed class CategoryViewEvent : ViewEvent {
-        data class ItemClick(
+        data class OnItemClick(
             val category: CategoryModel
         ) : CategoryViewEvent()
 
-        object TitleClick: CategoryViewEvent()
+        object OnTitleClick : CategoryViewEvent()
 
 
-        object AddCategory : CategoryViewEvent()
+        object OnAddCategory : CategoryViewEvent()
     }
 }

@@ -70,13 +70,13 @@ fun CategoryScreen(
     ) { viewEvent ->
 
         when (viewEvent) {
-            is CategoryViewEvent.ItemClick -> {
+            is CategoryViewEvent.OnItemClick -> {
                 permissionsState.launchPermissionRequest()
             }
-            is CategoryViewEvent.TitleClick -> {
+            is CategoryViewEvent.OnTitleClick -> {
                 permissionsState.launchPermissionRequest()
             }
-            is CategoryViewEvent.AddCategory -> state.navigation(viewEvent)
+            is CategoryViewEvent.OnAddCategory -> state.navigation(viewEvent)
             else -> Unit
         }
     }

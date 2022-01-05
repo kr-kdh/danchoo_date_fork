@@ -1,5 +1,6 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -31,14 +32,19 @@ fun CategoryEditorScreen(
         viewState = viewState
     ) {
         when (it) {
-            is CategoryEditorViewEvent.TitleChanged -> {
-                state.titleTextFieldValue.value = it.textFieldValue
+            is CategoryEditorViewEvent.OnClickBackPress -> state.popBackStack()
+            is CategoryEditorViewEvent.OnTitleChanged -> {
+                state.title.value = it.title
             }
-            is CategoryEditorViewEvent.DescriptionChanged -> {
-                state.descriptionTextFieldValue.value = it.textFieldValue
+            is CategoryEditorViewEvent.OnDescriptionChanged -> {
+                state.description.value = it.description
             }
-            is CategoryEditorViewEvent.VisibilityChanged -> {
+            is CategoryEditorViewEvent.OnVisibilityChanged -> {
                 state.isVisibility.value = it.visibility
+            }
+
+            is CategoryEditorViewEvent.OnClickImageChange -> {
+                Log.d("_SMY", "OnClickImageChange")
             }
         }
     }

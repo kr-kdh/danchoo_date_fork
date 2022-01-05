@@ -1,6 +1,5 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
-import androidx.compose.ui.text.input.TextFieldValue
 import com.danchoo.common.BaseIntent
 import com.danchoo.common.BaseSideEffect
 import com.danchoo.common.BaseViewState
@@ -21,17 +20,20 @@ object CategoryEditorContract {
     ) : BaseViewState
 
     sealed class CategoryEditorViewEvent : ViewEvent {
-        data class TitleChanged(
-            val textFieldValue: TextFieldValue
+        object OnClickBackPress : CategoryEditorViewEvent()
+
+        data class OnTitleChanged(
+            val title: String
         ) : CategoryEditorViewEvent()
 
-        data class DescriptionChanged(
-            val textFieldValue: TextFieldValue
+        data class OnDescriptionChanged(
+            val description: String
         ) : CategoryEditorViewEvent()
 
-        data class VisibilityChanged(
+        data class OnVisibilityChanged(
             val visibility: Boolean
         ) : CategoryEditorViewEvent()
 
+        object OnClickImageChange : CategoryEditorViewEvent()
     }
 }

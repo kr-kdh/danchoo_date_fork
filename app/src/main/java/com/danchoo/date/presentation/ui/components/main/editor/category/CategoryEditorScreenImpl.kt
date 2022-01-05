@@ -1,6 +1,7 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
@@ -10,7 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.danchoo.components.event.onViewEvent
@@ -33,8 +35,9 @@ fun CategoryEditorScreenImpl(
         modifier = modifier.fillMaxSize(),
         topBar = {
             BackTopAppBar(
-                title = {
-                    Text(text = stringResource(id = R.string.category_create))
+                title = { Text(text = stringResource(id = R.string.category_create)) },
+                onClickBack = {
+                    onViewEvent(CategoryEditorViewEvent.OnClickBackPress)
                 }
             )
         }
@@ -43,36 +46,40 @@ fun CategoryEditorScreenImpl(
             modifier = modifier
                 .padding(it)
                 .fillMaxSize(),
+            coverImage = {
+                AddCoverImage {
+                    onViewEvent(CategoryEditorViewEvent.OnClickImageChange)
+                }
+            },
             category = { childModifier ->
-                AddCoverImage(
-                    modifier = childModifier,
-                    onViewEvent = onViewEvent
-                )
-
                 AddTitle(
                     modifier = childModifier,
-                    textFieldValue = state.titleTextFieldValue.value,
-                    onViewEvent = onViewEvent
-                )
+                    text = state.title.value,
+                ) { title ->
+                    onViewEvent(CategoryEditorViewEvent.OnTitleChanged(title))
+                }
             },
             description = { childModifier ->
                 AddDescription(
                     modifier = childModifier,
-                    textFieldValue = state.descriptionTextFieldValue.value,
-                    onViewEvent = onViewEvent
-                )
+                    text = state.description.value
+                ) { description ->
+                    onViewEvent(CategoryEditorViewEvent.OnDescriptionChanged(description))
+                }
             },
             setting = { childModifier ->
                 AddVisibility(
                     modifier = childModifier,
-                    isVisibility = state.isVisibility.value,
-                    onViewEvent = onViewEvent
-                )
+                    isVisibility = state.isVisibility.value
+                ) { isVisibility ->
+                    onViewEvent(CategoryEditorViewEvent.OnVisibilityChanged(isVisibility))
+                }
 
                 AddChangeImage(
                     modifier = childModifier,
-                    onViewEvent = onViewEvent
-                )
+                ) {
+                    onViewEvent(CategoryEditorViewEvent.OnClickImageChange)
+                }
             }
         )
     }
@@ -81,6 +88,7 @@ fun CategoryEditorScreenImpl(
 @Composable
 private fun CategoryEditorContents(
     modifier: Modifier = Modifier,
+    coverImage: @Composable LazyItemScope.(childModifier: Modifier) -> Unit,
     category: @Composable LazyItemScope.(childModifier: Modifier) -> Unit,
     description: @Composable LazyItemScope.(childModifier: Modifier) -> Unit,
     setting: @Composable LazyItemScope.(childModifier: Modifier) -> Unit
@@ -94,6 +102,7 @@ private fun CategoryEditorContents(
                     end = MainTheme.spacing.baseLineSpacingMedium
                 )
 
+            coverImage(childModifier)
             category(childModifier)
 
             description(childModifier)
@@ -112,13 +121,14 @@ private fun CategoryEditorContents(
 
 @Composable
 private fun AddCoverImage(
-    modifier: Modifier,
-    onViewEvent: onViewEvent
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
     Image(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .height(192.dp),
+            .height(192.dp)
+            .clickable { onClick() },
         painter = rememberAsyncImagePainter(
             model = R.drawable.the_gleaners
         ),
@@ -131,32 +141,32 @@ private fun AddCoverImage(
 @Composable
 private fun AddTitle(
     modifier: Modifier = Modifier,
-    textFieldValue: TextFieldValue,
-    onViewEvent: onViewEvent
+    text: String,
+    onValueChange: (String) -> Unit = {}
 ) {
     TitleTextField(
         modifier = modifier,
-        value = textFieldValue.text,
+        value = text,
         title = stringResource(id = R.string.category_create_title),
         placeholder = stringResource(id = R.string.category_create_title_placeholder)
     ) {
-//        onViewEvent(CategoryEditorViewEvent.TitleChanged(it))
+        onValueChange(it)
     }
 }
 
 @Composable
 private fun AddDescription(
     modifier: Modifier,
-    textFieldValue: TextFieldValue,
-    onViewEvent: onViewEvent
+    text: String,
+    onValueChange: (String) -> Unit = {}
 ) {
     TitleTextField(
         modifier = modifier,
-        value = textFieldValue.text,
+        value = text,
         title = stringResource(id = R.string.category_create_description),
         placeholder = stringResource(id = R.string.category_create_description_placeholder)
     ) {
-//        onViewEvent(CategoryEditorViewEvent.DescriptionChanged(it))
+        onValueChange(it)
     }
 }
 
@@ -164,15 +174,21 @@ private fun AddDescription(
 private fun AddVisibility(
     modifier: Modifier,
     isVisibility: Boolean,
-    onViewEvent: onViewEvent
+    onClick: (isVisibility: Boolean) -> Unit = {}
 ) {
+
     OutlinedButton(
         modifier = modifier
             .padding(
                 top = MainTheme.spacing.baseLineSpacing,
                 bottom = MainTheme.spacing.baseLineSpacing
-            ),
-        onClick = {}
+            )
+            .semantics {
+                contentDescription = "AddVisibility switch"
+            },
+        onClick = {
+            onClick(!isVisibility)
+        }
     ) {
 
         Text(
@@ -196,7 +212,7 @@ private fun AddVisibility(
                 ),
             checked = isVisibility,
             onCheckedChange = {
-                onViewEvent(CategoryEditorViewEvent.VisibilityChanged(it))
+                onClick(!it)
             }
         )
     }
@@ -206,16 +222,15 @@ private fun AddVisibility(
 @Composable
 private fun AddChangeImage(
     modifier: Modifier,
-    onViewEvent: onViewEvent
+    onClick: () -> Unit
 ) {
-
     OutlinedButton(
         modifier = modifier
             .padding(
                 top = MainTheme.spacing.baseLineSpacing,
                 bottom = MainTheme.spacing.baseLineSpacing
             ),
-        onClick = {}
+        onClick = onClick
     ) {
         Text(
             modifier = Modifier

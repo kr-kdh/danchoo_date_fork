@@ -57,7 +57,6 @@ private fun CategoryDataItem(
     )
 }
 
-
 @Composable
 private fun CategoryHeaderItem(
     modifier: Modifier = Modifier,

@@ -18,7 +18,7 @@ class CategoryState(
     fun navigation(viewEvent: ViewEvent) {
         navController.launchResumed {
             when (viewEvent) {
-                is CategoryViewEvent.AddCategory -> {
+                is CategoryViewEvent.OnAddCategory -> {
                     navigate(CategoryEditorScreen.CREATE)
                 }
             }

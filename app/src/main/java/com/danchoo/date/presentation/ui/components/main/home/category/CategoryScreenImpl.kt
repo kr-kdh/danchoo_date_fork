@@ -39,19 +39,19 @@ fun CategoryScreenImpl(
             )
         },
         content = {
-            CategoryList(
+            CategoryContents(
                 modifier = modifier.padding(it),
                 list = categoryDataList
             ) { categoryData ->
                 when (categoryData) {
                     is CategoryData.CategoryInfoData -> {
                         onViewEvent(
-                            CategoryContract.CategoryViewEvent.ItemClick(categoryData.categoryInfoModel.category)
+                            CategoryContract.CategoryViewEvent.OnItemClick(categoryData.categoryInfoModel.category)
                         )
                     }
                     is CategoryData.CategoryHeader -> {
                         onViewEvent(
-                            CategoryContract.CategoryViewEvent.TitleClick
+                            CategoryContract.CategoryViewEvent.OnTitleClick
                         )
                     }
                     else -> Unit
@@ -60,14 +60,14 @@ fun CategoryScreenImpl(
         },
         floatingActionButton = {
             AddFloatingActionButton {
-                onViewEvent(CategoryContract.CategoryViewEvent.AddCategory)
+                onViewEvent(CategoryContract.CategoryViewEvent.OnAddCategory)
             }
         }
     )
 }
 
 @Composable
-fun CategoryList(
+fun CategoryContents(
     modifier: Modifier = Modifier,
     list: LazyPagingItems<CategoryData>,
     onClick: (categoryData: CategoryData) -> Unit = {}
