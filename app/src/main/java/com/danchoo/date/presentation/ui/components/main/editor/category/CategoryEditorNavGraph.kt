@@ -41,9 +41,7 @@ private fun NavGraphBuilder.addComposable(
         enterTransition = EnterTransition.slideInVertical,
         exitTransition = ExitTransition.slideOutVertical
     ) {
-
-        navController.enableOnBackPressed(true)
-        CategoryEditorDestination(
+        CategoryEditorScreen(
             modifier = modifier,
             navController = navController
         )

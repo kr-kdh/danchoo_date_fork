@@ -11,20 +11,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.danchoo.category.domain.model.CategoryData
 import com.danchoo.category.domain.model.CategoryInfoModel
 import com.danchoo.category.domain.model.CategoryModel
-import com.danchoo.components.event.onViewEvent
 import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.components.ui.cardview.CardViewContents
 import com.danchoo.components.ui.cardview.CardViewContentsType
 import com.danchoo.date.R
-import com.danchoo.date.presentation.ui.components.main.home.category.CategoryContract.CategoryViewEvent
 
 @Composable
 fun CategoryItem(
     modifier: Modifier = Modifier,
     categoryItem: CategoryData,
-    onViewEvent: onViewEvent = {}
+    onClick: (categoryData: CategoryData) -> Unit = {}
 ) {
     CardView(
         modifier = modifier
@@ -36,21 +34,7 @@ fun CategoryItem(
             )
             .fillMaxWidth()
             .wrapContentHeight()
-            .clickable {
-                when (categoryItem) {
-                    is CategoryData.CategoryInfoData -> {
-                        onViewEvent(
-                            CategoryViewEvent.ItemClick(categoryItem.categoryInfoModel.category)
-                        )
-                    }
-                    is CategoryData.CategoryHeader -> {
-                        onViewEvent(
-                            CategoryViewEvent.TitleClick
-                        )
-                    }
-                    else -> Unit
-                }
-            }
+            .clickable { onClick(categoryItem) }
     ) {
         when (categoryItem) {
             is CategoryData.CategoryInfoData -> CategoryDataItem(modifier, categoryItem)

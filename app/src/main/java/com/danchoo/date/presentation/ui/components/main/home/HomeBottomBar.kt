@@ -135,14 +135,7 @@ private fun HomeTabItems(
                 if (section.route != currentRoute) {
                     navController.navigate(section.route) {
                         launchSingleTop = true
-                        restoreState = true
-                        /**
-                         *  navController.enableOnBackPressed(true) -> 으로 설정 했을 때
-                         *  Back Press 를 눌렀을 때 root 로 가기 위해서 아래 주석을 제거
-                         */
-                        popUpTo(findStartDestination(navController.graph).id) {
-                            saveState = true
-                        }
+                        navController.popBackStack()
                     }
                 }
             },

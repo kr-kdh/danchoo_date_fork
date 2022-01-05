@@ -23,7 +23,7 @@ import com.danchoo.date.presentation.ui.components.main.editor.category.Category
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewState
 
 @Composable
-fun CategoryEditorScreen(
+fun CategoryEditorScreenImpl(
     modifier: Modifier,
     state: CategoryEditorState,
     viewState: CategoryEditorViewState,

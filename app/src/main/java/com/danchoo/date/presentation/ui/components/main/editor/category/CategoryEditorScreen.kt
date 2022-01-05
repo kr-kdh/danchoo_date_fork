@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 
 @Composable
-fun CategoryEditorDestination(
+fun CategoryEditorScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
     viewModel: CategoryEditorViewModel = hiltViewModel()
@@ -25,7 +25,7 @@ fun CategoryEditorDestination(
             .collect()
     }
 
-    CategoryEditorScreen(
+    CategoryEditorScreenImpl(
         modifier = modifier,
         state = state,
         viewState = viewState
