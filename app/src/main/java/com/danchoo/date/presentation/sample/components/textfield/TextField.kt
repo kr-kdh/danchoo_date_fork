@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.danchoo.components.theme.MyApplicationTheme
@@ -25,15 +24,15 @@ private fun TextPreview() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            OutlinedTextField(textFieldValue = TextFieldValue(text = "OutlinedTextField")) {}
+            OutlinedTextField(value = "OutlinedTextField")
 
             Spacer(modifier = Modifier.height(10.dp))
 
             TitleTextField(
-                textFieldValue = TextFieldValue(text = "TitleTextField"),
+                value = "TitleTextField",
                 title = "TitleTextField Title",
                 placeholder = "TitleTextField PlaceHolder"
-            ) {}
+            )
         }
     }
 }

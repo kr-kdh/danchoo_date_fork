@@ -8,27 +8,24 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.input.TextFieldValue
 import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.ui.button.IconButton
 
 @Composable
 fun OutlinedTextField(
     modifier: Modifier = Modifier,
-    textFieldValue: TextFieldValue,
+    value: String,
     label: String? = null,
     placeholder: String? = label,
-    onValueChange: (TextFieldValue) -> Unit
+    onValueChange: (String) -> Unit = {}
 ) {
     OutlinedTextField(
         modifier = modifier,
-        value = textFieldValue,
+        value = value,
         label = {
             label?.let {
                 Text(text = it)
             }
-
         },
         placeholder = {
             placeholder?.let {
@@ -37,11 +34,9 @@ fun OutlinedTextField(
         },
         singleLine = true,
         trailingIcon = {
-            if (textFieldValue.text.isNotEmpty()) {
+            if (value.isNotEmpty()) {
                 IconButton(imageVector = Icons.Filled.Cancel) {
-                    onValueChange(
-                        textFieldValue.copy("", TextRange.Zero, null)
-                    )
+                    onValueChange("")
                 }
             }
         },
@@ -52,10 +47,10 @@ fun OutlinedTextField(
 @Composable
 fun TitleTextField(
     modifier: Modifier = Modifier,
-    textFieldValue: TextFieldValue,
+    value: String,
     title: String,
     placeholder: String,
-    onValueChange: (TextFieldValue) -> Unit
+    onValueChange: (String) -> Unit = {}
 ) {
     Column {
         Text(
@@ -69,7 +64,7 @@ fun TitleTextField(
             modifier = modifier.padding(
                 top = MainTheme.spacing.baseLineSpacingSmall
             ),
-            textFieldValue = textFieldValue,
+            value = value,
             label = placeholder,
         ) {
             onValueChange(it)
