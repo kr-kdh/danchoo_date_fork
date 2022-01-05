@@ -64,7 +64,7 @@ private fun createColorPalette(
     )
 }
 
-object MainTheme {
+object MyApplicationTheme {
     val colors: ColorPalette
         @Composable
         @ReadOnlyComposable

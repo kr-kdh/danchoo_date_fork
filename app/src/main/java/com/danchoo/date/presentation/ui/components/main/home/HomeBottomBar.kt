@@ -36,7 +36,6 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.RoundedCornerShape50percent
 import com.danchoo.date.presentation.ui.components.common.Surface
@@ -48,8 +47,8 @@ import com.google.accompanist.insets.navigationBarsPadding
 fun HomeBottomBar(
     navController: NavController,
     tabs: Array<HomeScreen>,
-    color: Color = MainTheme.colors.primary,
-    contentColor: Color = MainTheme.colors.textPrimary
+    color: Color = MyApplicationTheme.colors.primary,
+    contentColor: Color = MyApplicationTheme.colors.textPrimary
 ) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -104,9 +103,9 @@ private fun HomeTabItems(
         val selected = section == currentSection
         val tint by animateColorAsState(
             if (selected) {
-                MainTheme.colors.textPrimary
+                MyApplicationTheme.colors.textPrimary
             } else {
-                MainTheme.colors.textSecondary
+                MyApplicationTheme.colors.textSecondary
             }
         )
 
@@ -226,7 +225,7 @@ private fun HomeBottomNavLayout(
 @Composable
 private fun MainBottomNavIndicator(
     strokeWidth: Dp = 2.dp,
-    color: Color = MainTheme.colors.textPrimary,
+    color: Color = MyApplicationTheme.colors.textPrimary,
     shape: Shape = RoundedCornerShape50percent
 ) {
     Spacer(

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.danchoo.components.event.onViewEvent
 import com.danchoo.components.extension.applyAlpha80
-import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.textfield.TitleTextField
 import com.danchoo.date.R
@@ -98,8 +98,8 @@ private fun CategoryEditorContents(
             val childModifier = Modifier
                 .fillMaxWidth()
                 .padding(
-                    start = MainTheme.spacing.baseLineSpacingMedium,
-                    end = MainTheme.spacing.baseLineSpacingMedium
+                    start = MyApplicationTheme.spacing.baseLineSpacingMedium,
+                    end = MyApplicationTheme.spacing.baseLineSpacingMedium
                 )
 
             coverImage(childModifier)
@@ -109,8 +109,8 @@ private fun CategoryEditorContents(
 
             Divider(
                 childModifier.padding(
-                    top = MainTheme.spacing.baseLineSpacingLarge,
-                    bottom = MainTheme.spacing.baseLineSpacingMedium
+                    top = MyApplicationTheme.spacing.baseLineSpacingLarge,
+                    bottom = MyApplicationTheme.spacing.baseLineSpacingMedium
                 )
             )
 
@@ -180,8 +180,8 @@ private fun AddVisibility(
     OutlinedButton(
         modifier = modifier
             .padding(
-                top = MainTheme.spacing.baseLineSpacing,
-                bottom = MainTheme.spacing.baseLineSpacing
+                top = MyApplicationTheme.spacing.baseLineSpacing,
+                bottom = MyApplicationTheme.spacing.baseLineSpacing
             )
             .semantics {
                 contentDescription = "AddVisibility switch"
@@ -195,20 +195,20 @@ private fun AddVisibility(
             modifier = Modifier
                 .weight(1f)
                 .padding(
-                    top = MainTheme.spacing.baseLineSpacing,
-                    bottom = MainTheme.spacing.baseLineSpacing
+                    top = MyApplicationTheme.spacing.baseLineSpacing,
+                    bottom = MyApplicationTheme.spacing.baseLineSpacing
                 ),
             text = stringResource(id = R.string.category_create_enable_visible),
-            style = MainTheme.typography.subtitle1,
-            color = MainTheme.colors.textPrimary.applyAlpha80()
+            style = MyApplicationTheme.typography.subtitle1,
+            color = MyApplicationTheme.colors.textPrimary.applyAlpha80()
         )
 
         Switch(
             modifier = Modifier
-                .defaultMinSize(MainTheme.minSize)
+                .defaultMinSize(MyApplicationTheme.minSize)
                 .padding(
-                    top = MainTheme.spacing.baseLineSpacing,
-                    bottom = MainTheme.spacing.baseLineSpacing
+                    top = MyApplicationTheme.spacing.baseLineSpacing,
+                    bottom = MyApplicationTheme.spacing.baseLineSpacing
                 ),
             checked = isVisibility,
             onCheckedChange = {
@@ -227,8 +227,8 @@ private fun AddChangeImage(
     OutlinedButton(
         modifier = modifier
             .padding(
-                top = MainTheme.spacing.baseLineSpacing,
-                bottom = MainTheme.spacing.baseLineSpacing
+                top = MyApplicationTheme.spacing.baseLineSpacing,
+                bottom = MyApplicationTheme.spacing.baseLineSpacing
             ),
         onClick = onClick
     ) {
@@ -236,12 +236,12 @@ private fun AddChangeImage(
             modifier = Modifier
                 .weight(1f)
                 .padding(
-                    top = MainTheme.spacing.baseLineSpacing,
-                    bottom = MainTheme.spacing.baseLineSpacing
+                    top = MyApplicationTheme.spacing.baseLineSpacing,
+                    bottom = MyApplicationTheme.spacing.baseLineSpacing
                 ),
             text = stringResource(id = R.string.category_create_change_cover),
-            style = MainTheme.typography.subtitle1,
-            color = MainTheme.colors.textPrimary.applyAlpha80()
+            style = MyApplicationTheme.typography.subtitle1,
+            color = MyApplicationTheme.colors.textPrimary.applyAlpha80()
         )
     }
 }

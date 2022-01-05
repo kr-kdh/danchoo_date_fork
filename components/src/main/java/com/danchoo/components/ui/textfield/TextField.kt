@@ -8,7 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.button.IconButton
 
 @Composable
@@ -55,14 +55,14 @@ fun TitleTextField(
     Column {
         Text(
             modifier = modifier.padding(
-                top = MainTheme.spacing.baseLineSpacingMedium
+                top = MyApplicationTheme.spacing.baseLineSpacingMedium
             ),
             text = title
         )
 
         OutlinedTextField(
             modifier = modifier.padding(
-                top = MainTheme.spacing.baseLineSpacingSmall
+                top = MyApplicationTheme.spacing.baseLineSpacingSmall
             ),
             value = value,
             label = placeholder,

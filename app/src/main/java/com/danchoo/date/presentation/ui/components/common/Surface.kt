@@ -17,15 +17,15 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.theme.MyApplicationTheme
 import kotlin.math.ln
 
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
-    color: Color = MainTheme.colors.background,
-    contentColor: Color = MainTheme.colors.textSecondary,
+    color: Color = MyApplicationTheme.colors.background,
+    contentColor: Color = MyApplicationTheme.colors.textSecondary,
     border: BorderStroke? = null,
     elevation: Dp = 0.dp,
     content: @Composable () -> Unit

@@ -11,7 +11,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.danchoo.category.domain.model.CategoryData
 import com.danchoo.category.domain.model.CategoryInfoModel
 import com.danchoo.category.domain.model.CategoryModel
-import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.components.ui.cardview.CardViewContents
@@ -27,10 +26,10 @@ fun CategoryItem(
     CardView(
         modifier = modifier
             .padding(
-                start = MainTheme.spacing.baseLineSpacingMedium,
-                top = MainTheme.spacing.baseLineSpacing,
-                bottom = MainTheme.spacing.baseLineSpacing,
-                end = MainTheme.spacing.baseLineSpacingMedium,
+                start = MyApplicationTheme.spacing.baseLineSpacingMedium,
+                top = MyApplicationTheme.spacing.baseLineSpacing,
+                bottom = MyApplicationTheme.spacing.baseLineSpacing,
+                end = MyApplicationTheme.spacing.baseLineSpacingMedium,
             )
             .fillMaxWidth()
             .wrapContentHeight()

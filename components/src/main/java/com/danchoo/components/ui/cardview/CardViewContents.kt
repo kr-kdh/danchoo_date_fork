@@ -16,7 +16,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.RoundedCornerShape8dp
 import com.danchoo.components.ui.button.ExpandButton
 
@@ -91,10 +91,10 @@ private fun CardViewNormalContents(
         CardViewNormalContentsText(
             modifier = modifier
                 .padding(
-                    start = MainTheme.spacing.baseLineSpacingMedium,
-                    top = MainTheme.spacing.baseLineSpacing,
-                    bottom = MainTheme.spacing.baseLineSpacing,
-                    end = if (state.useExpand) MainTheme.spacing.baseLineSpacingSmall else MainTheme.spacing.baseLineSpacingMedium
+                    start = MyApplicationTheme.spacing.baseLineSpacingMedium,
+                    top = MyApplicationTheme.spacing.baseLineSpacing,
+                    bottom = MyApplicationTheme.spacing.baseLineSpacing,
+                    end = if (state.useExpand) MyApplicationTheme.spacing.baseLineSpacingSmall else MyApplicationTheme.spacing.baseLineSpacingMedium
                 )
                 .align(Alignment.Top),
             state = state,
@@ -106,10 +106,10 @@ private fun CardViewNormalContents(
             ExpandButton(
                 modifier = Modifier
                     .padding(
-                        top = MainTheme.spacing.baseLineSpacingSmall,
-                        end = MainTheme.spacing.baseLineSpacing
+                        top = MyApplicationTheme.spacing.baseLineSpacingSmall,
+                        end = MyApplicationTheme.spacing.baseLineSpacing
                     )
-                    .defaultMinSize(minHeight = MainTheme.minSize),
+                    .defaultMinSize(minHeight = MyApplicationTheme.minSize),
                 expanded = state.isExpanded(),
                 enable = state.isEnableExpandButton()
             ) {
@@ -139,7 +139,7 @@ private fun RowScope.CardViewNormalContentsText(
 
         if (state.description.isNotEmpty()) {
             Text(
-                modifier = Modifier.padding(top = MainTheme.spacing.baseLineSpacingSmall),
+                modifier = Modifier.padding(top = MyApplicationTheme.spacing.baseLineSpacingSmall),
                 maxLines = maxLine,
                 text = state.description,
                 style = state.descriptionTextStyle,
@@ -167,15 +167,15 @@ private fun CardViewSmallImageContents(
             modifier = Modifier
                 .size(96.dp)
                 .padding(
-                    start = MainTheme.spacing.baseLineSpacing,
-                    top = MainTheme.spacing.baseLineSpacing,
-                    bottom = MainTheme.spacing.baseLineSpacing,
+                    start = MyApplicationTheme.spacing.baseLineSpacing,
+                    top = MyApplicationTheme.spacing.baseLineSpacing,
+                    bottom = MyApplicationTheme.spacing.baseLineSpacing,
                 )
                 .align(Alignment.CenterVertically)
                 .clip(RoundedCornerShape8dp)
                 .border(
-                    width = MainTheme.borderWidth.borderHarf,
-                    color = MainTheme.colors.border,
+                    width = MyApplicationTheme.borderWidth.borderHarf,
+                    color = MyApplicationTheme.colors.border,
                     shape = RoundedCornerShape8dp
                 ),
             painter = rememberImagePainter(
@@ -189,10 +189,10 @@ private fun CardViewSmallImageContents(
         CardViewNormalContentsText(
             modifier = modifier
                 .padding(
-                    start = MainTheme.spacing.baseLineSpacing,
-                    top = MainTheme.spacing.baseLineSpacing,
-                    bottom = MainTheme.spacing.baseLineSpacing,
-                    end = MainTheme.spacing.baseLineSpacing
+                    start = MyApplicationTheme.spacing.baseLineSpacing,
+                    top = MyApplicationTheme.spacing.baseLineSpacing,
+                    bottom = MyApplicationTheme.spacing.baseLineSpacing,
+                    end = MyApplicationTheme.spacing.baseLineSpacing
                 )
                 .align(Alignment.CenterVertically),
             state = state,

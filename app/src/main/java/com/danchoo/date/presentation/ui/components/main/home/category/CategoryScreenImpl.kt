@@ -13,7 +13,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import com.danchoo.category.domain.model.CategoryData
 import com.danchoo.components.event.onViewEvent
-import com.danchoo.components.theme.MainTheme
+import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.button.AddFloatingActionButton
 import com.danchoo.date.R
 import com.danchoo.date.presentation.ui.components.main.home.category.CategoryContract.CategoryViewState
@@ -33,7 +33,7 @@ fun CategoryScreenImpl(
                 title = {
                     Text(
                         text = stringResource(id = R.string.category_create_title),
-                        style = MainTheme.typography.title1
+                        style = MyApplicationTheme.typography.title1
                     )
                 }
             )
@@ -74,7 +74,7 @@ fun CategoryContents(
 ) {
     LazyColumn(
         modifier
-            .padding(top = MainTheme.spacing.baseLineSpacingMedium)
+            .padding(top = MyApplicationTheme.spacing.baseLineSpacingMedium)
             .clipToBounds()
     ) {
         itemsIndexed(list) { index, categoryModel ->

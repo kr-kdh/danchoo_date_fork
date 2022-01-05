@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.danchoo.components.theme.MainTheme
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.contents.domain.model.ContentsModel
@@ -57,14 +56,14 @@ private fun ContentsDataItem(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .background(MainTheme.colors.background)
+            .background(MyApplicationTheme.colors.background)
     ) {
         Text(
             text = contentsItem.title,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.h6,
-            color = MainTheme.colors.textSecondary,
+            color = MyApplicationTheme.colors.textSecondary,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)
         )
 
@@ -73,7 +72,7 @@ private fun ContentsDataItem(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.body1,
-            color = MainTheme.colors.textSecondary,
+            color = MyApplicationTheme.colors.textSecondary,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)
         )
     }
@@ -89,14 +88,14 @@ private fun ContentsHeaderItem(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .background(MainTheme.colors.background)
+            .background(MyApplicationTheme.colors.background)
     ) {
         Text(
             text = contentsItem.title,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.h6,
-            color = MainTheme.colors.textSecondary,
+            color = MyApplicationTheme.colors.textSecondary,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)
         )
     }
