@@ -196,7 +196,7 @@ class ColorPalette(
             onPrimary = textPrimary,
             onSecondary = textSecondary,
             onBackground = textSecondary,
-            onSurface = textSecondary,
+            onSurface = textPrimary,
             onError = defaultColor.onError,
             isLight = isLight,
         )

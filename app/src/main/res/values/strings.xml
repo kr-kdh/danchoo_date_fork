@@ -5,6 +5,9 @@
     <string name="fragment_setting_nav_title">setting</string>
 
 
+    <string name="camera">카메라</string>
+    <string name="gallery">갤러리</string>
+
     <string name="category_create">카테고리 생성</string>
 
     <string name="category_create_title">카테고리</string>

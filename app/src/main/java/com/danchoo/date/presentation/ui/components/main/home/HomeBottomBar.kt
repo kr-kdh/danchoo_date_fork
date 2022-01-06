@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,7 +39,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.RoundedCornerShape50percent
-import com.danchoo.date.presentation.ui.components.common.Surface
 import com.danchoo.date.presentation.ui.components.main.HomeScreen
 import com.google.accompanist.insets.navigationBarsPadding
 

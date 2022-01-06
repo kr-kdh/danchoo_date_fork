@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -14,7 +15,6 @@ import androidx.paging.compose.itemsIndexed
 import com.danchoo.components.ui.button.AddFloatingActionButton
 import com.danchoo.contents.domain.model.ContentsModel
 import com.danchoo.date.presentation.ui.common.extension.debounce
-import com.danchoo.date.presentation.ui.components.common.Surface
 import com.danchoo.date.presentation.ui.main.contents.ContentsViewModel
 
 @Composable
