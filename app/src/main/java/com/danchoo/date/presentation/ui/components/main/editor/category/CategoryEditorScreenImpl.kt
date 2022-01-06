@@ -176,7 +176,6 @@ private fun AddVisibility(
     isVisibility: Boolean,
     onClick: (isVisibility: Boolean) -> Unit = {}
 ) {
-
     OutlinedButton(
         modifier = modifier
             .padding(
@@ -204,15 +203,10 @@ private fun AddVisibility(
         )
 
         Switch(
-            modifier = Modifier
-                .defaultMinSize(MyApplicationTheme.minSize)
-                .padding(
-                    top = MyApplicationTheme.spacing.baseLineSpacing,
-                    bottom = MyApplicationTheme.spacing.baseLineSpacing
-                ),
+            modifier = Modifier.defaultMinSize(MyApplicationTheme.minSize),
             checked = isVisibility,
             onCheckedChange = {
-                onClick(!it)
+                onClick(!isVisibility)
             }
         )
     }
