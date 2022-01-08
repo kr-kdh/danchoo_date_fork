@@ -47,7 +47,7 @@ fun CategoryEditorScreenImpl(
                 .padding(it)
                 .fillMaxSize(),
             coverImage = {
-                AddCoverImage {
+                AddCoverImage(path = viewState.coverImagePath) {
                     onViewEvent(CategoryEditorViewEvent.OnClickImageChange)
                 }
             },
@@ -122,6 +122,7 @@ private fun CategoryEditorContents(
 @Composable
 private fun AddCoverImage(
     modifier: Modifier = Modifier,
+    path: String,
     onClick: () -> Unit = {}
 ) {
     Image(
@@ -130,7 +131,7 @@ private fun AddCoverImage(
             .height(192.dp)
             .clickable { onClick() },
         painter = rememberAsyncImagePainter(
-            model = R.drawable.the_gleaners
+            model = if (path.isNotEmpty()) path else R.drawable.the_gleaners
         ),
         contentDescription = null,
         alignment = Alignment.Center,

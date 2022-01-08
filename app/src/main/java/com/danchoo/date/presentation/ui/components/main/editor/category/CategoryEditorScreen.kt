@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import com.danchoo.components.permission.RequestPermission
 import com.danchoo.date.presentation.ui.components.common.dialog.MediaSelectDialog
 import com.danchoo.date.presentation.ui.components.common.dialog.MediaSelectType
+import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorIntent
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewEvent
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -27,6 +28,7 @@ fun CategoryEditorScreen(
     val state = rememberCategoryEditorState(navController)
 
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) {
+        viewModel.setEvent(CategoryEditorIntent.SaveBitmap(it))
     }
 
     LaunchedEffect(key1 = Unit) {

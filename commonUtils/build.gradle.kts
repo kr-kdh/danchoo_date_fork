@@ -2,12 +2,21 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
     default()
 }
 dependencies {
+    implementation(project(":inspector"))
+
+    Hilt.run {
+        implementation(android)
+        kapt(compiler)
+        kaptAndroidTest(compiler)
+        androidTestImplementation(testing)
+    }
 
 //    implementation 'androidx.core:core-ktx:1.6.0'
 //    implementation 'androidx.appcompat:appcompat:1.3.1'
