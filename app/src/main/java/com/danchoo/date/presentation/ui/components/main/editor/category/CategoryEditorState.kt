@@ -13,7 +13,8 @@ class CategoryEditorState(
     val title: MutableState<String>,
     val description: MutableState<String>,
     val isVisibility: MutableState<Boolean>,
-    val isShowMenuDialog: MutableState<Boolean>
+    val isShowMenuDialog: MutableState<Boolean>,
+    val isShowPermission: MutableState<Boolean>
 ) {
     fun popBackStack() {
         navController.launchResumed {
@@ -29,14 +30,23 @@ fun rememberCategoryEditorState(
     title: MutableState<String> = rememberSaveable { mutableStateOf("") },
     description: MutableState<String> = rememberSaveable { mutableStateOf("") },
     isVisibility: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    isShowMenuDialog: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
+    isShowMenuDialog: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    isShowPermission: MutableState<Boolean> = remember { mutableStateOf(false) }
 ) = remember(
     navController,
     title,
     description,
     isVisibility,
-    isShowMenuDialog
+    isShowMenuDialog,
+    isShowPermission
 ) {
-    CategoryEditorState(navController, title, description, isVisibility, isShowMenuDialog)
+    CategoryEditorState(
+        navController,
+        title,
+        description,
+        isVisibility,
+        isShowMenuDialog,
+        isShowPermission
+    )
 }
 

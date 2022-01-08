@@ -45,35 +45,14 @@ dependencies {
         implementation(coreTesting)
     }
 
-    AndroidX.Compose.run {
-        implementation(ui)
-        implementation(uiUtil)
-        implementation(runtime)
-        implementation(material)
-        implementation(animation)
-        implementation(tooling)
-        implementation(iconsExtended)
-    }
-
     AndroidX.Activity.run {
         implementation(compose)
-    }
-
-    AndroidX.ConstraintLayout.run {
-        implementation(constraintLayout)
     }
 
     AndroidX.Lifecycle.run {
         implementation(viewModelKtx)
         implementation(viewModelCompose)
         implementation(ViewModelSavedSate)
-    }
-
-    AndroidX.Navigation.run {
-        implementation(compose)
-        implementation(runtimeKtx)
-        implementation(uiKtx)
-        implementation(fragmentKtx)
     }
 
     AndroidX.Room.run {
@@ -85,11 +64,8 @@ dependencies {
 
     Accompanist.run {
         implementation(inserts)
-        implementation(systemUiController)
-        implementation(navigationAnimation)
         implementation(pager)
         implementation(pagerIndicators)
-        implementation(permission)
     }
 
     Coil.run {

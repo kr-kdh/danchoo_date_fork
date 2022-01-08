@@ -1,10 +1,15 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
+import android.Manifest
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.launch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.danchoo.components.permission.RequestPermission
 import com.danchoo.date.presentation.ui.components.common.dialog.MediaSelectDialog
 import com.danchoo.date.presentation.ui.components.common.dialog.MediaSelectType
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewEvent
@@ -20,6 +25,9 @@ fun CategoryEditorScreen(
 
     val viewState = viewModel.viewState.value
     val state = rememberCategoryEditorState(navController)
+
+    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) {
+    }
 
     LaunchedEffect(key1 = Unit) {
         viewModel.sideEffect
@@ -53,7 +61,9 @@ fun CategoryEditorScreen(
         MediaSelectDialog(
             onItemSelected = {
                 when (it) {
-                    MediaSelectType.Camera -> {}
+                    MediaSelectType.Camera -> {
+                        state.isShowPermission.value = true
+                    }
                     MediaSelectType.Gallery -> {}
                 }
             }
@@ -61,4 +71,17 @@ fun CategoryEditorScreen(
             state.isShowMenuDialog.value = false
         }
     }
+
+    if (state.isShowPermission.value) {
+        RequestPermission(
+            permission = Manifest.permission.CAMERA,
+            onSuccess = { launcher.launch() },
+            onDenied = {},
+            onRequestMoveSetting = {},
+            onRequestDismiss = {
+                state.isShowPermission.value = false
+            }
+        )
+    }
 }
+

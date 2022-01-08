@@ -23,7 +23,8 @@ object AndroidX {
     }
 
     object Activity {
-        const val compose = "androidx.activity:activity-compose:1.4.0"
+        const val version = "1.4.0"
+        const val compose = "androidx.activity:activity-compose:$version"
     }
 
     object ConstraintLayout {

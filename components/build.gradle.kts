@@ -14,37 +14,48 @@ android {
     buildFeatures.run {
         compose = true
     }
+
+    kotlinOptions {
+        freeCompilerArgs = freeCompilerArgs.plus(
+            listOf(
+                "-Xopt-in=kotlin.RequiresOptIn",
+                "-Xopt-in=kotlin.Experimental",
+                "-Xopt-in=androidx.compose.animation.ExperimentalAnimationApi",
+                "-Xopt-in=com.google.accompanist.pager.ExperimentalPagerApi",
+                "-Xopt-in=coil.annotation.ExperimentalCoilApi",
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xopt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi"
+            )
+        )
+    }
 }
 
 dependencies {
 
     AndroidX.Compose.run {
-        implementation(ui)
-        implementation(uiUtil)
-        implementation(runtime)
-        implementation(material)
-        implementation(animation)
-        implementation(tooling)
-        implementation(iconsExtended)
-    }
-
-    AndroidX.ConstraintLayout.run {
-        implementation(constraintLayout)
+        api(ui)
+        api(uiUtil)
+        api(runtime)
+        api(material)
+        api(animation)
+        api(tooling)
+        api(iconsExtended)
     }
 
     AndroidX.Navigation.run {
-        implementation(compose)
-        implementation(runtimeKtx)
-        implementation(uiKtx)
-        implementation(fragmentKtx)
+        api(compose)
+        api(runtimeKtx)
+        api(uiKtx)
+        api(fragmentKtx)
     }
 
     Accompanist.run {
-        implementation(systemUiController)
-        implementation(navigationAnimation)
+        api(systemUiController)
+        api(navigationAnimation)
+        implementation(permission)
     }
 
     Coil.run {
-        implementation(coil)
+        api(coil)
     }
 }
