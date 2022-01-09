@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -15,7 +14,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.danchoo.components.event.onViewEvent
+import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.extension.applyAlpha80
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.appbar.BackTopAppBar
@@ -29,7 +28,7 @@ fun CategoryEditorScreenImpl(
     modifier: Modifier,
     state: CategoryEditorState,
     viewState: CategoryEditorViewState,
-    onViewEvent: onViewEvent
+    onViewEvent: OnViewEvent
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -134,7 +133,6 @@ private fun AddCoverImage(
             model = if (path.isNotEmpty()) path else R.drawable.the_gleaners
         ),
         contentDescription = null,
-        alignment = Alignment.Center,
         contentScale = ContentScale.Crop
     )
 }

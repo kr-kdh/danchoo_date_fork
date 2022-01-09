@@ -22,7 +22,8 @@ android {
                 "-Xopt-in=com.google.accompanist.pager.ExperimentalPagerApi",
                 "-Xopt-in=coil.annotation.ExperimentalCoilApi",
                 "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-                "-Xopt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi"
+                "-Xopt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi",
+                "-Xopt-in=androidx.compose.foundation.ExperimentalFoundationApi"
             )
         )
     }

@@ -12,7 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import com.danchoo.category.domain.model.CategoryData
-import com.danchoo.components.event.onViewEvent
+import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.button.AddFloatingActionButton
 import com.danchoo.date.R
@@ -24,7 +24,7 @@ fun CategoryScreenImpl(
     state: CategoryState,
     viewState: CategoryViewState,
     categoryDataList: LazyPagingItems<CategoryData>,
-    onViewEvent: onViewEvent
+    onViewEvent: OnViewEvent
 ) {
     Scaffold(
         topBar = {

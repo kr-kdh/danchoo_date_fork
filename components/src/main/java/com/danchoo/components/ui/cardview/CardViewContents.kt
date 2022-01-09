@@ -15,7 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.RoundedCornerShape8dp
 import com.danchoo.components.ui.button.ExpandButton
@@ -178,8 +178,8 @@ private fun CardViewSmallImageContents(
                     color = MyApplicationTheme.colors.border,
                     shape = RoundedCornerShape8dp
                 ),
-            painter = rememberImagePainter(
-                data = state.images.first()
+            painter = rememberAsyncImagePainter(
+                model = state.images.first()
             ),
             contentDescription = null,
             alignment = Alignment.Center,
@@ -220,8 +220,8 @@ private fun CardViewSmallImagesContents(
             itemsIndexed(state.images) { index, item ->
                 Image(
                     modifier = Modifier.size(144.dp),
-                    painter = rememberImagePainter(
-                        data = item
+                    painter = rememberAsyncImagePainter(
+                        model = item
                     ),
                     contentDescription = null,
                     alignment = Alignment.Center,
@@ -249,8 +249,8 @@ private fun CardViewBigImageContents(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(192.dp),
-            painter = rememberImagePainter(
-                data = state.images.first()
+            painter = rememberAsyncImagePainter(
+                model = state.images.first()
             ),
             contentDescription = null,
             alignment = Alignment.Center,
