@@ -8,6 +8,7 @@ import com.danchoo.components.animation.navagation.EnterTransition
 import com.danchoo.components.animation.navagation.ExitTransition
 import com.danchoo.date.presentation.ui.components.main.CategoryEditorScreen
 import com.danchoo.date.presentation.ui.components.main.MainRoute
+import com.danchoo.date.presentation.ui.components.main.gallery.GalleryScreen
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
 
@@ -46,5 +47,18 @@ private fun NavGraphBuilder.addComposable(
             navController = navController
         )
     }
+
+    composable(
+        route = CategoryEditorScreen.GALLERY,
+        enterTransition = EnterTransition.slideInVertical,
+        exitTransition = ExitTransition.slideOutVertical
+    ) {
+        GalleryScreen(
+            modifier = modifier,
+            navController = navController
+        )
+    }
+
+
 }
 

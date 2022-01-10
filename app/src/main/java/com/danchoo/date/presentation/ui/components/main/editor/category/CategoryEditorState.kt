@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.NavController
 import com.danchoo.date.presentation.ui.common.extension.launchResumed
+import com.danchoo.date.presentation.ui.components.main.CategoryEditorScreen
 
 class CategoryEditorState(
     val navController: NavController,
@@ -19,6 +20,12 @@ class CategoryEditorState(
     fun popBackStack() {
         navController.launchResumed {
             popBackStack()
+        }
+    }
+
+    fun moveToGallery() {
+        navController.launchResumed {
+            navigate(CategoryEditorScreen.GALLERY)
         }
     }
 }

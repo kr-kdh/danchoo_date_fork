@@ -4,6 +4,7 @@ import com.danchoo.common.BaseIntent
 import com.danchoo.common.BaseSideEffect
 import com.danchoo.common.BaseViewState
 import com.danchoo.components.event.ViewEvent
+import com.danchoo.date.presentation.ui.components.main.gallery.domain.model.GalleryItemModel
 
 object GalleryContract {
 
@@ -16,7 +17,8 @@ object GalleryContract {
     }
 
     data class GalleryViewState(
-        val isCreate: Boolean = true
+        val isCreate: Boolean = true,
+        val galleryItemList: List<GalleryItemModel> = emptyList()
     ) : BaseViewState
 
     sealed class GalleryViewEvent : ViewEvent {

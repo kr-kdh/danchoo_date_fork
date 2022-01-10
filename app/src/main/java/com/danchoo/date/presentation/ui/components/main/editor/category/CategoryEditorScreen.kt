@@ -63,10 +63,8 @@ fun CategoryEditorScreen(
         MediaSelectDialog(
             onItemSelected = {
                 when (it) {
-                    MediaSelectType.Camera -> {
-                        state.isShowPermission.value = true
-                    }
-                    MediaSelectType.Gallery -> {}
+                    MediaSelectType.Camera -> state.isShowPermission.value = true
+                    MediaSelectType.Gallery -> state.moveToGallery()
                 }
             }
         ) {

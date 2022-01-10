@@ -38,6 +38,7 @@ dependencies {
     implementation(project(":inspector"))
     implementation(project(":category"))
     implementation(project(":tags"))
+    implementation(project(":gallery"))
 
     AndroidX.run {
         implementation(coreKtx)
@@ -96,11 +97,11 @@ dependencies {
         androidTestImplementation(testing)
     }
 
-    Coroutines.run {
-        implementation(core)
-        implementation(android)
-        androidTestImplementation(test)
-    }
+//    Coroutines.run {
+//        implementation(core)
+//        implementation(android)
+//        androidTestImplementation(test)
+//    }
 
     Mockito.run {
         androidTestImplementation(mock)

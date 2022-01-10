@@ -50,6 +50,7 @@ enum class HomeScreen(
 object CategoryEditorScreen {
     const val CREATE = "${MainRoute.CATEGORY_EDITOR_ROUTE}/create"
     const val MODIFY = "${MainRoute.CATEGORY_DETAIL_ROUTE}/modify"
+    const val GALLERY = "${MainRoute.CATEGORY_DETAIL_ROUTE}/gallery"
 }
 
 
