@@ -13,13 +13,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.extension.applyAlpha80
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.textfield.TitleTextField
 import com.danchoo.date.R
+import com.danchoo.date.presentation.ui.common.glide.rememberGlideImagePinter
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewEvent
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewState
 
@@ -129,8 +129,8 @@ private fun AddCoverImage(
             .fillMaxWidth()
             .height(192.dp)
             .clickable { onClick() },
-        painter = rememberAsyncImagePainter(
-            model = if (path.isNotEmpty()) path else R.drawable.the_gleaners
+        painter = rememberGlideImagePinter(
+            data = if (path.isNotEmpty()) path else R.drawable.the_gleaners
         ),
         contentDescription = null,
         contentScale = ContentScale.Crop

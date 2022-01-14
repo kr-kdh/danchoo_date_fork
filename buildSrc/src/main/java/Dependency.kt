@@ -84,7 +84,7 @@ object Accompanist {
 }
 
 object Coil {
-    const val coil = "io.coil-kt:coil-compose:2.0.0-alpha05"
+    const val coil = "io.coil-kt:coil-compose:1.4.0"
 }
 
 object Retrofit {
@@ -161,5 +161,12 @@ object Mockito {
     private const val version = "2.24.5"
     const val mock = "org.mockito:mockito-android:$version"
     const val mockInline = "org.mockito:mockito-inline:$version"
+}
+
+
+object Glide {
+    private const val version = "4.12.0"
+    const val glide = "com.github.bumptech.glide:glide:$version"
+    const val compiler =  "com.github.bumptech.glide:compiler:$version"
 }
 

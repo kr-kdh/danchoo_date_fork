@@ -66,7 +66,7 @@ class GalleryDataSourceImpl(private val context: Context) : GalleryDataSource {
                 }
 
 
-                if (totalCount > 1000) {
+                if (totalCount >= 100) {
                     break
                 }
             }

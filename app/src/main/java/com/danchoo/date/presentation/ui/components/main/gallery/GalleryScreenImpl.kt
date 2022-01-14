@@ -1,5 +1,7 @@
 package com.danchoo.date.presentation.ui.components.main.gallery
 
+import android.content.Context
+import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -11,17 +13,21 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.FilterQuality
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
+import com.bumptech.glide.RequestBuilder
 import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.date.R
+import com.danchoo.date.presentation.ui.common.glide.GlideApp
+import com.danchoo.date.presentation.ui.common.glide.GlideImage
+import com.danchoo.date.presentation.ui.common.glide.GlideImageLoader
+import com.danchoo.date.presentation.ui.common.glide.LocalImageLoader
 import com.danchoo.date.presentation.ui.components.main.gallery.GalleryContract.GalleryViewState
 
 @Composable
@@ -53,21 +59,27 @@ fun GalleryScreenImpl(
             modifier = modifier.padding(it)
         ) {
             items(viewState.galleryItemList) {
-                Image(
+                GlideImage(
                     modifier = Modifier.size(100.dp),
-                    painter = rememberAsyncImagePainter(model = it.uri, FilterQuality.None),
-                    contentScale = ContentScale.Crop,
-                    contentDescription = null,
+                    data = Icons.Default.Close,
+                    size = 100.dp
                 )
             }
         }
     }
 }
 
+class GlideAppImageLoaderImpl: GlideImageLoader {
+    override fun getRequestBuilder(context: Context): RequestBuilder<Bitmap> {
+        return GlideApp.with(context).asBitmap()
+    }
+}
 @Composable
 fun GalleryItem() {
-    Image(
-        painter = rememberImagePainter(data = Icons.Filled.ArrowBack),
-        contentDescription = null
-    )
+    CompositionLocalProvider(LocalImageLoader provides GlideAppImageLoaderImpl()) {
+        Image(
+            painter = rememberImagePainter(data = Icons.Filled.ArrowBack),
+            contentDescription = null
+        )
+    }
 }

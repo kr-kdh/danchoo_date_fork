@@ -70,9 +70,6 @@ dependencies {
         implementation(pagerIndicators)
     }
 
-    Coil.run {
-        implementation(coil)
-    }
 
     Retrofit.run {
         implementation(retrofit)
@@ -110,6 +107,14 @@ dependencies {
 
     Google.run {
         implementation(material)
+    }
+
+    Glide.run {
+        implementation(glide)
+        kapt(compiler)
+    }
+    Coil.run {
+        implementation(coil)
     }
 
 //    AndroidX.Test.run {
