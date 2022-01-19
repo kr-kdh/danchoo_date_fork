@@ -25,10 +25,10 @@ import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.date.R
 import com.danchoo.date.presentation.ui.common.glide.GlideApp
-import com.danchoo.date.presentation.ui.common.glide.GlideImage
-import com.danchoo.date.presentation.ui.common.glide.GlideImageLoader
-import com.danchoo.date.presentation.ui.common.glide.LocalImageLoader
 import com.danchoo.date.presentation.ui.components.main.gallery.GalleryContract.GalleryViewState
+import com.danchoo.glideimage.GlideImage
+import com.danchoo.glideimage.GlideImageLoader
+import com.danchoo.glideimage.LocalImageLoader
 
 @Composable
 fun GalleryScreenImpl(
@@ -69,13 +69,14 @@ fun GalleryScreenImpl(
     }
 }
 
-class GlideAppImageLoaderImpl: GlideImageLoader {
+class GlideAppImageLoaderImpl : GlideImageLoader {
     override fun getRequestBuilder(context: Context): RequestBuilder<Bitmap> {
         return GlideApp.with(context).asBitmap()
     }
 }
+
 @Composable
-fun GalleryItem() {
+fun TestComposable() {
     CompositionLocalProvider(LocalImageLoader provides GlideAppImageLoaderImpl()) {
         Image(
             painter = rememberImagePainter(data = Icons.Filled.ArrowBack),

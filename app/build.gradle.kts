@@ -44,7 +44,7 @@ dependencies {
         implementation(coreKtx)
         implementation(appcompat)
         implementation(multidex)
-        implementation(coreTesting)
+        androidTestImplementation(coreTesting)
     }
 
     AndroidX.Activity.run {
@@ -116,6 +116,8 @@ dependencies {
     Coil.run {
         implementation(coil)
     }
+
+    implementation("com.github.danchoo21:glide-image:1.0.0")
 
 //    AndroidX.Test.run {
 //        androidTestImplementation(runner)

@@ -23,7 +23,7 @@ object AndroidX {
     }
 
     object Activity {
-        const val version = "1.4.0"
+        private const val version = "1.4.0"
         const val compose = "androidx.activity:activity-compose:$version"
     }
 
@@ -37,6 +37,7 @@ object AndroidX {
         const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
         const val ViewModelSavedSate = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$version"
+        const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
     }
 
     object Navigation {
@@ -102,7 +103,7 @@ object Google {
     const val tasks = "com.google.android.gms:play-services-tasks:18.0.0"
     const val ads = "com.google.android.gms:play-services-ads:20.5.0"
 
-    const val materialVersion = "1.4.0"
+    private const val materialVersion = "1.4.0"
     const val material = "com.google.android.material:material:$materialVersion"
 }
 
@@ -136,6 +137,7 @@ object Timber {
 object JUnit4 {
     private const val version = "4.13.2"
 
+    const val junit = "junit:junit:$version"
     const val api = "org.junit.jupiter:junit-jupiter-api:$version"
     const val engine = "org.junit.jupiter:junit-jupiter-engine:$version"
 
@@ -167,6 +169,6 @@ object Mockito {
 object Glide {
     private const val version = "4.12.0"
     const val glide = "com.github.bumptech.glide:glide:$version"
-    const val compiler =  "com.github.bumptech.glide:compiler:$version"
+    const val compiler = "com.github.bumptech.glide:compiler:$version"
 }
 

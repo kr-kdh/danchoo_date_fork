@@ -19,9 +19,9 @@ import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.textfield.TitleTextField
 import com.danchoo.date.R
-import com.danchoo.date.presentation.ui.common.glide.rememberGlideImagePinter
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewEvent
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewState
+import com.danchoo.glideimage.rememberGlideImagePinter
 
 @Composable
 fun CategoryEditorScreenImpl(

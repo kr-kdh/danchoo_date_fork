@@ -3,6 +3,7 @@ buildscript {
         google()
         mavenCentral()
     }
+
     dependencies {
         classpath("com.android.tools.build:gradle:7.0.4")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
@@ -15,14 +16,14 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-
-}
+//allprojects {
+//    repositories {
+//        google()
+//        mavenCentral()
+//
+//        maven { url 'https://jitpack.io' }
+//    }
+//}
 
 tasks {
     val clean by registering(Delete::class) {
