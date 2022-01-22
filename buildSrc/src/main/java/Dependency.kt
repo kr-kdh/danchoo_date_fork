@@ -49,11 +49,12 @@ object AndroidX {
     }
 
     object Room {
-        private const val version = "2.3.0"
+        private const val version = "2.4.0"
 
         const val compiler = "androidx.room:room-compiler:$version"
         const val ktx = "androidx.room:room-ktx:$version"
         const val runtime = "androidx.room:room-runtime:$version"
+        const val paging = "androidx.room:room-paging:$version"
     }
 
     object Paging {
@@ -66,7 +67,6 @@ object AndroidX {
         private const val version = "1.4.0"
         const val runner = "androidx.test:runner:$version"
         const val rules = "androidx.test:rules:$version"
-        const val junit = "androidx.test.ext:junit-ktx:1.1.3"
         const val espressoCore = "androidx.test.espresso:espresso-core:3.4.0"
         const val room = "androidx.room:room-testing:2.3.0"
     }
@@ -82,10 +82,6 @@ object Accompanist {
     const val pager = "com.google.accompanist:accompanist-pager:$version"
     const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:$version"
     const val permission = "com.google.accompanist:accompanist-permissions:$version"
-}
-
-object Coil {
-    const val coil = "io.coil-kt:coil-compose:1.4.0"
 }
 
 object Retrofit {

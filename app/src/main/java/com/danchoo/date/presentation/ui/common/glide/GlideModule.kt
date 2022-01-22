@@ -34,6 +34,6 @@ class GlideModule : AppGlideModule() {
 
 class GlideAppImageLoaderImpl : GlideImageLoader {
     override fun getRequestBuilder(context: Context): RequestBuilder<Bitmap> {
-        return Glide.with(context).asBitmap()
+        return GlideApp.with(context).asBitmap()
     }
 }

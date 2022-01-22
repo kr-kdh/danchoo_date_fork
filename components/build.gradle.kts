@@ -55,7 +55,7 @@ dependencies {
         implementation(permission)
     }
 
-    Coil.run {
-        api(coil)
+    GlideImage.run {
+        implementation(glide)
     }
 }

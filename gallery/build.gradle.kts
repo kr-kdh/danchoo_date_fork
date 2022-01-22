@@ -55,4 +55,8 @@ dependencies {
         kaptAndroidTest(compiler)
         androidTestImplementation(testing)
     }
+
+    GlideImage.run {
+        implementation(glide)
+    }
 }

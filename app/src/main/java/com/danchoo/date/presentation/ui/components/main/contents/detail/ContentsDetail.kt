@@ -14,8 +14,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import coil.compose.rememberImagePainter
 import com.danchoo.date.R
+import com.danchoo.glideimage.rememberGlideImagePinter
 import com.google.accompanist.pager.*
 import kotlin.math.absoluteValue
 
@@ -105,7 +105,7 @@ fun HorizontalContentsPager(
                     .background(Color.Black)
             ) {
                 Image(
-                    painter = rememberImagePainter(
+                    painter = rememberGlideImagePinter(
                         data = R.drawable.the_gleaners
                     ),
                     contentDescription = null,

@@ -23,6 +23,7 @@ dependencies {
         kapt(compiler)
         implementation(ktx)
         implementation(runtime)
+        implementation(paging)
         annotationProcessor(compiler)
     }
 

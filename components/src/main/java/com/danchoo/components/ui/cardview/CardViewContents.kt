@@ -14,11 +14,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.RoundedCornerShape8dp
 import com.danchoo.components.ui.button.ExpandButton
+import com.danchoo.glideimage.rememberGlideImagePinter
 
 
 @Composable
@@ -155,7 +154,6 @@ private fun RowScope.CardViewNormalContentsText(
     }
 }
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 private fun CardViewSmallImageContents(
     modifier: Modifier = Modifier,
@@ -178,7 +176,7 @@ private fun CardViewSmallImageContents(
                     color = MyApplicationTheme.colors.border,
                     shape = RoundedCornerShape8dp
                 ),
-            painter = rememberImagePainter(
+            painter = rememberGlideImagePinter(
                 data = state.images.first()
             ),
             contentDescription = null,
@@ -203,7 +201,6 @@ private fun CardViewSmallImageContents(
 }
 
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 private fun CardViewSmallImagesContents(
     modifier: Modifier = Modifier,
@@ -220,7 +217,7 @@ private fun CardViewSmallImagesContents(
             items(state.images) { item ->
                 Image(
                     modifier = Modifier.size(144.dp),
-                    painter = rememberImagePainter(
+                    painter = rememberGlideImagePinter(
                         data = item
                     ),
                     contentDescription = null,
@@ -236,7 +233,6 @@ private fun CardViewSmallImagesContents(
 }
 
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 private fun CardViewBigImageContents(
     modifier: Modifier = Modifier,
@@ -249,7 +245,7 @@ private fun CardViewBigImageContents(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(192.dp),
-            painter = rememberImagePainter(
+            painter = rememberGlideImagePinter(
                 data = state.images.first()
             ),
             contentDescription = null,

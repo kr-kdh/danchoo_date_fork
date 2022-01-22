@@ -5,7 +5,6 @@ import org.gradle.api.JavaVersion
 object Config {
     const val APPLICATION_ID = "com.danchoo.date"
     const val COMPILE_SDK = 31
-    const val BUILD_TOOL_VERSION = "31.0.0"
     const val MIN_SDK = 23
     const val TARGET_SDK = 31
     const val VERSION_NAME = "1.0"
@@ -20,7 +19,6 @@ object Config {
 
 fun BaseAppModuleExtension.default() {
     compileSdk = Config.COMPILE_SDK
-    buildToolsVersion = Config.BUILD_TOOL_VERSION
 
     defaultConfig.run {
         applicationId = Config.APPLICATION_ID
@@ -72,7 +70,7 @@ fun BaseAppModuleExtension.default() {
 
 fun LibraryExtension.default() {
     compileSdk = Config.COMPILE_SDK
-    buildToolsVersion = Config.BUILD_TOOL_VERSION
+//    buildToolsVersion = Config.BUILD_TOOL_VERSION
 
     defaultConfig.run {
         minSdk = Config.MIN_SDK
