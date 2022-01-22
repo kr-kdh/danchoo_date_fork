@@ -63,8 +63,8 @@ fun CategoryEditorScreen(
         MediaSelectDialog(
             onItemSelected = {
                 when (it) {
-                    MediaSelectType.Camera -> state.isShowPermission.value = true
-                    MediaSelectType.Gallery -> state.moveToGallery()
+                    MediaSelectType.Camera -> state.isShowCameraPermission.value = true
+                    MediaSelectType.Gallery -> state.isShowReadStoragePermission.value = true
                 }
             }
         ) {
@@ -72,16 +72,27 @@ fun CategoryEditorScreen(
         }
     }
 
-    if (state.isShowPermission.value) {
+    if (state.isShowCameraPermission.value) {
         RequestPermission(
             permission = Manifest.permission.CAMERA,
             onSuccess = { launcher.launch() },
             onDenied = {},
             onRequestMoveSetting = {},
             onRequestDismiss = {
-                state.isShowPermission.value = false
+                state.isShowCameraPermission.value = false
+            }
+        )
+    } else if (state.isShowReadStoragePermission.value) {
+        RequestPermission(
+            permission = Manifest.permission.READ_EXTERNAL_STORAGE,
+            onSuccess = { state.moveToGallery() },
+            onDenied = {},
+            onRequestMoveSetting = {},
+            onRequestDismiss = {
+                state.isShowReadStoragePermission.value = false
             }
         )
     }
 }
+
 
