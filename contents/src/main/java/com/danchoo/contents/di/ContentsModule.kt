@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.di
+package com.danchoo.contents.di
 
 import com.danchoo.contents.data.datasource.local.ContentsLocalDataSource
 import com.danchoo.contents.data.datasource.local.ContentsLocalDataSourceImpl

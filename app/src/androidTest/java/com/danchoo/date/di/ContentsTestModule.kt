@@ -1,11 +1,11 @@
 package com.danchoo.date.di
 
+import com.danchoo.contents.di.ContentsModule
 import com.danchoo.date.data.datasource.local.ContentsLocalDataSource
 import com.danchoo.date.data.datasource.local.ContentsLocalDataSourceImpl
 import com.danchoo.date.data.datasource.pagingsource.ContentsPagingSource
 import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsListInsertUseCase
 import com.danchoo.date.domain.inspactor.usecase.main.contents.ContentsPagingUseCase
-import com.danchoo.date.presentation.di.ContentsModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent

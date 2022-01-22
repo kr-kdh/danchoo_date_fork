@@ -1,5 +1,7 @@
 package com.danchoo.date.presentation.di
 
+import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSource
+import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSourceImpl
 import com.danchoo.category.data.remote.api.CategoryApiInterface
 import com.danchoo.category.data.remote.api.ContentsApiInterface
 import com.danchoo.retrofitutils.RetrofitCreateHelper
@@ -39,4 +41,10 @@ object NetworkModule {
 
 
     interface ApiInterface : CategoryApiInterface, ContentsApiInterface
+
+    @Singleton
+    @Provides
+    fun provideCategoryRemoteDataSource(apiInterface: ApiInterface): CategoryRemoteDataSource {
+        return CategoryRemoteDataSourceImpl(apiInterface)
+    }
 }

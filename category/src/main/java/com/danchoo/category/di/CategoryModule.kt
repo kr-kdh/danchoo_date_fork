@@ -1,15 +1,13 @@
-package com.danchoo.date.presentation.di
+package com.danchoo.category.di
 
 import com.danchoo.category.data.datasource.local.CategoryLocalDataSource
 import com.danchoo.category.data.datasource.local.CategoryLocalDataSourceImpl
 import com.danchoo.category.data.datasource.pagingsource.CategoryPagingSource
 import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSource
-import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSourceImpl
 import com.danchoo.category.data.db.dao.CategoryDao
 import com.danchoo.category.data.repository.CategoryRepositoryImpl
 import com.danchoo.category.domain.inspector.usecase.CategoryPagingUseCase
 import com.danchoo.category.domain.repository.CategoryRepository
-import com.danchoo.date.presentation.di.NetworkModule.ApiInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,11 +43,5 @@ object CategoryModule {
     @Provides
     fun provideCategoryLocalDataSource(categoryDao: CategoryDao): CategoryLocalDataSource {
         return CategoryLocalDataSourceImpl(categoryDao)
-    }
-
-    @Singleton
-    @Provides
-    fun provideCategoryRemoteDataSource(apiInterface: ApiInterface): CategoryRemoteDataSource {
-        return CategoryRemoteDataSourceImpl(apiInterface)
     }
 }

@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.di
+package com.danchoo.category.di
 
 import com.danchoo.category.domain.inspector.manager.CategoryUseCaseManager
 import com.danchoo.category.domain.inspector.manager.impl.CategoryUseCaseManagerImpl

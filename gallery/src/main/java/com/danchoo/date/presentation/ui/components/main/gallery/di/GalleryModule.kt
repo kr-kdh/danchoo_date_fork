@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.di
+package com.danchoo.date.presentation.ui.components.main.gallery.di
 
 import android.content.Context
 import com.danchoo.date.presentation.ui.components.main.gallery.data.datasource.GalleryDataSource
