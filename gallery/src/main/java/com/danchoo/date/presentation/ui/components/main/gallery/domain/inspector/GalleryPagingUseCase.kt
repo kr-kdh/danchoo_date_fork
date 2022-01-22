@@ -13,10 +13,9 @@ class GalleryPagingUseCase @Inject constructor(
 ) {
     operator fun invoke(): Flow<PagingData<GalleryItemModel>> = Pager(
         config = PagingConfig(
-            pageSize = 10,
-            prefetchDistance = 10,
-            enablePlaceholders = false,
-            maxSize = Int.MAX_VALUE
+            pageSize = 30,
+            prefetchDistance = 30,
+            maxSize = 30 * 5
         )
     ) {
         repository.getGalleryPagingSource()
