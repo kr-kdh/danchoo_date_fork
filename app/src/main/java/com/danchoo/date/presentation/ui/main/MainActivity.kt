@@ -2,13 +2,16 @@ package com.danchoo.date.presentation.ui.main
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.danchoo.common.BaseActivity
 import com.danchoo.components.theme.CustomTheme
 import com.danchoo.components.theme.MyApplicationTheme
+import com.danchoo.date.presentation.ui.common.glide.GlideAppImageLoaderImpl
 import com.danchoo.date.presentation.ui.components.MainApp
+import com.danchoo.glideimage.LocalImageLoader
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -31,7 +34,9 @@ class MainActivity : BaseActivity() {
             MyApplicationTheme(
                 customTheme = CustomTheme.Indigo
             ) {
-                MainApp()
+                CompositionLocalProvider(LocalImageLoader provides GlideAppImageLoaderImpl()) {
+                    MainApp()
+                }
             }
         }
     }

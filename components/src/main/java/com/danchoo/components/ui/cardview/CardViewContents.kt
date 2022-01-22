@@ -4,7 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -217,7 +217,7 @@ private fun CardViewSmallImagesContents(
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
-            itemsIndexed(state.images) { index, item ->
+            items(state.images) { item ->
                 Image(
                     modifier = Modifier.size(144.dp),
                     painter = rememberImagePainter(

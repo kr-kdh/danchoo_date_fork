@@ -1,8 +1,5 @@
 package com.danchoo.date.presentation.ui.components.main.gallery
 
-import android.content.Context
-import android.graphics.Bitmap
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.GridCells
@@ -12,28 +9,24 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
-import com.bumptech.glide.RequestBuilder
+import androidx.paging.compose.LazyPagingItems
 import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.date.R
-import com.danchoo.date.presentation.ui.common.glide.GlideApp
 import com.danchoo.date.presentation.ui.components.main.gallery.GalleryContract.GalleryViewState
+import com.danchoo.date.presentation.ui.components.main.gallery.domain.model.GalleryItemModel
 import com.danchoo.glideimage.GlideImage
-import com.danchoo.glideimage.GlideImageLoader
-import com.danchoo.glideimage.LocalImageLoader
 
 @Composable
 fun GalleryScreenImpl(
     modifier: Modifier,
     viewState: GalleryViewState,
+    pagingItems: LazyPagingItems<GalleryItemModel>,
     onViewEvent: OnViewEvent
 ) {
 
@@ -69,18 +62,59 @@ fun GalleryScreenImpl(
     }
 }
 
-class GlideAppImageLoaderImpl : GlideImageLoader {
-    override fun getRequestBuilder(context: Context): RequestBuilder<Bitmap> {
-        return GlideApp.with(context).asBitmap()
-    }
-}
-
-@Composable
-fun TestComposable() {
-    CompositionLocalProvider(LocalImageLoader provides GlideAppImageLoaderImpl()) {
-        Image(
-            painter = rememberImagePainter(data = Icons.Filled.ArrowBack),
-            contentDescription = null
-        )
-    }
-}
+//
+//@Composable
+//fun StaggeredVerticalGrid(
+//    modifier: Modifier = Modifier,
+//    maxColumnWidth: Dp,
+//    content: @Composable () -> Unit
+//) {
+//    Layout(
+//        content = content,
+//        modifier = modifier
+//    ) { measurables, constraints ->
+//        check(constraints.hasBoundedWidth) {
+//            "Unbounded width not supported"
+//        }
+//        val columns = ceil(constraints.maxWidth / maxColumnWidth.toPx()).toInt()
+//        val columnWidth = constraints.maxWidth / columns
+//
+//        val itemConstraints = constraints.copy(maxWidth = columnWidth)
+//        val colHeights = IntArray(columns) { 0 } // track each column's height
+//        val placeables = measurables.map { measurable ->
+//            val column = shortestColumn(colHeights)
+//            val placeable = measurable.measure(itemConstraints)
+//            colHeights[column] += placeable.height
+//            placeable
+//        }
+//
+//        val height = colHeights.maxOrNull()?.coerceIn(constraints.minHeight, constraints.maxHeight)
+//            ?: constraints.minHeight
+//        layout(
+//            width = constraints.maxWidth,
+//            height = height
+//        ) {
+//            val colY = IntArray(columns) { 0 }
+//            placeables.forEach { placeable ->
+//                val column = shortestColumn(colY)
+//                placeable.place(
+//                    x = columnWidth * column,
+//                    y = colY[column]
+//                )
+//                colY[column] += placeable.height
+//            }
+//        }
+//    }
+//}
+//
+//private fun shortestColumn(colHeights: IntArray): Int {
+//    var minHeight = Int.MAX_VALUE
+//    var column = 0
+//    colHeights.forEachIndexed { index, height ->
+//        if (height < minHeight) {
+//            minHeight = height
+//            column = index
+//        }
+//    }
+//    return column
+//}

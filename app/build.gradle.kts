@@ -113,11 +113,14 @@ dependencies {
         implementation(glide)
         kapt(compiler)
     }
-    Coil.run {
-        implementation(coil)
+
+    AndroidX.ConstraintLayout.run {
+        implementation(constraintLayout)
     }
 
-    implementation("com.github.danchoo21:glide-image:1.0.0")
+    GlideImage.run {
+        implementation(glide)
+    }
 
 //    AndroidX.Test.run {
 //        androidTestImplementation(runner)

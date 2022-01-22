@@ -4,7 +4,7 @@ import com.danchoo.contents.data.db.entity.Contents
 import com.danchoo.contents.domain.model.ContentsModel
 
 
-fun Contents.toModel(source: ContentsModel.ContentsData? = null): ContentsModel {
+fun Contents.toModel(): ContentsModel {
     return ContentsModel.ContentsData(
         contentsId = contentsId,
         categoryId = categoryId,

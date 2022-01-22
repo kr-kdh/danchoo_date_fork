@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -32,6 +33,7 @@ android {
 
 dependencies {
     implementation(project(":components"))
+    implementation(project(":inspector"))
     implementation(project(":base"))
 
     AndroidX.Navigation.run {
@@ -41,7 +43,16 @@ dependencies {
         implementation(fragmentKtx)
     }
 
-    Coil.run {
-        api(coil)
+    AndroidX.Paging.run {
+        implementation(ktx)
+        implementation(compose)
+    }
+
+    Hilt.run {
+        implementation(android)
+        implementation(compose)
+        kapt(compiler)
+        kaptAndroidTest(compiler)
+        androidTestImplementation(testing)
     }
 }

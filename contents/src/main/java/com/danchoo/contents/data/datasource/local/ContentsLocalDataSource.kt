@@ -13,6 +13,6 @@ interface ContentsLocalDataSource {
 
     fun getTimestampByOffset(offset: Int): Long?
 
-    fun insertContentsList(categoryList: List<Contents>)
+    fun insertContentsList(contentsList: List<Contents>)
 
 }

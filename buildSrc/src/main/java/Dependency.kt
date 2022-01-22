@@ -172,3 +172,8 @@ object Glide {
     const val compiler = "com.github.bumptech.glide:compiler:$version"
 }
 
+object GlideImage {
+    private const val version = "1.0.0"
+    const val glide = "com.github.danchoo21:glide-image:$version"
+}
+

@@ -4,6 +4,7 @@ import android.content.Context
 import com.danchoo.date.presentation.ui.components.main.gallery.data.datasource.GalleryDataSource
 import com.danchoo.date.presentation.ui.components.main.gallery.data.datasource.GalleryDataSourceImpl
 import com.danchoo.date.presentation.ui.components.main.gallery.data.repository.GalleryRepositoryImpl
+import com.danchoo.date.presentation.ui.components.main.gallery.domain.inspector.GalleryPagingUseCase
 import com.danchoo.date.presentation.ui.components.main.gallery.domain.repository.GalleryRepository
 import dagger.Module
 import dagger.Provides
@@ -27,5 +28,12 @@ object GalleryModule {
         @ApplicationContext context: Context
     ): GalleryDataSource {
         return GalleryDataSourceImpl(context)
+    }
+
+    @Provides
+    fun provideGalleryPagingUseCase(
+        repository: GalleryRepository
+    ): GalleryPagingUseCase {
+        return GalleryPagingUseCase(repository)
     }
 }

@@ -5,9 +5,11 @@ import com.danchoo.date.presentation.ui.components.main.gallery.domain.model.Gal
 import kotlinx.coroutines.flow.Flow
 
 interface GalleryDataSource {
-    fun getMediaList(count: Int): Flow<List<GalleryItemModel>>
+    fun getDefaultCursor(): Cursor
 
-    fun getMediaList(start: Int, count: Int): List<GalleryItemModel>
+    fun getGalleryItemList(count: Int): Flow<List<GalleryItemModel>>
 
-    fun getMediaList(cursor: Cursor, start: Int, count: Int): List<GalleryItemModel>
+    fun getGalleryItemList(start: Int, count: Int): List<GalleryItemModel>
+
+    fun getGalleryItemList(cursor: Cursor, start: Int, count: Int): List<GalleryItemModel>
 }
