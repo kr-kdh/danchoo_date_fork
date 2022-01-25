@@ -157,7 +157,7 @@ object JUnit5 {
 
 object Mockito {
     private const val version = "2.24.5"
-    const val mock = "org.mockito:mockito-android:$version"
+    const val mock = "org.mockito:mockito-andr1.3.1.0.oid:$version"
     const val mockInline = "org.mockito:mockito-inline:$version"
 }
 
@@ -169,7 +169,7 @@ object Glide {
 }
 
 object GlideImage {
-    private const val version = "1.0.0"
+    private const val version = "1.1.0"
     const val glide = "com.github.danchoo21:glide-image:$version"
 }
 
