@@ -26,7 +26,11 @@ fun GalleryScreen(
         pagingItems = pagingItems
     ) { viewEvent ->
         when (viewEvent) {
-            is GalleryViewEvent.OnClickBackPress -> {}
+            is GalleryViewEvent.OnClickBackPress -> {
+                navController.launchResumed {
+                    navController.popBackStack()
+                }
+            }
             is GalleryViewEvent.OnClickGalleryItem -> {
                 navController.launchResumed {
                     navController.previousBackStackEntry?.savedStateHandle?.set(
