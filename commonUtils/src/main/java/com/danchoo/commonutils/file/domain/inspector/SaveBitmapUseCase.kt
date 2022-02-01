@@ -1,67 +1,62 @@
 package com.danchoo.commonutils.file.domain.inspector
 
 import android.graphics.Bitmap
+import android.net.Uri
+import androidx.core.net.toUri
+import com.danchoo.commonutils.file.domain.inspector.SaveBitmapUseCase.SaveBitmapParameter
+import com.danchoo.commonutils.file.domain.inspector.SaveBitmapUseCase.SaveBitmapResult
+import com.danchoo.inspactor.usecase.UseCase
+import kotlinx.coroutines.CoroutineDispatcher
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
 
-class SaveBitmapUseCase {
-    operator fun invoke(
-        bitmap: Bitmap?,
-        path: String,
-        fileName: String,
-        format: Bitmap.CompressFormat = Bitmap.CompressFormat.PNG,
-        quality: Int = 100
-    ): SaveBitmapUseCaseResult {
-        if (bitmap == null) {
-            return SaveBitmapUseCaseResult(error = ERROR_BITMAP_NOT_FOUND)
+class SaveBitmapUseCase(
+    dispatcher: CoroutineDispatcher
+) : UseCase<SaveBitmapParameter, SaveBitmapResult>(dispatcher) {
+
+    override suspend fun execute(parameters: SaveBitmapParameter): SaveBitmapResult {
+        if (parameters.bitmap == null) {
+            return SaveBitmapResult(error = ERROR_BITMAP_NOT_FOUND)
         }
 
-        val file = File(path)
+        val file = File(parameters.savePath)
 
         if (!file.exists()) {
             file.mkdirs()
         }
 
-        val fileFullPath = path + File.separator + fileName
+        val fileFullPath = parameters.savePath + File.separator + parameters.fileName
         val fileCacheItem = File(fileFullPath)
 
-        var out: OutputStream? = null
-        try {
-            fileCacheItem.createNewFile()
-            out = FileOutputStream(fileCacheItem)
-            bitmap.compress(format, quality, out)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return SaveBitmapUseCaseResult(
-                error = ERROR_BITMAP_SAVE_FAIL,
-                throwable = e
-            )
-        } finally {
-            try {
-                out?.close()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
+        fileCacheItem.createNewFile()
+        val out = FileOutputStream(fileCacheItem)
+        parameters.bitmap.compress(parameters.format, parameters.quality, out)
+        out.close()
 
-        return SaveBitmapUseCaseResult(
+        return SaveBitmapResult(
             result = true,
-            filePath = fileFullPath
+            filePath = fileCacheItem.path,
+            uri = fileCacheItem.toUri()
         )
     }
 
-    data class SaveBitmapUseCaseResult(
+    data class SaveBitmapParameter(
+        val bitmap: Bitmap?,
+        val savePath: String,
+        val fileName: String,
+        val format: Bitmap.CompressFormat = Bitmap.CompressFormat.PNG,
+        val quality: Int = 100
+    )
+
+    data class SaveBitmapResult(
         val result: Boolean = false,
         val error: Int = ERROR_NONE,
-        val throwable: Throwable? = null,
-        val filePath: String = ""
+        val filePath: String = "",
+        val uri: Uri? = null
     )
 
     companion object {
         const val ERROR_NONE = 0
         const val ERROR_BITMAP_NOT_FOUND = 1
-        const val ERROR_BITMAP_SAVE_FAIL = 2
     }
 }

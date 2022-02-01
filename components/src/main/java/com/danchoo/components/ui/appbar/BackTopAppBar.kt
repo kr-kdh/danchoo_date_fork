@@ -34,7 +34,11 @@ fun BackTopAppBar(
                 onClick = onClickBack
             )
         },
-        actions = actions,
+        actions = {
+            ProvideTextStyle(value = MyTypography.subtitle1) {
+                actions()
+            }
+        },
         title = {
             ProvideTextStyle(value = MyTypography.title1) {
                 title()

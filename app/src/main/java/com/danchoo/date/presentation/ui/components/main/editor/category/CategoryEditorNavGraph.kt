@@ -9,6 +9,8 @@ import com.danchoo.components.animation.navagation.ExitTransition
 import com.danchoo.date.presentation.ui.components.main.CategoryEditorScreen
 import com.danchoo.date.presentation.ui.components.main.MainRoute
 import com.danchoo.date.presentation.ui.components.main.gallery.GalleryScreen
+import com.danchoo.date.presentation.ui.components.main.gallery.domain.model.GALLERY_ITEM_MODEL
+import com.danchoo.date.presentation.ui.components.main.gallery.domain.model.GalleryItemModel
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
 
@@ -42,9 +44,21 @@ private fun NavGraphBuilder.addComposable(
         enterTransition = EnterTransition.slideInVertical,
         exitTransition = ExitTransition.slideOutVertical
     ) {
+        val galleryItemModel: GalleryItemModel? =
+            navController
+                .currentBackStackEntry
+                ?.savedStateHandle
+                ?.get(GALLERY_ITEM_MODEL)
+
+        navController
+            .currentBackStackEntry
+            ?.savedStateHandle
+            ?.set(GALLERY_ITEM_MODEL, null)
+
         CategoryEditorScreen(
             modifier = modifier,
-            navController = navController
+            navController = navController,
+            galleryItemModel = galleryItemModel
         )
     }
 

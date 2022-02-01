@@ -1,7 +1,6 @@
 package com.danchoo.date.presentation.ui.components.main.gallery.data.datasource
 
 import android.database.Cursor
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.danchoo.date.presentation.ui.components.main.gallery.domain.model.GalleryItemModel
@@ -54,8 +53,6 @@ class GalleryPagingSource(
     private fun getGalleryList(key: Int, loadSize: Int): List<GalleryItemModel> {
         val offset = key * loadSize
         val galleryItemList = localDataSource.getGalleryItemList(cursor = cursor, offset, loadSize)
-
-        Log.d("_SMY", "galleryItemList ${galleryItemList.size}")
         return galleryItemList
     }
 }

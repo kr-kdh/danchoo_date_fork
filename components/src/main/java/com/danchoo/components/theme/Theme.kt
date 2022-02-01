@@ -95,7 +95,7 @@ object MyApplicationTheme {
 @Composable
 fun MyApplicationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    customTheme: ColorPalette = CustomTheme.PinkIndigo,
+    customTheme: ColorPalette = CustomTheme.Indigo,
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {

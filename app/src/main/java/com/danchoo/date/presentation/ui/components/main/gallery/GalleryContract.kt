@@ -17,11 +17,11 @@ object GalleryContract {
     }
 
     data class GalleryViewState(
-        val isCreate: Boolean = true,
-        val galleryItemList: List<GalleryItemModel> = emptyList()
+        val isCreate: Boolean = true
     ) : BaseViewState
 
     sealed class GalleryViewEvent : ViewEvent {
         object OnClickBackPress : GalleryViewEvent()
+        data class OnClickGalleryItem(val galleryItem : GalleryItemModel) : GalleryViewEvent()
     }
 }

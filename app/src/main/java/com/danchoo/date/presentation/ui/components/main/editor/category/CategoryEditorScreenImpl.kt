@@ -1,6 +1,5 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,12 +15,13 @@ import androidx.compose.ui.unit.dp
 import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.extension.applyAlpha80
 import com.danchoo.components.theme.MyApplicationTheme
+import com.danchoo.components.theme.titleButtonColor
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.textfield.TitleTextField
 import com.danchoo.date.R
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewEvent
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewState
-import com.danchoo.glideimage.rememberGlideImagePinter
+import com.danchoo.glideimage.GlideImage
 
 @Composable
 fun CategoryEditorScreenImpl(
@@ -37,6 +37,20 @@ fun CategoryEditorScreenImpl(
                 title = { Text(text = stringResource(id = R.string.category_create)) },
                 onClickBack = {
                     onViewEvent(CategoryEditorViewEvent.OnClickBackPress)
+                },
+                actions = {
+                    TextButton(
+                        enabled = state.isEnableConfirm(),
+                        onClick = {
+                            onViewEvent(CategoryEditorViewEvent.OnClickConfirm)
+                        },
+                        colors = ButtonDefaults.titleButtonColor(),
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.confirm),
+                            style = MaterialTheme.typography.subtitle1
+                        )
+                    }
                 }
             )
         }
@@ -124,15 +138,12 @@ private fun AddCoverImage(
     path: String,
     onClick: () -> Unit = {}
 ) {
-    Image(
+    GlideImage(
         modifier = modifier
             .fillMaxWidth()
             .height(192.dp)
             .clickable { onClick() },
-        painter = rememberGlideImagePinter(
-            data = if (path.isNotEmpty()) path else R.drawable.the_gleaners
-        ),
-        contentDescription = null,
+        data = if (path.isNotEmpty()) path else R.drawable.the_gleaners,
         contentScale = ContentScale.Crop
     )
 }

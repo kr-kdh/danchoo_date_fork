@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
 
 //    id 'de.mannodermaus.android-junit5'
 }
@@ -122,6 +123,9 @@ dependencies {
         implementation(glide)
     }
 
+    Coil.run {
+        implementation(coil)
+    }
 //    AndroidX.Test.run {
 //        androidTestImplementation(runner)
 //        androidTestImplementation(rules)

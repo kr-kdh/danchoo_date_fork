@@ -29,6 +29,10 @@ class CategoryEditorState(
             navigate(CategoryEditorScreen.GALLERY)
         }
     }
+
+    fun isEnableConfirm(): Boolean {
+        return title.value.isNotEmpty() && description.value.isNotEmpty()
+    }
 }
 
 
@@ -38,7 +42,7 @@ fun rememberCategoryEditorState(
     title: MutableState<String> = rememberSaveable { mutableStateOf("") },
     description: MutableState<String> = rememberSaveable { mutableStateOf("") },
     isVisibility: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    isShowMenuDialog: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    isShowMenuDialog: MutableState<Boolean> = remember { mutableStateOf(false) },
     isShowCameraPermission: MutableState<Boolean> = remember { mutableStateOf(false) },
     isShowReadStoragePermission: MutableState<Boolean> = remember { mutableStateOf(false) },
 ) = remember(

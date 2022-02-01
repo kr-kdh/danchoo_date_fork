@@ -4,6 +4,7 @@ import com.danchoo.category.data.datasource.local.CategoryLocalDataSource
 import com.danchoo.category.data.datasource.local.CategoryLocalDataSourceImpl
 import com.danchoo.category.data.datasource.pagingsource.CategoryPagingSource
 import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSource
+import com.danchoo.category.data.datasource.remote.FakeCategoryRemoteDataSourceImpl
 import com.danchoo.category.data.db.dao.CategoryDao
 import com.danchoo.category.data.repository.CategoryRepositoryImpl
 import com.danchoo.category.domain.inspector.usecase.CategoryPagingUseCase
@@ -44,4 +45,18 @@ object CategoryModule {
     fun provideCategoryLocalDataSource(categoryDao: CategoryDao): CategoryLocalDataSource {
         return CategoryLocalDataSourceImpl(categoryDao)
     }
+
+//    @Singleton
+//    @Provides
+//    fun provideCategoryRemoteDataSource(apiInterface: CategoryApiInterface): CategoryRemoteDataSource {
+//        return CategoryRemoteDataSourceImpl(apiInterface)
+//    }
+
+    @Singleton
+    @Provides
+    fun provideCategoryRemoteDataSource(): CategoryRemoteDataSource {
+        return FakeCategoryRemoteDataSourceImpl()
+    }
+
+
 }

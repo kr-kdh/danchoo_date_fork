@@ -1,6 +1,7 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
 import android.Manifest
+import android.view.View
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -14,6 +15,7 @@ import com.danchoo.date.presentation.ui.components.common.dialog.MediaSelectDial
 import com.danchoo.date.presentation.ui.components.common.dialog.MediaSelectType
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorIntent
 import com.danchoo.date.presentation.ui.components.main.editor.category.CategoryEditorContract.CategoryEditorViewEvent
+import com.danchoo.date.presentation.ui.components.main.gallery.domain.model.GalleryItemModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 
@@ -21,11 +23,15 @@ import kotlinx.coroutines.flow.onEach
 fun CategoryEditorScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
+    galleryItemModel: GalleryItemModel? = null,
     viewModel: CategoryEditorViewModel = hiltViewModel()
 ) {
-
     val viewState = viewModel.viewState.value
     val state = rememberCategoryEditorState(navController)
+
+    galleryItemModel?.let {
+        viewModel.setEvent(CategoryEditorIntent.SaveGalleryModel(it))
+    }
 
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) {
         viewModel.setEvent(CategoryEditorIntent.SaveBitmap(it))
@@ -55,6 +61,16 @@ fun CategoryEditorScreen(
             }
             is CategoryEditorViewEvent.OnClickImageChange -> {
                 state.isShowMenuDialog.value = true
+            }
+            is CategoryEditorViewEvent.OnClickConfirm -> {
+                viewModel.setEvent(
+                    CategoryEditorIntent.CategoryCreate(
+                        title = state.title.value,
+                        description = state.description.value,
+                        isVisibility = if (state.isVisibility.value) View.VISIBLE else View.GONE,
+                        currentTimestamp = System.currentTimeMillis()
+                    )
+                )
             }
         }
     }
@@ -94,5 +110,3 @@ fun CategoryEditorScreen(
         )
     }
 }
-
-
