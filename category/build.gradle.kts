@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("de.mannodermaus.android-junit5")
 }
 
 android {
@@ -41,4 +42,17 @@ dependencies {
         implementation(okhttp)
     }
 
+    AndroidX.Test.run {
+        androidTestImplementation(runner)
+        androidTestImplementation(room)
+    }
+
+    JUnit5.run {
+        androidTestImplementation(api)
+        androidTestImplementation(testCore)
+        androidTestImplementation(params)
+
+        androidTestRuntimeOnly(runner)
+        androidTestRuntimeOnly(engine)
+    }
 }

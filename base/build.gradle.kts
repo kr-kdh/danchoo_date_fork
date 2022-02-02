@@ -12,7 +12,6 @@ dependencies {
     AndroidX.run {
         implementation(coreKtx)
         implementation(appcompat)
-        implementation(multidex)
         implementation(coreTesting)
     }
 

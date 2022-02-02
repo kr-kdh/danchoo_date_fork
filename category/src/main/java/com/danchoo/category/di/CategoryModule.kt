@@ -7,7 +7,6 @@ import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSource
 import com.danchoo.category.data.datasource.remote.FakeCategoryRemoteDataSourceImpl
 import com.danchoo.category.data.db.dao.CategoryDao
 import com.danchoo.category.data.repository.CategoryRepositoryImpl
-import com.danchoo.category.domain.inspector.usecase.CategoryPagingUseCase
 import com.danchoo.category.domain.repository.CategoryRepository
 import dagger.Module
 import dagger.Provides
@@ -18,11 +17,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object CategoryModule {
-
-    @Provides
-    fun provideCategoryPagingUseCase(repository: CategoryRepository): CategoryPagingUseCase {
-        return CategoryPagingUseCase(repository)
-    }
 
     @Singleton
     @Provides
@@ -57,6 +51,4 @@ object CategoryModule {
     fun provideCategoryRemoteDataSource(): CategoryRemoteDataSource {
         return FakeCategoryRemoteDataSourceImpl()
     }
-
-
 }

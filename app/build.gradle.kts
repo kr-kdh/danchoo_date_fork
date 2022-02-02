@@ -43,7 +43,6 @@ dependencies {
     AndroidX.run {
         implementation(coreKtx)
         implementation(appcompat)
-        implementation(multidex)
         androidTestImplementation(coreTesting)
     }
 
@@ -144,4 +143,18 @@ dependencies {
 //        androidTestImplementation(engine)
 //        androidTestImplementation(params)
 //    }
+
+    AndroidX.Test.run {
+        androidTestImplementation(runner)
+        androidTestImplementation(room)
+    }
+
+    JUnit5.run {
+        androidTestImplementation(api)
+        androidTestImplementation(testCore)
+        androidTestImplementation(params)
+
+        androidTestRuntimeOnly(runner)
+        androidTestRuntimeOnly(engine)
+    }
 }

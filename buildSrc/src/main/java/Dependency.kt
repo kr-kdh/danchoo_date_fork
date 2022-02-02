@@ -4,7 +4,6 @@ object AndroidX {
 
     const val coreKtx = "androidx.core:core-ktx:$coreVersion"
     const val appcompat = "androidx.appcompat:appcompat:$appcompatVersion"
-    const val multidex = "androidx.multidex:multidex:2.0.1"
     const val coreTesting = "androidx.arch.core:core-testing:2.1.0"
 
     object Compose {
@@ -149,8 +148,9 @@ object JUnit5 {
     /**
      * junit5 hilt 에서 사용불가능
      */
-    private const val version = "5.8.0"
+    private const val version = "5.8.2"
     private const val junit5Version = "1.3.0"
+    const val pluginVersion = "1.8.2.0"
 
     const val api = "org.junit.jupiter:junit-jupiter-api:$version"
     const val engine = "org.junit.jupiter:junit-jupiter-engine:$version"

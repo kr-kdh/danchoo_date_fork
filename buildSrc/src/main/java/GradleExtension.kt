@@ -11,7 +11,7 @@ object Config {
     const val VERSION_NAME = "1.0"
     const val VERSION_CODE = 1
 
-    const val TEST_INSTRUMENTATION_RUNNER = "com.danchoo.date.CustomTestRunner"
+    const val TEST_INSTRUMENTATION_RUNNER = "androidx.test.runner.AndroidJUnitRunner"
 
     val JAVA_VERSION = JavaVersion.VERSION_1_8
 
@@ -30,8 +30,10 @@ fun BaseAppModuleExtension.default() {
         versionName = Config.VERSION_NAME
 
         testInstrumentationRunner = Config.TEST_INSTRUMENTATION_RUNNER
-//        testInstrumentationRunnerArgument "runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder"
-//        testInstrumentationRunnerArguments clearPackageData: 'true'
+        testInstrumentationRunnerArguments += mapOf(
+            "clearPackageData" to "true",
+            "runnerBuilder" to "de.mannodermaus.junit5.AndroidJUnit5Builder"
+        )
     }
 
     buildTypes.run {
@@ -54,9 +56,9 @@ fun BaseAppModuleExtension.default() {
     }
 
     packagingOptions.run {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+        resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        resources.excludes.add("/META-INF/LICENSE.md")
+        resources.excludes.add("/META-INF/LICENSE-notice.md")
     }
 
     buildFeatures.run {
@@ -79,6 +81,10 @@ fun LibraryExtension.default() {
         targetSdk = Config.TARGET_SDK
 
         testInstrumentationRunner = Config.TEST_INSTRUMENTATION_RUNNER
+        testInstrumentationRunnerArguments += mapOf(
+            "clearPackageData" to "true",
+            "runnerBuilder" to "de.mannodermaus.junit5.AndroidJUnit5Builder"
+        )
     }
 
     buildTypes.run {
@@ -96,9 +102,9 @@ fun LibraryExtension.default() {
         targetCompatibility = Config.JAVA_VERSION
     }
 
-
-
     packagingOptions.run {
         resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        resources.excludes.add("/META-INF/LICENSE.md")
+        resources.excludes.add("/META-INF/LICENSE-notice.md")
     }
 }
