@@ -68,6 +68,7 @@ fun CategoryEditorScreen(
                         title = state.title.value,
                         description = state.description.value,
                         isVisibility = if (state.isVisibility.value) View.VISIBLE else View.GONE,
+                        coverImageUri = viewState.coverImageUri,
                         currentTimestamp = System.currentTimeMillis()
                     )
                 )

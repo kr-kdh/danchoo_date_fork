@@ -1,6 +1,7 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
 import android.graphics.Bitmap
+import android.net.Uri
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.common.BaseIntent
 import com.danchoo.common.BaseSideEffect
@@ -17,6 +18,7 @@ object CategoryEditorContract {
             val title: String,
             val description: String,
             val isVisibility: Int,
+            val coverImageUri: Uri,
             val currentTimestamp: Long
         ) : CategoryEditorIntent()
     }
@@ -30,7 +32,7 @@ object CategoryEditorContract {
 
     data class CategoryEditorViewState(
         val isCreate: Boolean = true,
-        val coverImagePath: String = ""
+        val coverImageUri: Uri = Uri.EMPTY
     ) : BaseViewState
 
     sealed class CategoryEditorViewEvent : ViewEvent {

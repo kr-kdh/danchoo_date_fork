@@ -52,7 +52,7 @@ class SaveBitmapUseCase(
         val result: Boolean = false,
         val error: Int = ERROR_NONE,
         val filePath: String = "",
-        val uri: Uri? = null
+        val uri: Uri = Uri.EMPTY
     )
 
     companion object {

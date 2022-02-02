@@ -100,10 +100,10 @@ dependencies {
 //        androidTestImplementation(test)
 //    }
 
-    Mockito.run {
-        androidTestImplementation(mock)
-        androidTestImplementation(mockInline)
-    }
+//    Mockito.run {
+//        androidTestImplementation(mock)
+//        androidTestImplementation(mockInline)
+//    }
 
     Google.run {
         implementation(material)
@@ -128,13 +128,11 @@ dependencies {
 //    AndroidX.Test.run {
 //        androidTestImplementation(runner)
 //        androidTestImplementation(rules)
-//        androidTestImplementation(junit)
 //        androidTestImplementation(espressoCore)
 //        androidTestImplementation(room)
 //
 //        testImplementation(runner)
 //        testImplementation(rules)
-//        testImplementation(junit)
 //        testImplementation(room)
 //    }
 //

@@ -1,5 +1,6 @@
 package com.danchoo.category.data.repository
 
+import android.net.Uri
 import com.danchoo.category.data.datasource.local.CategoryLocalDataSource
 import com.danchoo.category.data.datasource.pagingsource.CategoryPagingSource
 import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSource
@@ -20,7 +21,9 @@ class CategoryRepositoryImpl constructor(
     override suspend fun createCategory(
         title: String,
         description: String,
-        visibility: Int
+        visibility: Int,
+        coverImageUri: Uri,
+        currentTimestamp: Long
     ): CategoryModel? {
 
         val response = remoteDataSource.requestCreateCategory(
@@ -36,9 +39,9 @@ class CategoryRepositoryImpl constructor(
         val categoryModel = CategoryModel(
             title = title,
             description = description,
-            visibility = visibility
-//            createTimestamp = currentTimestamp,
-//            lastModifiedTimestamp = currentTimestamp
+            visibility = visibility,
+            createTimestamp = currentTimestamp,
+            lastModifiedTimestamp = currentTimestamp
         )
 
         val categoryId = localDataSource.insert(categoryModel.toEntity())

@@ -1,5 +1,6 @@
 package com.danchoo.category.domain.inspector.usecase
 
+import android.net.Uri
 import com.danchoo.category.domain.inspector.usecase.CategoryCreateUseCase.CategoryCreateParameter
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.category.domain.repository.CategoryRepository
@@ -15,7 +16,9 @@ class CategoryCreateUseCase(
         val category = repository.createCategory(
             title = parameters.title,
             description = parameters.description,
-            visibility = parameters.visibility
+            visibility = parameters.visibility,
+            coverImageUri = parameters.coverImageUri,
+            currentTimestamp = parameters.currentTimestamp
         ) ?: throw Exception()
 
         return category
@@ -25,6 +28,7 @@ class CategoryCreateUseCase(
         val title: String,
         val description: String = "",
         val visibility: Int = 0,
+        val coverImageUri: Uri,
         val currentTimestamp: Long
     )
 }

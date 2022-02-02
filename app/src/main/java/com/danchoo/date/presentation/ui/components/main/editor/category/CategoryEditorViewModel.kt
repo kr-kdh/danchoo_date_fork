@@ -47,7 +47,7 @@ class CategoryEditorViewModel @Inject constructor(
             )
 
             when (result) {
-                is Result.Success -> setState { copy(coverImagePath = result.data.filePath) }
+                is Result.Success -> setState { copy(coverImageUri = result.data.uri) }
                 is Result.Error -> setEffect { CategoryEditorSideEffect.BitmapSaveError(result.exception) }
                 else -> Unit
             }
@@ -65,7 +65,7 @@ class CategoryEditorViewModel @Inject constructor(
             )
 
             when (result) {
-                is Result.Success -> setState { copy(coverImagePath = result.data.filePath) }
+                is Result.Success -> setState { copy(coverImageUri = result.data.uri) }
                 is Result.Error -> setEffect { CategoryEditorSideEffect.FileSaveError(result.exception) }
                 else -> Unit
             }
@@ -79,6 +79,7 @@ class CategoryEditorViewModel @Inject constructor(
                     title = event.title,
                     description = event.description,
                     visibility = event.isVisibility,
+                    coverImageUri = event.coverImageUri,
                     currentTimestamp = event.currentTimestamp
                 )
             )

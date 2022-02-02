@@ -1,5 +1,6 @@
 package com.danchoo.date.presentation.ui.components.main.editor.category
 
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -60,7 +61,7 @@ fun CategoryEditorScreenImpl(
                 .padding(it)
                 .fillMaxSize(),
             coverImage = {
-                AddCoverImage(path = viewState.coverImagePath) {
+                AddCoverImage(uri = viewState.coverImageUri) {
                     onViewEvent(CategoryEditorViewEvent.OnClickImageChange)
                 }
             },
@@ -135,7 +136,7 @@ private fun CategoryEditorContents(
 @Composable
 private fun AddCoverImage(
     modifier: Modifier = Modifier,
-    path: String,
+    uri: Uri,
     onClick: () -> Unit = {}
 ) {
     GlideImage(
@@ -143,7 +144,7 @@ private fun AddCoverImage(
             .fillMaxWidth()
             .height(192.dp)
             .clickable { onClick() },
-        data = if (path.isNotEmpty()) path else R.drawable.the_gleaners,
+        data = if (uri != Uri.EMPTY) uri else R.drawable.the_gleaners,
         contentScale = ContentScale.Crop
     )
 }
