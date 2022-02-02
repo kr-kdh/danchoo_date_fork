@@ -12,7 +12,7 @@ class CategoryPagingSource constructor(
     private val localDataSource: CategoryLocalDataSource
 ) : PagingSource<Int, CategoryData>() {
 
-    val dataSource = localDataSource.getCategoryList()
+    val dataSource = localDataSource.getCategoryInfoList()
 
     init {
 
@@ -69,7 +69,7 @@ class CategoryPagingSource constructor(
             return emptyList()
         }
 
-        return localDataSource.getCategoryList(
+        return localDataSource.getCategoryInfoList(
             timestamp = timestamp,
             size = loadSize
         ).map {

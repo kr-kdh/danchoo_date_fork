@@ -7,6 +7,10 @@ import com.danchoo.category.data.db.entity.CategoryInfo
 
 @Dao
 abstract class CategoryDao {
+
+    @Query("SELECT * FROM category ORDER BY category_id ASC")
+    abstract fun getCategoryList(): List<Category>
+
     @Transaction
     @Query(
         """ 
@@ -16,7 +20,7 @@ abstract class CategoryDao {
             ORDER BY create_time_stamp ASC 
             LIMIT :size"""
     )
-    abstract fun getCategoryList(
+    abstract fun getCategoryInfoList(
         timestamp: Long,
         size: Int
     ): List<CategoryInfo>
@@ -29,7 +33,7 @@ abstract class CategoryDao {
             ORDER BY create_time_stamp ASC 
             """
     )
-    abstract fun getCategoryList(): PagingSource<Int, CategoryInfo>
+    abstract fun getCategoryInfoList(): PagingSource<Int, CategoryInfo>
 
     @Query("SELECT * FROM category where category_id = :categoryId")
     abstract fun getCategory(categoryId: Long): Category?

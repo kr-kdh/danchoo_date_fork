@@ -10,7 +10,7 @@ import java.util.*
     indices = [androidx.room.Index(value = ["hash"], unique = true)]
 )
 data class Category(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "category_id")
     val categoryId: Long = 0L,
 

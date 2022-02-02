@@ -9,12 +9,12 @@ class CategoryLocalDataSourceImpl constructor(
     private val categoryDao: CategoryDao
 ) : CategoryLocalDataSource {
 
-    override fun getCategoryList(timestamp: Long, size: Int): List<CategoryInfo> {
-        return categoryDao.getCategoryList(timestamp, size)
+    override fun getCategoryInfoList(timestamp: Long, size: Int): List<CategoryInfo> {
+        return categoryDao.getCategoryInfoList(timestamp, size)
     }
 
-    override fun getCategoryList(): PagingSource<Int, CategoryInfo> {
-        return categoryDao.getCategoryList()
+    override fun getCategoryInfoList(): PagingSource<Int, CategoryInfo> {
+        return categoryDao.getCategoryInfoList()
     }
 
     override fun getCategory(categoryId: Long): Category? {

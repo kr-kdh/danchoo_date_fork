@@ -6,12 +6,12 @@ import com.danchoo.category.data.db.entity.CategoryInfo
 
 interface CategoryLocalDataSource {
 
-    fun getCategoryList(
+    fun getCategoryInfoList(
         timestamp: Long,
         size: Int
     ): List<CategoryInfo>
 
-    fun getCategoryList(): PagingSource<Int, CategoryInfo>
+    fun getCategoryInfoList(): PagingSource<Int, CategoryInfo>
 
     fun getCategory(categoryId: Long): Category?
 
