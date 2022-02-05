@@ -8,6 +8,21 @@ plugins {
 
 android {
     default()
+
+    kotlinOptions {
+        // Enable experimental coroutines APIs, including Flow
+        freeCompilerArgs = freeCompilerArgs.plus(
+            listOf(
+                "-Xopt-in=kotlin.RequiresOptIn",
+                "-Xopt-in=kotlin.Experimental",
+                "-Xopt-in=androidx.compose.animation.ExperimentalAnimationApi",
+                "-Xopt-in=com.google.accompanist.pager.ExperimentalPagerApi",
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xopt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi",
+                "-Xopt-in=androidx.compose.foundation.ExperimentalFoundationApi"
+            )
+        )
+    }
 }
 
 dependencies {
@@ -45,6 +60,8 @@ dependencies {
     AndroidX.Test.run {
         androidTestImplementation(runner)
         androidTestImplementation(room)
+
+        testImplementation(runner)
     }
 
     JUnit5.run {
@@ -54,5 +71,34 @@ dependencies {
 
         androidTestRuntimeOnly(runner)
         androidTestRuntimeOnly(engine)
+
+        androidTestCompileOnly(hamcrest)
+
+        testImplementation(api)
+        testImplementation(testCore)
+        testImplementation(params)
+
+        testRuntimeOnly(runner)
+        testRuntimeOnly(engine)
+        testCompileOnly(hamcrest)
+    }
+
+    Mockito.run {
+        androidTestCompileOnly(mock)
+        androidTestCompileOnly(mockInline)
+        androidTestCompileOnly(core)
+
+        testCompileOnly(mock)
+        testCompileOnly(mockInline)
+        testCompileOnly(mockJupiter)
+        testImplementation(core)
+    }
+
+    Coroutines.run {
+        testImplementation(test)
+    }
+
+    Google.run {
+        testImplementation(truth)
     }
 }

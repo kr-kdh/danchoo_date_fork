@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.RoundedCornerShape8dp
 import com.danchoo.components.ui.button.ExpandButton
+import com.danchoo.glideimage.GlideImage
 import com.danchoo.glideimage.rememberGlideImagePinter
 
 
@@ -241,15 +242,12 @@ private fun CardViewBigImageContents(
     onChangeExpendState: (enable: Boolean) -> Unit
 ) {
     Column(modifier) {
-        Image(
+
+        GlideImage(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(192.dp),
-            painter = rememberGlideImagePinter(
-                data = state.images.first()
-            ),
-            contentDescription = null,
-            alignment = Alignment.Center,
+            data = state.images.first(),
             contentScale = ContentScale.Crop
         )
 

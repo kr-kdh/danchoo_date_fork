@@ -105,6 +105,9 @@ object Google {
 
     private const val materialVersion = "1.4.0"
     const val material = "com.google.android.material:material:$materialVersion"
+
+    private const val version = "1.1.3"
+    const val truth = "com.google.truth:truth:$version"
 }
 
 object Firebase {
@@ -158,12 +161,19 @@ object JUnit5 {
     const val params = "org.junit.jupiter:junit-jupiter-params:$version"
     const val testCore = "de.mannodermaus.junit5:android-test-core:$junit5Version"
     const val runner = "de.mannodermaus.junit5:android-test-runner:$junit5Version"
+
+    const val hamcrest = "org.hamcrest:hamcrest-library:2.2"
+
+
 }
 
 object Mockito {
-    private const val version = "2.24.5"
-    const val mock = "org.mockito:mockito-andr1.3.1.0.oid:$version"
+    private const val version = "4.3.1"
+    const val mock = "org.mockito:mockito-android:$version"
     const val mockInline = "org.mockito:mockito-inline:$version"
+    const val mockJupiter = "org.mockito:mockito-junit-jupiter:$version"
+
+    const val core = "org.mockito:mockito-core:$version"
 }
 
 
@@ -174,10 +184,7 @@ object Glide {
 }
 
 object GlideImage {
-    private const val version = "1.2.0"
+    private const val version = "1.2.2"
     const val glide = "com.github.danchoo21:glide-image:$version"
 }
 
-object Coil {
-    const val coil = "io.coil-kt:coil-compose:2.0.0-alpha06"
-}

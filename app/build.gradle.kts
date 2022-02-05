@@ -68,6 +68,7 @@ dependencies {
         implementation(inserts)
         implementation(pager)
         implementation(pagerIndicators)
+        implementation(drawablePainter)
     }
 
 
@@ -120,10 +121,6 @@ dependencies {
 
     GlideImage.run {
         implementation(glide)
-    }
-
-    Coil.run {
-        implementation(coil)
     }
 //    AndroidX.Test.run {
 //        androidTestImplementation(runner)

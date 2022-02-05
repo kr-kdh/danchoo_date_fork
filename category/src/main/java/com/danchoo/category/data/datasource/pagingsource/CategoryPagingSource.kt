@@ -12,17 +12,6 @@ class CategoryPagingSource constructor(
     private val localDataSource: CategoryLocalDataSource
 ) : PagingSource<Int, CategoryData>() {
 
-    val dataSource = localDataSource.getCategoryInfoList()
-
-    init {
-
-        dataSource.registerInvalidatedCallback(::invalidate)
-        registerInvalidatedCallback {
-            dataSource.unregisterInvalidatedCallback(::invalidate)
-            dataSource.invalidate()
-        }
-    }
-
     override fun getRefreshKey(state: PagingState<Int, CategoryData>): Int? {
         // Try to find the page key of the closest page to anchorPosition, from
         // either the prevKey or the nextKey, but you need to handle nullability
