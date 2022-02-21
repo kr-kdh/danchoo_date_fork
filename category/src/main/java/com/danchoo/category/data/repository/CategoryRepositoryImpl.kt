@@ -40,6 +40,7 @@ class CategoryRepositoryImpl constructor(
             title = title,
             description = description,
             visibility = visibility,
+            coverImageUri = coverImageUri.toString(),
             createTimestamp = currentTimestamp,
             lastModifiedTimestamp = currentTimestamp
         )

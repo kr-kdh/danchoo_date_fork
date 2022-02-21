@@ -80,7 +80,7 @@ private fun CategoryDataItemPreview() {
                     category = CategoryModel(
                         title = "Category Title",
                         description = "Category Description",
-                        coverImage = ""
+                        coverImageUri = ""
                     )
                 )
             )

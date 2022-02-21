@@ -13,15 +13,13 @@ class CategoryCreateUseCase(
 ) : UseCase<CategoryCreateParameter, CategoryModel>(coroutineDispatcher) {
 
     override suspend fun execute(parameters: CategoryCreateParameter): CategoryModel {
-        val category = repository.createCategory(
+        return repository.createCategory(
             title = parameters.title,
             description = parameters.description,
             visibility = parameters.visibility,
             coverImageUri = parameters.coverImageUri,
             currentTimestamp = parameters.currentTimestamp
         ) ?: throw Exception()
-
-        return category
     }
 
     data class CategoryCreateParameter(

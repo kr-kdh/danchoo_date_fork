@@ -20,7 +20,7 @@ data class Category(
 
     val description: String = "",
 
-    val coverImage: String = "",
+    val coverUriImage: String = "",
 
     @ColumnInfo(name = "read_count")
     val readCount: Long = 0L,

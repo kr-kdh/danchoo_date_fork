@@ -14,7 +14,7 @@ data class CategoryModel(
 
     val description: String = "",
 
-    val coverImage: String = "",
+    val coverImageUri: String = "",
 
     val readCount: Long = 0L,
 
