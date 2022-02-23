@@ -1,6 +1,7 @@
 package com.danchoo.date.presentation.home.category
 
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,7 +16,6 @@ import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.cardview.CardView
 import com.danchoo.components.ui.cardview.CardViewContents
 import com.danchoo.components.ui.cardview.CardViewContentsType
-import com.danchoo.date.R
 
 @Composable
 fun CategoryItem(
@@ -52,7 +52,7 @@ private fun CategoryDataItem(
         type = CardViewContentsType.BigImage,
         title = categoryItem.categoryInfoModel.category.title,
         description = categoryItem.categoryInfoModel.category.description,
-        images = listOf(R.drawable.the_gleaners)
+        images = listOf(Uri.parse(categoryItem.categoryInfoModel.category.coverImageUri))
     )
 }
 
