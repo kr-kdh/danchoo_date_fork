@@ -3,7 +3,9 @@ package com.danchoo.date.presentation.home.category
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle.State.RESUMED
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.danchoo.date.presentation.home.category.CategoryContract.CategoryViewEvent
@@ -17,10 +19,13 @@ fun CategoryScreen(
     navController: NavController,
     viewModel: CategoryViewModel = hiltViewModel()
 ) {
+    val currentLifecycleState = LocalLifecycleOwner.current.lifecycle.currentState
 
-    val categoryDataList = viewModel.categoryList().collectAsLazyPagingItems()
     val viewState = viewModel.viewState.value
     val state = rememberCategoryState(navController)
+
+    val categoryDataList = viewModel.categoryList().collectAsLazyPagingItems()
+
 
     LaunchedEffect(key1 = Unit) {
         viewModel.sideEffect
@@ -29,7 +34,11 @@ fun CategoryScreen(
             }.collect()
     }
 
-
+    LaunchedEffect(key1 = currentLifecycleState) {
+        if (currentLifecycleState == RESUMED) {
+            categoryDataList.refresh()
+        }
+    }
 
     CategoryScreenImpl(
         modifier = modifier,
