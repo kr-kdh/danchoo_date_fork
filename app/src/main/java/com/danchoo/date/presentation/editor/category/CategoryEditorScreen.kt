@@ -14,6 +14,7 @@ import com.danchoo.components.permission.RequestPermission
 import com.danchoo.date.presentation.common.dialog.MediaSelectDialog
 import com.danchoo.date.presentation.common.dialog.MediaSelectType
 import com.danchoo.date.presentation.editor.category.CategoryEditorContract.CategoryEditorIntent
+import com.danchoo.date.presentation.editor.category.CategoryEditorContract.CategoryEditorSideEffect
 import com.danchoo.date.presentation.editor.category.CategoryEditorContract.CategoryEditorViewEvent
 import com.danchoo.date.presentation.gallery.domain.model.GalleryItemModel
 import kotlinx.coroutines.flow.collect
@@ -39,7 +40,14 @@ fun CategoryEditorScreen(
 
     LaunchedEffect(key1 = Unit) {
         viewModel.sideEffect
-            .onEach { }
+            .onEach {
+                when (it) {
+                    is CategoryEditorSideEffect.CategoryCreateSuccess -> {
+                        state.popBackStack()
+                    }
+                    else -> Unit
+                }
+            }
             .collect()
     }
 

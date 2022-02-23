@@ -1,5 +1,6 @@
 package com.danchoo.date.presentation.home.category
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
@@ -7,7 +8,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.res.stringResource
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemsIndexed
@@ -27,20 +27,18 @@ fun CategoryScreenImpl(
     onViewEvent: OnViewEvent
 ) {
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopAppBar(
-                modifier = modifier,
+                modifier = Modifier,
                 title = {
-                    Text(
-                        text = stringResource(id = R.string.category_create_title),
-                        style = MyApplicationTheme.typography.title1
-                    )
+                    Text(text = stringResource(id = R.string.category_create_title))
                 }
             )
         },
         content = {
             CategoryContents(
-                modifier = modifier.padding(it),
+                modifier = Modifier.padding(it),
                 list = categoryDataList
             ) { categoryData ->
                 when (categoryData) {
@@ -73,9 +71,8 @@ fun CategoryContents(
     onClick: (categoryData: CategoryData) -> Unit = {}
 ) {
     LazyColumn(
-        modifier
-            .padding(top = MyApplicationTheme.spacing.baseLineSpacingMedium)
-            .clipToBounds()
+        modifier = modifier,
+        contentPadding = PaddingValues(MyApplicationTheme.spacing.baseLineSpacingMedium)
     ) {
         itemsIndexed(list) { index, categoryModel ->
             categoryModel?.let {

@@ -47,17 +47,14 @@ fun CategoryEditorScreenImpl(
                         },
                         colors = ButtonDefaults.titleButtonColor(),
                     ) {
-                        Text(
-                            text = stringResource(id = R.string.confirm),
-                            style = MaterialTheme.typography.subtitle1
-                        )
+                        Text(text = stringResource(id = R.string.confirm))
                     }
                 }
             )
         }
     ) {
         CategoryEditorContents(
-            modifier = modifier
+            modifier = Modifier
                 .padding(it)
                 .fillMaxSize(),
             coverImage = {
