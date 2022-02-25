@@ -23,8 +23,6 @@ object CategoryContract {
             val category: CategoryModel
         ) : CategoryViewEvent()
 
-        object OnTitleClick : CategoryViewEvent()
-
 
         object OnAddCategory : CategoryViewEvent()
     }

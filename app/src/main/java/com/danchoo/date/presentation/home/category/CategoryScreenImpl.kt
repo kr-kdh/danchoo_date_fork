@@ -16,13 +16,10 @@ import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.ui.button.AddFloatingActionButton
 import com.danchoo.date.R
-import com.danchoo.date.presentation.home.category.CategoryContract.CategoryViewState
 
 @Composable
 fun CategoryScreenImpl(
     modifier: Modifier = Modifier,
-    state: CategoryState,
-    viewState: CategoryViewState,
     categoryDataList: LazyPagingItems<CategoryData>,
     onViewEvent: OnViewEvent
 ) {
@@ -47,11 +44,7 @@ fun CategoryScreenImpl(
                             CategoryContract.CategoryViewEvent.OnItemClick(categoryData.categoryInfoModel.category)
                         )
                     }
-                    is CategoryData.CategoryHeader -> {
-                        onViewEvent(
-                            CategoryContract.CategoryViewEvent.OnTitleClick
-                        )
-                    }
+                    is CategoryData.CategoryHeader -> {}
                     else -> Unit
                 }
             }

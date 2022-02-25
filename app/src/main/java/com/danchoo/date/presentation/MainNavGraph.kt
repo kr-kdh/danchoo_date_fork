@@ -8,11 +8,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.danchoo.date.presentation.editor.category.addCategoryEditorNavGraph
+import com.danchoo.date.presentation.common.addCommonComposable
+import com.danchoo.date.presentation.contents.addContentsNavGraph
 import com.danchoo.date.presentation.home.addHomeNavGraph
+import com.danchoo.date.presentation.home.category.editor.addCategoryEditorNavGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-
 
 @Composable
 fun MainNavGraph(
@@ -20,14 +21,20 @@ fun MainNavGraph(
     navHostController: NavHostController,
     startDestination: String = MainRoute.HOME_ROUTE,
 ) {
+    val state = rememberMainNavGraphState(navHostController)
+
     AnimatedNavHost(
         navController = navHostController,
         startDestination = startDestination,
         modifier = modifier
     ) {
-        addHomeNavGraph(modifier, navHostController, this)
+        addHomeNavGraph(modifier, navHostController, state)
 
-        addCategoryEditorNavGraph(modifier, navHostController, this)
+        addCategoryEditorNavGraph(modifier, navHostController, state)
+
+        addContentsNavGraph(modifier, navHostController)
+
+        addCommonComposable(modifier, navHostController)
     }
 }
 

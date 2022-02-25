@@ -9,7 +9,7 @@ import androidx.compose.runtime.setValue
 import com.danchoo.common.BaseActivity
 import com.danchoo.components.theme.CustomTheme
 import com.danchoo.components.theme.MyApplicationTheme
-import com.danchoo.date.presentation.common.glide.GlideAppImageLoaderImpl
+import com.danchoo.date.presentation.utils.glide.GlideAppImageLoaderImpl
 import com.danchoo.glideimage.LocalImageLoader
 import dagger.hilt.android.AndroidEntryPoint
 

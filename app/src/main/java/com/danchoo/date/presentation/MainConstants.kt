@@ -7,7 +7,7 @@ import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.danchoo.date.R
-import com.danchoo.date.presentation.editor.category.addCategoryEditorNavGraph
+import com.danchoo.date.presentation.home.category.editor.addCategoryEditorNavGraph
 
 
 /**
@@ -19,6 +19,8 @@ object MainRoute {
     const val CATEGORY_EDITOR_ROUTE = "categoryEditor"
 
     const val CATEGORY_DETAIL_ROUTE = "categoryDetail"
+
+    const val COMMON_ROUTE = "common"
 }
 
 enum class HomeScreen(
@@ -43,14 +45,16 @@ enum class HomeScreen(
     ),
 }
 
-
 /**
  * Destinations used in the ([addCategoryEditorNavGraph]).
  */
 object CategoryEditorScreen {
     const val CREATE = "${MainRoute.CATEGORY_EDITOR_ROUTE}/create"
     const val MODIFY = "${MainRoute.CATEGORY_DETAIL_ROUTE}/modify"
-    const val GALLERY = "${MainRoute.CATEGORY_DETAIL_ROUTE}/gallery"
+}
+
+object CommonScreen {
+    const val GALLERY = "${MainRoute.COMMON_ROUTE}/gallery"
 }
 
 
