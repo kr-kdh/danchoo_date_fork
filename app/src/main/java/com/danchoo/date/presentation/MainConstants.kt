@@ -7,6 +7,7 @@ import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.danchoo.date.R
+import com.danchoo.date.presentation.MainRoute.CONTENTS_ROUTE
 import com.danchoo.date.presentation.home.category.editor.addCategoryEditorNavGraph
 
 
@@ -21,6 +22,8 @@ object MainRoute {
     const val CATEGORY_DETAIL_ROUTE = "categoryDetail"
 
     const val COMMON_ROUTE = "common"
+
+    const val CONTENTS_ROUTE = "contents"
 }
 
 enum class HomeScreen(
@@ -57,6 +60,27 @@ object CommonScreen {
     const val GALLERY = "${MainRoute.COMMON_ROUTE}/gallery"
 }
 
+/**
+ * contents screen
+ */
+object ContentsScreen {
+    const val LIST = "$CONTENTS_ROUTE/list"
+    const val DETAIL = "$CONTENTS_ROUTE/detail"
+    const val SETTING = "$CONTENTS_ROUTE/setting"
+
+    fun getListRoute() = "${DETAIL}/{${ContentsArgsKeys.CONTENTS_CATEGORY_ID}}"
+    fun getListDestination(categoryId: Long) ="${DETAIL}/${categoryId}"
+
+    fun getDetailRoute() = "${DETAIL}/{${ContentsArgsKeys.CONTENTS_ID}}"
+    fun getDetailDestination(contentsId: Long) ="${DETAIL}/${contentsId}"
+}
+
+object ContentsArgsKeys {
+    const val CONTENTS_CATEGORY_ID = "categoryId"
+    const val CONTENTS_ID = "contentsId"
+
+
+}
 
 object MainRouteArgsKeys {
     const val CATEGORY_DETAIL_ID = "categoryId"

@@ -1,50 +1,44 @@
 package com.danchoo.date.presentation.contents
 
 import androidx.compose.ui.Modifier
-import androidx.navigation.*
-import com.danchoo.date.presentation.contents.ContentsDestinations.MAIN_ROUTE
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
+import com.danchoo.date.presentation.ContentsArgsKeys
+import com.danchoo.date.presentation.ContentsScreen
+import com.danchoo.date.presentation.MainRoute.CONTENTS_ROUTE
 import com.danchoo.date.presentation.contents.detail.ContentsDetail
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
 
-/**
- * Destinations used in the ([ContentsNavGraph]).
- */
-object ContentsDestinations {
-    const val MAIN_ROUTE = "contents"
-}
-
-object ContentsSections {
-    const val LIST = "$MAIN_ROUTE/list"
-    const val DETAIL = "$MAIN_ROUTE/detail"
-    const val SETTING = "$MAIN_ROUTE/setting"
-}
-
-object ContentsArgsKeys {
-    const val CONTENTS_ID_KEY = "contentsId"
-}
 
 fun NavGraphBuilder.addContentsNavGraph(
     modifier: Modifier,
     navHostController: NavHostController
 ) {
     navigation(
-        route = MAIN_ROUTE,
-        startDestination = ContentsSections.LIST
+        route = CONTENTS_ROUTE,
+        startDestination = ContentsScreen.LIST
     ) {
-        composable(ContentsSections.LIST) { from ->
+        composable(
+            route = ContentsScreen.getListRoute(),
+            arguments = listOf(navArgument(ContentsArgsKeys.CONTENTS_CATEGORY_ID) {
+                type = NavType.LongType
+            })
+        ) {
             ContentsScreen(modifier = modifier) {
             }
         }
 
         composable(
-            route = "${ContentsSections.DETAIL}/{${ContentsArgsKeys.CONTENTS_ID_KEY}}",
-            arguments = listOf(navArgument(ContentsArgsKeys.CONTENTS_ID_KEY) {
+            route = ContentsScreen.getDetailRoute(),
+            arguments = listOf(navArgument(ContentsArgsKeys.CONTENTS_ID) {
                 type = NavType.LongType
             })
         ) { from ->
             val arguments = requireNotNull(from.arguments)
-            val contentsId = arguments.getLong(ContentsArgsKeys.CONTENTS_ID_KEY)
+            val contentsId = arguments.getLong(ContentsArgsKeys.CONTENTS_ID)
             ContentsDetail(modifier) {
             }
         }

@@ -18,6 +18,9 @@ class MainNavGraphState(
     }
 
     override fun onClickCategory(categoryId: Long) {
+        navController.launchResumed {
+            navigate(ContentsScreen.getListDestination(categoryId = categoryId))
+        }
     }
 
     override fun moveToGallery() {
