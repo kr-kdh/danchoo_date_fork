@@ -1,7 +1,6 @@
 package com.danchoo.contents.data.datasource.local
 
 import androidx.paging.PagingSource
-import com.danchoo.contents.data.datasource.local.ContentsLocalDataSource
 import com.danchoo.contents.data.db.dao.ContentsDao
 import com.danchoo.contents.data.db.entity.Contents
 
@@ -12,12 +11,12 @@ class ContentsLocalDataSourceImpl constructor(
         return contentsDao.getContentsList(timestamp, size)
     }
 
-    override fun getContentsList(): PagingSource<Int, Contents> {
-        return contentsDao.getContentsList()
+    override fun getContentsList(categoryId: Long): PagingSource<Int, Contents> {
+        return contentsDao.getContentsList(categoryId)
     }
 
-    override fun getTimestampByOffset(offset: Int): Long? {
-        return contentsDao.getTimestampByOffset(offset)
+    override fun getTimestampByOffset(categoryId: Long, offset: Int): Long? {
+        return contentsDao.getTimestampByOffset(categoryId, offset)
     }
 
     override fun insertContentsList(contentsList: List<Contents>) {

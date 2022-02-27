@@ -29,20 +29,23 @@ abstract class ContentsDao {
         """ 
             SELECT * 
             FROM contents 
+            WHERE category_id = :categoryId
             ORDER BY create_time_stamp ASC 
             """
     )
-    abstract fun getContentsList(): PagingSource<Int, Contents>
+    abstract fun getContentsList(categoryId: Long): PagingSource<Int, Contents>
 
     @Transaction
     @Query(
         """ 
             SELECT create_time_stamp 
             FROM contents 
+            WHERE category_id = :categoryId
             ORDER BY create_time_stamp ASC 
             LIMIT 1 OFFSET :offset"""
     )
     abstract fun getTimestampByOffset(
+        categoryId: Long,
         offset: Int
     ): Long?
 

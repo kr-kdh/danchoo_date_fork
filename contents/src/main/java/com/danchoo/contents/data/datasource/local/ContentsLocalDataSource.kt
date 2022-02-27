@@ -9,9 +9,9 @@ interface ContentsLocalDataSource {
         size: Int
     ): List<Contents>
 
-    fun getContentsList(): PagingSource<Int, Contents>
+    fun getContentsList(categoryId: Long): PagingSource<Int, Contents>
 
-    fun getTimestampByOffset(offset: Int): Long?
+    fun getTimestampByOffset(categoryId: Long, offset: Int): Long?
 
     fun insertContentsList(contentsList: List<Contents>)
 

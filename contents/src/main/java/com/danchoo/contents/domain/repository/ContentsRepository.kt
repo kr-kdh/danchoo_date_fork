@@ -5,7 +5,7 @@ import com.danchoo.contents.domain.model.ContentsModel
 
 interface ContentsRepository {
 
-    fun getContentsCustomPagingSource(): ContentsPagingSource
+    fun getContentsCustomPagingSource(categoryId: Long): ContentsPagingSource
 
     fun insertContents(categoryList: List<ContentsModel>)
 

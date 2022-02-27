@@ -9,8 +9,8 @@ import com.danchoo.contents.domain.repository.ContentsRepository
 class ContentsRepositoryImpl constructor(
     private val localDataSource: ContentsLocalDataSource,
 ) : ContentsRepository {
-    override fun getContentsCustomPagingSource(): ContentsPagingSource {
-        return ContentsPagingSource(localDataSource)
+    override fun getContentsCustomPagingSource(categoryId: Long): ContentsPagingSource {
+        return ContentsPagingSource(localDataSource, categoryId)
     }
 
     override fun insertContents(categoryList: List<ContentsModel>) {

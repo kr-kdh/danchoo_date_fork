@@ -9,19 +9,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class ContentsPagingSource constructor(
-    private val localDataSource: ContentsLocalDataSource
+    private val localDataSource: ContentsLocalDataSource,
+    private val categoryId: Long
 ) : PagingSource<Int, ContentsModel>() {
 
-    val dataSource = localDataSource.getContentsList()
-
-    init {
-
-        dataSource.registerInvalidatedCallback(::invalidate)
-        registerInvalidatedCallback {
-            dataSource.unregisterInvalidatedCallback(::invalidate)
-            dataSource.invalidate()
-        }
-    }
+//    val dataSource = localDataSource.getContentsList(contentsId)
+//
+//    init {
+//
+//        dataSource.registerInvalidatedCallback(::invalidate)
+//        registerInvalidatedCallback {
+//            dataSource.unregisterInvalidatedCallback(::invalidate)
+//            dataSource.invalidate()
+//        }
+//    }
 
     override fun getRefreshKey(state: PagingState<Int, ContentsModel>): Int? {
         // Try to find the page key of the closest page to anchorPosition, from
@@ -64,7 +65,7 @@ class ContentsPagingSource constructor(
     private fun getContentsList(key: Int, loadSize: Int): List<ContentsModel> {
         val offset = key * loadSize
 
-        val timestamp = localDataSource.getTimestampByOffset(offset) ?: -1
+        val timestamp = localDataSource.getTimestampByOffset(categoryId, offset) ?: -1
         if (timestamp == -1L) {
             return emptyList()
         }

@@ -2,7 +2,6 @@ package com.danchoo.contents.di
 
 import com.danchoo.contents.data.datasource.local.ContentsLocalDataSource
 import com.danchoo.contents.data.datasource.local.ContentsLocalDataSourceImpl
-import com.danchoo.contents.data.datasource.pagingsource.ContentsPagingSource
 import com.danchoo.contents.data.db.dao.ContentsDao
 import com.danchoo.contents.data.repository.ContentsRepositoryImpl
 import com.danchoo.contents.domain.inspector.usecase.ContentsListInsertUseCase
@@ -41,10 +40,10 @@ object ContentsModule {
     }
 
 
-    @Provides
-    fun provideContentsPagingSource(localDataSource: ContentsLocalDataSource): ContentsPagingSource {
-        return ContentsPagingSource(localDataSource)
-    }
+//    @Provides
+//    fun provideContentsPagingSource(localDataSource: ContentsLocalDataSource): ContentsPagingSource {
+//        return ContentsPagingSource(localDataSource)
+//    }
 
     @Singleton
     @Provides

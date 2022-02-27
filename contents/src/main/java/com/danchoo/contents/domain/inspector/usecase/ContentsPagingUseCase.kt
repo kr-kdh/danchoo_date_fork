@@ -11,7 +11,7 @@ import javax.inject.Inject
 class ContentsPagingUseCase @Inject constructor(
     val repository: ContentsRepository
 ) {
-    operator fun invoke(): Flow<PagingData<ContentsModel>> = Pager(
+    operator fun invoke(categoryId: Long): Flow<PagingData<ContentsModel>> = Pager(
         config = PagingConfig(
             pageSize = 10,
             prefetchDistance = 10,
@@ -19,6 +19,6 @@ class ContentsPagingUseCase @Inject constructor(
             maxSize = Int.MAX_VALUE
         )
     ) {
-        repository.getContentsCustomPagingSource()
+        repository.getContentsCustomPagingSource(categoryId)
     }.flow
 }
