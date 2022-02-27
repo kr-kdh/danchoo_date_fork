@@ -1,5 +1,6 @@
 package com.danchoo.date.presentation.home.category.editor
 
+import android.content.res.Configuration
 import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,6 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.extension.applyAlpha80
@@ -26,10 +28,10 @@ import com.danchoo.glideimage.GlideImage
 
 @Composable
 fun CategoryEditorScreenImpl(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     state: CategoryEditorState,
     viewState: CategoryEditorViewState,
-    onViewEvent: OnViewEvent
+    onViewEvent: OnViewEvent = {}
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -37,7 +39,7 @@ fun CategoryEditorScreenImpl(
             BackTopAppBar(
                 title = { Text(text = stringResource(id = R.string.category_create)) },
                 onClickBack = {
-                    onViewEvent(CategoryEditorViewEvent.OnClickBackPress)
+                    onViewEvent(CategoryEditorViewEvent.OnClickBack)
                 },
                 actions = {
                     TextButton(
@@ -248,4 +250,15 @@ private fun AddChangeImage(
     }
 }
 
+@Preview("light", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview("dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun CategoryEditorScreenPreview() {
+    MyApplicationTheme {
+        CategoryEditorScreenImpl(
+            state = rememberCategoryEditorState(),
+            viewState = CategoryEditorViewState()
+        )
+    }
+}
 

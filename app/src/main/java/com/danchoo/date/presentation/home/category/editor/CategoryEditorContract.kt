@@ -36,7 +36,7 @@ object CategoryEditorContract {
     ) : BaseViewState
 
     sealed class CategoryEditorViewEvent : ViewEvent {
-        object OnClickBackPress : CategoryEditorViewEvent()
+        object OnClickBack : CategoryEditorViewEvent()
 
         data class OnTitleChanged(
             val title: String

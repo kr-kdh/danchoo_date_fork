@@ -58,7 +58,7 @@ fun CategoryEditorScreen(
         viewState = viewState
     ) {
         when (it) {
-            is CategoryEditorViewEvent.OnClickBackPress -> state.popBackStack()
+            is CategoryEditorViewEvent.OnClickBack -> state.popBackStack()
             is CategoryEditorViewEvent.OnTitleChanged -> {
                 state.title.value = it.title
             }

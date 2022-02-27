@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.danchoo.date.presentation.utils.extension.launchResumed
 
 class CategoryEditorState(
@@ -31,7 +32,7 @@ class CategoryEditorState(
 
 @Composable
 fun rememberCategoryEditorState(
-    navController: NavController,
+    navController: NavController = rememberNavController(),
     title: MutableState<String> = rememberSaveable { mutableStateOf("") },
     description: MutableState<String> = rememberSaveable { mutableStateOf("") },
     isVisibility: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
