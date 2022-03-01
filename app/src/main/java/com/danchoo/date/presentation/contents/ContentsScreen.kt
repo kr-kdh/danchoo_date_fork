@@ -5,7 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.danchoo.date.presentation.contents.ContentsContract.ContentsEditorViewEvent
+import com.danchoo.date.presentation.contents.ContentsContract.ContentsViewEvent
 
 @Composable
 fun ContentsScreen(
@@ -25,9 +25,9 @@ fun ContentsScreen(
         list = list
     ) { viewEvent ->
         when (viewEvent) {
-            is ContentsEditorViewEvent.OnClickBack -> onClickBack()
-            is ContentsEditorViewEvent.OnClickAdd -> onClickAdd(viewState.categoryId)
-            is ContentsEditorViewEvent.OnClickContent -> onClickContent(viewEvent.contentsId)
+            is ContentsViewEvent.OnClickBack -> onClickBack()
+            is ContentsViewEvent.OnClickAdd -> onClickAdd(viewState.categoryId)
+            is ContentsViewEvent.OnClickContent -> onClickContent(viewEvent.contentsId)
             else -> Unit
         }
     }

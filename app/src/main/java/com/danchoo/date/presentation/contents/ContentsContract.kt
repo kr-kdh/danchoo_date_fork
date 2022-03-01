@@ -16,9 +16,9 @@ object ContentsContract {
     object ContentsSideEffect : BaseSideEffect
 
 
-    sealed class ContentsEditorViewEvent : ViewEvent {
-        object OnClickBack : ContentsEditorViewEvent()
-        object OnClickAdd : ContentsEditorViewEvent()
-        data class OnClickContent(val contentsId: Long) : ContentsEditorViewEvent()
+    sealed class ContentsViewEvent : ViewEvent {
+        object OnClickBack : ContentsViewEvent()
+        object OnClickAdd : ContentsViewEvent()
+        data class OnClickContent(val contentsId: Long) : ContentsViewEvent()
     }
 }
