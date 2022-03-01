@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.danchoo.date.presentation.home.HomeNavActions
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorActions
+import com.danchoo.date.presentation.home.category.graph.HomeNavActions
 import com.danchoo.date.presentation.utils.extension.launchResumed
 
 class MainNavGraphState(

@@ -8,7 +8,7 @@ import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.danchoo.date.R
 import com.danchoo.date.presentation.MainRoute.CONTENTS_ROUTE
-import com.danchoo.date.presentation.home.category.editor.addCategoryEditorNavGraph
+import com.danchoo.date.presentation.home.category.editor.graph.addCategoryEditorNavGraph
 
 
 /**
@@ -66,19 +66,23 @@ object CommonScreen {
 object ContentsScreen {
     const val LIST = "$CONTENTS_ROUTE/list"
     const val DETAIL = "$CONTENTS_ROUTE/detail"
+    const val CREATE = "$CONTENTS_ROUTE/create"
     const val SETTING = "$CONTENTS_ROUTE/setting"
 
-    fun getListRoute() = "${DETAIL}/{${ContentsArgsKeys.CONTENTS_CATEGORY_ID}}"
-    fun getListDestination(categoryId: Long) ="${DETAIL}/${categoryId}"
+    fun getListRoute() = "${LIST}/{${ContentsArgsKeys.CONTENTS_CATEGORY_ID}}"
+    fun getListDestination(categoryId: Long) = "${LIST}/${categoryId}"
 
     fun getDetailRoute() = "${DETAIL}/{${ContentsArgsKeys.CONTENTS_ID}}"
-    fun getDetailDestination(contentsId: Long) ="${DETAIL}/${contentsId}"
+    fun getDetailDestination(contentsId: Long) = "${DETAIL}/${contentsId}"
+
+    fun getCreateRoute() = "${CREATE}/{${ContentsArgsKeys.CONTENTS_CATEGORY_ID}}"
+    fun getCreateDestination(categoryId: Long) = "${CREATE}/${categoryId}"
 }
 
 object ContentsArgsKeys {
     const val CONTENTS_CATEGORY_ID = "categoryId"
     const val CONTENTS_ID = "contentsId"
-
+    const val IS_CREATE = "isCreate"
 
 }
 

@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.home
+package com.danchoo.date.presentation.home.category.graph
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder

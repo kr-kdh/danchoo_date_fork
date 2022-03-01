@@ -72,9 +72,9 @@ private fun ContentsEditorLayout(
     description: @Composable () -> Unit,
     setting: @Composable () -> Unit
 ) {
-    val scrollState = rememberScrollState()
+    val horizontalScrollState = rememberScrollState()
     val verticalScrollState = rememberScrollState()
-    Column(modifier = modifier.verticalScroll(scrollState)) {
+    Column(modifier = modifier.verticalScroll(verticalScrollState)) {
 
         Row(
             modifier = Modifier
@@ -86,7 +86,7 @@ private fun ContentsEditorLayout(
         ) {
             Row(
                 modifier = Modifier
-                    .horizontalScroll(verticalScrollState)
+                    .horizontalScroll(horizontalScrollState)
                     .weight(1f)
                     .padding(
                         start = MyApplicationTheme.spacing.baseLineSpacingMedium,

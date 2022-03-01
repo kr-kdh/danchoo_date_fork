@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.home.category.editor
+package com.danchoo.date.presentation.home.category.editor.graph
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
@@ -9,6 +9,8 @@ import com.danchoo.date.presentation.CategoryEditorScreen
 import com.danchoo.date.presentation.MainRoute
 import com.danchoo.date.presentation.common.gallery.domain.model.GALLERY_ITEM_MODEL
 import com.danchoo.date.presentation.common.gallery.domain.model.GalleryItemModel
+import com.danchoo.date.presentation.home.category.editor.CategoryEditorActions
+import com.danchoo.date.presentation.home.category.editor.CategoryEditorScreen
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
 

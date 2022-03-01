@@ -9,9 +9,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.danchoo.date.presentation.common.addCommonComposable
-import com.danchoo.date.presentation.contents.addContentsNavGraph
-import com.danchoo.date.presentation.home.addHomeNavGraph
-import com.danchoo.date.presentation.home.category.editor.addCategoryEditorNavGraph
+import com.danchoo.date.presentation.contents.graph.addContentsNavGraph
+import com.danchoo.date.presentation.home.category.editor.graph.addCategoryEditorNavGraph
+import com.danchoo.date.presentation.home.category.graph.addHomeNavGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 
