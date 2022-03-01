@@ -45,7 +45,7 @@ fun ContentsEditorScreenImpl(
         }
     ) {
 
-        ContentsEditorContents(
+        ContentsEditorLayout(
             modifier = Modifier.padding(it),
             image = {
 
@@ -65,7 +65,7 @@ fun ContentsEditorScreenImpl(
 }
 
 @Composable
-private fun ContentsEditorContents(
+private fun ContentsEditorLayout(
     modifier: Modifier = Modifier,
     image: @Composable RowScope.() -> Unit,
     category: @Composable () -> Unit,

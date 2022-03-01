@@ -55,7 +55,7 @@ fun CategoryEditorScreenImpl(
             )
         }
     ) {
-        CategoryEditorContents(
+        CategoryEditorLayout(
             modifier = Modifier
                 .padding(it)
                 .fillMaxSize(),
@@ -99,7 +99,7 @@ fun CategoryEditorScreenImpl(
 }
 
 @Composable
-private fun CategoryEditorContents(
+private fun CategoryEditorLayout(
     modifier: Modifier = Modifier,
     coverImage: @Composable LazyItemScope.(childModifier: Modifier) -> Unit,
     category: @Composable LazyItemScope.(childModifier: Modifier) -> Unit,

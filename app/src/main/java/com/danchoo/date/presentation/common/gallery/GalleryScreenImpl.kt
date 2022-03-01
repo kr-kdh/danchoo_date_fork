@@ -49,7 +49,7 @@ fun GalleryScreenImpl(
         },
         snackbarHost = {}
     ) {
-        GalleryContents(
+        GalleryLayout(
             modifier = modifier.padding(it),
             pagingItems = pagingItems
         ) { galleryItemModel ->
@@ -59,7 +59,7 @@ fun GalleryScreenImpl(
 }
 
 @Composable
-fun GalleryContents(
+private fun GalleryLayout(
     modifier: Modifier = Modifier,
     pagingItems: LazyPagingItems<GalleryItemModel>,
     onClick: (GalleryItemModel) -> Unit
@@ -88,7 +88,7 @@ fun GalleryContents(
 }
 
 @Composable
-fun GalleryItem(
+private fun GalleryItem(
     modifier: Modifier = Modifier,
     check: (@Composable BoxScope.() -> Unit)? = null,
     contents: @Composable BoxScope.() -> Unit

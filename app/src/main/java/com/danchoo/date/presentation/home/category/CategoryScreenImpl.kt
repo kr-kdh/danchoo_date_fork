@@ -34,7 +34,7 @@ fun CategoryScreenImpl(
             )
         },
         content = {
-            CategoryContents(
+            CategoryLayout(
                 modifier = Modifier.padding(it),
                 list = categoryDataList
             ) { categoryData ->
@@ -58,7 +58,7 @@ fun CategoryScreenImpl(
 }
 
 @Composable
-fun CategoryContents(
+private fun CategoryLayout(
     modifier: Modifier = Modifier,
     list: LazyPagingItems<CategoryData>,
     onClick: (categoryData: CategoryData) -> Unit = {}
