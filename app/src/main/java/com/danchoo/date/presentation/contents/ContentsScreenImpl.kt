@@ -16,7 +16,7 @@ import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.button.IconButton
 import com.danchoo.contents.domain.model.ContentsModel
 import com.danchoo.date.R
-import com.danchoo.date.presentation.contents.ContentsContract.ContentsEditorViewEvent
+import com.danchoo.date.presentation.contents.ContentsContract.ContentsViewEvent
 
 @Composable
 fun ContentsScreenImpl(
@@ -30,11 +30,11 @@ fun ContentsScreenImpl(
             BackTopAppBar(
                 title = { Text(text = stringResource(id = R.string.category_create)) },
                 onClickBack = {
-                    onViewEvent(ContentsEditorViewEvent.OnClickBack)
+                    onViewEvent(ContentsViewEvent.OnClickBack)
                 },
                 actions = {
                     IconButton(imageVector = Icons.Default.Add) {
-                        onViewEvent(ContentsEditorViewEvent.OnClickAdd)
+                        onViewEvent(ContentsViewEvent.OnClickAdd)
                     }
                 }
             )
