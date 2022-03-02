@@ -1,6 +1,8 @@
 package com.danchoo.commonutils.file
 
 import android.content.Context
+import com.danchoo.commonutils.extension.deleteTempFile
+import com.danchoo.commonutils.extension.getCacheDirByName
 import java.io.File
 import javax.inject.Inject
 
@@ -18,5 +20,13 @@ internal class FileConfigurationImpl @Inject constructor(
         return context.cacheDir
     }
 
+    override fun getCacheDir(folderName: String): File {
+        return context.getCacheDirByName(folderName)
+    }
+
     override fun getTempFileName(ext: String): String = "${System.currentTimeMillis()}.$ext"
+
+    override fun deleteTempFile(folderName: String) {
+        context.deleteTempFile(folderName)
+    }
 }

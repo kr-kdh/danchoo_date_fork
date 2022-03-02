@@ -1,4 +1,4 @@
-package com.danchoo.date.presentation.utils.extension
+package com.danchoo.commonutils.extension
 
 import java.util.*
 import kotlin.concurrent.schedule

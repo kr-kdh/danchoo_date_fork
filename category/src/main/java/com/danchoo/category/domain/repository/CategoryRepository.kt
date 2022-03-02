@@ -31,4 +31,6 @@ interface CategoryRepository {
     )
 
     fun deleteCategory(categoryId: Long)
+
+    fun getCategoryFolderPath(): String
 }

@@ -35,7 +35,6 @@ dependencies {
     implementation(project(":components"))
     implementation(project(":commonUtils"))
     implementation(project(":retrofitUtils"))
-    implementation(project(":inspector"))
     implementation(project(":category"))
     implementation(project(":tags"))
     implementation(project(":gallery"))

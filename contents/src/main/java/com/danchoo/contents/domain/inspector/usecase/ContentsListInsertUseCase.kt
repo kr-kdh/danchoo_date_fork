@@ -1,8 +1,8 @@
 package com.danchoo.contents.domain.inspector.usecase
 
+import com.danchoo.common.usecase.UseCase
 import com.danchoo.contents.domain.model.ContentsModel
 import com.danchoo.contents.domain.repository.ContentsRepository
-import com.danchoo.inspactor.usecase.UseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import java.util.*
 import javax.inject.Inject

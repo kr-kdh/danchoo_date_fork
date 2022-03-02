@@ -1,4 +1,4 @@
-package com.danchoo.inspactor.usecase
+package com.danchoo.common.usecase
 
 /**
  * A generic class that holds a value with its loading status.

@@ -33,7 +33,6 @@ android {
 
 dependencies {
     implementation(project(":components"))
-    implementation(project(":inspector"))
     implementation(project(":base"))
 
     AndroidX.Navigation.run {

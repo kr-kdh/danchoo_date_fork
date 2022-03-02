@@ -1,13 +1,19 @@
 package com.danchoo.category.data.datasource.local
 
+import android.content.Context
 import androidx.paging.PagingSource
 import com.danchoo.category.data.db.dao.CategoryDao
 import com.danchoo.category.data.db.entity.Category
 import com.danchoo.category.data.db.entity.CategoryInfo
+import com.danchoo.commonutils.extension.getCacheDirByName
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 class CategoryLocalDataSourceImpl constructor(
+    @ApplicationContext private val context: Context,
     private val categoryDao: CategoryDao
 ) : CategoryLocalDataSource {
+    override fun getCategoryFolderPath() =
+        context.getCacheDirByName(CATEGORY_PATH).absolutePath ?: ""
 
     override fun getCategoryInfoList(timestamp: Long, size: Int): List<CategoryInfo> {
         return categoryDao.getCategoryInfoList(timestamp, size)
@@ -67,5 +73,9 @@ class CategoryLocalDataSourceImpl constructor(
 
     override fun deleteAll() {
         categoryDao.deleteAll()
+    }
+
+    companion object {
+        private const val CATEGORY_PATH = "category"
     }
 }

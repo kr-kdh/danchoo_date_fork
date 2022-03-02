@@ -89,4 +89,6 @@ class CategoryRepositoryImpl constructor(
     override fun deleteCategory(categoryId: Long) {
         localDataSource.delete(categoryId)
     }
+
+    override fun getCategoryFolderPath(): String = localDataSource.getCategoryFolderPath()
 }

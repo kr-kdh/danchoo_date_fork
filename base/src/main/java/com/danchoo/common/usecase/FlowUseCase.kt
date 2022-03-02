@@ -1,4 +1,4 @@
-package com.danchoo.inspactor.usecase
+package com.danchoo.common.usecase
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

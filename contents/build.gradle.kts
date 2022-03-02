@@ -10,8 +10,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":base"))
     implementation(project(":tags"))
-    implementation(project(":inspector"))
     implementation(project(":retrofitUtils"))
 
     AndroidX.Paging.run {

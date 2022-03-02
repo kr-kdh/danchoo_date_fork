@@ -4,7 +4,6 @@ import android.net.Uri
 import com.danchoo.category.domain.inspector.usecase.CategoryCreateUseCase.CategoryCreateParameter
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.category.domain.repository.CategoryRepository
-import com.danchoo.inspactor.usecase.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.AfterEach

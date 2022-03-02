@@ -9,7 +9,7 @@ android {
     default()
 }
 dependencies {
-    implementation(project(":inspector"))
+    implementation(project(":base"))
 
     Hilt.run {
         implementation(android)

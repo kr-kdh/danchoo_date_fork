@@ -3,9 +3,6 @@ package com.danchoo.date.presentation
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import com.danchoo.common.BaseActivity
 import com.danchoo.components.theme.CustomTheme
 import com.danchoo.components.theme.MyApplicationTheme
@@ -28,7 +25,6 @@ class MainActivity : BaseActivity() {
 //            }
 //
 //        })
-        var isDarkMode by mutableStateOf(false)
         setContent {
             MyApplicationTheme(
                 customTheme = CustomTheme.Indigo

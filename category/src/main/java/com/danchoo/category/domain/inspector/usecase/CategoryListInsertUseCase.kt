@@ -2,7 +2,7 @@ package com.danchoo.category.domain.inspector.usecase
 
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.category.domain.repository.CategoryRepository
-import com.danchoo.inspactor.usecase.UseCase
+import com.danchoo.common.usecase.UseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import java.util.*
 import javax.inject.Inject

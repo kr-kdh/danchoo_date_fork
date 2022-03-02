@@ -6,6 +6,8 @@ import com.danchoo.category.data.db.entity.CategoryInfo
 
 interface CategoryLocalDataSource {
 
+    fun getCategoryFolderPath(): String
+
     fun getCategoryInfoList(
         timestamp: Long,
         size: Int

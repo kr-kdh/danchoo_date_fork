@@ -4,10 +4,11 @@ import android.Manifest
 import android.view.View
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.launch
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danchoo.components.permission.RequestPermission
@@ -30,13 +31,21 @@ fun CategoryEditorScreen(
 ) {
     val viewState = viewModel.viewState.value
     val state = rememberCategoryEditorState(navController)
+    val context = LocalContext.current
 
     galleryItemModel?.let {
-        viewModel.setEvent(CategoryEditorIntent.SaveGalleryModel(it))
+        viewModel.setEvent(
+            CategoryEditorIntent.SaveGalleryModel(
+                model = it,
+                saveTempPath = state.getCacheDir(context).absolutePath
+            )
+        )
     }
 
-    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) {
-        viewModel.setEvent(CategoryEditorIntent.SaveBitmap(it))
+    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
+        if (it) {
+            viewModel.setEvent(CategoryEditorIntent.CameraTakePicture(state.selectMediaUri.value))
+        }
     }
 
     LaunchedEffect(key1 = Unit) {
@@ -50,6 +59,12 @@ fun CategoryEditorScreen(
                 }
             }
             .collect()
+    }
+
+    DisposableEffect(key1 = Unit) {
+        onDispose {
+            state.deleteTempFile(context)
+        }
     }
 
     CategoryEditorScreenImpl(
@@ -101,7 +116,9 @@ fun CategoryEditorScreen(
     if (state.isShowCameraPermission.value) {
         RequestPermission(
             permission = Manifest.permission.CAMERA,
-            onSuccess = { launcher.launch() },
+            onSuccess = {
+                launcher.launch(state.getMediaTempFileUri(context))
+            },
             onDenied = {},
             onRequestMoveSetting = {},
             onRequestDismiss = {

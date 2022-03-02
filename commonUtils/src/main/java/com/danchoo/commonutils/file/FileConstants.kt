@@ -8,7 +8,11 @@ interface FileConfiguration {
 
     fun getCacheDir(): File
 
+    fun getCacheDir(folderName: String): File
+
     fun getTempFileName(ext: String = TEMP_EXT): String
+
+    fun deleteTempFile(folderName: String)
 
     companion object {
         private const val TEMP_EXT = "temp"

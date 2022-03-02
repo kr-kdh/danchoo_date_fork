@@ -1,6 +1,5 @@
 package com.danchoo.date.presentation.home.category.editor
 
-import android.graphics.Bitmap
 import android.net.Uri
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.common.BaseIntent
@@ -12,8 +11,12 @@ import com.danchoo.date.presentation.common.gallery.domain.model.GalleryItemMode
 object CategoryEditorContract {
 
     sealed class CategoryEditorIntent : BaseIntent {
-        data class SaveBitmap(val bitmap: Bitmap?) : CategoryEditorIntent()
-        data class SaveGalleryModel(val model: GalleryItemModel) : CategoryEditorIntent()
+        data class CameraTakePicture(val uri: Uri) : CategoryEditorIntent()
+        data class SaveGalleryModel(
+            val model: GalleryItemModel,
+            val saveTempPath: String
+        ) : CategoryEditorIntent()
+
         data class CategoryCreate(
             val title: String,
             val description: String,

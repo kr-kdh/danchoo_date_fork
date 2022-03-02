@@ -3,9 +3,9 @@ package com.danchoo.commonutils.file.domain.inspector
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.core.net.toUri
+import com.danchoo.common.usecase.UseCase
 import com.danchoo.commonutils.file.domain.inspector.SaveBitmapUseCase.SaveBitmapParameter
 import com.danchoo.commonutils.file.domain.inspector.SaveBitmapUseCase.SaveBitmapResult
-import com.danchoo.inspactor.usecase.UseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import java.io.File
 import java.io.FileOutputStream

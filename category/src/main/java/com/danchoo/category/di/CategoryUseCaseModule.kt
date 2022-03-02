@@ -3,6 +3,7 @@ package com.danchoo.category.di
 import com.danchoo.category.domain.inspector.usecase.CategoryCreateUseCase
 import com.danchoo.category.domain.inspector.usecase.CategoryPagingUseCase
 import com.danchoo.category.domain.repository.CategoryRepository
+import com.danchoo.commonutils.file.domain.repository.FileRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,8 +21,9 @@ object CategoryUseCaseModule {
     @Provides
     fun provideCategoryCreateUseCase(
         repository: CategoryRepository,
+        fileRepository: FileRepository,
         dispatcher: CoroutineDispatcher
     ): CategoryCreateUseCase {
-        return CategoryCreateUseCase(repository, dispatcher)
+        return CategoryCreateUseCase(repository, fileRepository, dispatcher)
     }
 }
