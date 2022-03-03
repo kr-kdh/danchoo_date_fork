@@ -11,6 +11,7 @@ import com.danchoo.date.presentation.common.gallery.domain.model.GALLERY_ITEM_MO
 import com.danchoo.date.presentation.common.gallery.domain.model.GalleryItemModel
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorActions
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorScreen
+import com.danchoo.date.presentation.utils.extension.launchResumed
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
 
@@ -42,9 +43,11 @@ fun NavGraphBuilder.addCategoryEditorNavGraph(
 
             CategoryEditorScreen(
                 modifier = modifier,
-                navController = navHostController,
                 galleryItemModel = galleryItemModel,
-                moveToGallery = { actions.moveToGallery() }
+                moveToGallery = { actions.moveToGallery() },
+                onClickBack = {
+                    navHostController.launchResumed { popBackStack() }
+                }
             )
         }
     }

@@ -43,7 +43,7 @@ fun CategoryEditorScreenImpl(
                 },
                 actions = {
                     TextButton(
-                        enabled = state.isEnableConfirm(),
+                        enabled = viewState.isEnableConfirm,
                         onClick = {
                             onViewEvent(CategoryEditorViewEvent.OnClickConfirm)
                         },
@@ -67,7 +67,7 @@ fun CategoryEditorScreenImpl(
             category = { childModifier ->
                 AddTitle(
                     modifier = childModifier,
-                    text = state.title.value,
+                    text = viewState.title,
                 ) { title ->
                     onViewEvent(CategoryEditorViewEvent.OnTitleChanged(title))
                 }
@@ -75,7 +75,7 @@ fun CategoryEditorScreenImpl(
             description = { childModifier ->
                 AddDescription(
                     modifier = childModifier,
-                    text = state.description.value
+                    text = viewState.description
                 ) { description ->
                     onViewEvent(CategoryEditorViewEvent.OnDescriptionChanged(description))
                 }
@@ -83,7 +83,7 @@ fun CategoryEditorScreenImpl(
             setting = { childModifier ->
                 AddVisibility(
                     modifier = childModifier,
-                    isVisibility = state.isVisibility.value
+                    isVisibility = viewState.isVisibility
                 ) { isVisibility ->
                     onViewEvent(CategoryEditorViewEvent.OnVisibilityChanged(isVisibility))
                 }

@@ -24,6 +24,10 @@ object CategoryEditorContract {
             val coverImageUri: Uri,
             val currentTimestamp: Long
         ) : CategoryEditorIntent()
+
+        data class TitleChanged(val title: String) : CategoryEditorIntent()
+        data class DescriptionChanged(val description: String) : CategoryEditorIntent()
+        data class VisibilityChanged(val isVisibility: Boolean) : CategoryEditorIntent()
     }
 
     sealed class CategoryEditorSideEffect : BaseSideEffect {
@@ -34,8 +38,12 @@ object CategoryEditorContract {
     }
 
     data class CategoryEditorViewState(
+        val title: String = "",
+        val description: String = "",
+        val isVisibility: Boolean = false,
         val isCreate: Boolean = true,
-        val coverImageUri: Uri = Uri.EMPTY
+        val coverImageUri: Uri = Uri.EMPTY,
+        val isEnableConfirm: Boolean = false
     ) : BaseViewState
 
     sealed class CategoryEditorViewEvent : ViewEvent {

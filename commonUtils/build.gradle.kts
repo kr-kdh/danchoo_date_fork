@@ -7,6 +7,15 @@ plugins {
 
 android {
     default()
+
+    composeOptions.run {
+        kotlinCompilerExtensionVersion = Config.COMPOSE_VERSION
+    }
+
+    buildFeatures.run {
+        compose = true
+    }
+
 }
 dependencies {
     implementation(project(":base"))

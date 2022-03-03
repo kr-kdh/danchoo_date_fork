@@ -15,9 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.danchoo.commonutils.composition.LocalRemoteStorageLoader
 import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.titleButtonColor
@@ -39,22 +41,10 @@ fun ContentsEditorScreenImpl(
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            BackTopAppBar(
-                title = { Text(text = stringResource(id = R.string.category_create)) },
-                onClickBack = {
-                    onViewEvent(ContentsEditorViewEvent.OnClickBack)
-                },
-                actions = {
-                    TextButton(
-                        enabled = viewState.isEnableConfirm,
-                        onClick = {
-                            onViewEvent(ContentsEditorViewEvent.OnClickConfirm)
-                        },
-                        colors = ButtonDefaults.titleButtonColor(),
-                    ) {
-                        Text(text = stringResource(id = R.string.confirm))
-                    }
-                }
+            ContentsEditorTopBar(
+                isEnableConfirm = viewState.isEnableConfirm,
+                onClickBack = { onViewEvent(ContentsEditorViewEvent.OnClickBack) },
+                onClickConfirm = { onViewEvent(ContentsEditorViewEvent.OnClickConfirm) }
             )
         }
     ) {
@@ -84,6 +74,29 @@ fun ContentsEditorScreenImpl(
 }
 
 @Composable
+private fun ContentsEditorTopBar(
+    modifier: Modifier = Modifier,
+    isEnableConfirm: Boolean = false,
+    onClickBack: () -> Unit = {},
+    onClickConfirm: () -> Unit = {}
+) {
+    BackTopAppBar(
+        modifier = modifier,
+        title = { Text(text = stringResource(id = R.string.category_create)) },
+        onClickBack = onClickBack,
+        actions = {
+            TextButton(
+                enabled = isEnableConfirm,
+                onClick = onClickConfirm,
+                colors = ButtonDefaults.titleButtonColor(),
+            ) {
+                Text(text = stringResource(id = R.string.confirm))
+            }
+        }
+    )
+}
+
+@Composable
 private fun ContentsMediaListItem(
     modifier: Modifier = Modifier,
     mediaModel: ContentsMediaModel,
@@ -100,12 +113,18 @@ private fun ContentsMediaListItem(
             onClick = onClickDelete
         )
 
-        GlideImage(data = mediaModel)
+        GlideImage(
+            modifier = Modifier.fillMaxSize(),
+            data = mediaModel.thumbnailLocalPath.ifEmpty {
+                LocalRemoteStorageLoader.current.getMediaUri(mediaModel.thumbnailKey)
+            },
+            contentScale = ContentScale.Crop
+        )
     }
 }
 
 @Composable
-private fun ColumnScope.CategorySelect() {
+private fun CategorySelect() {
 
 }
 

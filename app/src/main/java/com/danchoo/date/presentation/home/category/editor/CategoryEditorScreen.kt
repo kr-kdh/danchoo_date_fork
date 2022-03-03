@@ -8,9 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.danchoo.components.permission.RequestPermission
 import com.danchoo.date.presentation.common.gallery.domain.model.GalleryItemModel
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorIntent
@@ -24,20 +22,19 @@ import kotlinx.coroutines.flow.onEach
 @Composable
 fun CategoryEditorScreen(
     modifier: Modifier = Modifier,
-    navController: NavController,
     galleryItemModel: GalleryItemModel? = null,
     viewModel: CategoryEditorViewModel = hiltViewModel(),
-    moveToGallery: () -> Unit
+    moveToGallery: () -> Unit = {},
+    onClickBack: () -> Unit = {}
 ) {
     val viewState = viewModel.viewState.value
-    val state = rememberCategoryEditorState(navController)
-    val context = LocalContext.current
+    val state = rememberCategoryEditorState()
 
     galleryItemModel?.let {
         viewModel.setEvent(
             CategoryEditorIntent.SaveGalleryModel(
                 model = it,
-                saveTempPath = state.getCacheDir(context).absolutePath
+                saveTempPath = state.getCacheDir().absolutePath
             )
         )
     }
@@ -53,7 +50,7 @@ fun CategoryEditorScreen(
             .onEach {
                 when (it) {
                     is CategoryEditorSideEffect.CategoryCreateSuccess -> {
-                        state.popBackStack()
+                        onClickBack()
                     }
                     else -> Unit
                 }
@@ -63,7 +60,7 @@ fun CategoryEditorScreen(
 
     DisposableEffect(key1 = Unit) {
         onDispose {
-            state.deleteTempFile(context)
+            state.deleteTempFile()
         }
     }
 
@@ -73,15 +70,15 @@ fun CategoryEditorScreen(
         viewState = viewState
     ) {
         when (it) {
-            is CategoryEditorViewEvent.OnClickBack -> state.popBackStack()
+            is CategoryEditorViewEvent.OnClickBack -> onClickBack()
             is CategoryEditorViewEvent.OnTitleChanged -> {
-                state.title.value = it.title
+                viewModel.setEvent(CategoryEditorIntent.TitleChanged(it.title))
             }
             is CategoryEditorViewEvent.OnDescriptionChanged -> {
-                state.description.value = it.description
+                viewModel.setEvent(CategoryEditorIntent.DescriptionChanged(it.description))
             }
             is CategoryEditorViewEvent.OnVisibilityChanged -> {
-                state.isVisibility.value = it.visibility
+                viewModel.setEvent(CategoryEditorIntent.VisibilityChanged(it.visibility))
             }
             is CategoryEditorViewEvent.OnClickImageChange -> {
                 state.isShowMenuDialog.value = true
@@ -89,9 +86,9 @@ fun CategoryEditorScreen(
             is CategoryEditorViewEvent.OnClickConfirm -> {
                 viewModel.setEvent(
                     CategoryEditorIntent.CategoryCreate(
-                        title = state.title.value,
-                        description = state.description.value,
-                        isVisibility = if (state.isVisibility.value) View.VISIBLE else View.GONE,
+                        title = viewState.title,
+                        description = viewState.description,
+                        isVisibility = if (viewState.isVisibility) View.VISIBLE else View.GONE,
                         coverImageUri = viewState.coverImageUri,
                         currentTimestamp = System.currentTimeMillis()
                     )
@@ -117,7 +114,7 @@ fun CategoryEditorScreen(
         RequestPermission(
             permission = Manifest.permission.CAMERA,
             onSuccess = {
-                launcher.launch(state.getMediaTempFileUri(context))
+                launcher.launch(state.getMediaTempFileUri())
             },
             onDenied = {},
             onRequestMoveSetting = {},

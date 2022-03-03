@@ -31,6 +31,27 @@ class CategoryEditorViewModel @Inject constructor(
                 event.saveTempPath
             )
             is CategoryEditorIntent.CategoryCreate -> categoryCreate(event)
+            is CategoryEditorIntent.DescriptionChanged -> descriptionChanged(event.description)
+            is CategoryEditorIntent.TitleChanged -> titleChanged(event.title)
+            is CategoryEditorIntent.VisibilityChanged -> visibilityChanged(event.isVisibility)
+        }
+    }
+
+    private fun titleChanged(title: String) {
+        viewModelScope.launch {
+            setState { copy(title = title) }
+        }
+    }
+
+    private fun descriptionChanged(description: String) {
+        viewModelScope.launch {
+            setState { copy(description = description) }
+        }
+    }
+
+    private fun visibilityChanged(isVisibility: Boolean) {
+        viewModelScope.launch {
+            setState { copy(isVisibility = isVisibility) }
         }
     }
 

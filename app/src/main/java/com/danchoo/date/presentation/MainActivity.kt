@@ -29,7 +29,9 @@ class MainActivity : BaseActivity() {
             MyApplicationTheme(
                 customTheme = CustomTheme.Indigo
             ) {
-                CompositionLocalProvider(LocalImageLoader provides GlideAppImageLoaderImpl()) {
+                CompositionLocalProvider(
+                    LocalImageLoader provides GlideAppImageLoaderImpl()
+                ) {
                     MainApp()
                 }
             }
