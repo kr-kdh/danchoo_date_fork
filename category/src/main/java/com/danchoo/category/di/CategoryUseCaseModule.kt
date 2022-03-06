@@ -1,6 +1,7 @@
 package com.danchoo.category.di
 
 import com.danchoo.category.domain.inspector.usecase.CategoryCreateUseCase
+import com.danchoo.category.domain.inspector.usecase.CategoryListUseCase
 import com.danchoo.category.domain.inspector.usecase.CategoryPagingUseCase
 import com.danchoo.category.domain.repository.CategoryRepository
 import com.danchoo.commonutils.file.domain.repository.FileRepository
@@ -26,4 +27,14 @@ object CategoryUseCaseModule {
     ): CategoryCreateUseCase {
         return CategoryCreateUseCase(repository, fileRepository, dispatcher)
     }
+
+    @Provides
+    fun provideCategoryListUseCase(
+        repository: CategoryRepository,
+        dispatcher: CoroutineDispatcher
+    ): CategoryListUseCase {
+        return CategoryListUseCase(repository, dispatcher)
+    }
+
+
 }

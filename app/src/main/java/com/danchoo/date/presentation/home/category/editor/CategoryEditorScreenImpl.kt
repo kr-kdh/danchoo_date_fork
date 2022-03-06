@@ -20,6 +20,7 @@ import com.danchoo.components.extension.applyAlpha80
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.titleButtonColor
 import com.danchoo.components.ui.appbar.BackTopAppBar
+import com.danchoo.components.ui.button.OutlinedTextButton
 import com.danchoo.components.ui.textfield.TitleTextField
 import com.danchoo.date.R
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorViewEvent
@@ -228,26 +229,11 @@ private fun AddChangeImage(
     modifier: Modifier,
     onClick: () -> Unit
 ) {
-    OutlinedButton(
-        modifier = modifier
-            .padding(
-                top = MyApplicationTheme.spacing.baseLineSpacing,
-                bottom = MyApplicationTheme.spacing.baseLineSpacing
-            ),
+    OutlinedTextButton(
+        modifier = modifier,
+        text = stringResource(id = R.string.category_create_change_cover),
         onClick = onClick
-    ) {
-        Text(
-            modifier = Modifier
-                .weight(1f)
-                .padding(
-                    top = MyApplicationTheme.spacing.baseLineSpacing,
-                    bottom = MyApplicationTheme.spacing.baseLineSpacing
-                ),
-            text = stringResource(id = R.string.category_create_change_cover),
-            style = MyApplicationTheme.typography.subtitle1,
-            color = MyApplicationTheme.colors.textPrimary.applyAlpha80()
-        )
-    }
+    )
 }
 
 @Preview("light", uiMode = Configuration.UI_MODE_NIGHT_NO)

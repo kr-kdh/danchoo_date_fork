@@ -15,12 +15,20 @@ class CategoryLocalDataSourceImpl constructor(
     override fun getCategoryFolderPath() =
         context.getCacheDirByName(CATEGORY_PATH).absolutePath ?: ""
 
+    override fun getCategoryList(): List<Category> {
+        return categoryDao.getCategoryList()
+    }
+
     override fun getCategoryInfoList(timestamp: Long, size: Int): List<CategoryInfo> {
         return categoryDao.getCategoryInfoList(timestamp, size)
     }
 
-    override fun getCategoryInfoList(): PagingSource<Int, CategoryInfo> {
+    override fun getCategoryInfoList(): List<CategoryInfo> {
         return categoryDao.getCategoryInfoList()
+    }
+
+    override fun getCategoryPagingSource(): PagingSource<Int, CategoryInfo> {
+        return categoryDao.getCategoryPagingSource()
     }
 
     override fun getCategory(categoryId: Long): Category? {

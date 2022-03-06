@@ -33,7 +33,17 @@ abstract class CategoryDao {
             ORDER BY create_time_stamp ASC 
             """
     )
-    abstract fun getCategoryInfoList(): PagingSource<Int, CategoryInfo>
+    abstract fun getCategoryInfoList(): List<CategoryInfo>
+
+    @Transaction
+    @Query(
+        """ 
+            SELECT * 
+            FROM category 
+            ORDER BY create_time_stamp ASC 
+            """
+    )
+    abstract fun getCategoryPagingSource(): PagingSource<Int, CategoryInfo>
 
     @Query("SELECT * FROM category where category_id = :categoryId")
     abstract fun getCategory(categoryId: Long): Category?

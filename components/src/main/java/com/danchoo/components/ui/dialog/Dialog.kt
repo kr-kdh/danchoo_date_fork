@@ -2,9 +2,11 @@ package com.danchoo.components.ui.dialog
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
@@ -52,6 +54,60 @@ fun ListDialogContents(
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
+                    }
+
+                    if (isDivider) {
+                        Divider(Modifier.fillMaxSize())
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun <T> ListDialog(
+    items: List<T>,
+    textColor: Color = MaterialTheme.colors.onSurface,
+    isDivider: Boolean = true,
+    onItemSelected: (value: T) -> Unit = { _ -> },
+    onDismissRequest: () -> Unit = {},
+    content: @Composable (T) -> Unit
+) {
+    Dialog(onDismissRequest = onDismissRequest) {
+        ListDialogContents(
+            items = items,
+            textColor = textColor,
+            isDivider = isDivider,
+            content = content,
+            onItemSelected = onItemSelected
+        )
+    }
+}
+
+@Composable
+private fun <T> ListDialogContents(
+    items: List<T>,
+    textColor: Color,
+    isDivider: Boolean = true,
+    onItemSelected: (value: T) -> Unit = { _ -> },
+    content: @Composable (T) -> Unit
+) {
+    Card(modifier = Modifier.wrapContentSize()) {
+        LazyColumn {
+            items(items) { value ->
+                Column(Modifier.width(IntrinsicSize.Min)) {
+                    TextButton(
+                        modifier = Modifier
+                            .heightIn(max = MAX_LIST_DIALOG_HEIGHT)
+                            .widthIn(max = MAX_LIST_DIALOG_WIDTH, min = MIN_LIST_DIALOG_WIDTH),
+                        onClick = { onItemSelected(value) }
+                    ) {
+                        CompositionLocalProvider(
+                            LocalContentColor provides textColor,
+                        ) {
+                            content(value)
+                        }
                     }
 
                     if (isDivider) {

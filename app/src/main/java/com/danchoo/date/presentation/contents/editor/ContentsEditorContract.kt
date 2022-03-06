@@ -1,5 +1,6 @@
 package com.danchoo.date.presentation.contents.editor
 
+import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.common.BaseIntent
 import com.danchoo.common.BaseSideEffect
 import com.danchoo.common.BaseViewState
@@ -8,13 +9,20 @@ import com.danchoo.contents.domain.model.ContentsMediaModel
 
 object ContentsEditorContract {
 
-    object ContentsEditorIntent : BaseIntent
+    sealed class ContentsEditorIntent : BaseIntent {
+        object ShowCategorySelectDialog : ContentsEditorIntent()
+        object HideCategorySelectDialog : ContentsEditorIntent()
+        data class OnSelectCategory(val category: CategoryModel) : ContentsEditorIntent()
+    }
 
     data class ContentsEditorViewState(
         val isCreate: Boolean = true,
-        val categoryId: Long = 0,
+        val defaultCategoryId: Long = 0,
+        val selectedCategory: CategoryModel? = null,
         val isEnableConfirm: Boolean = false,
-        val mediaList: List<ContentsMediaModel> = emptyList()
+        val mediaList: List<ContentsMediaModel> = emptyList(),
+        val isShowCategorySelectDialog: Boolean = false,
+        val categoryList: List<CategoryModel> = emptyList()
     ) : BaseViewState
 
     object ContentsEditorSideEffect : BaseSideEffect
@@ -22,7 +30,10 @@ object ContentsEditorContract {
     sealed class ContentsEditorViewEvent : ViewEvent {
         object OnClickBack : ContentsEditorViewEvent()
         object OnClickConfirm : ContentsEditorViewEvent()
-        data class OnClickDeleteMedia(val mediaModel: ContentsMediaModel) :
-            ContentsEditorViewEvent()
+        object OnClickCategoryList : ContentsEditorViewEvent()
+
+        data class OnClickDeleteMedia(
+            val mediaModel: ContentsMediaModel
+        ) : ContentsEditorViewEvent()
     }
 }

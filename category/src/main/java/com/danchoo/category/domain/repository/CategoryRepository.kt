@@ -1,10 +1,13 @@
 package com.danchoo.category.domain.repository
 
 import android.net.Uri
+import com.danchoo.category.data.datasource.pagingsource.CategoryPagingSource
 import com.danchoo.category.domain.model.CategoryModel
 
 interface CategoryRepository {
-    fun getCategoryCustomPagingSource(): com.danchoo.category.data.datasource.pagingsource.CategoryPagingSource
+    fun getCategoryCustomPagingSource(): CategoryPagingSource
+
+    fun getCategoryList(): List<CategoryModel>
 
     suspend fun createCategory(
         title: String,

@@ -19,12 +19,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.commonutils.composition.LocalRemoteStorageLoader
 import com.danchoo.components.event.OnViewEvent
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.titleButtonColor
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.button.IconButton
+import com.danchoo.components.ui.button.OutlinedTextButton
 import com.danchoo.contents.domain.model.ContentsMediaModel
 import com.danchoo.date.R
 import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorViewEvent
@@ -47,7 +49,7 @@ fun ContentsEditorScreenImpl(
                 onClickConfirm = { onViewEvent(ContentsEditorViewEvent.OnClickConfirm) }
             )
         }
-    ) {
+    ) { it ->
         ContentsEditorLayout(
             modifier = Modifier.padding(it),
             media = {
@@ -61,7 +63,12 @@ fun ContentsEditorScreenImpl(
                 }
             },
             category = {
-                CategorySelect()
+                CategorySelect(
+                    category = viewState.selectedCategory,
+                    onClick = {
+                        onViewEvent(ContentsEditorViewEvent.OnClickCategoryList)
+                    }
+                )
             },
             description = {
 
@@ -124,8 +131,16 @@ private fun ContentsMediaListItem(
 }
 
 @Composable
-private fun CategorySelect() {
-
+private fun CategorySelect(
+    modifier: Modifier = Modifier,
+    category: CategoryModel? = null,
+    onClick: () -> Unit
+) {
+    OutlinedTextButton(
+        modifier = modifier,
+        text = category?.title ?: "",
+        onClick = onClick
+    )
 }
 
 @Composable

@@ -5,6 +5,7 @@ import com.danchoo.category.data.datasource.local.CategoryLocalDataSource
 import com.danchoo.category.data.datasource.pagingsource.CategoryPagingSource
 import com.danchoo.category.data.datasource.remote.CategoryRemoteDataSource
 import com.danchoo.category.data.mapper.toEntity
+import com.danchoo.category.data.mapper.toModel
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.category.domain.repository.CategoryRepository
 
@@ -16,6 +17,10 @@ class CategoryRepositoryImpl constructor(
         return CategoryPagingSource(
             localDataSource
         )
+    }
+
+    override fun getCategoryList(): List<CategoryModel> {
+        return localDataSource.getCategoryList().map { it.toModel() }
     }
 
     override suspend fun createCategory(

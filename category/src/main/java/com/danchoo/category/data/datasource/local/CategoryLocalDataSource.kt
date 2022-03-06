@@ -8,12 +8,16 @@ interface CategoryLocalDataSource {
 
     fun getCategoryFolderPath(): String
 
+    fun getCategoryList(): List<Category>
+
     fun getCategoryInfoList(
         timestamp: Long,
         size: Int
     ): List<CategoryInfo>
 
-    fun getCategoryInfoList(): PagingSource<Int, CategoryInfo>
+    fun getCategoryInfoList(): List<CategoryInfo>
+
+    fun getCategoryPagingSource(): PagingSource<Int, CategoryInfo>
 
     fun getCategory(categoryId: Long): Category?
 
