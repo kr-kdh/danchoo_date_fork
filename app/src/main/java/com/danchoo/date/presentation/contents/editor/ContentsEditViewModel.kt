@@ -45,6 +45,9 @@ class ContentsEditViewModel @Inject constructor(
             is ContentsEditorIntent.OnSelectCategory -> {
                 setState { copy(selectedCategory = event.category) }
             }
+            is ContentsEditorIntent.OnCheckedChangedVisibility -> {
+                setState { copy(isVisibility = event.checked) }
+            }
         }
     }
 

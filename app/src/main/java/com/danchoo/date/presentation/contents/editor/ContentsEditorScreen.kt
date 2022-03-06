@@ -28,6 +28,9 @@ fun ContentsEditorScreen(
             is ContentsEditorViewEvent.OnClickCategoryList -> {
                 viewModel.setEvent(ContentsEditorIntent.ShowCategorySelectDialog)
             }
+            is ContentsEditorViewEvent.OnCheckedChangedVisibility -> {
+                viewModel.setEvent(ContentsEditorIntent.OnCheckedChangedVisibility(viewEvent.checked))
+            }
             else -> Unit
         }
     }

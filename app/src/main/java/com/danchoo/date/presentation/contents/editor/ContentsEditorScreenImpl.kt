@@ -27,6 +27,7 @@ import com.danchoo.components.theme.titleButtonColor
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.button.IconButton
 import com.danchoo.components.ui.button.OutlinedTextButton
+import com.danchoo.components.ui.button.OutlinedTextSwitchButton
 import com.danchoo.contents.domain.model.ContentsMediaModel
 import com.danchoo.date.R
 import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorViewEvent
@@ -70,12 +71,19 @@ fun ContentsEditorScreenImpl(
                     }
                 )
             },
+            setting = {
+                OutlinedTextSwitchButton(
+                    modifier = modifier,
+                    text = stringResource(id = R.string.category_create_enable_visible),
+                    checked = viewState.isVisibility,
+                    onCheckedChange = {
+                        onViewEvent(ContentsEditorViewEvent.OnCheckedChangedVisibility(it))
+                    }
+                )
+            },
             description = {
 
             },
-            setting = {
-
-            }
         )
     }
 }
@@ -148,8 +156,8 @@ private fun ContentsEditorLayout(
     modifier: Modifier = Modifier,
     media: @Composable RowScope.() -> Unit,
     category: @Composable ColumnScope.() -> Unit,
-    description: @Composable ColumnScope.() -> Unit,
     setting: @Composable ColumnScope.() -> Unit,
+    description: @Composable ColumnScope.() -> Unit,
     onClickAddImage: () -> Unit = {}
 ) {
     val horizontalScrollState = rememberScrollState()
@@ -185,7 +193,6 @@ private fun ContentsEditorLayout(
                     contentDescription = null
                 )
             }
-
         }
 
         Column(
@@ -196,9 +203,9 @@ private fun ContentsEditorLayout(
         ) {
             category()
 
-            description()
-
             setting()
+
+            description()
         }
     }
 }

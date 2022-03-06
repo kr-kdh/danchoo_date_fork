@@ -3,7 +3,10 @@ package com.danchoo.date.presentation.home.category.editor
 import android.content.res.Configuration
 import android.net.Uri
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.material.*
@@ -11,16 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.danchoo.components.event.OnViewEvent
-import com.danchoo.components.extension.applyAlpha80
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.components.theme.titleButtonColor
 import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.button.OutlinedTextButton
+import com.danchoo.components.ui.button.OutlinedTextSwitchButton
 import com.danchoo.components.ui.textfield.TitleTextField
 import com.danchoo.date.R
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorViewEvent
@@ -187,40 +188,12 @@ private fun AddVisibility(
     isVisibility: Boolean,
     onClick: (isVisibility: Boolean) -> Unit = {}
 ) {
-    OutlinedButton(
-        modifier = modifier
-            .padding(
-                top = MyApplicationTheme.spacing.baseLineSpacing,
-                bottom = MyApplicationTheme.spacing.baseLineSpacing
-            )
-            .semantics {
-                contentDescription = "AddVisibility switch"
-            },
-        onClick = {
-            onClick(!isVisibility)
-        }
-    ) {
-
-        Text(
-            modifier = Modifier
-                .weight(1f)
-                .padding(
-                    top = MyApplicationTheme.spacing.baseLineSpacing,
-                    bottom = MyApplicationTheme.spacing.baseLineSpacing
-                ),
-            text = stringResource(id = R.string.category_create_enable_visible),
-            style = MyApplicationTheme.typography.subtitle1,
-            color = MyApplicationTheme.colors.textPrimary.applyAlpha80()
-        )
-
-        Switch(
-            modifier = Modifier.defaultMinSize(MyApplicationTheme.minSize),
-            checked = isVisibility,
-            onCheckedChange = {
-                onClick(!isVisibility)
-            }
-        )
-    }
+    OutlinedTextSwitchButton(
+        modifier = modifier,
+        text = stringResource(id = R.string.category_create_enable_visible),
+        checked = isVisibility,
+        onCheckedChange = onClick
+    )
 }
 
 
