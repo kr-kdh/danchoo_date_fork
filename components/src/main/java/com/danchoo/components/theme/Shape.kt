@@ -12,11 +12,6 @@ val Shapes = Shapes(
 
 val RoundedCornerShape50percent = RoundedCornerShape(percent = 50)
 
-val RoundedCornerShape4percent = RoundedCornerShape(percent = 4)
-val RoundedCornerShape8percent = RoundedCornerShape(percent = 4)
-val RoundedCornerShape16percent = RoundedCornerShape(percent = 4)
-val RoundedCornerShape32percent = RoundedCornerShape(percent = 4)
-
 val RoundedCornerShape4dp = RoundedCornerShape(size = 4.dp)
 val RoundedCornerShape8dp = RoundedCornerShape(size = 8.dp)
 val RoundedCornerShape16dp = RoundedCornerShape(size = 16.dp)

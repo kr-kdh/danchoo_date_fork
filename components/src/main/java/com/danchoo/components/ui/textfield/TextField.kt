@@ -54,9 +54,7 @@ fun TitleTextField(
 ) {
     Column {
         Text(
-            modifier = modifier.padding(
-                top = MyApplicationTheme.spacing.baseLineSpacingMedium
-            ),
+            modifier = modifier,
             text = title
         )
 

@@ -1,5 +1,6 @@
 package com.danchoo.components.ui.button
 
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
@@ -15,11 +16,7 @@ fun OutlinedTextButton(
     onClick: () -> Unit
 ) {
     OutlinedButton(
-        modifier = modifier
-            .padding(
-                top = MyApplicationTheme.spacing.baseLineSpacing,
-                bottom = MyApplicationTheme.spacing.baseLineSpacing
-            ),
+        modifier = modifier.defaultMinSize(MyApplicationTheme.minSize),
         onClick = onClick
     ) {
         Text(

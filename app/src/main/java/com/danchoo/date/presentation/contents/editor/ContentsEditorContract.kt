@@ -6,6 +6,7 @@ import com.danchoo.common.BaseSideEffect
 import com.danchoo.common.BaseViewState
 import com.danchoo.components.event.ViewEvent
 import com.danchoo.contents.domain.model.ContentsMediaModel
+import com.danchoo.tags.domain.model.TagModel
 
 object ContentsEditorContract {
 
@@ -14,6 +15,7 @@ object ContentsEditorContract {
         object HideCategorySelectDialog : ContentsEditorIntent()
         data class OnSelectCategory(val category: CategoryModel) : ContentsEditorIntent()
         data class OnCheckedChangedVisibility(val checked: Boolean) : ContentsEditorIntent()
+        data class OnDescriptionChanged(val description: String) : ContentsEditorIntent()
     }
 
     data class ContentsEditorViewState(
@@ -24,7 +26,9 @@ object ContentsEditorContract {
         val mediaList: List<ContentsMediaModel> = emptyList(),
         val isShowCategorySelectDialog: Boolean = false,
         val categoryList: List<CategoryModel> = emptyList(),
-        val isVisibility: Boolean = false
+        val isVisibility: Boolean = false,
+        val description: String = "",
+        val tagList: List<TagModel> = emptyList()
     ) : BaseViewState
 
     object ContentsEditorSideEffect : BaseSideEffect
@@ -35,6 +39,8 @@ object ContentsEditorContract {
         object OnClickCategoryList : ContentsEditorViewEvent()
 
         data class OnCheckedChangedVisibility(val checked: Boolean) : ContentsEditorViewEvent()
+
+        data class OnDescriptionChanged(val description: String) : ContentsEditorViewEvent()
 
         data class OnClickDeleteMedia(
             val mediaModel: ContentsMediaModel

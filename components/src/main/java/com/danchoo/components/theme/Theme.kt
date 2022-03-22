@@ -18,8 +18,7 @@ data class ColorSet(
     val main: Color, //primary, secondary
     val light: Color, // background, surface
     val dark: Color,// primaryVariant, secondaryVariant
-    val text: Color, // onPrimary, onSecondary, onBackground, onSurface
-    val border: Color
+    val text: Color // onPrimary, onSecondary, onBackground, onSurface
 )
 
 object CustomTheme {
@@ -59,7 +58,7 @@ private fun createColorPalette(
         background = primary.light,
         textPrimary = primary.text,
         textSecondary = secondary.text,
-        border = primary.border,
+        border = if (isLight) primary.text.copy(alpha = 0.12f) else Color.White.copy(alpha = 0.12f),
         isLight = isLight
     )
 }
@@ -88,7 +87,7 @@ object MyApplicationTheme {
     /**
      * Icon, Item min size
      */
-    val minSize: Dp = 48.dp
+    val minSize: Dp = 56.dp
 }
 
 

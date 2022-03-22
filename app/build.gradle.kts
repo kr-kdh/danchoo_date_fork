@@ -68,6 +68,7 @@ dependencies {
         implementation(pager)
         implementation(pagerIndicators)
         implementation(drawablePainter)
+        implementation(flowLayout)
     }
 
 

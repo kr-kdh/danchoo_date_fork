@@ -1,11 +1,8 @@
 package com.danchoo.date.presentation.contents.editor
 
 import android.content.res.Configuration
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -14,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,11 +24,14 @@ import com.danchoo.components.ui.appbar.BackTopAppBar
 import com.danchoo.components.ui.button.IconButton
 import com.danchoo.components.ui.button.OutlinedTextButton
 import com.danchoo.components.ui.button.OutlinedTextSwitchButton
+import com.danchoo.components.ui.button.TagItemButton
 import com.danchoo.contents.domain.model.ContentsMediaModel
 import com.danchoo.date.R
 import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorViewEvent
 import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorViewState
 import com.danchoo.glideimage.GlideImage
+import com.danchoo.tags.domain.model.TagModel
+import com.google.accompanist.flowlayout.FlowRow
 
 
 @Composable
@@ -52,7 +51,10 @@ fun ContentsEditorScreenImpl(
         }
     ) { it ->
         ContentsEditorLayout(
-            modifier = Modifier.padding(it),
+            modifier = Modifier
+                .padding(it)
+                .padding(MyApplicationTheme.spacing.baseLineSpacingMedium),
+            onClickAddImage = {},
             media = {
                 viewState.mediaList.forEach { mediaModel ->
                     ContentsMediaListItem(
@@ -71,21 +73,54 @@ fun ContentsEditorScreenImpl(
                     }
                 )
             },
-            setting = {
-                OutlinedTextSwitchButton(
-                    modifier = modifier,
-                    text = stringResource(id = R.string.category_create_enable_visible),
-                    checked = viewState.isVisibility,
-                    onCheckedChange = {
-                        onViewEvent(ContentsEditorViewEvent.OnCheckedChangedVisibility(it))
+            tag = {
+                ContentsTag(
+                    tagList = viewState.tagList,
+                    onClickDelete = {
                     }
                 )
             },
             description = {
 
+                ContentsDescription(
+                    text = viewState.description,
+                    onValueChange = {
+                        onViewEvent(ContentsEditorViewEvent.OnDescriptionChanged(it))
+                    }
+                )
             },
+            setting = {
+                OutlinedTextSwitchButton(
+                    text = stringResource(id = R.string.content_create_enable_visible),
+                    checked = viewState.isVisibility,
+                    onCheckedChange = {
+                        onViewEvent(ContentsEditorViewEvent.OnCheckedChangedVisibility(it))
+                    }
+                )
+            }
         )
     }
+}
+
+@Composable
+private fun ContentsDescription(
+    modifier: Modifier = Modifier,
+    text: String,
+    onValueChange: (String) -> Unit
+) {
+    OutlinedTextField(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(256.dp),
+        value = text,
+        label = {
+            Text(text = stringResource(id = R.string.content_create_description_place_holder))
+        },
+        placeholder = {
+            Text(text = stringResource(id = R.string.content_create_description_place_holder))
+        },
+        onValueChange = onValueChange
+    )
 }
 
 @Composable
@@ -97,7 +132,7 @@ private fun ContentsEditorTopBar(
 ) {
     BackTopAppBar(
         modifier = modifier,
-        title = { Text(text = stringResource(id = R.string.category_create)) },
+        title = { Text(text = stringResource(id = R.string.content_create_title)) },
         onClickBack = onClickBack,
         actions = {
             TextButton(
@@ -109,6 +144,33 @@ private fun ContentsEditorTopBar(
             }
         }
     )
+}
+
+@Composable
+private fun ContentsAddButton(
+    modifier: Modifier = Modifier,
+    onClickAddImage: () -> Unit
+) {
+    Box(
+        modifier = modifier
+            .size(CONTENTS_MEDIA_SIZE.dp)
+            .clip(MaterialTheme.shapes.small)
+            .border(
+                width = MyApplicationTheme.borderWidth.borderLarge,
+                color = MyApplicationTheme.colors.borderVariant,
+                shape = MaterialTheme.shapes.small
+            )
+            .clickable { onClickAddImage() }
+    ) {
+        Icon(
+            modifier = Modifier
+                .size(MyApplicationTheme.minSize)
+                .align(Alignment.Center),
+            imageVector = Icons.Filled.Add,
+            tint = MyApplicationTheme.colors.borderVariant,
+            contentDescription = "ContentsEmptyItem_Empty_Add"
+        )
+    }
 }
 
 @Composable
@@ -138,31 +200,101 @@ private fun ContentsMediaListItem(
     }
 }
 
+
 @Composable
-private fun CategorySelect(
-    modifier: Modifier = Modifier,
+private fun ColumnScope.ContentsTag(
+    tagList: List<TagModel> = emptyList(),
+    onClickAdd: () -> Unit = {},
+    onClickDelete: () -> Unit = {},
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.Bottom
+    ) {
+        Text(
+            modifier = Modifier
+                .weight(1f)
+                .padding(bottom = MyApplicationTheme.spacing.baseLineSpacing),
+            text = stringResource(id = R.string.content_create_tag_title)
+        )
+
+        IconButton(
+            imageVector = Icons.Default.Add,
+            tint = LocalContentColor.current.copy(ContentAlpha.medium)
+        ) {
+            onClickAdd()
+        }
+    }
+
+    if (tagList.isEmpty()) {
+        OutlinedTextButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = MyApplicationTheme.spacing.baseLineSpacingSmallest),
+            text = stringResource(id = R.string.content_create_tag_empty),
+            onClick = onClickAdd
+        )
+    } else {
+        FlowRow(
+            modifier = Modifier
+                .padding(top = MyApplicationTheme.spacing.baseLineSpacingSmallest)
+                .fillMaxWidth()
+                .wrapContentSize()
+                .clip(MaterialTheme.shapes.small)
+                .border(
+                    width = MyApplicationTheme.borderWidth.borderBase,
+                    color = MyApplicationTheme.colors.border,
+                    shape = MaterialTheme.shapes.small
+                )
+                .padding(horizontal = MyApplicationTheme.spacing.baseLineSpacingSmall),
+            mainAxisSpacing = MyApplicationTheme.spacing.baseLineSpacing,
+            crossAxisSpacing = MyApplicationTheme.spacing.baseLineSpacing
+        ) {
+            tagList.forEach {
+                TagItemButton(
+                    tagName = it.tag,
+                    onClickDelete = onClickDelete
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ColumnScope.CategorySelect(
     category: CategoryModel? = null,
     onClick: () -> Unit
 ) {
+    Text(
+        modifier = Modifier
+            .padding(bottom = MyApplicationTheme.spacing.baseLineSpacing)
+            .fillMaxWidth(),
+        text = stringResource(id = R.string.category)
+    )
+
     OutlinedTextButton(
-        modifier = modifier,
+        modifier = Modifier.padding(top = MyApplicationTheme.spacing.baseLineSpacingSmallest),
         text = category?.title ?: "",
         onClick = onClick
     )
 }
+
 
 @Composable
 private fun ContentsEditorLayout(
     modifier: Modifier = Modifier,
     media: @Composable RowScope.() -> Unit,
     category: @Composable ColumnScope.() -> Unit,
-    setting: @Composable ColumnScope.() -> Unit,
+    tag: @Composable ColumnScope.() -> Unit,
     description: @Composable ColumnScope.() -> Unit,
+    setting: @Composable ColumnScope.() -> Unit,
     onClickAddImage: () -> Unit = {}
 ) {
     val horizontalScrollState = rememberScrollState()
     val verticalScrollState = rememberScrollState()
-    Column(modifier = modifier.verticalScroll(verticalScrollState)) {
+    Column(
+        modifier = modifier.verticalScroll(verticalScrollState),
+    ) {
 
         Row(
             modifier = Modifier
@@ -172,6 +304,10 @@ private fun ContentsEditorLayout(
                 ),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            ContentsAddButton(
+                onClickAddImage = onClickAddImage
+            )
+
             Row(
                 modifier = Modifier
                     .horizontalScroll(horizontalScrollState)
@@ -183,30 +319,23 @@ private fun ContentsEditorLayout(
             ) {
                 media()
             }
-
-            IconButton(
-                onClick = { onClickAddImage() }
-            ) {
-                Icon(
-                    modifier = Modifier.clip(CircleShape),
-                    painter = rememberVectorPainter(image = Icons.Default.Add),
-                    contentDescription = null
-                )
-            }
         }
 
-        Column(
-            modifier = Modifier.padding(
-                start = MyApplicationTheme.spacing.baseLineSpacingMedium,
-                end = MyApplicationTheme.spacing.baseLineSpacingMedium
-            )
-        ) {
-            category()
+        Spacer(modifier = Modifier.padding(MyApplicationTheme.spacing.baseLineSpacing))
 
-            setting()
+        tag()
 
-            description()
-        }
+        Spacer(modifier = Modifier.padding(MyApplicationTheme.spacing.baseLineSpacing))
+
+        category()
+
+        Spacer(modifier = Modifier.padding(MyApplicationTheme.spacing.baseLineSpacing))
+
+        description()
+
+        Spacer(modifier = Modifier.padding(MyApplicationTheme.spacing.baseLineSpacing))
+
+        setting()
     }
 }
 

@@ -4,6 +4,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 object Spacing {
+    val baseLineSpacingSmallest: Dp = 2.dp
+
     /**
      * Icons, type, and some elements within components can align to a 4dp grid.
      */

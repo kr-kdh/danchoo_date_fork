@@ -48,6 +48,9 @@ class ContentsEditViewModel @Inject constructor(
             is ContentsEditorIntent.OnCheckedChangedVisibility -> {
                 setState { copy(isVisibility = event.checked) }
             }
+            is ContentsEditorIntent.OnDescriptionChanged -> {
+                setState { copy(description = event.description) }
+            }
         }
     }
 

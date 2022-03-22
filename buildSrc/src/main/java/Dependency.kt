@@ -86,6 +86,7 @@ object Accompanist {
     const val permission = "com.google.accompanist:accompanist-permissions:$version"
 
     const val drawablePainter = "com.google.accompanist:accompanist-drawablepainter:$version"
+    const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$version"
 }
 
 object Retrofit {

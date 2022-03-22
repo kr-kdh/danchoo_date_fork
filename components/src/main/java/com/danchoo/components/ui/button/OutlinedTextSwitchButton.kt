@@ -1,7 +1,6 @@
 package com.danchoo.components.ui.button
 
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Switch
 import androidx.compose.material.Text
@@ -18,23 +17,14 @@ fun OutlinedTextSwitchButton(
     onCheckedChange: (Boolean) -> Unit
 ) {
     OutlinedButton(
-        modifier = modifier
-            .padding(
-                top = MyApplicationTheme.spacing.baseLineSpacing,
-                bottom = MyApplicationTheme.spacing.baseLineSpacing
-            ),
+        modifier = modifier,
         onClick = {
             onCheckedChange(!checked)
         }
     ) {
 
         Text(
-            modifier = Modifier
-                .weight(1f)
-                .padding(
-                    top = MyApplicationTheme.spacing.baseLineSpacing,
-                    bottom = MyApplicationTheme.spacing.baseLineSpacing
-                ),
+            modifier = Modifier.weight(1f),
             text = text,
             style = MyApplicationTheme.typography.subtitle1,
             color = MyApplicationTheme.colors.textPrimary.applyAlpha80()

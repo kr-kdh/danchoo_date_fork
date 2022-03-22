@@ -29,7 +29,7 @@ fun CategoryScreenImpl(
             TopAppBar(
                 modifier = Modifier,
                 title = {
-                    Text(text = stringResource(id = R.string.category_create_title))
+                    Text(text = stringResource(id = R.string.category))
                 }
             )
         },

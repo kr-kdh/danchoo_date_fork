@@ -3,10 +3,7 @@ package com.danchoo.date.presentation.home.category.editor
 import android.content.res.Configuration
 import android.net.Uri
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.material.*
@@ -90,6 +87,8 @@ fun CategoryEditorScreenImpl(
                     onViewEvent(CategoryEditorViewEvent.OnVisibilityChanged(isVisibility))
                 }
 
+                Spacer(modifier = Modifier.padding(MyApplicationTheme.spacing.baseLineSpacing))
+
                 AddChangeImage(
                     modifier = childModifier,
                 ) {
@@ -118,16 +117,20 @@ private fun CategoryEditorLayout(
                 )
 
             coverImage(childModifier)
+
+            Spacer(modifier = Modifier.padding(MyApplicationTheme.spacing.baseLineSpacing))
+
             category(childModifier)
+
+            Spacer(modifier = Modifier.padding(MyApplicationTheme.spacing.baseLineSpacing))
 
             description(childModifier)
 
-            Divider(
-                childModifier.padding(
-                    top = MyApplicationTheme.spacing.baseLineSpacingLarge,
-                    bottom = MyApplicationTheme.spacing.baseLineSpacingMedium
-                )
-            )
+            Spacer(modifier = Modifier.padding(MyApplicationTheme.spacing.baseLineSpacing))
+
+            Divider(modifier = childModifier)
+
+            Spacer(modifier = Modifier.padding(MyApplicationTheme.spacing.baseLineSpacing))
 
             setting(childModifier)
         }
@@ -159,7 +162,7 @@ private fun AddTitle(
     TitleTextField(
         modifier = modifier,
         value = text,
-        title = stringResource(id = R.string.category_create_title),
+        title = stringResource(id = R.string.category),
         placeholder = stringResource(id = R.string.category_create_title_placeholder)
     ) {
         onValueChange(it)

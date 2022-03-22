@@ -31,6 +31,9 @@ fun ContentsEditorScreen(
             is ContentsEditorViewEvent.OnCheckedChangedVisibility -> {
                 viewModel.setEvent(ContentsEditorIntent.OnCheckedChangedVisibility(viewEvent.checked))
             }
+            is ContentsEditorViewEvent.OnDescriptionChanged -> {
+                viewModel.setEvent(ContentsEditorIntent.OnDescriptionChanged(viewEvent.description))
+            }
             else -> Unit
         }
     }
