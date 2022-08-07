@@ -30,6 +30,9 @@ class GlideModule : AppGlideModule() {
 }
 
 class GlideAppImageLoaderImpl : GlideImageLoader {
+    override fun getAnimationDrawableLoopCount(): Int {
+        return 5
+    }
 
     override fun getRequestBuilder(context: Context): RequestBuilder<Drawable> {
         return GlideApp.with(context).asDrawable()

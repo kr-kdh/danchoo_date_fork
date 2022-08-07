@@ -3,8 +3,8 @@ package com.danchoo.date.presentation.common.gallery
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -66,7 +66,7 @@ private fun GalleryLayout(
 ) {
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
         LazyVerticalGrid(
-            cells = GridCells.Fixed(3),
+            columns = GridCells.Fixed(3),
             modifier = modifier,
             contentPadding = PaddingValues(2.dp)
         ) {

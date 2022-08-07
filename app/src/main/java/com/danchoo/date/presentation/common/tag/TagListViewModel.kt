@@ -14,7 +14,7 @@ class TagListViewModel @Inject constructor(
     override fun setInitialState() = TagListViewState()
 
     override fun handleEvents(event: TagListEvent) {
-        when (event) {
-        }
+//        when (event) {
+//        }
     }
 }

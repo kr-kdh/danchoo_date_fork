@@ -8,7 +8,8 @@ object AndroidX {
     const val coreTesting = "androidx.arch.core:core-testing:2.1.0"
 
     object Compose {
-        const val version = "1.1.1"
+        const val compilerVersion = "1.2.0"
+        const val version = "1.2.0-rc03"
         const val layout = "androidx.compose.foundation:foundation-layout:$version"
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiUtil = "androidx.compose.ui:ui-util:$version"
@@ -30,16 +31,16 @@ object AndroidX {
     }
 
     object Activity {
-        private const val version = "1.5.0"
+        private const val version = "1.5.1"
         const val compose = "androidx.activity:activity-compose:$version"
     }
 
     object ConstraintLayout {
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
     }
 
     object Lifecycle {
-        private const val version = "2.5.0"
+        private const val version = "2.5.1"
         const val core = "androidx.lifecycle:lifecycle-livedata-core-ktx:$version"
         const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
@@ -49,7 +50,7 @@ object AndroidX {
     }
 
     object Navigation {
-        private const val version = "2.3.0"
+        private const val version = "2.5.1"
         const val compose = "androidx.navigation:navigation-compose:$version"
         const val runtimeKtx = "androidx.navigation:navigation-runtime-ktx:$version"
         const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
@@ -57,7 +58,7 @@ object AndroidX {
     }
 
     object Room {
-        private const val version = "2.4.0"
+        private const val version = "2.4.3"
 
         const val compiler = "androidx.room:room-compiler:$version"
         const val ktx = "androidx.room:room-ktx:$version"
@@ -82,7 +83,7 @@ object AndroidX {
 }
 
 object Accompanist {
-    private const val version = "0.24.1-alpha"
+    private const val version = "0.25.0"
     const val inserts = "com.google.accompanist:accompanist-insets:$version"
     const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:$version"
     const val navigationAnimation =
@@ -132,7 +133,7 @@ object Firebase {
 }
 
 object Hilt {
-    const val version = "2.39.1"
+    const val version = "2.43.2"
 
     const val android = "com.google.dagger:hilt-android:$version"
     const val compiler = "com.google.dagger:hilt-compiler:$version"
@@ -163,7 +164,7 @@ object JUnit4 {
 }
 
 object MockK {
-    private const val version = "1.12.4"
+    private const val version = "1.12.5"
     const val mockk = "io.mockk:mockk:$version"
 }
 
@@ -171,7 +172,7 @@ object JUnit5 {
     /**
      * junit5 hilt 에서 사용불가능
      */
-    private const val version = "5.8.2"
+    private const val version = "5.9.0"
     private const val junit5Version = "1.3.0"
     const val pluginVersion = "1.8.2.0"
 
@@ -198,7 +199,7 @@ object Glide {
 
 
 object GlideImage {
-    private const val version = "1.2.2"
+    private const val version = "1.2.2.3"
     const val glide = "com.github.danchoo21:glide-image:$version"
 }
 

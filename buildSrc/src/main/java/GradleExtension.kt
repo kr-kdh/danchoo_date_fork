@@ -4,10 +4,10 @@ import org.gradle.api.JavaVersion
 
 object Config {
     const val APPLICATION_ID = "com.danchoo.date"
-    const val COMPILE_SDK = 32
-    const val BUILD_TOOL_VERSION = "32.0.0"
+    const val COMPILE_SDK = 33
+    const val BUILD_TOOL_VERSION = "33.0.0"
     const val MIN_SDK = 23
-    const val TARGET_SDK = 32
+    const val TARGET_SDK = 33
     const val VERSION_NAME = "1.0"
     const val VERSION_CODE = 1
 
@@ -15,7 +15,7 @@ object Config {
 
     val JAVA_VERSION = JavaVersion.VERSION_1_8
 
-    const val COMPOSE_VERSION = AndroidX.Compose.version
+    const val COMPOSE_VERSION = AndroidX.Compose.compilerVersion
 }
 
 fun BaseAppModuleExtension.default() {

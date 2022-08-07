@@ -24,7 +24,6 @@ dependencies {
         implementation(android)
         implementation(compose)
         kapt(compiler)
-        kaptAndroidTest(compiler)
         androidTestImplementation(testing)
     }
 

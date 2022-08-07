@@ -47,26 +47,27 @@ fun RequestPermission(
     val permissionState = rememberRequestPermissionState(
         state = rememberPermissionState(permission)
     )
-
-    when {
-        permissionState.state.hasPermission -> {
-            onSuccess()
-            onRequestDismiss()
-        }
-        !permissionState.state.permissionRequested -> {
-            permissionState.showPermission()
-        }
-        permissionState.state.permissionRequested && permissionState.state.shouldShowRationale -> {
-            // 한번 거부
-            onDenied()
-            onRequestDismiss()
-        }
-        permissionState.state.permissionRequested && !permissionState.state.shouldShowRationale -> {
-            // 두번 거부
-            onRequestMoveSetting()
-            onRequestDismiss()
-        }
-    }
+    onSuccess()
+    onRequestDismiss()
+//    when {
+//        permissionState.state.hasPermission -> {
+//            onSuccess()
+//            onRequestDismiss()
+//        }
+//        !permissionState.state.permissionRequested -> {
+//            permissionState.showPermission()
+//        }
+//        permissionState.state.permissionRequested && permissionState.state.shouldShowRationale -> {
+//            // 한번 거부
+//            onDenied()
+//            onRequestDismiss()
+//        }
+//        permissionState.state.permissionRequested && !permissionState.state.shouldShowRationale -> {
+//            // 두번 거부
+//            onRequestMoveSetting()
+//            onRequestDismiss()
+//        }
+//    }
 }
 
 private class RequestPermissionState(
