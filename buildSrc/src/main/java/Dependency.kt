@@ -1,31 +1,36 @@
 object AndroidX {
-    private const val coreVersion = "1.7.0"
-    private const val appcompatVersion = "1.4.0"
+    private const val coreVersion = "1.8.0"
+    private const val appcompatVersion = "1.4.2"
 
     const val coreKtx = "androidx.core:core-ktx:$coreVersion"
     const val appcompat = "androidx.appcompat:appcompat:$appcompatVersion"
+    const val multidex = "androidx.multidex:multidex:2.0.1"
     const val coreTesting = "androidx.arch.core:core-testing:2.1.0"
 
     object Compose {
-        const val version = "1.2.0-alpha01"
-
+        const val version = "1.1.1"
         const val layout = "androidx.compose.foundation:foundation-layout:$version"
         const val ui = "androidx.compose.ui:ui:$version"
         const val uiUtil = "androidx.compose.ui:ui-util:$version"
         const val runtime = "androidx.compose.runtime:runtime:$version"
         const val material = "androidx.compose.material:material:$version"
+        const val foundation = "androidx.compose.foundation:foundation:$version"
+
         const val tooling = "androidx.compose.ui:ui-tooling:$version"
         const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
         const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
-        const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
+        const val uiTest = "androidx.compose.ui:ui-test:$version"
+        const val uiTestJunit = "androidx.compose.ui:ui-test-junit4:$version"
+
 
         const val animation = "androidx.compose.animation:animation:$version"
         const val animationGraphics = "androidx.compose.animation:animation-graphics:$version"
         const val animationCore = "androidx.compose.animation:animation-core:$version"
+        const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$version"
     }
 
     object Activity {
-        private const val version = "1.4.0"
+        private const val version = "1.5.0"
         const val compose = "androidx.activity:activity-compose:$version"
     }
 
@@ -34,12 +39,13 @@ object AndroidX {
     }
 
     object Lifecycle {
-        private const val version = "2.4.0"
+        private const val version = "2.5.0"
         const val core = "androidx.lifecycle:lifecycle-livedata-core-ktx:$version"
         const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
         const val ViewModelSavedSate = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$version"
         const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
+
     }
 
     object Navigation {
@@ -60,15 +66,16 @@ object AndroidX {
     }
 
     object Paging {
-        private const val version = "3.1.0"
+        private const val version = "3.1.1"
         const val ktx = "androidx.paging:paging-runtime-ktx:$version"
-        const val compose = "androidx.paging:paging-compose:1.0.0-alpha14"
+        const val compose = "androidx.paging:paging-compose:1.0.0-alpha15"
     }
 
     object Test {
         private const val version = "1.4.0"
         const val runner = "androidx.test:runner:$version"
         const val rules = "androidx.test:rules:$version"
+        const val junit = "androidx.test.ext:junit-ktx:1.1.3"
         const val espressoCore = "androidx.test.espresso:espresso-core:3.4.0"
         const val room = "androidx.room:room-testing:2.3.0"
     }
@@ -96,6 +103,13 @@ object Retrofit {
     const val okhttp = "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
 }
 
+object Okhttp {
+    private const val version = "4.10.0"
+
+    const val okhttp = "com.squareup.okhttp3:okhttp:$version"
+    const val mockWebserver = "com.squareup.okhttp3:mockwebserver:$version"
+}
+
 object Moshi {
     const val moshi = "com.squareup.moshi:moshi-kotlin:1.13.0"
 }
@@ -104,7 +118,7 @@ object Google {
     const val tasks = "com.google.android.gms:play-services-tasks:18.0.0"
     const val ads = "com.google.android.gms:play-services-ads:20.5.0"
 
-    private const val materialVersion = "1.4.0"
+    private const val materialVersion = "1.6.1"
     const val material = "com.google.android.material:material:$materialVersion"
 
     private const val version = "1.1.3"
@@ -124,11 +138,11 @@ object Hilt {
     const val compiler = "com.google.dagger:hilt-compiler:$version"
     const val testing = "com.google.dagger:hilt-android-testing:$version"
 
-    const val compose = "androidx.hilt:hilt-navigation-compose:1.0.0-beta01"
+    const val compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
 }
 
 object Coroutines {
-    private const val version = "1.6.0"
+    private const val version = "1.6.4"
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
     const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
     const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -146,6 +160,11 @@ object JUnit4 {
     const val engine = "org.junit.jupiter:junit-jupiter-engine:$version"
 
     const val params = "org.junit.jupiter:junit-jupiter-params:$version"
+}
+
+object MockK {
+    private const val version = "1.12.4"
+    const val mockk = "io.mockk:mockk:$version"
 }
 
 object JUnit5 {
@@ -168,21 +187,15 @@ object JUnit5 {
 
 }
 
-object Mockito {
-    private const val version = "4.3.1"
-    const val mock = "org.mockito:mockito-android:$version"
-    const val mockInline = "org.mockito:mockito-inline:$version"
-    const val mockJupiter = "org.mockito:mockito-junit-jupiter:$version"
-
-    const val core = "org.mockito:mockito-core:$version"
-}
-
-
 object Glide {
-    private const val version = "4.12.0"
+    private const val version = "4.13.2"
     const val glide = "com.github.bumptech.glide:glide:$version"
+    const val integration = "com.github.bumptech.glide:okhttp3-integration:$version"
     const val compiler = "com.github.bumptech.glide:compiler:$version"
+    const val webpDecoder = "com.github.zjupure:webpdecoder:2.0.$version"
+    const val transformations = "jp.wasabeef:glide-transformations:4.3.0"
 }
+
 
 object GlideImage {
     private const val version = "1.2.2"

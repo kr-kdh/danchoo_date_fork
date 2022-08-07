@@ -25,4 +25,7 @@
     <string name="content_create_enable_visible">게시물 공개 (On / Off)</string>
     <string name="content_create_tag_title">태그</string>
     <string name="content_create_tag_empty">여기를 눌러 태그를 추가해 주세요.</string>
+
+    <string name="tag_list_empty_message">태그가 없습니다.\n태그를 생성해 주세요.</string>
+    <string name="tag_list_empty_button_message">태그 만들기</string>
 </resources>

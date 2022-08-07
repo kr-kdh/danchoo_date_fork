@@ -6,7 +6,7 @@ import com.danchoo.category.domain.inspector.usecase.CategoryListUseCase
 import com.danchoo.common.BaseViewModel
 import com.danchoo.common.usecase.Result
 import com.danchoo.date.presentation.ContentsArgsKeys
-import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorIntent
+import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorEvent
 import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorSideEffect
 import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class ContentsEditViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val categoryListUseCase: CategoryListUseCase
-) : BaseViewModel<ContentsEditorIntent, ContentsEditorViewState, ContentsEditorSideEffect>() {
+) : BaseViewModel<ContentsEditorEvent, ContentsEditorViewState, ContentsEditorSideEffect>() {
 
     init {
         val defaultCategoryId =
@@ -34,21 +34,21 @@ class ContentsEditViewModel @Inject constructor(
 
     override fun setInitialState() = ContentsEditorViewState()
 
-    override fun handleEvents(event: ContentsEditorIntent) {
+    override fun handleEvents(event: ContentsEditorEvent) {
         when (event) {
-            is ContentsEditorIntent.ShowCategorySelectDialog -> {
+            is ContentsEditorEvent.ShowCategorySelectDialog -> {
                 setState { copy(isShowCategorySelectDialog = true) }
             }
-            is ContentsEditorIntent.HideCategorySelectDialog -> {
+            is ContentsEditorEvent.HideCategorySelectDialog -> {
                 setState { copy(isShowCategorySelectDialog = false) }
             }
-            is ContentsEditorIntent.OnSelectCategory -> {
+            is ContentsEditorEvent.OnSelectCategory -> {
                 setState { copy(selectedCategory = event.category) }
             }
-            is ContentsEditorIntent.OnCheckedChangedVisibility -> {
+            is ContentsEditorEvent.OnCheckedChangedVisibility -> {
                 setState { copy(isVisibility = event.checked) }
             }
-            is ContentsEditorIntent.OnDescriptionChanged -> {
+            is ContentsEditorEvent.OnDescriptionChanged -> {
                 setState { copy(description = event.description) }
             }
         }

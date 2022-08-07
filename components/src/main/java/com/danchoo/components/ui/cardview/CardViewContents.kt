@@ -15,7 +15,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.danchoo.components.theme.MyApplicationTheme
-import com.danchoo.components.theme.RoundedCornerShape8dp
 import com.danchoo.components.ui.button.ExpandButton
 import com.danchoo.glideimage.GlideImage
 import com.danchoo.glideimage.rememberGlideImagePinter
@@ -171,11 +170,11 @@ private fun CardViewSmallImageContents(
                     bottom = MyApplicationTheme.spacing.baseLineSpacing,
                 )
                 .align(Alignment.CenterVertically)
-                .clip(RoundedCornerShape8dp)
+                .clip(MaterialTheme.shapes.medium)
                 .border(
                     width = MyApplicationTheme.borderWidth.borderHarf,
                     color = MyApplicationTheme.colors.border,
-                    shape = RoundedCornerShape8dp
+                    shape = MaterialTheme.shapes.medium
                 ),
             painter = rememberGlideImagePinter(
                 data = state.images.first()

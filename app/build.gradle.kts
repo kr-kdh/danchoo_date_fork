@@ -38,6 +38,7 @@ dependencies {
     implementation(project(":category"))
     implementation(project(":tags"))
     implementation(project(":gallery"))
+    testImplementation("junit:junit:4.12")
 
     AndroidX.run {
         implementation(coreKtx)

@@ -58,6 +58,7 @@ object CategoryEditorScreen {
 
 object CommonScreen {
     const val GALLERY = "${MainRoute.COMMON_ROUTE}/gallery"
+    const val TAG_LIST = "${MainRoute.COMMON_ROUTE}/tagList"
 }
 
 /**

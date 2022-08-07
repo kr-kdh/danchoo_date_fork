@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class GalleryViewModel @Inject constructor(
     private val pagingUseCase: GalleryPagingUseCase,
-) : BaseViewModel<GalleryContract.GalleryIntent, GalleryContract.GalleryViewState, GalleryContract.GallerySideEffect>() {
+) : BaseViewModel<GalleryContract.GalleryEvent, GalleryContract.GalleryViewState, GalleryContract.GallerySideEffect>() {
 
     init {
     }
@@ -28,6 +28,6 @@ class GalleryViewModel @Inject constructor(
 
     override fun setInitialState() = GalleryContract.GalleryViewState()
 
-    override fun handleEvents(event: GalleryContract.GalleryIntent) {
+    override fun handleEvents(event: GalleryContract.GalleryEvent) {
     }
 }

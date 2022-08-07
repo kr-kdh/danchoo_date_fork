@@ -84,22 +84,15 @@ dependencies {
         testCompileOnly(hamcrest)
     }
 
-    Mockito.run {
-        androidTestCompileOnly(mock)
-        androidTestCompileOnly(mockInline)
-        androidTestCompileOnly(core)
-
-        testCompileOnly(mock)
-        testCompileOnly(mockInline)
-        testCompileOnly(mockJupiter)
-        testImplementation(core)
-    }
-
     Coroutines.run {
         testImplementation(test)
     }
 
     Google.run {
         testImplementation(truth)
+    }
+
+    MockK.run {
+        testImplementation(mockk)
     }
 }

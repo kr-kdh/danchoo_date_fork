@@ -1,13 +1,13 @@
 package com.danchoo.date.presentation.contents
 
-import com.danchoo.common.BaseIntent
+import com.danchoo.common.BaseEvent
 import com.danchoo.common.BaseSideEffect
 import com.danchoo.common.BaseViewState
 import com.danchoo.components.event.ViewEvent
 
 object ContentsContract {
 
-    object ContentsIntent : BaseIntent
+    object ContentsEvent : BaseEvent
 
     data class ContentsViewState(
         val categoryId: Long = 0

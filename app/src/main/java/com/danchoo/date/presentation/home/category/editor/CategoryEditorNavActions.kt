@@ -1,5 +1,5 @@
 package com.danchoo.date.presentation.home.category.editor
 
-interface CategoryEditorActions {
-    fun moveToGallery()
+interface CategoryEditorNavActions {
+    fun moveGallery()
 }

@@ -1,6 +1,6 @@
 package com.danchoo.date.presentation.common.gallery
 
-import com.danchoo.common.BaseIntent
+import com.danchoo.common.BaseEvent
 import com.danchoo.common.BaseSideEffect
 import com.danchoo.common.BaseViewState
 import com.danchoo.components.event.ViewEvent
@@ -8,8 +8,8 @@ import com.danchoo.date.presentation.common.gallery.domain.model.GalleryItemMode
 
 object GalleryContract {
 
-    sealed class GalleryIntent : BaseIntent {
-        object Idle : GalleryIntent()
+    sealed class GalleryEvent : BaseEvent {
+        object Idle : GalleryEvent()
     }
 
     sealed class GallerySideEffect : BaseSideEffect {

@@ -34,7 +34,7 @@ object ContentsModule {
     @Provides
     fun provideContentsListInsertUseCase(
         repository: ContentsRepository,
-        dispatcher: CoroutineDispatcher
+        @IoDispatcher dispatcher: CoroutineDispatcher
     ): ContentsListInsertUseCase {
         return ContentsListInsertUseCase(repository, dispatcher)
     }

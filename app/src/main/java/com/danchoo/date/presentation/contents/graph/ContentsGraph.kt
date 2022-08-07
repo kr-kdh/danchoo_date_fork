@@ -8,6 +8,7 @@ import androidx.navigation.navArgument
 import com.danchoo.date.presentation.ContentsArgsKeys
 import com.danchoo.date.presentation.ContentsScreen
 import com.danchoo.date.presentation.MainRoute.CONTENTS_ROUTE
+import com.danchoo.date.presentation.contents.ContentsNavActions
 import com.danchoo.date.presentation.contents.ContentsScreen
 import com.danchoo.date.presentation.contents.detail.ContentsDetail
 import com.danchoo.date.presentation.contents.editor.ContentsEditorScreen
@@ -18,7 +19,8 @@ import com.google.accompanist.navigation.animation.navigation
 
 fun NavGraphBuilder.addContentsNavGraph(
     modifier: Modifier,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    navActions: ContentsNavActions
 ) {
     navigation(
         route = CONTENTS_ROUTE,
@@ -54,8 +56,15 @@ fun NavGraphBuilder.addContentsNavGraph(
                 }
             )
         ) { from ->
-            ContentsEditorScreen(modifier) {
-            }
+            ContentsEditorScreen(
+                modifier = modifier,
+                onClickTag = {
+                    navActions.moveTagList()
+                },
+                onClickBack = {
+
+                }
+            )
         }
 
         composable(

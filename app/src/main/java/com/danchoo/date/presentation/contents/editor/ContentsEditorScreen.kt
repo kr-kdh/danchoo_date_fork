@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.components.ui.dialog.ListDialog
-import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorIntent
+import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorEvent
 import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.ContentsEditorViewEvent
 
 
@@ -15,7 +15,8 @@ import com.danchoo.date.presentation.contents.editor.ContentsEditorContract.Cont
 fun ContentsEditorScreen(
     modifier: Modifier = Modifier,
     viewModel: ContentsEditViewModel = hiltViewModel(),
-    onClickBack: () -> Unit = {}
+    onClickBack: () -> Unit = {},
+    onClickTag: () -> Unit = {}
 ) {
     val viewState by viewModel.viewState
 
@@ -26,13 +27,16 @@ fun ContentsEditorScreen(
         when (viewEvent) {
             is ContentsEditorViewEvent.OnClickBack -> onClickBack()
             is ContentsEditorViewEvent.OnClickCategoryList -> {
-                viewModel.setEvent(ContentsEditorIntent.ShowCategorySelectDialog)
+                viewModel.setEvent(ContentsEditorEvent.ShowCategorySelectDialog)
             }
             is ContentsEditorViewEvent.OnCheckedChangedVisibility -> {
-                viewModel.setEvent(ContentsEditorIntent.OnCheckedChangedVisibility(viewEvent.checked))
+                viewModel.setEvent(ContentsEditorEvent.OnCheckedChangedVisibility(viewEvent.checked))
             }
             is ContentsEditorViewEvent.OnDescriptionChanged -> {
-                viewModel.setEvent(ContentsEditorIntent.OnDescriptionChanged(viewEvent.description))
+                viewModel.setEvent(ContentsEditorEvent.OnDescriptionChanged(viewEvent.description))
+            }
+            is ContentsEditorViewEvent.OnClickAddTag -> {
+                onClickTag()
             }
             else -> Unit
         }
@@ -42,11 +46,11 @@ fun ContentsEditorScreen(
         CategorySelectDialog(
             categoryList = viewState.categoryList,
             onSelectCategory = {
-                viewModel.setEvent(ContentsEditorIntent.OnSelectCategory(it))
-                viewModel.setEvent(ContentsEditorIntent.HideCategorySelectDialog)
+                viewModel.setEvent(ContentsEditorEvent.OnSelectCategory(it))
+                viewModel.setEvent(ContentsEditorEvent.HideCategorySelectDialog)
             },
             onDismissRequest = {
-                viewModel.setEvent(ContentsEditorIntent.HideCategorySelectDialog)
+                viewModel.setEvent(ContentsEditorEvent.HideCategorySelectDialog)
             }
         )
     }

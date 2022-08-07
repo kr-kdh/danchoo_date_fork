@@ -206,7 +206,7 @@ private fun AddChangeImage(
     onClick: () -> Unit
 ) {
     OutlinedTextButton(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         text = stringResource(id = R.string.category_create_change_cover),
         onClick = onClick
     )

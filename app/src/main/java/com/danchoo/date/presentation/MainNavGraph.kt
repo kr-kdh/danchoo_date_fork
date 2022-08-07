@@ -32,7 +32,7 @@ fun MainNavGraph(
 
         addCategoryEditorNavGraph(modifier, navHostController, state)
 
-        addContentsNavGraph(modifier, navHostController)
+        addContentsNavGraph(modifier, navHostController, state)
 
         addCommonComposable(modifier, navHostController)
     }

@@ -9,7 +9,7 @@ import com.danchoo.contents.domain.inspector.usecase.ContentsListInsertUseCase
 import com.danchoo.contents.domain.inspector.usecase.ContentsPagingUseCase
 import com.danchoo.contents.domain.model.ContentsModel
 import com.danchoo.date.presentation.ContentsArgsKeys
-import com.danchoo.date.presentation.contents.ContentsContract.ContentsIntent
+import com.danchoo.date.presentation.contents.ContentsContract.ContentsEvent
 import com.danchoo.date.presentation.contents.ContentsContract.ContentsSideEffect
 import com.danchoo.date.presentation.contents.ContentsContract.ContentsViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +23,7 @@ class ContentsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val contentsPagingUseCase: ContentsPagingUseCase,
     private val contentsListInsertUseCase: ContentsListInsertUseCase
-) : BaseViewModel<ContentsIntent, ContentsViewState, ContentsSideEffect>() {
+) : BaseViewModel<ContentsEvent, ContentsViewState, ContentsSideEffect>() {
 
     init {
         setState {
@@ -35,7 +35,7 @@ class ContentsViewModel @Inject constructor(
 
     override fun setInitialState() = ContentsViewState()
 
-    override fun handleEvents(event: ContentsIntent) {
+    override fun handleEvents(event: ContentsEvent) {
     }
 
     fun contentsList(): Flow<PagingData<ContentsModel>> {

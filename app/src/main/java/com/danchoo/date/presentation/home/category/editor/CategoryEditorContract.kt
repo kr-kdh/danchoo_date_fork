@@ -2,7 +2,7 @@ package com.danchoo.date.presentation.home.category.editor
 
 import android.net.Uri
 import com.danchoo.category.domain.model.CategoryModel
-import com.danchoo.common.BaseIntent
+import com.danchoo.common.BaseEvent
 import com.danchoo.common.BaseSideEffect
 import com.danchoo.common.BaseViewState
 import com.danchoo.components.event.ViewEvent
@@ -10,12 +10,12 @@ import com.danchoo.date.presentation.common.gallery.domain.model.GalleryItemMode
 
 object CategoryEditorContract {
 
-    sealed class CategoryEditorIntent : BaseIntent {
-        data class CameraTakePicture(val uri: Uri) : CategoryEditorIntent()
+    sealed class CategoryEditorEvent : BaseEvent {
+        data class CameraTakePicture(val uri: Uri) : CategoryEditorEvent()
         data class SaveGalleryModel(
             val model: GalleryItemModel,
             val saveTempPath: String
-        ) : CategoryEditorIntent()
+        ) : CategoryEditorEvent()
 
         data class CategoryCreate(
             val title: String,
@@ -23,11 +23,11 @@ object CategoryEditorContract {
             val isVisibility: Int,
             val coverImageUri: Uri,
             val currentTimestamp: Long
-        ) : CategoryEditorIntent()
+        ) : CategoryEditorEvent()
 
-        data class TitleChanged(val title: String) : CategoryEditorIntent()
-        data class DescriptionChanged(val description: String) : CategoryEditorIntent()
-        data class VisibilityChanged(val isVisibility: Boolean) : CategoryEditorIntent()
+        data class TitleChanged(val title: String) : CategoryEditorEvent()
+        data class DescriptionChanged(val description: String) : CategoryEditorEvent()
+        data class VisibilityChanged(val isVisibility: Boolean) : CategoryEditorEvent()
     }
 
     sealed class CategoryEditorSideEffect : BaseSideEffect {

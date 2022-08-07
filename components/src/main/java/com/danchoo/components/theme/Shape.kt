@@ -6,29 +6,24 @@ import androidx.compose.ui.unit.dp
 
 val Shapes = Shapes(
     small = RoundedCornerShape(4.dp),
-    medium = RoundedCornerShape(4.dp),
-    large = RoundedCornerShape(0.dp)
+    medium = RoundedCornerShape(8.dp),
+    large = RoundedCornerShape(50)
 )
 
-val RoundedCornerShape50percent = RoundedCornerShape(percent = 50)
-
-val RoundedCornerShape4dp = RoundedCornerShape(size = 4.dp)
-val RoundedCornerShape8dp = RoundedCornerShape(size = 8.dp)
-val RoundedCornerShape16dp = RoundedCornerShape(size = 16.dp)
-val RoundedCornerShape32dp = RoundedCornerShape(size = 32.dp)
-
-
-object CardViewShape {
-    val startImageShape = RoundedCornerShape(topStart = 8.dp, bottomStart = 8.dp)
-    val endImageShape = RoundedCornerShape(bottomEnd = 8.dp, bottomStart = 8.dp)
-    val middleImageShape = RoundedCornerShape(0.dp)
+object ShapeSize {
+    val smallest = 56.dp
+    val small = 96.dp
+    val medium = 128.dp
+    val large = 192.dp
+    val xlarge = 256.dp
+    val xxlarge = 384.dp
 }
 
 
 object BorderWidth {
     val borderHarf = 0.5.dp
     val borderBase = 1.dp
-    val borderMedium = 1.5.dp
-    val borderLarge = 2.dp
-    val borderLargest = 4.dp
+    val borderMedium = 2.dp
+    val borderLarge = 4.dp
+    val borderLargest = 8.dp
 }

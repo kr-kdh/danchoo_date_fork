@@ -9,7 +9,7 @@ import com.danchoo.common.usecase.Result
 import com.danchoo.commonutils.file.domain.inspector.SaveFileUseCase
 import com.danchoo.commonutils.file.domain.inspector.SaveFileUseCase.SaveFileParameter
 import com.danchoo.date.presentation.common.gallery.domain.model.GalleryItemModel
-import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorIntent
+import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorEvent
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorSideEffect
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,20 +20,23 @@ import javax.inject.Inject
 class CategoryEditorViewModel @Inject constructor(
     private val saveFileUseCase: SaveFileUseCase,
     private val categoryCreateUseCase: CategoryCreateUseCase
-) : BaseViewModel<CategoryEditorIntent, CategoryEditorViewState, CategoryEditorSideEffect>() {
+) : BaseViewModel<CategoryEditorEvent, CategoryEditorViewState, CategoryEditorSideEffect>() {
     override fun setInitialState() = CategoryEditorViewState()
 
-    override fun handleEvents(event: CategoryEditorIntent) {
+    override fun handleEvents(event: CategoryEditorEvent) {
+//        val list = mutableListOf(1,2,3)
+//        list.sort()
+
         when (event) {
-            is CategoryEditorIntent.CameraTakePicture -> cameraTakePicture(event.uri)
-            is CategoryEditorIntent.SaveGalleryModel -> saveGalleryModel(
+            is CategoryEditorEvent.CameraTakePicture -> cameraTakePicture(event.uri)
+            is CategoryEditorEvent.SaveGalleryModel -> saveGalleryModel(
                 event.model,
                 event.saveTempPath
             )
-            is CategoryEditorIntent.CategoryCreate -> categoryCreate(event)
-            is CategoryEditorIntent.DescriptionChanged -> descriptionChanged(event.description)
-            is CategoryEditorIntent.TitleChanged -> titleChanged(event.title)
-            is CategoryEditorIntent.VisibilityChanged -> visibilityChanged(event.isVisibility)
+            is CategoryEditorEvent.CategoryCreate -> categoryCreate(event)
+            is CategoryEditorEvent.DescriptionChanged -> descriptionChanged(event.description)
+            is CategoryEditorEvent.TitleChanged -> titleChanged(event.title)
+            is CategoryEditorEvent.VisibilityChanged -> visibilityChanged(event.isVisibility)
         }
     }
 
@@ -79,7 +82,7 @@ class CategoryEditorViewModel @Inject constructor(
         }
     }
 
-    private fun categoryCreate(event: CategoryEditorIntent.CategoryCreate) {
+    private fun categoryCreate(event: CategoryEditorEvent.CategoryCreate) {
         viewModelScope.launch {
             val result = categoryCreateUseCase(
                 CategoryCreateParameter(

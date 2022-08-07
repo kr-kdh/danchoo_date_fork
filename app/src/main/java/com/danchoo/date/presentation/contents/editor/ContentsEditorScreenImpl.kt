@@ -76,12 +76,15 @@ fun ContentsEditorScreenImpl(
             tag = {
                 ContentsTag(
                     tagList = viewState.tagList,
-                    onClickDelete = {
+                    onClickAdd = {
+                        onViewEvent(ContentsEditorViewEvent.OnClickAddTag)
+                    },
+                    onClickDelete = { tagModel ->
+                        onViewEvent(ContentsEditorViewEvent.OnClickDeleteTag(tagModel))
                     }
                 )
             },
             description = {
-
                 ContentsDescription(
                     text = viewState.description,
                     onValueChange = {
@@ -202,10 +205,10 @@ private fun ContentsMediaListItem(
 
 
 @Composable
-private fun ColumnScope.ContentsTag(
+private fun ContentsTag(
     tagList: List<TagModel> = emptyList(),
     onClickAdd: () -> Unit = {},
-    onClickDelete: () -> Unit = {},
+    onClickDelete: (TagModel) -> Unit = {},
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -250,10 +253,12 @@ private fun ColumnScope.ContentsTag(
             mainAxisSpacing = MyApplicationTheme.spacing.baseLineSpacing,
             crossAxisSpacing = MyApplicationTheme.spacing.baseLineSpacing
         ) {
-            tagList.forEach {
+            tagList.forEach { tagModel ->
                 TagItemButton(
-                    tagName = it.tag,
-                    onClickDelete = onClickDelete
+                    tagName = tagModel.tag,
+                    onClickDelete = {
+                        onClickDelete(tagModel)
+                    }
                 )
             }
         }
@@ -261,7 +266,7 @@ private fun ColumnScope.ContentsTag(
 }
 
 @Composable
-private fun ColumnScope.CategorySelect(
+private fun CategorySelect(
     category: CategoryModel? = null,
     onClick: () -> Unit
 ) {
@@ -273,7 +278,9 @@ private fun ColumnScope.CategorySelect(
     )
 
     OutlinedTextButton(
-        modifier = Modifier.padding(top = MyApplicationTheme.spacing.baseLineSpacingSmallest),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = MyApplicationTheme.spacing.baseLineSpacingSmallest),
         text = category?.title ?: "",
         onClick = onClick
     )

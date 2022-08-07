@@ -8,15 +8,14 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-interface BaseIntent
+interface BaseEvent
 interface BaseViewState
 interface BaseSideEffect
 
-abstract class BaseViewModel<Event : BaseIntent, UIState : BaseViewState, SideEffect : BaseSideEffect> :
+abstract class BaseViewModel<Event : BaseEvent, UIState : BaseViewState, SideEffect : BaseSideEffect> :
     ViewModel() {
 
     private val initialState: UIState by lazy { setInitialState() }
@@ -24,9 +23,9 @@ abstract class BaseViewModel<Event : BaseIntent, UIState : BaseViewState, SideEf
     private val _viewState: MutableState<UIState> = mutableStateOf(initialState)
 
     private val _sideEffect: Channel<SideEffect> = Channel()
-    val sideEffect: Flow<SideEffect> = _sideEffect.receiveAsFlow()
+    val sideEffect: Flow<SideEffect> get() = _sideEffect.receiveAsFlow()
 
-    val viewState: State<UIState> = _viewState
+    val viewState: State<UIState> get() = _viewState
 
     private val _event: MutableSharedFlow<Event> = MutableSharedFlow()
 

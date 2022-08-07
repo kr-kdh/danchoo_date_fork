@@ -4,13 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.danchoo.date.presentation.home.category.editor.CategoryEditorActions
+import com.danchoo.date.presentation.contents.ContentsNavActions
+import com.danchoo.date.presentation.home.category.editor.CategoryEditorNavActions
 import com.danchoo.date.presentation.home.category.graph.HomeNavActions
 import com.danchoo.date.presentation.utils.extension.launchResumed
 
 class MainNavGraphState(
     private val navController: NavController,
-) : HomeNavActions, CategoryEditorActions {
+) : HomeNavActions, CategoryEditorNavActions,ContentsNavActions {
     override fun onClickCategoryAdd() {
         navController.launchResumed {
             navigate(CategoryEditorScreen.CREATE)
@@ -23,9 +24,15 @@ class MainNavGraphState(
         }
     }
 
-    override fun moveToGallery() {
+    override fun moveGallery() {
         navController.launchResumed {
             navigate(CommonScreen.GALLERY)
+        }
+    }
+
+    override fun moveTagList() {
+        navController.launchResumed {
+            navigate(CommonScreen.TAG_LIST)
         }
     }
 }

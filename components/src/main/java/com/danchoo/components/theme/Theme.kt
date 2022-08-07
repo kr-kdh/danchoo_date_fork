@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import com.danchoo.components.theme.color.MaterialColorGrey
 import com.danchoo.components.theme.color.MaterialColorIndigo
 import com.danchoo.components.theme.color.MaterialColorRed
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 data class ColorSet(
     val main: Color, //primary, secondary
@@ -88,6 +87,11 @@ object MyApplicationTheme {
      * Icon, Item min size
      */
     val minSize: Dp = 56.dp
+
+    val shapeSize: ShapeSize
+        @Composable
+        @ReadOnlyComposable
+        get() = ShapeSize
 }
 
 
@@ -212,9 +216,6 @@ fun ProvideColors(
         // provided, and overwrite the values set in it.
         colors.copy()
     }
-
-    val systemUiController = rememberSystemUiController()
-    systemUiController.setStatusBarColor(colors.primary)
 
     colorPalette.update(colors)
 

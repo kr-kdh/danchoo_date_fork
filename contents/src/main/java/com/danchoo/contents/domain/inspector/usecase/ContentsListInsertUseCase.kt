@@ -5,9 +5,8 @@ import com.danchoo.contents.domain.model.ContentsModel
 import com.danchoo.contents.domain.repository.ContentsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import java.util.*
-import javax.inject.Inject
 
-class ContentsListInsertUseCase @Inject constructor(
+class ContentsListInsertUseCase(
     private val repository: ContentsRepository,
     dispatcher: CoroutineDispatcher
 ) : UseCase<Unit, Unit>(dispatcher) {

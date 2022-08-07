@@ -9,7 +9,7 @@ import com.danchoo.date.presentation.CategoryEditorScreen
 import com.danchoo.date.presentation.MainRoute
 import com.danchoo.date.presentation.common.gallery.domain.model.GALLERY_ITEM_MODEL
 import com.danchoo.date.presentation.common.gallery.domain.model.GalleryItemModel
-import com.danchoo.date.presentation.home.category.editor.CategoryEditorActions
+import com.danchoo.date.presentation.home.category.editor.CategoryEditorNavActions
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorScreen
 import com.danchoo.date.presentation.utils.extension.launchResumed
 import com.google.accompanist.navigation.animation.composable
@@ -19,7 +19,7 @@ import com.google.accompanist.navigation.animation.navigation
 fun NavGraphBuilder.addCategoryEditorNavGraph(
     modifier: Modifier,
     navHostController: NavHostController,
-    actions: CategoryEditorActions
+    navActions: CategoryEditorNavActions
 ) {
     navigation(
         route = MainRoute.CATEGORY_EDITOR_ROUTE,
@@ -44,7 +44,7 @@ fun NavGraphBuilder.addCategoryEditorNavGraph(
             CategoryEditorScreen(
                 modifier = modifier,
                 galleryItemModel = galleryItemModel,
-                moveToGallery = { actions.moveToGallery() },
+                moveToGallery = { navActions.moveGallery() },
                 onClickBack = {
                     navHostController.launchResumed { popBackStack() }
                 }

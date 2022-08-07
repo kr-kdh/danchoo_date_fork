@@ -5,9 +5,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.danchoo.components.theme.MyTypography
 import com.danchoo.components.ui.button.IconButton
 
 
@@ -34,14 +34,21 @@ fun BackTopAppBar(
                 onClick = onClickBack
             )
         },
+        title = {
+            CompositionLocalProvider(
+                LocalContentAlpha provides ContentAlpha.medium,
+                LocalContentColor provides Color.Red
+            ) {
+                ProvideTextStyle(value = MaterialTheme.typography.subtitle1) {
+                    title()
+                }
+            }
+            
+        },
         actions = {
-            ProvideTextStyle(value = MyTypography.subtitle1) {
+            ProvideTextStyle(value = MaterialTheme.typography.subtitle2) {
                 actions()
             }
-        },
-        title = {
-            ProvideTextStyle(value = MyTypography.title1) {
-                title()
-            }
-        })
+        }
+    )
 }

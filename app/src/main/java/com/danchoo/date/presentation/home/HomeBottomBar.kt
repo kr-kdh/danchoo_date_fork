@@ -25,20 +25,17 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.*
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import androidx.core.os.ConfigurationCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.danchoo.components.theme.MyApplicationTheme
-import com.danchoo.components.theme.RoundedCornerShape50percent
 import com.danchoo.date.presentation.HomeScreen
 import com.google.accompanist.insets.navigationBarsPadding
 
@@ -119,11 +116,7 @@ private fun HomeTabItems(
             },
             text = {
                 Text(
-                    text = stringResource(section.title).uppercase(
-                        ConfigurationCompat.getLocales(
-                            LocalConfiguration.current
-                        ).get(0)
-                    ),
+                    text = stringResource(section.title),
                     color = tint,
                     style = MaterialTheme.typography.button,
                     maxLines = 1
@@ -139,7 +132,7 @@ private fun HomeTabItems(
                 }
             },
             animSpec = springSpec,
-            modifier = BottomNavigationItemPadding.clip(RoundedCornerShape50percent)
+            modifier = BottomNavigationItemPadding.clip(MaterialTheme.shapes.large)
         )
     }
 }
@@ -226,7 +219,7 @@ private fun HomeBottomNavLayout(
 private fun MainBottomNavIndicator(
     strokeWidth: Dp = 2.dp,
     color: Color = MyApplicationTheme.colors.textPrimary,
-    shape: Shape = RoundedCornerShape50percent
+    shape: Shape = MaterialTheme.shapes.large
 ) {
     Spacer(
         modifier = Modifier

@@ -30,6 +30,7 @@ class GlideModule : AppGlideModule() {
 }
 
 class GlideAppImageLoaderImpl : GlideImageLoader {
+
     override fun getRequestBuilder(context: Context): RequestBuilder<Drawable> {
         return GlideApp.with(context).asDrawable()
     }

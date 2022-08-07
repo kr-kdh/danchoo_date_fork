@@ -4,6 +4,7 @@ import android.net.Uri
 import com.danchoo.category.domain.inspector.usecase.CategoryCreateUseCase.CategoryCreateParameter
 import com.danchoo.category.domain.model.CategoryModel
 import com.danchoo.category.domain.repository.CategoryRepository
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.AfterEach
@@ -13,14 +14,15 @@ import org.mockito.Mockito
 
 internal class CategoryCreateUseCaseTest {
 
+
     private lateinit var mockRepository: CategoryRepository
     private lateinit var useCase: CategoryCreateUseCase
     private lateinit var uri: Uri
 
     @BeforeEach
     fun setUp() {
-        mockRepository = Mockito.mock(CategoryRepository::class.java)
-        uri = Mockito.mock(Uri::class.java)
+        mockRepository = mockk()
+        uri = mockk()
         useCase = CategoryCreateUseCase(mockRepository, Dispatchers.IO)
     }
 

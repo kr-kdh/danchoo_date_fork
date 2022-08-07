@@ -1,7 +1,7 @@
 package com.danchoo.date.presentation.contents.editor
 
 import com.danchoo.category.domain.model.CategoryModel
-import com.danchoo.common.BaseIntent
+import com.danchoo.common.BaseEvent
 import com.danchoo.common.BaseSideEffect
 import com.danchoo.common.BaseViewState
 import com.danchoo.components.event.ViewEvent
@@ -10,12 +10,12 @@ import com.danchoo.tags.domain.model.TagModel
 
 object ContentsEditorContract {
 
-    sealed class ContentsEditorIntent : BaseIntent {
-        object ShowCategorySelectDialog : ContentsEditorIntent()
-        object HideCategorySelectDialog : ContentsEditorIntent()
-        data class OnSelectCategory(val category: CategoryModel) : ContentsEditorIntent()
-        data class OnCheckedChangedVisibility(val checked: Boolean) : ContentsEditorIntent()
-        data class OnDescriptionChanged(val description: String) : ContentsEditorIntent()
+    sealed class ContentsEditorEvent : BaseEvent {
+        object ShowCategorySelectDialog : ContentsEditorEvent()
+        object HideCategorySelectDialog : ContentsEditorEvent()
+        data class OnSelectCategory(val category: CategoryModel) : ContentsEditorEvent()
+        data class OnCheckedChangedVisibility(val checked: Boolean) : ContentsEditorEvent()
+        data class OnDescriptionChanged(val description: String) : ContentsEditorEvent()
     }
 
     data class ContentsEditorViewState(
@@ -37,6 +37,8 @@ object ContentsEditorContract {
         object OnClickBack : ContentsEditorViewEvent()
         object OnClickConfirm : ContentsEditorViewEvent()
         object OnClickCategoryList : ContentsEditorViewEvent()
+        object OnClickAddTag : ContentsEditorViewEvent()
+        data class OnClickDeleteTag(val tagModel: TagModel) : ContentsEditorViewEvent()
 
         data class OnCheckedChangedVisibility(val checked: Boolean) : ContentsEditorViewEvent()
 

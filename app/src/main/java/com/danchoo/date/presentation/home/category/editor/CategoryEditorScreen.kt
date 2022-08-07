@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.danchoo.components.permission.RequestPermission
 import com.danchoo.date.presentation.common.gallery.domain.model.GalleryItemModel
-import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorIntent
+import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorEvent
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorSideEffect
 import com.danchoo.date.presentation.home.category.editor.CategoryEditorContract.CategoryEditorViewEvent
 import com.danchoo.date.presentation.utils.dialog.MediaSelectDialog
@@ -32,7 +32,7 @@ fun CategoryEditorScreen(
 
     galleryItemModel?.let {
         viewModel.setEvent(
-            CategoryEditorIntent.SaveGalleryModel(
+            CategoryEditorEvent.SaveGalleryModel(
                 model = it,
                 saveTempPath = state.getCacheDir().absolutePath
             )
@@ -41,7 +41,7 @@ fun CategoryEditorScreen(
 
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
         if (it) {
-            viewModel.setEvent(CategoryEditorIntent.CameraTakePicture(state.selectMediaUri.value))
+            viewModel.setEvent(CategoryEditorEvent.CameraTakePicture(state.selectMediaUri.value))
         }
     }
 
@@ -72,20 +72,20 @@ fun CategoryEditorScreen(
         when (it) {
             is CategoryEditorViewEvent.OnClickBack -> onClickBack()
             is CategoryEditorViewEvent.OnTitleChanged -> {
-                viewModel.setEvent(CategoryEditorIntent.TitleChanged(it.title))
+                viewModel.setEvent(CategoryEditorEvent.TitleChanged(it.title))
             }
             is CategoryEditorViewEvent.OnDescriptionChanged -> {
-                viewModel.setEvent(CategoryEditorIntent.DescriptionChanged(it.description))
+                viewModel.setEvent(CategoryEditorEvent.DescriptionChanged(it.description))
             }
             is CategoryEditorViewEvent.OnVisibilityChanged -> {
-                viewModel.setEvent(CategoryEditorIntent.VisibilityChanged(it.visibility))
+                viewModel.setEvent(CategoryEditorEvent.VisibilityChanged(it.visibility))
             }
             is CategoryEditorViewEvent.OnClickImageChange -> {
                 state.isShowMenuDialog.value = true
             }
             is CategoryEditorViewEvent.OnClickConfirm -> {
                 viewModel.setEvent(
-                    CategoryEditorIntent.CategoryCreate(
+                    CategoryEditorEvent.CategoryCreate(
                         title = viewState.title,
                         description = viewState.description,
                         isVisibility = if (viewState.isVisibility) View.VISIBLE else View.GONE,

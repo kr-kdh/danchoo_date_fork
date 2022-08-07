@@ -2,12 +2,14 @@ package com.danchoo.date.presentation
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import com.danchoo.common.BaseActivity
 import com.danchoo.components.theme.CustomTheme
 import com.danchoo.components.theme.MyApplicationTheme
 import com.danchoo.date.presentation.utils.glide.GlideAppImageLoaderImpl
 import com.danchoo.glideimage.LocalImageLoader
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -32,6 +34,9 @@ class MainActivity : BaseActivity() {
                 CompositionLocalProvider(
                     LocalImageLoader provides GlideAppImageLoaderImpl()
                 ) {
+                    val systemUiController = rememberSystemUiController()
+                    systemUiController.setStatusBarColor(MaterialTheme.colors.primary)
+
                     MainApp()
                 }
             }

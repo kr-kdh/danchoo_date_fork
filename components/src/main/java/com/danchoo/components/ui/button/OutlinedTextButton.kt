@@ -21,7 +21,6 @@ fun OutlinedTextButton(
     ) {
         Text(
             modifier = Modifier
-                .weight(1f)
                 .padding(
                     top = MyApplicationTheme.spacing.baseLineSpacing,
                     bottom = MyApplicationTheme.spacing.baseLineSpacing

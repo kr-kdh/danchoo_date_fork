@@ -7,7 +7,7 @@ import com.danchoo.category.domain.inspector.usecase.CategoryListInsertUseCase
 import com.danchoo.category.domain.inspector.usecase.CategoryPagingUseCase
 import com.danchoo.category.domain.model.CategoryData
 import com.danchoo.common.BaseViewModel
-import com.danchoo.date.presentation.home.category.CategoryContract.CategoryIntent
+import com.danchoo.date.presentation.home.category.CategoryContract.CategoryEvent
 import com.danchoo.date.presentation.home.category.CategoryContract.CategorySideEffect
 import com.danchoo.date.presentation.home.category.CategoryContract.CategoryViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,10 +18,10 @@ import javax.inject.Inject
 class CategoryViewModel @Inject constructor(
     private val categoryPagingUseCase: CategoryPagingUseCase,
     private val categoryListInsertUseCase: CategoryListInsertUseCase
-) : BaseViewModel<CategoryIntent, CategoryViewState, CategorySideEffect>() {
+) : BaseViewModel<CategoryEvent, CategoryViewState, CategorySideEffect>() {
     override fun setInitialState() = CategoryViewState
 
-    override fun handleEvents(event: CategoryIntent) {
+    override fun handleEvents(event: CategoryEvent) {
         when (event) {
             else -> Unit
         }
