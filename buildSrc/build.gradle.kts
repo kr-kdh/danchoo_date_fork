@@ -26,5 +26,7 @@ repositories {
 dependencies {
     implementation("com.android.tools.build:gradle:7.2.2")
     implementation(kotlin("gradle-plugin", "1.7.0"))
+    implementation ("com.squareup:javapoet:1.13.0")
+    implementation ("de.mannodermaus.gradle.plugins:android-junit5:1.8.2.0")
 //    implementation("de.mannodermaus.gradle.plugins:android-junit5:${JUnit5.pluginVersion}")
 }

@@ -29,6 +29,11 @@ android {
     }
 }
 
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation(project(":contents"))
     implementation(project(":base"))
